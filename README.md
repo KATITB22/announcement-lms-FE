@@ -6,14 +6,17 @@ Content and Publication Annoucement LMS
 Setiap repository akan memiliki 3 branch utama, yaitu master, development, dan production.
 Setiap pembuatan branch baru, buat branch baru dengan base master.
 Format: <tipe>/<judul>
+  
 List tipe:
 - Story, untuk fitur atau use case baru
 - Task, untuk bug fixing, performance improvement, refactor, dsb.
-Judul: gunakan kebab case
+  
+Judul: gunakan kebab case  
+  
 Contoh:
--story/api-attendance
--story/page-attendance
--task/improve-sql-performance-on-xxxx-method
+- story/api-attendance
+- story/page-attendance
+- task/improve-sql-performance-on-xxxx-method
 
 Setelah selesai, Pull Request ke master dan wajib minta peer review ke kadiv/wakadiv.
 
