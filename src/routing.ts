@@ -24,6 +24,8 @@ const PageNotFound = React.lazy(() =>
     }))
 );
 
+const HomePage = React.lazy(() => import('./pages/Homepage/Homepage'));
+
 interface PageRouting {
     title: string;
     path: string;
@@ -42,7 +44,11 @@ export const Routing: PageRouting[] = [
         path: '/',
         component: DefPage,
     },
-
+    {
+        title: 'Homepage',
+        path: '/home',
+        component: HomePage,
+    },
     {
         title: 'Page 1',
         path: '/page1',
