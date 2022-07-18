@@ -12,3 +12,8 @@ export interface HomepageProps extends BaseProps {
 export interface SpinnerProps {
     message?: string;
 }
+
+export interface NavBarProps {
+    children: React.ReactNode;
+    to: string;
+}

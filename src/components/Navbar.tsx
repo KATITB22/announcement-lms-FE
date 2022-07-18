@@ -1,6 +1,19 @@
-import React from 'react';
-import { BaseProps } from '../types/interface';
+import React, { useMemo } from 'react';
+import { Link as rrLink, useLocation } from 'react-router-dom';
+import { Link } from '@chakra-ui/react';
+import { NavBarProps } from '../types/interface';
 
-const Navbar: React.FC<BaseProps> = () => <nav>navbar test</nav>;
+const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
+    const location = useLocation();
+    const isActive = useMemo(
+        () => location.pathname === to,
+        [location.pathname]
+    );
+    return (
+        <Link as={rrLink} to={to} color={isActive ? 'base.900' : 'base.700'}>
+            {children}
+        </Link>
+    );
+};
 
 export default Navbar;
