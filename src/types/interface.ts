@@ -8,3 +8,7 @@ export interface BaseProps {
 export interface HomepageProps extends BaseProps {
     text: string;
 }
+
+export interface SpinnerProps {
+    message?: string;
+}
