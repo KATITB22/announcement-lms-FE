@@ -1,13 +1,18 @@
-### Story/Task
+## Story/Task
 _Create Homepage_
 
-### Summary
+## Summary
 - _Added New Endpoint_
 - _add config in tailwind_
 
-### Test Plan
+## Test Plan
 - [ ] _Will start at the homepage_
 - [ ] _Click home then routes will go to the page_
+
+## Screenshot
+_Provide screenshot_
+_For FE in mobile and web_
+_for BE screenrecord/gif/ss req and response and make sure it's working_
 
 ### Delete this
 - Don't Forget to add prefix to PR [Story] Create homepage / [Task] Enhancement
