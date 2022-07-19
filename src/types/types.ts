@@ -12,3 +12,5 @@ export type Post = {
     imageUrl: string;
     link: string; // link to detail post
 };
+
+export type paragraph = string;

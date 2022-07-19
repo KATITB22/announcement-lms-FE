@@ -8,8 +8,8 @@
         "build": "yarn lint && tsc && vite build",
         "preview": "vite preview",
         "prepare": "husky install",
-        "lint": "yarn eslint ./src/** --fix && yarn prettier --write .",
-        "lint:auto": "yarn eslint ./src/** --fix --no-color && yarn prettier --write --no-color ."
+        "lint": "yarn eslint --fix --ignore-pattern src/fonts/* src/**/* && yarn prettier --write .",
+        "lint:auto": "yarn eslint --fix --no-color --ext .js,.jsx,.ts,.tsx --ignore-pattern src/fonts/* src/**/* && yarn prettier --write --no-color ."
     },
     "dependencies": {
         "@chakra-ui/react": "^2.2.4",
