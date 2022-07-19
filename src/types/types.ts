@@ -5,3 +5,10 @@ export type Post = {
 };
 
 export type paragraph = string;
+
+export type image = {
+    boxSize?: string;
+    src: string;
+    alt?: string;
+    link: string;
+};

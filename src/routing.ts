@@ -3,6 +3,7 @@ import React, { LazyExoticComponent } from 'react';
 const Loading = React.lazy(() => import('./pages/Loading'));
 const HomePage = React.lazy(() => import('./pages/Homepage/Homepage'));
 const AboutPage = React.lazy(() => import('./pages/About/About'));
+const PartnerPage = React.lazy(() => import('./pages/PartnerPage'));
 const PageNotFound = React.lazy(() => import('./pages/PageNotFound'));
 interface PageRouting {
     title: string;
@@ -31,6 +32,11 @@ export const Routing: PageRouting[] = [
         title: 'Loading',
         path: '/loading',
         component: Loading,
+    },
+    {
+        title: 'Partner',
+        path: '/partner',
+        component: PartnerPage,
     },
     PageNotFoundRouting,
 ];
