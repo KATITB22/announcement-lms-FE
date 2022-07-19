@@ -1,5 +1,6 @@
 import React from 'react';
 import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react';
+import { BaseProps } from '../types/interface';
 
 const listOfCategories: string[] = [
     'Test',
@@ -11,8 +12,8 @@ const listOfCategories: string[] = [
     'awkihgfwiakuhfg',
 ];
 
-const FilterAndCategory: React.FC<{}> = () => (
-    <div className="bg-Yellow p-8 inline-block rounded-md">
+const FilterAndCategory: React.FC<BaseProps> = ({ className }) => (
+    <div className={`bg-Yellow p-8 inline-block rounded-md ${className}`}>
         <p className="text-h4">Filter</p>
         <CheckboxGroup>
             <Stack
