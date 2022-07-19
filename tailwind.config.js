@@ -14,6 +14,8 @@ module.exports = {
                 Orange: '#FFA06E',
                 LightOrange: '#F9D7AA',
                 Brown: '#66402C',
+                LightBrown: '#FFECD0',
+                MediumOrange: '#FFB965',
             },
             fontFamily: {
                 Heading: 'Magilio',
