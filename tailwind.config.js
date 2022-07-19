@@ -13,6 +13,7 @@ module.exports = {
                 Yellow: '#FFEBB0',
                 Orange: '#FFA06E',
                 LightOrange: '#F9D7AA',
+                LightBrown: '#F9DCB0',
                 Brown: '#66402C',
                 LightBrown: '#FFECD0',
                 MediumOrange: '#FFB965',

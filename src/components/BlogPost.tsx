@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box, Center, Heading, Text, Stack, Image } from '@chakra-ui/react';
+import { Box, Heading, Text, Stack, Image } from '@chakra-ui/react';
 import { Post } from '../types/types';
 
 // TODO: fix image
 const BlogPost: React.FC<Post> = (props) => {
     const { title, date, author, description, imageUrl, link } = props;
     return (
-        <Center className="py-6">
+        <Stack className="py-6">
             <Box
                 maxW="450px"
                 w="full"
@@ -35,7 +35,7 @@ const BlogPost: React.FC<Post> = (props) => {
                     </Stack>
                 </Stack>
             </Box>
-        </Center>
+        </Stack>
     );
 };
 
