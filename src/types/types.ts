@@ -3,3 +3,5 @@ export type Post = {
     detail: string;
     link: string;
 };
+
+export type paragraph = string;
