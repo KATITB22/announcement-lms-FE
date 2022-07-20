@@ -11,6 +11,7 @@ export type Post = {
     description: string;
     imageUrl: string;
     link: string; // link to detail post
+    tags: string[];
 };
 
 export type paragraph = string;
