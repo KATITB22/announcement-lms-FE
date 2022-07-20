@@ -19,7 +19,7 @@ const FilterAndCategory: React.FC<BaseProps> = ({ className }) => (
             <Stack
                 spacing={[1, 5]}
                 direction={['column']}
-                className="bg-LightBrown p-8 rounded-md"
+                className="bg-MediumBrown p-8 rounded-md"
             >
                 {listOfCategories.map((category) => (
                     <Checkbox
