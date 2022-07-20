@@ -11,9 +11,9 @@ const AboutDetail: React.FC<AboutProps> = ({ toggle }) => {
     ];
 
     return (
-        <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0]">
+        <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown">
             <div className="container text-center max-w-screen-lg min-h-screen mx-auto px-[2rem] py-20">
-                <div className="relative flex flex-col items-center bg-[#F9DCB0] opacity-70 rounded-[37px] pb-6 px-4 md:text-[18px] md:px-14 lg:px-20">
+                <div className="relative flex flex-col items-center bg-MediumBrown opacity-70 rounded-[37px] pb-6 px-4 md:text-[18px] md:px-14 lg:px-20">
                     <img
                         className="relative -mt-7  w-20 md:w-28 md:-mt-8 md:mb-8 "
                         src={oskmLogo}
@@ -28,7 +28,7 @@ const AboutDetail: React.FC<AboutProps> = ({ toggle }) => {
                     <button
                         type="button"
                         onClick={toggle}
-                        className="bg-[#FFC176] text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
+                        className="bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
                     >
                         go back
                     </button>
