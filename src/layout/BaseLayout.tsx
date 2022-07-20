@@ -1,4 +1,4 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { CloseIcon, HamburgerIcon, SearchIcon } from '@chakra-ui/icons';
 import {
     Box,
     Button,
@@ -7,6 +7,7 @@ import {
     IconButton,
     Input,
     InputGroup,
+    InputLeftElement,
     InputRightElement,
     Stack,
     useDisclosure,
@@ -46,7 +47,46 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
     return (
         <>
             <Box bg="base.700" px={4}>
-                <Flex h={16} alignItems="center" justifyContent="space-between">
+                <Flex
+                    h={16}
+                    alignItems="center"
+                    justifyContent="space-between"
+                    minWidth="max-content"
+                >
+                    <Box>Logo</Box>
+                    <InputGroup
+                        minWidth="200px"
+                        maxWidth={{ base: '3xs', md: 'md' }}
+                    >
+                        <InputLeftElement pointerEvents="none">
+                            {' '}
+                            <SearchIcon />{' '}
+                        </InputLeftElement>
+                        <Input pr="4.5rem" placeholder="Search" />
+                        <InputRightElement width="4.5rem">
+                            <Button
+                                h="1.75rem"
+                                size="sm"
+                                onClick={() => {
+                                    console.log('hi');
+                                }}
+                            >
+                                Search
+                            </Button>
+                        </InputRightElement>
+                    </InputGroup>
+                    <HStack
+                        minWidth="max-content"
+                        as="nav"
+                        spacing={4}
+                        display={{ base: 'none', md: 'flex' }}
+                    >
+                        {Links.map((link) => (
+                            <Navbar key={link.to} to={link.to}>
+                                {link.name}
+                            </Navbar>
+                        ))}
+                    </HStack>
                     <IconButton
                         size="md"
                         icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -54,44 +94,12 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         display={{ md: 'none' }}
                         onClick={isOpen ? onClose : onOpen}
                     />
-                    <HStack spacing={8} alignItems="center">
-                        <Box>Logo</Box>
-                        <InputGroup>
-                            <Input pr="4.5rem" placeholder="Search" />
-                            <InputRightElement width="4.5rem">
-                                <Button
-                                    h="1.75rem"
-                                    size="sm"
-                                    onClick={() => {
-                                        console.log('hi');
-                                    }}
-                                >
-                                    Search
-                                </Button>
-                            </InputRightElement>
-                        </InputGroup>
-                        <HStack
-                            as="nav"
-                            spacing={4}
-                            display={{ base: 'none', md: 'flex' }}
-                        >
-                            {Links.map((link) => (
-                                <Navbar key={link.to} to={link.to}>
-                                    {link.name}
-                                </Navbar>
-                            ))}
-                        </HStack>
-                    </HStack>
                 </Flex>
                 {isOpen ? (
                     <Box
                         bg="base.700"
+                        pb={4}
                         display={{ md: 'none' }}
-                        position="fixed"
-                        top="0"
-                        left="0"
-                        right="0"
-                        bottom="0"
                         zIndex="100"
                     >
                         <Stack as="nav" spacing={4}>
