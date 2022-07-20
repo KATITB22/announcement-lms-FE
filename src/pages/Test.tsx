@@ -1,5 +1,6 @@
 import React from 'react';
 import useFetch from '../hooks/useFetch';
+import BaseLayout from '../layout/BaseLayout';
 
 type Pokemon = {
     name?: string;
@@ -18,7 +19,7 @@ const Test: React.FC<{}> = () => {
     }
 
     return (
-        <>
+        <BaseLayout>
             {data.map((poke) => (
                 <div key={poke.name}>
                     <p>{poke.name}</p>
@@ -26,7 +27,7 @@ const Test: React.FC<{}> = () => {
                 </div>
             ))}
             <p>test</p>
-        </>
+        </BaseLayout>
     );
 };
 

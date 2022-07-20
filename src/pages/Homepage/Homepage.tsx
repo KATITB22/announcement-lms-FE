@@ -1,5 +1,6 @@
 import React from 'react';
 import BlogPost from '../../components/BlogPost';
+import BaseLayout from '../../layout/BaseLayout';
 import { Post } from '../../types/types';
 
 export const listOfPosts: Post[] = [
@@ -137,22 +138,24 @@ const Homepage: React.FC<{}> = () => {
         />
     ));
     return (
-        <div>
-            <div className="py-20 bg-Yellow">
-                <div className="container mx-auto px-6">
-                    <h1 className="text-4xl font-bold mb-2 text-center">
-                        Announcement
-                    </h1>
+        <BaseLayout>
+            <div>
+                <div className="py-20 bg-Yellow">
+                    <div className="container mx-auto px-6">
+                        <h1 className="text-4xl font-bold mb-2 text-center">
+                            Announcement
+                        </h1>
+                    </div>
                 </div>
-            </div>
-            <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20">
-                <div className="container max-w-screen-lg min-h-screen mx-auto px-[3.75rem]">
-                    <div className="grid justify-center xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4">
-                        {blogPostElements}
+                <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20">
+                    <div className="container max-w-screen-lg min-h-screen mx-auto px-[3.75rem]">
+                        <div className="grid justify-center xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4">
+                            {blogPostElements}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </BaseLayout>
     );
 };
 
