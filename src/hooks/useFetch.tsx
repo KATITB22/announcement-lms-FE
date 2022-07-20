@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { FetchingState } from '../types/interface';
 
-const useFecth = <T,>(url: string) => {
+const useFetch = <T,>(url: string) => {
     let abortController = new AbortController();
 
     const [fetchedData, setFetchedData] = React.useState<FetchingState<T>>({
@@ -57,4 +57,4 @@ const useFecth = <T,>(url: string) => {
     return { data, isLoading, error, message };
 };
 
-export default useFecth;
+export default useFetch;

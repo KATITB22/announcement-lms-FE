@@ -1,5 +1,5 @@
 import React from 'react';
-import useFecth from '../hooks/useFetch';
+import useFetch from '../hooks/useFetch';
 
 type Pokemon = {
     name?: string;
@@ -7,7 +7,7 @@ type Pokemon = {
 };
 const Test: React.FC<{}> = () => {
     const url = 'https://pokeapi.co/api/v2/pokemon/';
-    const { data, isLoading, error, message } = useFecth<Pokemon>(url);
+    const { data, isLoading, error, message } = useFetch<Pokemon>(url);
 
     if (isLoading) {
         return <p>loading</p>;
