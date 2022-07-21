@@ -6,74 +6,50 @@ import {
     // Hide,
     Box,
     VStack} from "@chakra-ui/react";
-import { Post } from "../../types/types";
+import { DetailPost } from "../../types/types";
 import { parse } from "node-html-parser";
-import axios from "axios";
+import useFetch from "../../hooks/useFetch";
+import Render from "./Render";
 
-const Detailpage: React.FC<DetailpageProps> = () => {
-    const [posts, setPosts] = React.useState<Post[]>([]);
-
-    //use props.id later
-    const fetchPost = () => {
-        axios.get('http://localhost:2368/ghost/api/content/posts/62d8f59a4d575935b4b0ee04?key=c11259cec5c2cfa1a037f3f5a4&include=tags')
-        .then((resp) => {
-            setPosts(resp.data.posts);
-        }).catch(err=>{
-            throw err
-        })
-    }
-
-    React.useEffect(()=>{
-        fetchPost();
-    },[])
+const Detailpage: React.FC<DetailpageProps> = (props) => {
+    const response = useFetch<any>("http://localhost:2368/ghost/api/content/posts/62d9674aea5970764c913c7c?key=c11259cec5c2cfa1a037f3f5a4&include=tags");
+    const data = response.data as any;
+    const isLoading = response.isLoading;
+    const error = response.error;
+    const message = response.message;
+    const posts: DetailPost[] = data.posts;
 
     const renderHTMLContent = React.useCallback(() => {
         if (posts.length===0) return [];
 
         const root = parse(posts[0].html);
+        // console.log(root);
         const components: any[] = [];
-        let id = 0;
+        let id: number = 0;
         root.childNodes.forEach((node: any)=>{
             if (node.tagName === "P"){
                 components.push(
-                    <Box
-                        key={id}
-                        textAlign='justify'
-                        fontFamily="Alegreya"
-                        fontSize={{
-                            base: "12px",
-                            md: "18px"
-                        }}>
-                        {node.childNodes[0].text}
-                    </Box>
+                    Render.paragraph(id, node.childNodes[0].text)
                 )
             }else { 
                 components.push(
-                    <Flex
-                        key={id}
-                        alignItems='center'
-                        justifyContent='center'>
-                        {node.childNodes[0].tagName === "IMG" ?
-                        <img
-                            src={node.childNodes[0].attrs.src}
-                            alt="content"
-                            width="80%"/>:
-                        <video
-                            controls
-                            poster={node.childNodes[0].childNodes[0].attrs.style.match(/(https?:\/\/[^\s]+)/g)[0].slice(0,-2)}
-                            width="80%">
-                            <source 
-                                src={node.childNodes[0].childNodes[0].attrs.src} 
-                                type="video/mp4"/>
-                        </video>
-                        }
-                    </Flex>
+                    node.childNodes[0].tagName === "IMG" ?
+                    Render.image(id, node.childNodes[0].attrs.src) :
+                    Render.video(id, node.childNodes[0].childNodes[0].attrs.style.match(/(https?:\/\/[^\s]+)/g)[0].slice(0,-2), node.childNodes[0].childNodes[0].attrs.src)   
                 )
             }
             id+=1;
         });
         return components;
-    }, [posts]);
+    }, [data]);
+    
+    if (isLoading) {
+        return <p>Loading</p>;
+    }
+
+    if (error) {
+        return <p>{message}</p>;
+    }
 
     return (
         <Flex
