@@ -15,11 +15,11 @@ const theme = extendTheme({
     colors: {
         base: {
             // TODO: fix colors
-            900: '#511D05',
-            800: '#FFB965',
-            700: '#FFC176',
-            600: '#FFEBB0',
-            500: '#FFECD0',
+            'footer-text': '#511D05',
+            'footer-bg': '#FFA06E',
+            'header-text': '#D27C2F',
+            'header-bg': '#FFEBB0',
+            'header-selected-text': '#511D05',
         },
     },
 });

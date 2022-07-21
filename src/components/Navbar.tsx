@@ -10,7 +10,11 @@ const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
         [location.pathname]
     );
     return (
-        <Link as={rrLink} to={to} color={isActive ? 'base.900' : 'base.600'}>
+        <Link
+            as={rrLink}
+            to={to}
+            color={isActive ? 'base.header-selected-text' : 'inherit'}
+        >
             {children}
         </Link>
     );
