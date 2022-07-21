@@ -5,6 +5,7 @@ const AboutPage = React.lazy(() => import('./pages/About/About'));
 const PageNotFound = React.lazy(() => import('./pages/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
 const Test = React.lazy(() => import('./pages/Test'));
+const DetailPage = React.lazy(()=> import('./pages/Detailpage/Detailpage'));
 
 interface PageRouting {
     title: string;
@@ -33,6 +34,11 @@ export const Routing: PageRouting[] = [
         title: 'Search',
         path: '/search',
         component: SearchPage,
+    },
+    {
+        title: 'Detail Post',
+        path: '/post',
+        component: DetailPage
     },
     {
         title: 'test',
