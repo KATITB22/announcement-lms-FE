@@ -8,6 +8,12 @@
 }
 
 @font-face {
+    font-family: 'Alegreya';
+    src: url('./fonts/Alegreya-VariableFont_wght.ttf');
+    font-weight: 400 900;
+}
+
+@font-face {
     font-family: 'Alegreya Semibold';
     src: url('./fonts/Alegreya-SemiBold.ttf');
 }

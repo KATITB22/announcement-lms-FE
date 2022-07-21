@@ -9,6 +9,10 @@ export interface HomepageProps extends BaseProps {
     text: string;
 }
 
+export interface DetailpageProps extends BaseProps {
+    id: string;
+}
+
 export interface SpinnerProps {
     message?: string;
 }
