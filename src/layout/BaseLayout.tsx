@@ -32,7 +32,7 @@ import Logo from '@styles/images/logo-sementara.jpeg';
 import { useNavigate } from 'react-router-dom';
 import { BaseProps } from '../types/interface';
 
-const Links = [
+const links = [
     {
         name: 'Home',
         to: '/',
@@ -55,7 +55,7 @@ const Links = [
     },
 ];
 
-const Socials = [
+const socials = [
     {
         to: 'https://twitter.com',
         icon: <FaTwitter />,
@@ -74,6 +74,8 @@ const Socials = [
     },
 ];
 
+const title = '\uE028\uE094\uE021\uE086 2022';
+
 const BaseLayout: React.FC<BaseProps> = (props) => {
     const { children } = props;
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -81,7 +83,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
     const navigate = useNavigate();
     return (
         <>
-            <Box bg="base.header-bg" px={4} color="base.header-text">
+            <Box bg="base.headerBg" px={4} color="base.headerText">
                 <Flex
                     h={16}
                     alignItems="center"
@@ -97,7 +99,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             fontSize="2xl"
                             fontFamily="heading"
                         >
-                            OSKM 2022
+                            {title}
                         </Heading>
                     </Flex>
                     <InputGroup
@@ -112,18 +114,19 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             bg="#FFCD90"
                             pr="4.5rem"
                             placeholder="Search"
-                            _placeholder={{ color: 'base.header-text' }}
+                            _placeholder={{ color: 'base.headerText' }}
                             onChange={(event) =>
                                 setSearchValue(event.target.value)
                             }
                         />
                         <InputRightElement width="4.5rem">
                             <Button
-                                bg="base.header-text"
+                                bg="base.headerText"
                                 h="1.75rem"
-                                color="base.header-selected-text"
+                                color="base.headerSelectedText"
                                 size="sm"
                                 onClick={() => {
+                                    if (!searchValue) return;
                                     console.log(`Searching for ${searchValue}`);
                                     // TODO: integrate with search page
                                     navigate(`/search?q=${searchValue}`);
@@ -140,7 +143,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         display={{ base: 'none', md: 'flex' }}
                         fontSize={{ lg: 'xl', md: 'md' }}
                     >
-                        {Links.map((link) => (
+                        {links.map((link) => (
                             <Navbar key={link.to} to={link.to}>
                                 {link.name}
                             </Navbar>
@@ -156,13 +159,13 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 </Flex>
                 {isOpen ? (
                     <Box
-                        bg="base.header-bg"
+                        bg="base.headerBg"
                         pb={4}
                         display={{ md: 'none' }}
                         zIndex="100"
                     >
                         <Stack as="nav" spacing={4}>
-                            {Links.map((link) => (
+                            {links.map((link) => (
                                 <Navbar key={link.to} to={link.to}>
                                     <Flex alignItems="center" gap="2">
                                         {link.icon}
@@ -175,7 +178,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 ) : null}
             </Box>
             <Box>{children}</Box>
-            <Box bg="base.footer-bg" color="base.footer-text">
+            <Box bg="base.footerBg" color="base.footerText">
                 <Container
                     as={Stack}
                     maxW="6xl"
@@ -197,7 +200,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             fontSize="2xl"
                             fontFamily="heading"
                         >
-                            OSKM 2022
+                            {title}
                         </Heading>
                     </Flex>
                     <Flex
@@ -206,7 +209,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     >
                         <Text fontSize="md">Find us on</Text>
                         <Stack direction="row" spacing={4}>
-                            {Socials.map((social) => (
+                            {socials.map((social) => (
                                 // <Navbar key={social.to} to={social.to}>
                                 //     {social.icon}
                                 // </Navbar>

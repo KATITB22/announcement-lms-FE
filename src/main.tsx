@@ -14,12 +14,11 @@ const theme = extendTheme({
     },
     colors: {
         base: {
-            // TODO: fix colors
-            'footer-text': '#511D05',
-            'footer-bg': '#FFA06E',
-            'header-text': '#D27C2F',
-            'header-bg': '#FFEBB0',
-            'header-selected-text': '#511D05',
+            footerText: '#511D05',
+            footerBg: '#FFA06E',
+            headerText: '#D27C2F',
+            headerBg: '#FFEBB0',
+            headerSelectedText: '#511D05',
         },
     },
 });

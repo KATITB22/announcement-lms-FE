@@ -13,7 +13,7 @@ const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
         <Link
             as={rrLink}
             to={to}
-            color={isActive ? 'base.header-selected-text' : 'inherit'}
+            color={isActive ? 'base.headerSelectedText' : 'inherit'}
         >
             {children}
         </Link>
