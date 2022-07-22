@@ -1,42 +1,63 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React from "react";
-import { DetailpageProps } from "../../types/interface";
+import React from 'react';
 import { 
     Flex,
     // Hide,
     Box,
-    VStack} from "@chakra-ui/react";
-import { DetailPost } from "../../types/types";
-import { parse } from "node-html-parser";
-import useFetch from "../../hooks/useFetch";
-import Render from "./Render";
+    VStack} from '@chakra-ui/react';
+import { parse } from 'node-html-parser';
+import { DetailpageProps } from '../../types/interface';
+import { DetailPost } from '../../types/types';
+import useFetch from '../../hooks/useFetch';
+import Render from './Render';
 
 const Detailpage: React.FC<DetailpageProps> = (props) => {
-    const response = useFetch<any>("http://localhost:2368/ghost/api/content/posts/62d9674aea5970764c913c7c?key=c11259cec5c2cfa1a037f3f5a4&include=tags");
+    const response = useFetch<any>('http://localhost:2368/ghost/api/content/posts/62d976cbf5ff9756b4463ac1?key=5ab6c0cb4def4f51dfc2d4a8df&include=tags');
     const data = response.data as any;
-    const isLoading = response.isLoading;
-    const error = response.error;
-    const message = response.message;
-    const posts: DetailPost[] = data.posts;
+    const {isLoading} = response;
+    const {error} = response;
+    const {message} = response;
+    const {posts} = data;
 
     const renderHTMLContent = React.useCallback(() => {
         if (posts.length===0) return [];
 
         const root = parse(posts[0].html);
-        // console.log(root);
+        console.table(root);
         const components: any[] = [];
         let id: number = 0;
         root.childNodes.forEach((node: any)=>{
-            if (node.tagName === "P"){
+            if (node.tagName === 'P'){
                 components.push(
-                    Render.paragraph(id, node.childNodes[0].text)
-                )
-            }else { 
+                    Render.paragraph(id, node.outerHTML)
+                );
+            }
+            else if (node.tagName === 'HR'){
                 components.push(
-                    node.childNodes[0].tagName === "IMG" ?
-                    Render.image(id, node.childNodes[0].attrs.src) :
-                    Render.video(id, node.childNodes[0].childNodes[0].attrs.style.match(/(https?:\/\/[^\s]+)/g)[0].slice(0,-2), node.childNodes[0].childNodes[0].attrs.src)   
-                )
+                    Render.divider()
+                );
+            }
+            else if (node.tagName === 'OL'){
+                components.push(
+                    Render.ol(id, node.innerHTML)
+                );
+            }
+            else if (node.tagName === 'UL'){
+                components.push(
+                    Render.ul(id, node.innerHTML)
+                );
+            }
+            else if (node.tagName === 'DIV'){
+                components.push(
+                    Render.heading(id, node.childNodes[0].text, node.childNodes[1].text)
+                );
+            }
+            else { 
+                components.push(
+                    node.childNodes[0].tagName === 'IMG' ?
+                        Render.image(id, node.childNodes[0].attrs.src) :
+                        Render.video(id, node.childNodes[0].childNodes[0].attrs.style.match(/(https?:\/\/[^\s]+)/g)[0].slice(0,-2), node.childNodes[0].childNodes[0].attrs.src)   
+                );
             }
             id+=1;
         });
@@ -58,8 +79,7 @@ const Detailpage: React.FC<DetailpageProps> = (props) => {
                 width="15%">
                 <Box
                     width="100%"
-                    height="100%">
-                </Box>
+                    height="100%" />
             </Flex>
             <Flex
                 marginTop="7%"
@@ -71,7 +91,7 @@ const Detailpage: React.FC<DetailpageProps> = (props) => {
                         base: '14px',
                         md: '18px'
                     }}>
-                    {"Home > Category >  Kemahasiswaan"}
+                    {'Home > Category >  Kemahasiswaan'}
                 </Box>
                 <Box
                     fontFamily='Magilio'
@@ -79,20 +99,20 @@ const Detailpage: React.FC<DetailpageProps> = (props) => {
                         base: '20px',
                         md: '35px'
                     }}>
-                    {"kitsch 8-bit organic plaid small batch keffiyeh"}
+                    kitsch 8-bit organic plaid small batch keffiyeh
                 </Box>
                 <Box
-                    fontFamily={'Alegreya'}
+                    fontFamily="Alegreya"
                     fontSize={{
                         base: '12px',
                         md: '18px'
                     }}>
-                    {"8 Jul 2022"}
+                    8 Jul 2022
                 </Box>
                 <VStack
                     spacing={{
-                        base: "12px",
-                        md: "24px"
+                        base: '12px',
+                        md: '24px'
                     }}>
                     <Box
                         maxWidth='100%'>
@@ -104,11 +124,9 @@ const Detailpage: React.FC<DetailpageProps> = (props) => {
                 </VStack>
             </Flex>
             <Flex 
-                width="15%">
-
-            </Flex>
+                width="15%" />
         </Flex>
-    )
-}
+    );
+};
 
 export default Detailpage;
