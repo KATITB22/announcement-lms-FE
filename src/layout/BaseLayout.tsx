@@ -6,7 +6,6 @@ import {
     Button,
     Container,
     Flex,
-    Heading,
     HStack,
     IconButton,
     Input,
@@ -31,6 +30,7 @@ import Navbar from '@components/Navbar';
 import Logo from '@styles/images/logo-sementara.jpeg';
 import { useNavigate } from 'react-router-dom';
 import { BaseProps } from '../types/interface';
+import Animate from './Animate';
 
 const links = [
     {
@@ -82,8 +82,8 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
     const [searchValue, setSearchValue] = React.useState('');
     const navigate = useNavigate();
     return (
-        <>
-            <Box bg="base.headerBg" px={4} color="base.headerText">
+        <Animate>
+            <Box className="bg-Yellow px-4 text-DarkerOrange">
                 <Flex
                     h={16}
                     alignItems="center"
@@ -92,15 +92,9 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 >
                     <Flex alignItems="center" gap="2">
                         <Avatar size="md" src={Logo} />
-                        <Heading
-                            margin="auto"
-                            paddingTop="3px"
-                            display={{ base: 'none', md: 'block' }}
-                            fontSize="2xl"
-                            fontFamily="heading"
-                        >
+                        <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl">
                             {title}
-                        </Heading>
+                        </h1>
                     </Flex>
                     <InputGroup
                         minWidth="150px"
@@ -114,16 +108,16 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             bg="#FFCD90"
                             pr="4.5rem"
                             placeholder="Search"
-                            _placeholder={{ color: 'base.headerText' }}
+                            _placeholder={{ color: '#D27C2F' }}
                             onChange={(event) =>
                                 setSearchValue(event.target.value)
                             }
                         />
                         <InputRightElement width="4.5rem">
                             <Button
-                                bg="base.headerText"
+                                bg="#D27C2F"
                                 h="1.75rem"
-                                color="base.headerSelectedText"
+                                color="#511D05"
                                 size="sm"
                                 onClick={() => {
                                     if (!searchValue) return;
@@ -178,7 +172,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 ) : null}
             </Box>
             <Box>{children}</Box>
-            <Box bg="base.footerBg" color="base.footerText">
+            <Box className="bg-Orange text-DarkestOrange">
                 <Container
                     as={Stack}
                     maxW="6xl"
@@ -194,14 +188,9 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         flexDirection={{ base: 'column', md: 'row' }}
                     >
                         <Avatar size="md" src={Logo} />
-                        <Heading
-                            margin="auto"
-                            paddingTop="3px"
-                            fontSize="2xl"
-                            fontFamily="heading"
-                        >
+                        <h1 className="font-Heading m-auto pt-3px text-2xl">
                             {title}
-                        </Heading>
+                        </h1>
                     </Flex>
                     <Flex
                         flexDirection="column"
@@ -232,7 +221,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     </Flex>
                 </Container>
             </Box>
-        </>
+        </Animate>
     );
 };
 

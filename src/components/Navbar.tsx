@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import { Link as rrLink, useLocation } from 'react-router-dom';
-import { Link } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
 import { NavBarProps } from '../types/interface';
 
 const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
@@ -10,13 +9,14 @@ const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
         [location.pathname]
     );
     return (
-        <Link
-            as={rrLink}
-            to={to}
-            color={isActive ? 'base.headerSelectedText' : 'inherit'}
+        <a
+            href={to}
+            className={`cursor-pointer no-underline ${
+                isActive ? 'text-DarkestOrange' : ''
+            }`}
         >
             {children}
-        </Link>
+        </a>
     );
 };
 
