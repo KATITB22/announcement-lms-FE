@@ -1,9 +1,3 @@
-// export type Post = {
-//     name: string;
-//     detail: string;
-//     link: string;
-// };
-
 export type Post = {
     title: string;
     date: string;
@@ -16,9 +10,9 @@ export type Post = {
 
 export type paragraph = string;
 
-export type image = {
+export type imgPartner = {
     title: string;
-    type: string;
+    type: string; // tipe sponsor
     imageUrl: string;
     link: string; // link to detail post
 };

@@ -13,20 +13,25 @@ const BlogPost: React.FC<Post> = (props) => {
                 ease-in-out
                 transform
                 hover:shadow-2xl
-                rounded-lg
                 justify-between
                 flex-col
                 flex
+                shrink
+                w-full
+                h-full
+                max-w-xs
+                md:max-w-md
+                max-h-fit
             "
         >
             <img
                 alt={title}
                 src={imageUrl}
-                className="max-h-40 w-full object-cover"
+                className="max-h-40 w-full object-cover rounded-t-lg"
             />
-            <div className="bg-white w-full h-full p-4">
-                {/* title  */}
+            <div className="bg-white w-full h-full p-4 rounded-br-lg rounded-bl-lg">
                 <div className="flex flex-col justify-between h-full">
+                    {/* title  */}
                     <div>
                         <p className="font-Body text-body font-normal mb-2">
                             {date} | Posted by {author}

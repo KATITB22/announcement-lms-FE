@@ -17,3 +17,10 @@ export interface AboutProps {
 export interface SpinnerProps {
     message?: string;
 }
+
+export interface FetchingState<T> {
+    data: T[];
+    isLoading: boolean;
+    error: boolean;
+    message: string;
+}

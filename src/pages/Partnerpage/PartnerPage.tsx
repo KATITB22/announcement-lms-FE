@@ -1,31 +1,42 @@
 import React from 'react';
 
+// export const listOfSponsor: imgPartner[] = [
+//     {
+//         title: 'Google',
+//         type: string;
+//         imageUrl: string;
+//         link: string; // link to detail post
+//     }
+// ]
+
 const PartnerPage: React.FC<{}> = () => (
     // const imageArray: Array<image> = [];
-    <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0]">
-        <div className="container max-w-screen min-h-screen mx-auto grid grid-cols-1 md:grid-cols-[150px_auto_150px]">
-            <div className="container border-black border md:w-[150px] md:block hidden">
-                <div className="container bg-gray-300 h-[200px] my-4 text-center">
+    <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20">
+        <div className="container max-w-screen min-h-screen mx-auto grid grid-cols-1 md:grid-cols-[200px_auto_200px]">
+            <div className="infografis-kiri border md:block hidden max-h-screen">
+                <div className="img bg-gray-300 h-[200px] my-4 text-center">
                     img 1
                 </div>
-                <div className="container bg-gray-300 h-[100px] my-4 text-center">
+                <div className="img bg-gray-300 h-[150px] my-4 text-center">
                     img 2
                 </div>
-                <div className="container bg-gray-300 h-[200px] my-4 text-center">
+                <div className="img bg-gray-300 h-[200px] my-4 text-center">
                     img 3
                 </div>
-                <div className="container bg-gray-300 h-[100px] my-4 text-center">
+                <div className="img bg-gray-300 h-[150px] my-4 text-center">
                     img 4
                 </div>
-                <div className="container bg-gray-300 h-[200px] my-4 text-center">
+                <div className="img bg-gray-300 h-[200px] my-4 text-center">
                     img 5
                 </div>
             </div>
-            <div className="container">
-                <p className="text-[24px] text-center pt-8">Thanks to:</p>
-                <div className="sponsor py-4">
-                    <div className="flex relative h-[30px] justify-center">
-                        <div className="text-center bg-LightBrown absolute h-[30px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
+            <div className="sponsor-medpart border ml-8 md:mb-8 mr-8">
+                <p className="text-3xl font-bold mb-2 text-center">
+                    Thanks to:
+                </p>
+                <div className="sponsor py-10">
+                    <div className="flex relative h-[36px] justify-center">
+                        <div className="text-h6 text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
                             Sponsor
                         </div>
                     </div>
@@ -47,8 +58,8 @@ const PartnerPage: React.FC<{}> = () => (
                     </div>
                 </div>
                 <div className="medpart">
-                    <div className="flex relative h-[30px] justify-center">
-                        <div className="text-center bg-LightBrown absolute h-[30px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
+                    <div className="flex relative h-[36px] justify-center">
+                        <div className="text-h6 text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
                             Media Partner
                         </div>
                     </div>
@@ -70,16 +81,31 @@ const PartnerPage: React.FC<{}> = () => (
                     </div>
                 </div>
             </div>
-            <div className="container border-black border md:hidden block">
-                Infografis bawah
-                <div className="container bg-gray-300">img</div>
-                <div className="container bg-gray-300">img</div>
+            <div className="infografis-bawah border md:hidden block mt-8 mx-8 flex flex-row gap-4">
+                <div className="img bg-gray-300 w-full">img 1</div>
+                <div className="img bg-gray-300 w-full">img 2</div>
+                <div className="img bg-gray-300 w-full">img 3</div>
             </div>
-            <div className="container border-black border md:w-[150px] md:block hidden">
-                Infografis kanan
+            <div className="infografis-kanan border md:block hidden max-h-screen ml-8">
+                <div className="img bg-gray-300 h-[200px] my-4 text-center">
+                    img 1
+                </div>
+                <div className="img bg-gray-300 h-[150px] my-4 text-center">
+                    img 2
+                </div>
+                <div className="img bg-gray-300 h-[200px] my-4 text-center">
+                    img 3
+                </div>
+                <div className="img bg-gray-300 h-[150px] my-4 text-center">
+                    img 4
+                </div>
+                <div className="img bg-gray-300 h-[200px] my-4 text-center">
+                    img 5
+                </div>
             </div>
 
             {/* <VStack spacing={50} align="stretch">
+            #grid grid-cols-1 md:grid-cols-[200px_auto_200px]
                 <Box h="300px" className="lg:bg-[#FFECD0] lg:rounded-xl">
                     sponsor
                 </Box>
