@@ -21,13 +21,18 @@ type Tag = {
 }
 
 export type Post = {
-    title: string;
-    date: string;
-    author: string;
-    description: string;
-    imageUrl: string;
-    link: string; // link to detail post
-    tags?: Tag[];
+    id: string
+    uuid: string
+    title: string
+    slug: string
+    feature_image: string
+    created_at: string
+    updated_at: string
+    published_at: string
+    tags: Tag[]
+    primary_tag: Tag
+    url: string
+    excerpt: string
 };
 
 export type paragraph = string;

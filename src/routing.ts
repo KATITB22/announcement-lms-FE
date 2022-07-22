@@ -37,7 +37,7 @@ export const Routing: PageRouting[] = [
     },
     {
         title: 'Detail Post',
-        path: '/post',
+        path: '/post/:postId',
         component: DetailPage
     },
     {

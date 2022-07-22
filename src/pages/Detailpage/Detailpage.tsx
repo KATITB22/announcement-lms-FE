@@ -10,9 +10,11 @@ import { DetailPost } from "../../types/types";
 import { parse } from "node-html-parser";
 import useFetch from "../../hooks/useFetch";
 import Render from "./Render";
+import { useParams } from "react-router-dom";
 
 const Detailpage: React.FC<DetailpageProps> = (props) => {
-    const response = useFetch<any>("http://localhost:2368/ghost/api/content/posts/62d9674aea5970764c913c7c?key=c11259cec5c2cfa1a037f3f5a4&include=tags");
+    const {postId} = useParams();
+    const response = useFetch<any>(`http://localhost:2368/ghost/api/content/posts/${postId}?key=c11259cec5c2cfa1a037f3f5a4&include=tags`);
     const data = response.data as any;
     const isLoading = response.isLoading;
     const error = response.error;
