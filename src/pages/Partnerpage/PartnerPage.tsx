@@ -1,16 +1,106 @@
 import React from 'react';
+import { imgPartner } from '../../types/types';
 
-// export const listOfSponsor: imgPartner[] = [
-//     {
-//         title: 'Google',
-//         type: string;
-//         imageUrl: string;
-//         link: string; // link to detail post
-//     }
-// ]
+export const listOfSponsor: imgPartner[] = [
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+];
+
+export const listOfMedpar: imgPartner[] = [
+    {
+        title: 'Google',
+        type: 'Test',
+        imageUrl:
+            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        link: 'www.google.com', // link to detail post
+    },
+];
 
 const PartnerPage: React.FC<{}> = () => (
     // const imageArray: Array<image> = [];
+
     <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20">
         <div className="container max-w-screen min-h-screen mx-auto grid grid-cols-1 md:grid-cols-[200px_auto_200px]">
             <div className="infografis-kiri border md:block hidden max-h-screen">
@@ -30,7 +120,7 @@ const PartnerPage: React.FC<{}> = () => (
                     img 5
                 </div>
             </div>
-            <div className="sponsor-medpart border ml-8 md:mb-8 mr-8">
+            <div className="sponsor-medpar border ml-8 md:mb-8 mr-8">
                 <p className="text-3xl font-bold mb-2 text-center">
                     Thanks to:
                 </p>
@@ -40,20 +130,17 @@ const PartnerPage: React.FC<{}> = () => (
                             Sponsor
                         </div>
                     </div>
-                    <div className="min-h-[200px] p-6 bg-LightBrown flex justify-center items-center rounded-md">
-                        <div className="image">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the
-                            industrys standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and
-                            scrambled it to make a type specimen book. It has
-                            survived not only five centuries, but also the leap
-                            into electronic typesetting, remaining essentially
-                            unchanged. It was popularised in the 1960s with the
-                            release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of
-                            Lorem Ipsum.
+                    <div className="min-h-[200px] p-4 bg-LightBrown flex justify-center items-center rounded-md ">
+                        <div className="image flex flex-wrap place-content-center gap-3">
+                            {listOfSponsor.map((image: imgPartner) => (
+                                <a href={image.link}>
+                                    <img
+                                        alt={image.title}
+                                        src={image.imageUrl}
+                                        className="w-[200px] w-[200px] object-cover"
+                                    />
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -64,19 +151,16 @@ const PartnerPage: React.FC<{}> = () => (
                         </div>
                     </div>
                     <div className="min-h-[200px] p-6 bg-LightBrown flex justify-center items-center rounded-md">
-                        <div className="image">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the
-                            industrys standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and
-                            scrambled it to make a type specimen book. It has
-                            survived not only five centuries, but also the leap
-                            into electronic typesetting, remaining essentially
-                            unchanged. It was popularised in the 1960s with the
-                            release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of
-                            Lorem Ipsum.
+                        <div className="image flex flex-wrap place-content-center gap-3">
+                            {listOfMedpar.map((image: imgPartner) => (
+                                <a href={image.link}>
+                                    <img
+                                        alt={image.title}
+                                        src={image.imageUrl}
+                                        className="w-[200px] w-[200px] object-cover"
+                                    />
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>
