@@ -1,9 +1,10 @@
 import React from 'react';
+import env from '@/env';
 import BlogPost from '../../components/BlogPost';
 import BaseLayout from '../../layout/BaseLayout';
 import { Post } from '../../types/types';
 import useFetch from '../../hooks/useFetch';
-import env from '../../env';
+import Loading from '../Loading';
 
 const listOfPost = [
     {
@@ -128,25 +129,25 @@ const listOfPost = [
 ];
 
 const Homepage: React.FC<{}> = () => {
-    const path = env.REACT_APP_GHOST_API_URL+ "/ghost/api/content/posts?key=" + env.REACT_APP_GHOST_API_CONTENT_API_KEY + "&include=tags";
+    const path =
+        env.VITE_GHOST_API_URL +
+        '/ghost/api/content/posts?key=' +
+        env.VITE_GHOST_API_CONTENT_API_KEY +
+        '&include=tags';
     // const path = "http://localhost:2368/ghost/api/content/posts?key=c11259cec5c2cfa1a037f3f5a4&include=tags";
     const { data, isLoading, error, message } = useFetch<Post>(path);
 
     if (isLoading) {
-        return (
-            <></>
-        )
+        return <Loading />;
     }
 
-    if (error){
-        console.log(message);
-        return (
-            <></>
-        )
+    if (error) {
+        return <p>{message}</p>;
     }
 
     const blogPostElements = data.posts.map((item: Post) => (
         <BlogPost
+            key={item.id}
             id={item.id}
             title={item.title}
             date={item.created_at}

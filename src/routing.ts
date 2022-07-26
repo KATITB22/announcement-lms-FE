@@ -2,10 +2,12 @@ import React, { LazyExoticComponent } from 'react';
 
 const HomePage = React.lazy(() => import('./pages/Homepage/Homepage'));
 const AboutPage = React.lazy(() => import('./pages/About/About'));
+const PartnerPage = React.lazy(() => import('./pages/Partnerpage/PartnerPage'));
 const PageNotFound = React.lazy(() => import('./pages/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
+const Loading = React.lazy(() => import('./pages/Loading'));
 const Test = React.lazy(() => import('./pages/Test'));
-const DetailPage = React.lazy(()=> import('./pages/Detailpage/Detailpage'));
+const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
 
 interface PageRouting {
     title: string;
@@ -31,6 +33,16 @@ export const Routing: PageRouting[] = [
         component: AboutPage,
     },
     {
+        title: 'Loading',
+        path: '/loading',
+        component: Loading,
+    },
+    {
+        title: 'Partner',
+        path: '/partner',
+        component: PartnerPage,
+    },
+    {
         title: 'Search',
         path: '/search',
         component: SearchPage,
@@ -38,7 +50,7 @@ export const Routing: PageRouting[] = [
     {
         title: 'Detail Post',
         path: '/post/:postId',
-        component: DetailPage
+        component: DetailPage,
     },
     {
         title: 'test',
