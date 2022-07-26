@@ -1,10 +1,9 @@
 import React from 'react';
 import oskmLogo from '../../assets/oskm-logo.svg';
 import { AboutProps } from '../../types/interface';
-import { paragraph } from '../../types/types';
 
 const AboutDetail: React.FC<AboutProps> = ({ toggle }) => {
-    const aboutDetailContents: Array<paragraph> = [
+    const aboutDetailContents: Array<string> = [
         'Penggunaan Internet di Indonesia cukup besar dan sangat aktif karena menunjang berbagai kebutuhan sehari-hari. Ini menjadi hal yang wajar, mengingat hampir semua sektor sudah terhubung ke internet, termasuk sektor bisnis yang mulai melakukan perubahan dalam segi marketing.',
         'Pemasaran yang dulu dilakukan dengan menggunakan flyer, spanduk, koran, kini beralih ke media digital dan juga internet, yang kemudian dikenal dengan istilah internet marketing strategist dan digital marketing. Arti keduanya sebenarnya kurang lebih sama, yaitu suatu cara untuk memasarkan produk secara luas menggunakan internet. Penggunaan Internet di Indonesia cukup besar dan sangat aktif karena menunjang berbagai kebutuhan sehari-hari. Ini menjadi hal yang wajar, mengingat hampir semua sektor sudah terhubung ke internet, termasuk sektor bisnis yang mulai melakukan perubahan dalam segi marketing.',
         'Pemasaran yang dulu dilakukan dengan menggunakan flyer, spanduk, koran, kini beralih ke media digital dan juga internet, yang kemudian dikenal dengan istilah internet marketing strategist dan digital marketing. Arti keduanya sebenarnya kurang lebih sama, yaitu suatu cara untuk memasarkan produk secara luas menggunakan internet. Penggunaan Internet di Indonesia cukup besar dan sangat aktif karena menunjang berbagai kebutuhan sehari-hari. Ini menjadi hal yang wajar, mengingat hampir semua sektor sudah terhubung ke internet, termasuk sektor bisnis yang mulai melakukan perubahan dalam segi marketing.',
@@ -19,7 +18,7 @@ const AboutDetail: React.FC<AboutProps> = ({ toggle }) => {
                         src={oskmLogo}
                         alt=""
                     />
-                    {aboutDetailContents.map((content: paragraph) => (
+                    {aboutDetailContents.map((content: string) => (
                         <>
                             <p>{content}</p>
                             <br />

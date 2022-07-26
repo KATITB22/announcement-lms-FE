@@ -26,8 +26,8 @@ export interface NavBarProps {
     children: React.ReactNode;
     to: string;
 }
-export interface FetchingState<T> {
-    data: T[];
+export interface FetchingState {
+    data: any;
     isLoading: boolean;
     error: boolean;
     message: string;

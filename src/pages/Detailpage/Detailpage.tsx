@@ -17,7 +17,7 @@ import Render from './Render';
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
     const url = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts/${postId}?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
-    const response = useFetch<any>(url);
+    const response = useFetch(url);
     const data = response.data as any;
     const { isLoading } = response;
     const { error } = response;

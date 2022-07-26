@@ -9,7 +9,9 @@ const PageNotFound: React.FC<{}> = () => (
                 Your requested page is not found
             </p>
             <Link to="/" className="text-xl ">
-                Click here to go back to main page{' '}
+                <div className="bg-Yellow rounded p-2 hover:shadow-sm">
+                    Click here to go back to main page{' '}
+                </div>
             </Link>
         </div>
     </Animate>

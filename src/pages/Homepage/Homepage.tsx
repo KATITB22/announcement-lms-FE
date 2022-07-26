@@ -2,13 +2,13 @@ import React from 'react';
 import env from '@/env';
 import BlogPost from '../../components/BlogPost';
 import BaseLayout from '../../layout/BaseLayout';
-import { Post } from '../../types/types';
+import { DetailPost, Pagination } from '../../types/types';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 
 const Homepage: React.FC<{}> = () => {
-    const path = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
-    const { data, isLoading, error, message } = useFetch<any>(path);
+    const path = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags,authors`;
+    const { data, isLoading, error, message } = useFetch(path);
 
     if (isLoading) {
         return <Loading />;
@@ -17,18 +17,24 @@ const Homepage: React.FC<{}> = () => {
     if (error) {
         return <p>{message}</p>;
     }
+    const {
+        meta: { pagination },
+        posts,
+    }: { meta: { pagination: Pagination }; posts: DetailPost[] } = data;
+    console.log(pagination, posts);
 
-    const blogPostElements = data.posts.map((item: Post) => (
+    const blogPostElements = posts.map((item) => (
         <BlogPost
-            key={item.id}
+            key={item.slug}
+            uuid={item.uuid}
             id={item.id}
             title={item.title}
-            date={item.created_at}
-            // author={item.author}
+            published_at={item.published_at}
+            primary_author={item.primary_author}
             description={item.excerpt}
-            imageUrl={item.feature_image}
-            // link={item.link}
-            // tags={item.tags}
+            feature_image={item.feature_image}
+            url={item.slug}
+            tags={item.tags}
         />
     ));
     return (
