@@ -1,11 +1,10 @@
 import oskmLogo from '../../assets/oskm-logo.svg';
 import AboutDetail from './AboutDetail';
 import { useToggle } from '../../hooks/useToggle';
-import { paragraph } from '../../types/types';
 
 const About = () => {
     const [isOn, toggle] = useToggle();
-    const aboutContents: Array<paragraph> = [
+    const aboutContents: Array<string> = [
         'Pemasaran yang dulu dilakukan dengan menggunakan flyer, spanduk, koran, kini beralih ke media digital dan juga internet',
     ];
 
@@ -24,7 +23,7 @@ const About = () => {
                         src={oskmLogo}
                         alt=""
                     />
-                    {aboutContents.map((content: paragraph) => (
+                    {aboutContents.map((content: string) => (
                         <p className="text-h6 md:text-[40px] lg:text-h3">
                             {content}
                         </p>

@@ -7,13 +7,14 @@ const BlogPost: React.FC<Post> = (props) => {
     const {
         id,
         title,
-        date = '1',
-        author,
+        primary_author: { name },
         description,
-        imageUrl,
-        link,
+        feature_image: imageUrl,
+        url: link,
         tags,
+        published_at: date,
     } = props;
+    const formattedDate = new Date(Date.parse(date!)).toLocaleString();
     return (
         <Link to={`/post/${id}`}>
             <div
@@ -45,7 +46,7 @@ const BlogPost: React.FC<Post> = (props) => {
                         {/* title  */}
                         <div>
                             <p className="font-Body text-body font-normal mb-2">
-                                {date} | Posted by {author}
+                                {formattedDate} | Posted by {name}
                             </p>
                             <a
                                 href={link}
@@ -67,13 +68,13 @@ const BlogPost: React.FC<Post> = (props) => {
                             </a>
                             {tags ? (
                                 <div className="flex items-center mt-2 flex-wrap gap-2">
-                                    {tags.map((tag: string) => (
+                                    {tags.map((tag) => (
                                         // TODO: change # to tags link
                                         <a
                                             href="www.google.com"
                                             className="px-2 py-2 rounded bg-Orange text-white hover:text-black"
                                         >
-                                            {tag}
+                                            {tag.name}
                                         </a>
                                     ))}
                                 </div>

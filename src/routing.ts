@@ -6,7 +6,6 @@ const PartnerPage = React.lazy(() => import('./pages/Partnerpage/PartnerPage'));
 const PageNotFound = React.lazy(() => import('./pages/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
 const Loading = React.lazy(() => import('./pages/Loading'));
-const Test = React.lazy(() => import('./pages/Test'));
 const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
 
 interface PageRouting {
@@ -51,11 +50,6 @@ export const Routing: PageRouting[] = [
         title: 'Detail Post',
         path: '/post/:postId',
         component: DetailPage,
-    },
-    {
-        title: 'test',
-        path: '/test',
-        component: Test,
     },
     PageNotFoundRouting,
 ];

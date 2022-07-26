@@ -2,11 +2,11 @@ import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { FetchingState } from '../types/interface';
 
-const useFetch = <T,>(url: string) => {
+const useFetch = (url: string) => {
     let abortController = new AbortController();
 
-    const [fetchedData, setFetchedData] = React.useState<FetchingState<T>>({
-        data: [],
+    const [fetchedData, setFetchedData] = React.useState<FetchingState>({
+        data: {},
         isLoading: true,
         error: false,
         message: '',
@@ -29,17 +29,17 @@ const useFetch = <T,>(url: string) => {
         } catch (err: any) {
             if (axios.isCancel(err)) {
                 setFetchedData({
-                    data: [],
+                    data: {},
                     isLoading: false,
                     error: true,
                     message: err.message || 'Fetching cancelled',
                 });
             } else {
                 setFetchedData({
-                    data: [],
+                    data: {},
                     isLoading: false,
                     error: true,
-                    message: err.message || 'An error occured',
+                    message: err.message || 'An error occured from server',
                 });
             }
         }
