@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { Post } from '../types/types';
 
 const BlogPost: React.FC<Post> = (props) => {
-    const { id, title, date, author, description, imageUrl, link, tags } = props;
+    const { id, title, date, author, description, imageUrl, link, tags } =
+        props;
     return (
-       <Link
-            to={`/post/${id}`}>
-             <div
+        <Link to={`/post/${id}`}>
+            <div
                 className="
                     shadow-lg
                     transition
@@ -78,7 +78,7 @@ const BlogPost: React.FC<Post> = (props) => {
                     </div>
                 </div>
             </div>
-       </Link>
+        </Link>
     );
 };
 

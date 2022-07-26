@@ -7,20 +7,17 @@ import useFetch from '../../hooks/useFetch';
 
 const Homepage: React.FC<{}> = () => {
     // const path = env.GHOST_API_URL + "/ghost/api/content/posts?key=" + env.GHOST_API_CONTENT_API_KEY + "&include=tags";
-    const path = "http://localhost:2368/ghost/api/content/posts?key=c11259cec5c2cfa1a037f3f5a4&include=tags";
+    const path =
+        'http://localhost:2368/ghost/api/content/posts?key=c11259cec5c2cfa1a037f3f5a4&include=tags';
     const { data, isLoading, error, message } = useFetch<Post>(path);
 
     if (isLoading) {
-        return (
-            <></>
-        )
+        return <></>;
     }
 
-    if (error){
+    if (error) {
         console.log(message);
-        return (
-            <></>
-        )
+        return <></>;
     }
 
     const blogPostElements = data.posts.map((item: Post) => (

@@ -15,6 +15,8 @@ module.exports = {
                 LightOrange: '#F9D7AA',
                 MediumOrange: '#FFB965',
                 DarkOrange: '#FF8952',
+                DarkerOrange: '#D27C2F',
+                DarkestOrange: '#511D05',
                 Brown: '#66402C',
                 LightBrown: '#FFECD0',
                 MediumBrown: '#F9DCB0',

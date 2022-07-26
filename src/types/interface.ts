@@ -22,6 +22,10 @@ export interface SpinnerProps {
     message?: string;
 }
 
+export interface NavBarProps {
+    children: React.ReactNode;
+    to: string;
+}
 export interface FetchingState<T> {
     data: T[];
     isLoading: boolean;
