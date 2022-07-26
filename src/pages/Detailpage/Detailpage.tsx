@@ -6,18 +6,18 @@ import {
     Box,
     VStack,
 } from '@chakra-ui/react';
-import { DetailpageProps } from '../../types/interface';
-import { DetailPost } from '../../types/types';
 import { parse } from 'node-html-parser';
+import { useParams } from 'react-router-dom';
+import env from '@/env';
+import { DetailpageProps } from '../../types/interface';
+// import { DetailPost } from '../../types/types';
 import useFetch from '../../hooks/useFetch';
 import Render from './Render';
-import { useParams } from 'react-router-dom';
 
-const Detailpage: React.FC<DetailpageProps> = (props) => {
+const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
-    const response = useFetch<any>(
-        `http://localhost:2368/ghost/api/content/posts/${postId}?key=c11259cec5c2cfa1a037f3f5a4&include=tags`
-    );
+    const url = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts/${postId}?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
+    const response = useFetch<any>(url);
     const data = response.data as any;
     const { isLoading } = response;
     const { error } = response;
@@ -28,7 +28,6 @@ const Detailpage: React.FC<DetailpageProps> = (props) => {
         if (posts.length === 0) return [];
 
         const root = parse(posts[0].html);
-        console.table(root);
         const components: any[] = [];
         let id: number = 0;
         root.childNodes.forEach((node: any) => {

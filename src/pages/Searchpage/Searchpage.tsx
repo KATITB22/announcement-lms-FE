@@ -1,7 +1,6 @@
 import React from 'react';
 // import { listOfPosts } from '../Homepage/Homepage';
 import FilterAndCategory from '../../components/FilterAndCategory';
-import BlogPost from '../../components/BlogPost';
 import BaseLayout from '../../layout/BaseLayout';
 
 const Searchpage: React.FC<{}> = () => (
