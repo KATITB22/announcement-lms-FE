@@ -21,50 +21,50 @@ const Detailpage: React.FC<DetailpageProps> = (props) => {
     const {message} = response;
     const {posts} = data;
 
-    // const renderHTMLContent = React.useCallback(() => {
-    //     if (posts.length===0) return [];
+    const renderHTMLContent = React.useCallback(() => {
+        if (posts.length===0) return [];
 
-    //     const root = parse(posts[0].html);
-    //     console.table(root);
-    //     const components: any[] = [];
-    //     let id: number = 0;
-    //     root.childNodes.forEach((node: any)=>{
-    //         if (node.tagName === 'P'){
-    //             components.push(
-    //                 Render.paragraph(id, node.outerHTML)
-    //             );
-    //         }
-    //         else if (node.tagName === 'HR'){
-    //             components.push(
-    //                 Render.divider()
-    //             );
-    //         }
-    //         else if (node.tagName === 'OL'){
-    //             components.push(
-    //                 Render.ol(id, node.innerHTML)
-    //             );
-    //         }
-    //         else if (node.tagName === 'UL'){
-    //             components.push(
-    //                 Render.ul(id, node.innerHTML)
-    //             );
-    //         }
-    //         else if (node.tagName === 'DIV'){
-    //             components.push(
-    //                 Render.heading(id, node.childNodes[0].text, node.childNodes[1].text)
-    //             );
-    //         }
-    //         else { 
-    //             components.push(
-    //                 node.childNodes[0].tagName === 'IMG' ?
-    //                     Render.image(id, node.childNodes[0].attrs.src) :
-    //                     Render.video(id, node.childNodes[0].childNodes[0].attrs.style.match(/(https?:\/\/[^\s]+)/g)[0].slice(0,-2), node.childNodes[0].childNodes[0].attrs.src)   
-    //             );
-    //         }
-    //         id+=1;
-    //     });
-    //     return components;
-    // }, [data]);
+        const root = parse(posts[0].html);
+        console.log(root);
+        const components: any[] = [];
+        let id: number = 0;
+        root.childNodes.forEach((node: any)=>{
+            if (node.tagName === 'P'){
+                components.push(
+                    Render.paragraph(id, node.outerHTML)
+                );
+            }
+            else if (node.tagName === 'HR'){
+                components.push(
+                    Render.divider()
+                );
+            }
+            else if (node.tagName === 'OL'){
+                components.push(
+                    Render.ol(id, node)
+                );
+            }
+            else if (node.tagName === 'UL'){
+                components.push(
+                    Render.ul(id, node)
+                );
+            }
+            else if (node.tagName === 'DIV'){
+                components.push(
+                    Render.heading(id, node.childNodes[0].text, node.childNodes[1].text)
+                );
+            }
+            else if (node.tagName === 'FIGURE'){ 
+                components.push(
+                    node.childNodes[0].tagName === 'IMG' ?
+                        Render.image(id, node.childNodes[0].attrs.src) :
+                        Render.video(id, node.childNodes[0].childNodes[0].attrs.style.match(/(https?:\/\/[^\s]+)/g)[0].slice(0,-2), node.childNodes[0].childNodes[0].attrs.src)   
+                );
+            }
+            id+=1;
+        });
+        return components;
+    }, [data]);
     
     if (isLoading) {
         return <p>Loading</p>;
@@ -124,11 +124,7 @@ const Detailpage: React.FC<DetailpageProps> = (props) => {
                             src="http://localhost:2368/content/images/2022/07/IMG_6351.jpg" 
                             alt="featured"/>
                     </Box>
-                    {/* {renderHTMLContent()} */}
-                    <div
-                        dangerouslySetInnerHTML={{__html: posts[0].html}}>
-
-                    </div>
+                    {renderHTMLContent()}
                 </VStack>
             </Flex>
             <Flex 

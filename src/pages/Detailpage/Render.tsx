@@ -1,11 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { Box, Flex, Divider, VStack, Heading , Text} from '@chakra-ui/react';
-import React from 'react';
-// import createDOMPurify from 'dompurify';
-// import { JSDOM } from 'jsdom';
-
-// const window = (new JSDOM('')).window;
-// const DOMPurify = createDOMPurify();
+import { Box, Flex, Divider, VStack, Heading , Text, OrderedList, ListItem, UnorderedList} from '@chakra-ui/react';
 
 const Render = {
     paragraph: (id: number, text: string) => (
@@ -18,9 +12,8 @@ const Render = {
             fontSize={{
                 base: '12px',
                 md: '18px'
-            }}>
-            {/* {text} */}
-            <div dangerouslySetInnerHTML={{ __html: text }} />
+            }}
+            dangerouslySetInnerHTML={{ __html: text }}>
         </Box>
     ),
     image: (id: number, src: string) => (
@@ -50,38 +43,57 @@ const Render = {
         </Flex>
     ),
     divider: () => (
-        // <Divider  orientation='horizontal' colorScheme={'purple'}/>
-        <hr style={{width :'10000px', height : '1000px', color:'chocolate'}}/>
-        // <Box>
-        //     peler
-        // </Box>
-    ),
-    ol: (id: number, text: string) => (
         <Box
-            key={id}
-            textAlign="justify"
-            fontFamily="Alegreya"
-            width="100%"
-            fontSize={{
-                base: '12px',
-                md: '18px'
-            }}>
-            {/* {text} */}
-            <div dangerouslySetInnerHTML={{ __html: text }} />
+            width={"95%"}
+            height={"4px"}
+            bg={"#855E4A"}  
+            borderRadius={"lg"}  
+        />
+        // <Divider  orientation='horizontal' colorScheme={'black'}/>
+        // <hr style={{width :'50px', height : '40px', color:'black'}}/>
+    ),
+    ol: (id: number, node: any) => (
+        <Box
+            width={"100%"}>
+            <OrderedList
+                key={id}
+                textAlign="justify"
+                fontFamily="Alegreya"
+                width="100%"
+                fontSize={{
+                    base: '12px',
+                    md: '18px'
+                }}>
+                {node.childNodes.map((node: any) => {
+                    return (
+                        <ListItem>
+                            {node.text}
+                        </ListItem>
+                    )
+                })}
+            </OrderedList>
         </Box>
     ),
-    ul: (id: number, text: string) => (
+    ul: (id: number, node: any) => (
         <Box
-            key={id}
-            textAlign="justify"
-            fontFamily="Alegreya"
-            width="100%"
-            fontSize={{
-                base: '12px',
-                md: '18px'
-            }}>
-            {/* {text} */}
-            <div dangerouslySetInnerHTML={{ __html: text }} />
+            width={"100%"}>
+            <UnorderedList
+                key={id}
+                textAlign="justify"
+                fontFamily="Alegreya"
+                width="100%"
+                fontSize={{
+                    base: '12px',
+                    md: '18px'
+                }}>
+                {node.childNodes.map((node: any) => {
+                    return (
+                        <ListItem>
+                            {node.text}
+                        </ListItem>
+                    )
+                })}
+            </UnorderedList>
         </Box>
     ),
     heading: (id: number, heading: string, subheading: string) => (
