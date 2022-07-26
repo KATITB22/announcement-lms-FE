@@ -9,6 +9,7 @@ import {
     OrderedList,
     ListItem,
     UnorderedList,
+    HStack,
 } from '@chakra-ui/react';
 
 const Render = {
@@ -86,6 +87,21 @@ const Render = {
             </VStack>
         </Box>
     ),
+    blockquote: (id: number, text: string) => {
+        return (
+            <HStack key={id} width={'100%'}>
+                <Box
+                    bg={'red'}
+                    height={'10px'}
+                    width={'3px'}
+                    marginRight={'20px'}
+                />
+                <Box>
+                    <i>{text}</i>
+                </Box>
+            </HStack>
+        );
+    },
 };
 
 export default Render;

@@ -60,6 +60,8 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                               node.childNodes[0].childNodes[0].attrs.src
                           )
                 );
+            } else if (node.tagName === 'BLOCKQUOTE') {
+                components.push(Render.blockquote(id, node.text));
             }
             id += 1;
         });
