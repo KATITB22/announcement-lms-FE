@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { Box, Flex, Divider, VStack, Heading , Text} from '@chakra-ui/react';
 import React from 'react';
-import createDOMPurify from 'dompurify';
+// import createDOMPurify from 'dompurify';
 // import { JSDOM } from 'jsdom';
 
 // const window = (new JSDOM('')).window;
-const DOMPurify = createDOMPurify();
+// const DOMPurify = createDOMPurify();
 
 const Render = {
     paragraph: (id: number, text: string) => (
@@ -20,7 +20,7 @@ const Render = {
                 md: '18px'
             }}>
             {/* {text} */}
-            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }} />
+            <div dangerouslySetInnerHTML={{ __html: text }} />
         </Box>
     ),
     image: (id: number, src: string) => (
@@ -67,7 +67,7 @@ const Render = {
                 md: '18px'
             }}>
             {/* {text} */}
-            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }} />
+            <div dangerouslySetInnerHTML={{ __html: text }} />
         </Box>
     ),
     ul: (id: number, text: string) => (
@@ -81,7 +81,7 @@ const Render = {
                 md: '18px'
             }}>
             {/* {text} */}
-            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }} />
+            <div dangerouslySetInnerHTML={{ __html: text }} />
         </Box>
     ),
     heading: (id: number, heading: string, subheading: string) => (
