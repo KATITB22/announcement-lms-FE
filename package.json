@@ -19,12 +19,13 @@
         "axios": "^0.27.2",
         "dotenv": "^16.0.1",
         "framer-motion": "^6.5.1",
+        "lodash": "^4.17.21",
         "node-html-parser": "^5.3.3",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-icons": "^4.4.0",
         "react-router-dom": "^6.3.0",
-        "react-scripts": "^4.0.3",
-        "react-icons": "^4.4.0"
+        "react-scripts": "^4.0.3"
     },
     "devDependencies": {
         "@types/react": "^18.0.0",

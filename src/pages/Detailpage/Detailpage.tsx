@@ -13,21 +13,41 @@ import { DetailpageProps } from '../../types/interface';
 // import { DetailPost } from '../../types/types';
 import useFetch from '../../hooks/useFetch';
 import Render from './Render';
+import { includes, isEmpty } from 'lodash';
+
+const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec',
+];
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
-    const url = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts/${postId}?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
-    const response = useFetch(url);
-    const data = response.data as any;
-    const { isLoading } = response;
-    const { error } = response;
-    const { message } = response;
-    const { posts } = data;
+    const path = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts/${postId}?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
+    const { data, isLoading, error, message } = useFetch(path);
+
+    let post: any, published_at: string;
+    if (!isEmpty(data)) {
+        post = data.posts[0];
+        const date = new Date(post.published_at);
+        published_at = `${date.getDate()} ${
+            months[date.getMonth()]
+        } ${date.getFullYear()}`;
+    }
 
     const renderHTMLContent = React.useCallback(() => {
-        if (posts.length === 0) return [];
+        if (!post) return [];
 
-        const root = parse(posts[0].html.replace(/(\r\n|\n|\r)/gm, ''));
+        const root = parse(post.html.replace(/(\r\n|\n|\r)/gm, ''));
         console.log(root);
         const components: any[] = [];
         let id: number = 0;
@@ -41,7 +61,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
             } else if (node.tagName === 'UL') {
                 components.push(Render.ul(id, node));
             } else if (node.tagName === 'DIV') {
-                if (node.childNodes[1]?.attrs?.title === 'Download') {
+                if (includes(node.attrs.class, 'kg-file-card')) {
                     const titleFile = node.childNodes[1].text.trim();
                     components.push(
                         Render.file(
@@ -50,23 +70,28 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                             node.childNodes[1].attrs.href
                         )
                     );
+                } else if (includes(node.attrs.class, 'kg-audio-card')) {
+                    components.push(Render.audio(id, node));
                 } else {
                     // components.push(
                     //     Render.heading(id, node.childNodes[0].text, node.childNodes[1].text)
                     // )
                 }
             } else if (node.tagName === 'FIGURE') {
-                components.push(
-                    node.childNodes[0].tagName === 'IMG'
-                        ? Render.image(id, node.childNodes[0].attrs.src)
-                        : Render.video(
-                              id,
-                              node.childNodes[0].childNodes[0].attrs.style
-                                  .match(/(https?:\/\/[^\s]+)/g)[0]
-                                  .slice(0, -2),
-                              node.childNodes[0].childNodes[0].attrs.src
-                          )
-                );
+                let component: JSX.Element;
+                if (includes(node.attrs.class, 'kg-image-card')) {
+                    component = Render.image(id, node.childNodes[0].attrs.src);
+                } else {
+                    //(includes(node.attrs.class, "kg-video-card"))
+                    component = Render.video(
+                        id,
+                        node.childNodes[0].childNodes[0].attrs.style
+                            .match(/(https?:\/\/[^\s]+)/g)[0]
+                            .slice(0, -2),
+                        node.childNodes[0].childNodes[0].attrs.src
+                    );
+                }
+                components.push(component);
             } else if (node.tagName === 'BLOCKQUOTE') {
                 components.push(Render.blockquote(id, node.text));
             }
@@ -82,8 +107,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     if (error) {
         return <p>{message}</p>;
     }
-
-    console.log(posts[0].html);
 
     return (
         <Flex background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)">
@@ -107,7 +130,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         md: '35px',
                     }}
                 >
-                    kitsch 8-bit organic plaid small batch keffiyeh
+                    {post.title}
                 </Box>
                 <Box
                     fontFamily="Alegreya"
@@ -116,7 +139,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         md: '18px',
                     }}
                 >
-                    8 Jul 2022
+                    {published_at!}
                 </Box>
                 <VStack
                     spacing={{

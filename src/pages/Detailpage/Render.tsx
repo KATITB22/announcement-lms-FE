@@ -2,7 +2,6 @@
 import {
     Box,
     Flex,
-    Divider,
     VStack,
     Heading,
     Text,
@@ -29,9 +28,9 @@ const Render = {
         ></Box>
     ),
     image: (id: number, src: string) => (
-        <Flex key={id} alignItems="center" justifyContent="center">
+        <Center key={id}>
             <img src={src} alt="content" width="80%" />
-        </Flex>
+        </Center>
     ),
     video: (id: number, pathOfThumbnail: string, src: string) => (
         <Flex key={id} alignItems="center" justifyContent="center">
@@ -122,6 +121,21 @@ const Render = {
                     {`Download File ${id}`}
                 </Center>
             </Link>
+        );
+    },
+    audio: (id: number, node: any) => {
+        const src = node.childNodes[2].childNodes[0].attrs.src;
+        const titleAudio = node.childNodes[2].childNodes[1].text;
+        return (
+            <VStack
+                key={id}
+                className={'block p-6 rounded-lg shadow-lg bg-white max-w-sm'}
+            >
+                <Center>{titleAudio}</Center>
+                <audio controls>
+                    <source src={src} type={'audio/mpeg'} />
+                </audio>
+            </VStack>
         );
     },
 };
