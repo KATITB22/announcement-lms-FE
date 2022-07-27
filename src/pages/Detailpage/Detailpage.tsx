@@ -48,7 +48,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         if (!post) return [];
 
         const root = parse(post.html.replace(/(\r\n|\n|\r)/gm, ''));
-        console.log(root);
+        console.log('root', root);
         const components: any[] = [];
         let id: number = 0;
         root.childNodes.forEach((node: any) => {
@@ -57,6 +57,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     // single link for entire paragraph, ex:<p><a>link</a></p>
                     components.push(
                         Render.link(
+                            id,
                             node.childNodes[0].childNodes[0].text,
                             node.childNodes[0].attrs.href
                         )
@@ -92,8 +93,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 let component: JSX.Element;
                 if (includes(node.attrs.class, 'kg-image-card')) {
                     component = Render.image(id, node.childNodes[0].attrs.src);
-                } else {
-                    //(includes(node.attrs.class, "kg-video-card"))
+                } else if (includes(node.attrs.class, 'kg-video-card')) {
                     component = Render.video(
                         id,
                         node.childNodes[0].childNodes[0].attrs.style
@@ -101,10 +101,20 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                             .slice(0, -2),
                         node.childNodes[0].childNodes[0].attrs.src
                     );
+                } else if (includes(node.attrs.class, 'kg-embed-card')) {
+                    component = Render.youtube(
+                        id,
+                        node.childNodes[0].attrs.title,
+                        node.childNodes[0].attrs.src
+                    );
                 }
                 components.push(component);
             } else if (node.tagName === 'BLOCKQUOTE') {
                 components.push(Render.blockquote(id, node.text));
+            } else if (node.tagName === 'H2') {
+                components.push(Render.h2(id, node.text));
+            } else if (node.tagName === 'H3') {
+                components.push(Render.h3(id, node.text));
             }
             id += 1;
         });

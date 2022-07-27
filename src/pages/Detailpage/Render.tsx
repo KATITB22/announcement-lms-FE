@@ -32,8 +32,9 @@ const Render = {
             }}
         />
     ),
-    link: (text: string, url: string) => (
+    link: (id: number, text: string, url: string) => (
         <Link
+            key={id}
             fontSize={{
                 base: '12px',
                 md: '18px',
@@ -57,6 +58,18 @@ const Render = {
                 <source src={src} type="video/mp4" />
             </video>
         </Flex>
+    ),
+    youtube: (id: number, title: string, src: string) => (
+        <div key={id} className="w-full flex justify-center aspect-video">
+            <iframe
+                src={src}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={title}
+                width="80%"
+            />
+        </div>
     ),
     divider: () => (
         <Box
@@ -157,6 +170,20 @@ const Render = {
             </VStack>
         );
     },
+    h2: (id: number, text: any) => (
+        <Flex justifyContent="flex-start" w="full">
+            <Text align="left" key={id} fontSize="xl">
+                {text}
+            </Text>
+        </Flex>
+    ),
+    h3: (id: number, text: any) => (
+        <Flex justifyContent="flex-start" w="full">
+            <Text align="right" key={id} fontSize="lg">
+                {text}
+            </Text>
+        </Flex>
+    ),
 };
 
 export default Render;
