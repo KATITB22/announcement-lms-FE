@@ -2,7 +2,6 @@
 import {
     Box,
     Flex,
-    Divider,
     VStack,
     Heading,
     Text,
@@ -18,15 +17,34 @@ const Render = {
     paragraph: (id: number, text: string) => (
         <Box
             key={id}
-            textAlign="justify"
+            textAlign="left"
             fontFamily="Alegreya"
             width="100%"
             fontSize={{
                 base: '12px',
                 md: '18px',
             }}
-            dangerouslySetInnerHTML={{ __html: text }}
-        ></Box>
+            dangerouslySetInnerHTML={{
+                __html: text.replaceAll(
+                    '<a',
+                    '<a style="color: #D27C2F; text-decoration: underline" target="_blank"'
+                ),
+            }}
+        />
+    ),
+    link: (text: string, url: string) => (
+        <Link
+            fontSize={{
+                base: '12px',
+                md: '18px',
+            }}
+            color="#D27C2F"
+            href={url}
+            target="_blank"
+            w="full"
+        >
+            <Text as="u">{text}</Text>
+        </Link>
     ),
     image: (id: number, src: string) => (
         <Flex key={id} alignItems="center" justifyContent="center">

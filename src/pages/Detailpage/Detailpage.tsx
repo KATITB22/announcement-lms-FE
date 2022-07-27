@@ -33,7 +33,18 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         let id: number = 0;
         root.childNodes.forEach((node: any) => {
             if (node.tagName === 'P') {
-                components.push(Render.paragraph(id, node.outerHTML));
+                if (node.childNodes[0].tagName === 'A') {
+                    // single link for entire paragraph, ex:<p><a>link</a></p>
+                    components.push(
+                        Render.link(
+                            node.childNodes[0].attrs.href,
+                            node.childNodes[0].childNodes[0].text
+                        )
+                    );
+                } else {
+                    // inline link inside outher text
+                    components.push(Render.paragraph(id, node.outerHTML));
+                }
             } else if (node.tagName === 'HR') {
                 components.push(Render.divider());
             } else if (node.tagName === 'OL') {
