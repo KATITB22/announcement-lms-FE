@@ -22,6 +22,7 @@ const Homepage: React.FC<{}> = () => {
     if (error) {
         return <p>{message}</p>;
     }
+
     const {
         meta: { pagination },
         posts,
@@ -31,7 +32,6 @@ const Homepage: React.FC<{}> = () => {
     const blogPostElements = posts.map((item) => (
         <BlogPost
             key={item.slug}
-            uuid={item.uuid}
             id={item.id}
             title={item.title}
             published_at={item.published_at}

@@ -39,7 +39,7 @@ export type Author = {
 
 export type Post = {
     id: string;
-    uuid: string;
+    uuid?: string;
     title: string;
     slug?: string;
     feature_image: string;

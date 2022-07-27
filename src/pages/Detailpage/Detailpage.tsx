@@ -13,52 +13,125 @@ import { DetailpageProps } from '../../types/interface';
 // import { DetailPost } from '../../types/types';
 import useFetch from '../../hooks/useFetch';
 import Render from './Render';
+import { includes, isEmpty } from 'lodash';
+
+const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec',
+];
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
-    const url = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts/${postId}?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
-    const response = useFetch(url);
-    const data = response.data as any;
-    const { isLoading } = response;
-    const { error } = response;
-    const { message } = response;
-    const { posts } = data;
+    const path = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts/${postId}?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
+    const { data, isLoading, error, message } = useFetch(path);
+
+    let post: any, published_at: string;
+    if (!isEmpty(data)) {
+        post = data.posts[0];
+        const date = new Date(post.published_at);
+        published_at = `${date.getDate()} ${
+            months[date.getMonth()]
+        } ${date.getFullYear()}`;
+    }
 
     const renderHTMLContent = React.useCallback(() => {
-        if (posts.length === 0) return [];
+        if (!post) return [];
 
-        const root = parse(posts[0].html);
+        const root = parse(post.html.replace(/(\r\n|\n|\r)/gm, ''));
+        console.log('root', root);
         const components: any[] = [];
         let id: number = 0;
         root.childNodes.forEach((node: any) => {
             if (node.tagName === 'P') {
-                components.push(Render.paragraph(id, node.outerHTML));
+                if (node.childNodes[0]?.tagName === 'A') {
+                    // single link for entire paragraph, ex:<p><a>link</a></p>
+                    components.push(
+                        Render.link(
+                            id,
+                            node.childNodes[0].childNodes[0].text,
+                            node.childNodes[0].attrs.href
+                        )
+                    );
+                } else {
+                    // inline link inside outher text
+                    components.push(Render.paragraph(id, node.outerHTML));
+                }
             } else if (node.tagName === 'HR') {
                 components.push(Render.divider());
             } else if (node.tagName === 'OL') {
-                components.push(Render.ol(id, node.innerHTML));
+                components.push(Render.ol(id, node));
             } else if (node.tagName === 'UL') {
-                components.push(Render.ul(id, node.innerHTML));
+                components.push(Render.ul(id, node));
             } else if (node.tagName === 'DIV') {
-                components.push(
-                    Render.heading(
+                let component: JSX.Element;
+                if (includes(node.attrs.class, 'kg-file-card')) {
+                    const titleFile = node.childNodes[1].text.trim();
+                    component = Render.file(
                         id,
-                        node.childNodes[0].text,
-                        node.childNodes[1].text
-                    )
-                );
-            } else {
-                components.push(
-                    node.childNodes[0].tagName === 'IMG'
-                        ? Render.image(id, node.childNodes[0].attrs.src)
-                        : Render.video(
-                              id,
-                              node.childNodes[0].childNodes[0].attrs.style
-                                  .match(/(https?:\/\/[^\s]+)/g)[0]
-                                  .slice(0, -2),
-                              node.childNodes[0].childNodes[0].attrs.src
-                          )
-                );
+                        titleFile,
+                        node.childNodes[1].attrs.href
+                    );
+                } else if (includes(node.attrs.class, 'kg-audio-card')) {
+                    component = Render.audio(id, node);
+                } else if (includes(node.attrs.class, 'kg-product-card')) {
+                    component = Render.product(id, node);
+                } else {
+                    component = Render.header(id, node);
+                }
+                components.push(component);
+            } else if (node.tagName === 'FIGURE') {
+                let component: JSX.Element;
+                if (includes(node.attrs.class, 'kg-image-card')) {
+                    component = Render.image(id, node.childNodes[0].attrs.src);
+                } else if (includes(node.attrs.class, 'kg-video-card')) {
+                    component = Render.video(
+                        id,
+                        node.childNodes[0].childNodes[0].attrs.style
+                            .match(/(https?:\/\/[^\s]+)/g)[0]
+                            .slice(0, -2),
+                        node.childNodes[0].childNodes[0].attrs.src
+                    );
+                } else if (includes(node.attrs.class, 'kg-embed-card')) {
+                    if (node.childNodes[0].attrs.class === 'twitter-tweet') {
+                        component = Render.twitter(id);
+                    } else if (
+                        // render for embed, youtube & spotify
+                        includes(node.childNodes[0].rawAttrs, 'www.youtube.com')
+                    ) {
+                        component = Render.youtube(
+                            id,
+                            node.childNodes[0].attrs.title,
+                            node.childNodes[0].attrs.src,
+                            true
+                        );
+                    } else {
+                        component = Render.youtube(
+                            id,
+                            node.childNodes[0].attrs.title,
+                            node.childNodes[0].attrs.src,
+                            false
+                        );
+                    }
+                } else if (includes(node.attrs.class, 'kg-gallery-card')) {
+                    component = Render.gallery(id, node);
+                }
+                components.push(component!);
+            } else if (node.tagName === 'BLOCKQUOTE') {
+                components.push(Render.blockquote(id, node.text));
+            } else if (node.tagName === 'H2') {
+                components.push(Render.h2(id, node.text));
+            } else if (node.tagName === 'H3') {
+                components.push(Render.h3(id, node.text));
             }
             id += 1;
         });
@@ -78,7 +151,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
             <Flex width="15%">
                 <Box width="100%" height="100%" />
             </Flex>
-            <Flex marginTop="7%" flexDirection="column" width="70%">
+            <Flex className="my-36" flexDirection="column" width="70%">
                 <Box
                     fontFamily="Alegreya"
                     fontSize={{
@@ -95,7 +168,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         md: '35px',
                     }}
                 >
-                    kitsch 8-bit organic plaid small batch keffiyeh
+                    {post.title}
                 </Box>
                 <Box
                     fontFamily="Alegreya"
@@ -104,7 +177,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         md: '18px',
                     }}
                 >
-                    8 Jul 2022
+                    {published_at!}
                 </Box>
                 <VStack
                     spacing={{
