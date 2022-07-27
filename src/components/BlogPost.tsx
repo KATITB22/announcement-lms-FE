@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { Post } from '../types/types';
+import Logo from '../assets/oskm-logo.svg';
 
 const BlogPost: React.FC<Post> = (props) => {
     const {
@@ -9,11 +10,15 @@ const BlogPost: React.FC<Post> = (props) => {
         title,
         primary_author: { name },
         description,
-        feature_image: imageUrl,
+        feature_image,
         url: link,
         tags,
         published_at: date,
     } = props;
+    let imageUrl = feature_image;
+    if (!imageUrl) {
+        imageUrl = Logo;
+    }
     const formattedDate = new Date(Date.parse(date!)).toLocaleString();
     return (
         <Link to={`/post/${id}`}>
