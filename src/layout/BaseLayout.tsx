@@ -182,15 +182,20 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     justify={{ base: 'center', md: 'space-between' }}
                     align={{ base: 'center', md: 'center' }}
                 >
-                    <Flex
-                        alignItems="center"
-                        gap="2"
-                        flexDirection={{ base: 'column', md: 'row' }}
-                    >
-                        <Avatar size="md" src={Logo} />
-                        <h1 className="font-Heading m-auto pt-3px text-2xl">
-                            {title}
-                        </h1>
+                    <Flex direction={{ base: 'column' }}>
+                        <Flex
+                            alignItems="center"
+                            gap="2"
+                            flexDirection={{ base: 'column', md: 'row' }}
+                        >
+                            <Avatar size="md" src={Logo} />
+                            <h1 className="font-Heading pt-3px text-2xl">
+                                {title}
+                            </h1>
+                        </Flex>
+                        <Flex>
+                            <h1>&copy; DEVA 2022 - Content and Publication</h1>
+                        </Flex>
                     </Flex>
                     <Flex
                         flexDirection="column"
