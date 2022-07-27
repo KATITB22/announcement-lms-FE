@@ -4,7 +4,6 @@ import {
     Box,
     Flex,
     VStack,
-    Heading,
     Text,
     OrderedList,
     ListItem,
@@ -13,10 +12,6 @@ import {
     Link,
     Center,
     Button,
-    Image,
-    WrapItem,
-    Wrap,
-    Stack,
 } from '@chakra-ui/react';
 import { Tweet } from 'react-twitter-widgets';
 
@@ -87,7 +82,7 @@ const Render = {
             />
         </div>
     ),
-    twitter: (id: number) => (
+    twitter: () => (
         <div className="w-full">
             <Tweet
                 tweetId="1552277594707742720"
@@ -118,8 +113,8 @@ const Render = {
                     md: '18px',
                 }}
             >
-                {node.childNodes.map((node: any) => (
-                    <ListItem>{node.text}</ListItem>
+                {node.childNodes.map((innerNode: any) => (
+                    <ListItem>{innerNode.text}</ListItem>
                 ))}
             </OrderedList>
         </Box>
@@ -136,8 +131,8 @@ const Render = {
                     md: '18px',
                 }}
             >
-                {node.childNodes.map((node: any) => (
-                    <ListItem>{node.text}</ListItem>
+                {node.childNodes.map((innerNode: any) => (
+                    <ListItem>{innerNode.text}</ListItem>
                 ))}
             </UnorderedList>
         </Box>
@@ -231,13 +226,15 @@ const Render = {
     },
     gallery: (id: number, node: any) => {
         const wrapItems: JSX.Element[] = node.childNodes[0].childNodes.map(
-            (node: any) =>
-                node.childNodes.map((node: any) => (
+            (innerNode: any) =>
+                innerNode.childNodes.map((extraInnerNode: any) => (
                     <div className="self-stretch">
                         <img
                             className="h-full w-full object-contain"
-                            src={formatUrl(node.childNodes[0].attrs.src)}
-                            alt={node.childNodes[0].attrs.desc}
+                            src={formatUrl(
+                                extraInnerNode.childNodes[0].attrs.src
+                            )}
+                            alt={extraInnerNode.childNodes[0].attrs.desc}
                         />
                     </div>
                 ))

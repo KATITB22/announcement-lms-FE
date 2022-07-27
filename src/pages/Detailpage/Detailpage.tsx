@@ -2,13 +2,11 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
 import { Flex, Box, VStack } from '@chakra-ui/react';
-import { parse } from 'node-html-parser';
 import { useParams } from 'react-router-dom';
-import { includes } from 'lodash';
 import { fetchSinglePost } from '@/service/ghostAPI';
+import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
-import Render from './Render';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
 
@@ -34,100 +32,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     let post: any;
     let published_at: string;
 
-    const renderHTMLContent = React.useCallback(() => {
-        if (!post) return [];
-
-        const root = parse(post.html.replace(/(\r\n|\n|\r)/gm, ''));
-        console.log('root', root);
-        const components: any[] = [];
-        let id: number = 0;
-        root.childNodes.forEach((node: any) => {
-            if (node.tagName === 'P') {
-                if (node.childNodes[0]?.tagName === 'A') {
-                    // single link for entire paragraph, ex:<p><a>link</a></p>
-                    components.push(
-                        Render.link(
-                            id,
-                            node.childNodes[0].childNodes[0].text,
-                            node.childNodes[0].attrs.href
-                        )
-                    );
-                } else {
-                    // inline link inside outher text
-                    components.push(Render.paragraph(id, node.outerHTML));
-                }
-            } else if (node.tagName === 'HR') {
-                components.push(Render.divider());
-            } else if (node.tagName === 'OL') {
-                components.push(Render.ol(id, node));
-            } else if (node.tagName === 'UL') {
-                components.push(Render.ul(id, node));
-            } else if (node.tagName === 'DIV') {
-                let component: JSX.Element;
-                if (includes(node.attrs.class, 'kg-file-card')) {
-                    const titleFile = node.childNodes[1].text.trim();
-                    component = Render.file(
-                        id,
-                        titleFile,
-                        node.childNodes[1].attrs.href
-                    );
-                } else if (includes(node.attrs.class, 'kg-audio-card')) {
-                    component = Render.audio(id, node);
-                } else if (includes(node.attrs.class, 'kg-product-card')) {
-                    component = Render.product(id, node);
-                } else {
-                    component = Render.header(id, node);
-                }
-                components.push(component);
-            } else if (node.tagName === 'FIGURE') {
-                let component: JSX.Element;
-                if (includes(node.attrs.class, 'kg-image-card')) {
-                    component = Render.image(id, node.childNodes[0].attrs.src);
-                } else if (includes(node.attrs.class, 'kg-video-card')) {
-                    component = Render.video(
-                        id,
-                        node.childNodes[0].childNodes[0].attrs.style
-                            .match(/(https?:\/\/[^\s]+)/g)[0]
-                            .slice(0, -2),
-                        node.childNodes[0].childNodes[0].attrs.src
-                    );
-                } else if (includes(node.attrs.class, 'kg-embed-card')) {
-                    if (node.childNodes[0].attrs.class === 'twitter-tweet') {
-                        component = Render.twitter(id);
-                    } else if (
-                        // render for embed, youtube & spotify
-                        includes(node.childNodes[0].rawAttrs, 'www.youtube.com')
-                    ) {
-                        component = Render.youtube(
-                            id,
-                            node.childNodes[0].attrs.title,
-                            node.childNodes[0].attrs.src,
-                            true
-                        );
-                    } else {
-                        component = Render.youtube(
-                            id,
-                            node.childNodes[0].attrs.title,
-                            node.childNodes[0].attrs.src,
-                            false
-                        );
-                    }
-                } else if (includes(node.attrs.class, 'kg-gallery-card')) {
-                    component = Render.gallery(id, node);
-                }
-                components.push(component!);
-            } else if (node.tagName === 'BLOCKQUOTE') {
-                components.push(Render.blockquote(id, node.text));
-            } else if (node.tagName === 'H2') {
-                components.push(Render.h2(id, node.text));
-            } else if (node.tagName === 'H3') {
-                components.push(Render.h3(id, node.text));
-            }
-            id += 1;
-        });
-        return components;
-    }, [data]);
-
     if (data) {
         post = data;
         const date = new Date(post.published_at);
@@ -135,100 +39,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
             months[date.getMonth()]
         } ${date.getFullYear()}`;
     }
-
-    // const renderHTMLContent = React.useCallback(() => {
-    //     if (!post) return [];
-
-    //     const root = parse(post.html.replace(/(\r\n|\n|\r)/gm, ''));
-    //     console.log('root', root);
-    //     const components: any[] = [];
-    //     let id: number = 0;
-    //     root.childNodes.forEach((node: any) => {
-    //         if (node.tagName === 'P') {
-    //             if (node.childNodes[0]?.tagName === 'A') {
-    //                 // single link for entire paragraph, ex:<p><a>link</a></p>
-    //                 components.push(
-    //                     Render.link(
-    //                         id,
-    //                         node.childNodes[0].childNodes[0].text,
-    //                         node.childNodes[0].attrs.href
-    //                     )
-    //                 );
-    //             } else {
-    //                 // inline link inside outher text
-    //                 components.push(Render.paragraph(id, node.outerHTML));
-    //             }
-    //         } else if (node.tagName === 'HR') {
-    //             components.push(Render.divider());
-    //         } else if (node.tagName === 'OL') {
-    //             components.push(Render.ol(id, node));
-    //         } else if (node.tagName === 'UL') {
-    //             components.push(Render.ul(id, node));
-    //         } else if (node.tagName === 'DIV') {
-    //             let component: JSX.Element;
-    //             if (includes(node.attrs.class, 'kg-file-card')) {
-    //                 const titleFile = node.childNodes[1].text.trim();
-    //                 component = Render.file(
-    //                     id,
-    //                     titleFile,
-    //                     node.childNodes[1].attrs.href
-    //                 );
-    //             } else if (includes(node.attrs.class, 'kg-audio-card')) {
-    //                 component = Render.audio(id, node);
-    //             } else if (includes(node.attrs.class, 'kg-product-card')) {
-    //                 component = Render.product(id, node);
-    //             } else {
-    //                 component = Render.header(id, node);
-    //             }
-    //             components.push(component);
-    //         } else if (node.tagName === 'FIGURE') {
-    //             let component: JSX.Element;
-    //             if (includes(node.attrs.class, 'kg-image-card')) {
-    //                 component = Render.image(id, node.childNodes[0].attrs.src);
-    //             } else if (includes(node.attrs.class, 'kg-video-card')) {
-    //                 component = Render.video(
-    //                     id,
-    //                     node.childNodes[0].childNodes[0].attrs.style
-    //                         .match(/(https?:\/\/[^\s]+)/g)[0]
-    //                         .slice(0, -2),
-    //                     node.childNodes[0].childNodes[0].attrs.src
-    //                 );
-    //             } else if (includes(node.attrs.class, 'kg-embed-card')) {
-    //                 if (node.childNodes[0].attrs.class === 'twitter-tweet') {
-    //                     component = Render.twitter(id);
-    //                 } else if (
-    //                     // render for embed, youtube & spotify
-    //                     includes(node.childNodes[0].rawAttrs, 'www.youtube.com')
-    //                 ) {
-    //                     component = Render.youtube(
-    //                         id,
-    //                         node.childNodes[0].attrs.title,
-    //                         node.childNodes[0].attrs.src,
-    //                         true
-    //                     );
-    //                 } else {
-    //                     component = Render.youtube(
-    //                         id,
-    //                         node.childNodes[0].attrs.title,
-    //                         node.childNodes[0].attrs.src,
-    //                         false
-    //                     );
-    //                 }
-    //             } else if (includes(node.attrs.class, 'kg-gallery-card')) {
-    //                 component = Render.gallery(id, node);
-    //             }
-    //             components.push(component!);
-    //         } else if (node.tagName === 'BLOCKQUOTE') {
-    //             components.push(Render.blockquote(id, node.text));
-    //         } else if (node.tagName === 'H2') {
-    //             components.push(Render.h2(id, node.text));
-    //         } else if (node.tagName === 'H3') {
-    //             components.push(Render.h3(id, node.text));
-    //         }
-    //         id += 1;
-    //     });
-    //     return components;
-    // }, [data]);
 
     if (isLoading) {
         return <Loading />;
@@ -283,7 +93,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                             alt="featured"
                         />
                     </Box>
-                    {renderHTMLContent()}
+                    {renderHTMLContent(post)}
                 </VStack>
             </Flex>
             <Flex width="15%" />
