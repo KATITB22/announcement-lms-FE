@@ -73,22 +73,22 @@ const Detailpage: React.FC<DetailpageProps> = () => {
             } else if (node.tagName === 'UL') {
                 components.push(Render.ul(id, node));
             } else if (node.tagName === 'DIV') {
+                let component: JSX.Element;
                 if (includes(node.attrs.class, 'kg-file-card')) {
                     const titleFile = node.childNodes[1].text.trim();
-                    components.push(
-                        Render.file(
-                            id,
-                            titleFile,
-                            node.childNodes[1].attrs.href
-                        )
+                    component = Render.file(
+                        id,
+                        titleFile,
+                        node.childNodes[1].attrs.href
                     );
                 } else if (includes(node.attrs.class, 'kg-audio-card')) {
-                    components.push(Render.audio(id, node));
+                    component = Render.audio(id, node);
+                } else if (includes(node.attrs.class, 'kg-product-card')) {
+                    component = Render.product(id, node);
                 } else {
-                    // components.push(
-                    //     Render.heading(id, node.childNodes[0].text, node.childNodes[1].text)
-                    // )
+                    component = Render.header(id, node);
                 }
+                components.push(component);
             } else if (node.tagName === 'FIGURE') {
                 let component: JSX.Element;
                 if (includes(node.attrs.class, 'kg-image-card')) {
@@ -123,7 +123,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         );
                     }
                 }
-                components.push(component);
+                components.push(component!);
             } else if (node.tagName === 'BLOCKQUOTE') {
                 components.push(Render.blockquote(id, node.text));
             } else if (node.tagName === 'H2') {
