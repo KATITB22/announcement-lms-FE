@@ -1,9 +1,12 @@
-import React from 'react';
-import { getFetchAllPostUrl } from '@/util/util';
+import React, { useEffect, useState } from 'react';
+// import { getFetchAllPostUrl } from '@/util/util';
+import { fetchPost } from '@/service/ghostAPI';
+import { PostOrPage } from '@tryghost/content-api';
+import { imgPartner } from '@/types/types';
 import BlogPost from '../../components/BlogPost';
 import BaseLayout from '../../layout/BaseLayout';
-import { DetailPost, imgPartner } from '../../types/types';
-import useFetch from '../../hooks/useFetch';
+// import { DetailPost, imgPartner } from '../../types/types';
+// import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import { listOfMedpar, sponsorMD } from '../Partnerpage/PartnerPage';
 
@@ -12,27 +15,43 @@ const sponsorTitle = 'S\uE064o\uE01Esore\uE03A B\uE05A:';
 const medparTitle = '\uE023e\uE053ia Partner';
 
 const Homepage: React.FC<{}> = () => {
-    const path = getFetchAllPostUrl();
-    const { data, isLoading, error, message } = useFetch(path);
+    const [posts, setPosts] = useState<PostOrPage[]>([]);
+    // const path = getFetchAllPostUrl();
+    // const { data, isLoading, error, message } = useFetch(path);
 
-    if (isLoading) {
+    // if (isLoading) {
+    //     return <Loading />;
+    // }
+
+    // if (error) {
+    //     return <p>{message}</p>;
+    // }
+
+    // const { posts }: { posts: DetailPost[] } = data;
+
+    const getFetchData = async () => {
+        const fetchData = await fetchPost();
+        setPosts(fetchData);
+        console.log(fetchData);
+    };
+
+    useEffect(() => {
+        getFetchData();
+    }, []);
+
+    if (!posts) {
         return <Loading />;
     }
-
-    if (error) {
-        return <p>{message}</p>;
-    }
-
-    const { posts }: { posts: DetailPost[] } = data;
 
     const blogPostElements = posts.map((item) => (
         <BlogPost
             key={item.slug}
+            slug={item.slug}
             id={item.id}
             title={item.title}
             published_at={item.published_at}
             primary_author={item.primary_author}
-            description={item.excerpt}
+            excerpt={item.excerpt}
             feature_image={item.feature_image}
             url={item.slug}
             tags={item.tags}

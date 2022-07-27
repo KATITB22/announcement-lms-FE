@@ -12,6 +12,9 @@ export const formatUrl = (url: string | null) => {
     return newUrl;
 };
 
+export const getBaseUrl = () => env.VITE_GHOST_API_URL;
+export const getGhostKey = () => env.VITE_GHOST_API_CONTENT_API_KEY;
+
 export const getFetchAllPostUrl = () =>
     `${BASE_URL}/posts?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags,authors`;
 

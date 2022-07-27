@@ -2,21 +2,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate, formatUrl } from '@/util/util';
-import { Post } from '../types/types';
+// import { Post } from '../types/types';
+import { PostOrPage } from '@tryghost/content-api';
 
-const BlogPost: React.FC<Post> = (props) => {
+const BlogPost: React.FC<PostOrPage> = (props) => {
     const {
         id,
         title,
-        primary_author: { name },
-        description,
+        slug,
+        // primary_author: { name },
+        excerpt: description,
         feature_image,
         url: link,
         tags,
         published_at: date,
     } = props;
-    const formattedDate = formatDate(date);
-    const formattedUrl = formatUrl(feature_image);
+    const formattedDate = formatDate(date!);
+    const formattedUrl = formatUrl(feature_image!);
     return (
         <Link to={`/post/${id}`}>
             <div
@@ -48,7 +50,7 @@ const BlogPost: React.FC<Post> = (props) => {
                         {/* title  */}
                         <div>
                             <p className="font-Body text-body font-normal mb-2">
-                                {formattedDate} | Posted by {name}
+                                {formattedDate} | Posted by ujang
                             </p>
                             <a
                                 href={link}
