@@ -57,40 +57,39 @@ const Homepage: React.FC<{}> = () => {
                         <div className="grid justify-center xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4">
                             {blogPostElements}
                         </div>
-                        <div className="bg-LightBrown pb-4 px-2 rounded-lg">
-                            <div className="">
-                                <h2 className="text-center font-Heading mt-16 mb-4 text-2xl font-bold pt-4">
-                                    {sponsorTitle}
-                                </h2>
-                                <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                                    {sponsorMD.map((image: imgPartner) => (
-                                        <a href={image.link}>
-                                            <img
-                                                alt={image.title}
-                                                src={image.imageUrl}
-                                                className={`w-[${image.type}] h-[${image.type}] object-cover`}
-                                            />
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                            <div>
-                                <h2 className="text-center font-Heading my-4 text-2xl font-bold">
-                                    {medparTitle}
-                                </h2>
-                                <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                                    {listOfMedpar.map((image: imgPartner) => (
-                                        <a href={image.link}>
-                                            <img
-                                                alt={image.title}
-                                                src={image.imageUrl}
-                                                className={`w-[${image.type}] h-[${image.type}] object-cover`}
-                                            />
-                                        </a>
-                                    ))}
-                                </div>
+                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center">
+                            <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
+                                {sponsorTitle}
+                            </h2>
+                            <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                                {sponsorMD.map((image: imgPartner) => (
+                                    <a href={image.link}>
+                                        <img
+                                            alt={image.title}
+                                            src={image.imageUrl}
+                                            className={`w-[${image.type}] h-[${image.type}] object-cover`}
+                                        />
+                                    </a>
+                                ))}
                             </div>
                         </div>
+                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center">
+                            <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
+                                {medparTitle}
+                            </h2>
+                            <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                                {listOfMedpar.map((image: imgPartner) => (
+                                    <a href={image.link}>
+                                        <img
+                                            alt={image.title}
+                                            src={image.imageUrl}
+                                            className={`w-[${image.type}] h-[${image.type}] object-cover`}
+                                        />
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                        {/* </div> */}
                     </div>
                 </div>
             </div>
