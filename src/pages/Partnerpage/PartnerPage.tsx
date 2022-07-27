@@ -91,17 +91,17 @@ export const listOfSponsor: imgPartner[] = [
     },
 ];
 
-const sponsorLG = listOfSponsor.filter(
+export const sponsorLG = listOfSponsor.filter(
     (sponsor) => sponsor.type === typePartner.LG
 );
 
-// const sponsorMD = listOfSponsor.filter((sponsor)=>{
-//     return sponsor.type === typePartner.MD
-// })
+export const sponsorMD = listOfSponsor.filter(
+    (sponsor) => sponsor.type === typePartner.MD
+);
 
-// const sponsorSM = listOfSponsor.filter((sponsor)=>{
-//     return sponsor.type === typePartner.SM
-// })
+export const sponsorSM = listOfSponsor.filter(
+    (sponsor) => sponsor.type === typePartner.SM
+);
 
 export const listOfMedpar: imgPartner[] = [
     {
