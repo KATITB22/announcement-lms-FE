@@ -65,7 +65,7 @@ const Render = {
         // kalo mau responsive ini aspect rationya diedit untuk spotify
         <div
             key={id}
-            className={`w-full flex justify-center ${
+            className={`w-full max-w-screen-sm flex justify-center ${
                 isYoutube ? 'aspect-video' : 'aspect-video'
             }`}
         >
@@ -82,8 +82,8 @@ const Render = {
     twitter: (id: number) => (
         <div className="w-full">
             <Tweet
-                tweetId="1551993502527004673"
-                options={{ width: 'full', align: 'center' }}
+                tweetId="1552277594707742720"
+                options={{ align: 'center' }}
             />
         </div>
     ),
