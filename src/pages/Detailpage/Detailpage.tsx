@@ -27,7 +27,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     const renderHTMLContent = React.useCallback(() => {
         if (posts.length === 0) return [];
 
-        const root = parse(posts[0].html);
+        const root = parse(posts[0].html.replace(/(\r\n|\n|\r)/gm, ''));
         console.log(root);
         const components: any[] = [];
         let id: number = 0;
@@ -41,13 +41,20 @@ const Detailpage: React.FC<DetailpageProps> = () => {
             } else if (node.tagName === 'UL') {
                 components.push(Render.ul(id, node));
             } else if (node.tagName === 'DIV') {
-                components.push(
-                    Render.heading(
-                        id,
-                        node.childNodes[0].text,
-                        node.childNodes[1].text
-                    )
-                );
+                if (node.childNodes[1]?.attrs?.title === 'Download') {
+                    const titleFile = node.childNodes[1].text.trim();
+                    components.push(
+                        Render.file(
+                            id,
+                            titleFile,
+                            node.childNodes[1].attrs.href
+                        )
+                    );
+                } else {
+                    // components.push(
+                    //     Render.heading(id, node.childNodes[0].text, node.childNodes[1].text)
+                    // )
+                }
             } else if (node.tagName === 'FIGURE') {
                 components.push(
                     node.childNodes[0].tagName === 'IMG'

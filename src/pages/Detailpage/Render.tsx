@@ -10,6 +10,8 @@ import {
     ListItem,
     UnorderedList,
     HStack,
+    Link,
+    Center,
 } from '@chakra-ui/react';
 
 const Render = {
@@ -39,7 +41,13 @@ const Render = {
         </Flex>
     ),
     divider: () => (
-        <Box width={'95%'} height={'4px'} bg={'#855E4A'} borderRadius={'lg'} />
+        <Box
+            width={'95%'}
+            height={'4px'}
+            bg={'#B8C094'}
+            borderRadius={'lg'}
+            dropShadow={'outline'}
+        />
         // <Divider  orientation='horizontal' colorScheme={'black'}/>
         // <hr style={{width :'50px', height : '40px', color:'black'}}/>
     ),
@@ -91,8 +99,8 @@ const Render = {
         return (
             <HStack key={id} width={'100%'}>
                 <Box
-                    bg={'red'}
-                    height={'10px'}
+                    bg={'#737B5C'}
+                    height={'100%'}
                     width={'3px'}
                     marginRight={'20px'}
                 />
@@ -100,6 +108,20 @@ const Render = {
                     <i>{text}</i>
                 </Box>
             </HStack>
+        );
+    },
+    file: (id: number, titleFile: string, src: string) => {
+        return (
+            <Link href={src} width={'50%'}>
+                <Center
+                    boxShadow={'5px 5px 3px #E38F6E'}
+                    borderRadius="lg"
+                    width={'100%'}
+                    bg={'#D26033'}
+                >
+                    {`Download File ${id}`}
+                </Center>
+            </Link>
         );
     },
 };
