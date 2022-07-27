@@ -40,8 +40,8 @@ const Render = {
             }}
             color="#D27C2F"
             href={url}
-            target="_blank"
             w="full"
+            isExternal
         >
             <Text as="u">{text}</Text>
         </Link>

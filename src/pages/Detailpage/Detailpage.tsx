@@ -53,12 +53,12 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         let id: number = 0;
         root.childNodes.forEach((node: any) => {
             if (node.tagName === 'P') {
-                if (node.childNodes[0].tagName === 'A') {
+                if (node.childNodes[0]?.tagName === 'A') {
                     // single link for entire paragraph, ex:<p><a>link</a></p>
                     components.push(
                         Render.link(
-                            node.childNodes[0].attrs.href,
-                            node.childNodes[0].childNodes[0].text
+                            node.childNodes[0].childNodes[0].text,
+                            node.childNodes[0].attrs.href
                         )
                     );
                 } else {
