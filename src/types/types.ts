@@ -1,4 +1,5 @@
-/* eslint-disable no-unused-vars */
+import { typePartner } from './enum';
+
 export type Tag = {
     id: string;
     name: string;
@@ -93,12 +94,6 @@ export type DetailPost = {
     feature_image_alt?: string;
     feature_image_caption?: string;
 };
-
-export enum typePartner {
-    LG = '200px',
-    MD = '150px',
-    SM = '100px',
-}
 
 export type imgPartner = {
     title: string;

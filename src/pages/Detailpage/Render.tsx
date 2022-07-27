@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+import { formatUrl } from '@/util/util';
 import {
     Box,
     Flex,
@@ -53,11 +54,14 @@ const Render = {
             <Text as="u">{text}</Text>
         </Link>
     ),
-    image: (id: number, src: string) => (
-        <Center key={id}>
-            <img src={src} alt="content" width="80%" />
-        </Center>
-    ),
+    image: (id: number, src: string) => {
+        const formattedUrl = formatUrl(src);
+        return (
+            <Center key={id}>
+                <img src={formattedUrl} alt="content" width="80%" />
+            </Center>
+        );
+    },
     video: (id: number, pathOfThumbnail: string, src: string) => (
         <Flex key={id} alignItems="center" justifyContent="center">
             <video controls poster={pathOfThumbnail} width="80%">
@@ -93,17 +97,17 @@ const Render = {
     ),
     divider: () => (
         <Box
-            width={'95%'}
-            height={'4px'}
-            bg={'#B8C094'}
-            borderRadius={'lg'}
-            dropShadow={'outline'}
+            width="95%"
+            height="4px"
+            bg="#B8C094"
+            borderRadius="lg"
+            dropShadow="outline"
         />
         // <Divider  orientation='horizontal' colorScheme={'black'}/>
         // <hr style={{width :'50px', height : '40px', color:'black'}}/>
     ),
     ol: (id: number, node: any) => (
-        <Box width={'100%'}>
+        <Box width="100%">
             <OrderedList
                 key={id}
                 textAlign="justify"
@@ -114,14 +118,14 @@ const Render = {
                     md: '18px',
                 }}
             >
-                {node.childNodes.map((node: any) => {
-                    return <ListItem>{node.text}</ListItem>;
-                })}
+                {node.childNodes.map((node: any) => (
+                    <ListItem>{node.text}</ListItem>
+                ))}
             </OrderedList>
         </Box>
     ),
     ul: (id: number, node: any) => (
-        <Box width={'100%'}>
+        <Box width="100%">
             <UnorderedList
                 key={id}
                 textAlign="justify"
@@ -132,52 +136,43 @@ const Render = {
                     md: '18px',
                 }}
             >
-                {node.childNodes.map((node: any) => {
-                    return <ListItem>{node.text}</ListItem>;
-                })}
+                {node.childNodes.map((node: any) => (
+                    <ListItem>{node.text}</ListItem>
+                ))}
             </UnorderedList>
         </Box>
     ),
-    blockquote: (id: number, text: string) => {
-        return (
-            <HStack key={id} width={'100%'}>
-                <Box
-                    bg={'#737B5C'}
-                    height={'100%'}
-                    width={'3px'}
-                    marginRight={'20px'}
-                />
-                <Box>
-                    <i>{text}</i>
-                </Box>
-            </HStack>
-        );
-    },
-    file: (id: number, titleFile: string, src: string) => {
-        return (
-            <Link href={src} width={'50%'}>
-                <Center
-                    boxShadow={'5px 5px 3px #E38F6E'}
-                    borderRadius="lg"
-                    width={'100%'}
-                    bg={'#D26033'}
-                >
-                    {`Download File ${id}`}
-                </Center>
-            </Link>
-        );
-    },
+    blockquote: (id: number, text: string) => (
+        <HStack key={id} width="100%">
+            <Box bg="#737B5C" height="100%" width="3px" marginRight="20px" />
+            <Box>
+                <i>{text}</i>
+            </Box>
+        </HStack>
+    ),
+    file: (id: number, titleFile: string, src: string) => (
+        <Link href={src} width="50%">
+            <Center
+                boxShadow="5px 5px 3px #E38F6E"
+                borderRadius="lg"
+                width="100%"
+                bg="#D26033"
+            >
+                {`Download File ${id}`}
+            </Center>
+        </Link>
+    ),
     audio: (id: number, node: any) => {
-        const src = node.childNodes[2].childNodes[0].attrs.src;
+        const { src } = node.childNodes[2].childNodes[0].attrs;
         const titleAudio = node.childNodes[2].childNodes[1].text;
         return (
             <VStack
                 key={id}
-                className={'block p-6 rounded-lg shadow-lg bg-white max-w-sm'}
+                className="block p-6 rounded-lg shadow-lg bg-white max-w-sm"
             >
                 <Center>{titleAudio}</Center>
                 <audio controls>
-                    <source src={src} type={'audio/mpeg'} />
+                    <source src={src} type="audio/mpeg" />
                 </audio>
             </VStack>
         );
@@ -201,13 +196,13 @@ const Render = {
         const textSubHeader = node.childNodes[1].text;
         return (
             <VStack
-                justifyContent={'center'}
-                alignItems={'center'}
-                width={'100%'}
-                bg={'rgba(255,235,176,0.65)'}
+                justifyContent="center"
+                alignItems="center"
+                width="100%"
+                bg="rgba(255,235,176,0.65)"
             >
-                <Text fontSize={'5xl'}>{textHeader}</Text>
-                <Text fontSize={'3xl'}>{textSubHeader}</Text>
+                <Text fontSize="5xl">{textHeader}</Text>
+                <Text fontSize="3xl">{textSubHeader}</Text>
             </VStack>
         );
     },
@@ -236,18 +231,16 @@ const Render = {
     },
     gallery: (id: number, node: any) => {
         const wrapItems: JSX.Element[] = node.childNodes[0].childNodes.map(
-            (node: any) => {
-                return node.childNodes.map((node: any) => {
-                    return (
-                        <div className="self-stretch">
-                            <img
-                                className="h-full w-full object-contain"
-                                src={node.childNodes[0].attrs.src}
-                            />
-                        </div>
-                    );
-                });
-            }
+            (node: any) =>
+                node.childNodes.map((node: any) => (
+                    <div className="self-stretch">
+                        <img
+                            className="h-full w-full object-contain"
+                            src={formatUrl(node.childNodes[0].attrs.src)}
+                            alt={node.childNodes[0].attrs.desc}
+                        />
+                    </div>
+                ))
         );
         return (
             <div className="grid-cols-2 grid place-items-center bg-slate-200 p-5 rounded-md bg-opacity-50 gap-5">

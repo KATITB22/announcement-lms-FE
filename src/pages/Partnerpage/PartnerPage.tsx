@@ -1,5 +1,6 @@
 import React from 'react';
-import { imgPartner, typePartner } from '../../types/types';
+import { typePartner } from '@/types/enum';
+import { imgPartner } from '@/types/types';
 
 export const pageTitle = '\uE096\uE00Ean\uE01As t\uE032';
 

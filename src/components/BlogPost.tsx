@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { formatDate, formatUrl } from '@/util/util';
 import { Post } from '../types/types';
-import Logo from '../assets/oskm-logo.svg';
 
 const BlogPost: React.FC<Post> = (props) => {
     const {
@@ -15,11 +15,8 @@ const BlogPost: React.FC<Post> = (props) => {
         tags,
         published_at: date,
     } = props;
-    let imageUrl = feature_image;
-    if (!imageUrl) {
-        imageUrl = Logo;
-    }
-    const formattedDate = new Date(Date.parse(date!)).toLocaleString();
+    const formattedDate = formatDate(date);
+    const formattedUrl = formatUrl(feature_image);
     return (
         <Link to={`/post/${id}`}>
             <div
@@ -43,7 +40,7 @@ const BlogPost: React.FC<Post> = (props) => {
             >
                 <img
                     alt={title}
-                    src={imageUrl}
+                    src={formattedUrl}
                     className="max-h-40 w-full object-cover rounded-t-lg"
                 />
                 <div className="bg-white w-full h-full p-4 rounded-br-lg rounded-bl-lg">

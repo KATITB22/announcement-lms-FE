@@ -1,19 +1,14 @@
+/* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
-import {
-    Flex,
-    // Hide,
-    Box,
-    VStack,
-} from '@chakra-ui/react';
+import { Flex, Box, VStack } from '@chakra-ui/react';
 import { parse } from 'node-html-parser';
 import { useParams } from 'react-router-dom';
 import env from '@/env';
+import { includes, isEmpty } from 'lodash';
 import { DetailpageProps } from '../../types/interface';
-// import { DetailPost } from '../../types/types';
 import useFetch from '../../hooks/useFetch';
 import Render from './Render';
-import { includes, isEmpty } from 'lodash';
 
 const months = [
     'Jan',
@@ -35,7 +30,8 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     const path = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts/${postId}?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
     const { data, isLoading, error, message } = useFetch(path);
 
-    let post: any, published_at: string;
+    let post: any;
+    let published_at: string;
     if (!isEmpty(data)) {
         post = data.posts[0];
         const date = new Date(post.published_at);

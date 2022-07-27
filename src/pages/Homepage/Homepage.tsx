@@ -23,11 +23,7 @@ const Homepage: React.FC<{}> = () => {
         return <p>{message}</p>;
     }
 
-    const {
-        meta: { pagination },
-        posts,
-    }: { meta: { pagination: Pagination }; posts: DetailPost[] } = data;
-    console.log(pagination, posts);
+    const { posts }: { posts: DetailPost[] } = data;
 
     const blogPostElements = posts.map((item) => (
         <BlogPost
