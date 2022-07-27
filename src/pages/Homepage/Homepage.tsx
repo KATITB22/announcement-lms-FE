@@ -7,7 +7,7 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import { listOfMedpar, sponsorMD } from '../Partnerpage/PartnerPage';
 
-export const pageTitle = '\uE000ch\uE058e\uE07Eeme\uE01Et';
+export const pageTitle = '\uE000nno\uE070nce\uE063ent';
 
 const Homepage: React.FC<{}> = () => {
     const path = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags,authors`;
@@ -57,7 +57,7 @@ const Homepage: React.FC<{}> = () => {
                         </div>
                         <div className="">
                             <div>
-                                <h2 className="text-center mb-4 text-2xl font-bold">
+                                <h2 className="text-center mt-16 mb-4 text-2xl font-bold">
                                     Sponsored By:
                                 </h2>
                                 <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
