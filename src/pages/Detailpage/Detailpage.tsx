@@ -102,11 +102,26 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         node.childNodes[0].childNodes[0].attrs.src
                     );
                 } else if (includes(node.attrs.class, 'kg-embed-card')) {
-                    component = Render.youtube(
-                        id,
-                        node.childNodes[0].attrs.title,
-                        node.childNodes[0].attrs.src
-                    );
+                    if (node.childNodes[0].attrs.class === 'twitter-tweet') {
+                        component = Render.twitter(id);
+                    } else if (
+                        // render for embed, youtube & spotify
+                        includes(node.childNodes[0].rawAttrs, 'www.youtube.com')
+                    ) {
+                        component = Render.youtube(
+                            id,
+                            node.childNodes[0].attrs.title,
+                            node.childNodes[0].attrs.src,
+                            true
+                        );
+                    } else {
+                        component = Render.youtube(
+                            id,
+                            node.childNodes[0].attrs.title,
+                            node.childNodes[0].attrs.src,
+                            false
+                        );
+                    }
                 }
                 components.push(component);
             } else if (node.tagName === 'BLOCKQUOTE') {

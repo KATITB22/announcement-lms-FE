@@ -12,6 +12,7 @@ import {
     Link,
     Center,
 } from '@chakra-ui/react';
+import { Tweet } from 'react-twitter-widgets';
 
 const Render = {
     paragraph: (id: number, text: string) => (
@@ -59,8 +60,14 @@ const Render = {
             </video>
         </Flex>
     ),
-    youtube: (id: number, title: string, src: string) => (
-        <div key={id} className="w-full flex justify-center aspect-video">
+    youtube: (id: number, title: string, src: string, isYoutube: boolean) => (
+        // kalo mau responsive ini aspect rationya diedit untuk spotify
+        <div
+            key={id}
+            className={`w-full flex justify-center ${
+                isYoutube ? 'aspect-video' : 'aspect-video'
+            }`}
+        >
             <iframe
                 src={src}
                 frameBorder="0"
@@ -68,6 +75,14 @@ const Render = {
                 allowFullScreen
                 title={title}
                 width="80%"
+            />
+        </div>
+    ),
+    twitter: (id: number) => (
+        <div className="w-full">
+            <Tweet
+                tweetId="1551993502527004673"
+                options={{ width: 'full', align: 'center' }}
             />
         </div>
     ),
@@ -171,15 +186,15 @@ const Render = {
         );
     },
     h2: (id: number, text: any) => (
-        <Flex justifyContent="flex-start" w="full">
-            <Text align="left" key={id} fontSize="xl">
+        <Flex key={id} justifyContent="flex-start" w="full">
+            <Text align="left" fontSize="xl">
                 {text}
             </Text>
         </Flex>
     ),
     h3: (id: number, text: any) => (
-        <Flex justifyContent="flex-start" w="full">
-            <Text align="right" key={id} fontSize="lg">
+        <Flex key={id} justifyContent="flex-start" w="full">
+            <Text align="right" fontSize="lg">
                 {text}
             </Text>
         </Flex>
