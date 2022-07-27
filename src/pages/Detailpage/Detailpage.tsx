@@ -107,6 +107,8 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         node.childNodes[0].attrs.title,
                         node.childNodes[0].attrs.src
                     );
+                } else if (includes(node.attrs.class, 'kg-gallery-card')) {
+                    component = Render.gallery(id, node);
                 }
                 components.push(component!);
             } else if (node.tagName === 'BLOCKQUOTE') {
@@ -134,7 +136,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
             <Flex width="15%">
                 <Box width="100%" height="100%" />
             </Flex>
-            <Flex marginTop="7%" flexDirection="column" width="70%">
+            <Flex className="my-36" flexDirection="column" width="70%">
                 <Box
                     fontFamily="Alegreya"
                     fontSize={{

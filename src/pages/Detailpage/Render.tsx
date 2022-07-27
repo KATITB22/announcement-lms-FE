@@ -12,6 +12,10 @@ import {
     Link,
     Center,
     Button,
+    Image,
+    WrapItem,
+    Wrap,
+    Stack,
 } from '@chakra-ui/react';
 
 const Render = {
@@ -216,7 +220,25 @@ const Render = {
         );
     },
     gallery: (id: number, node: any) => {
-        return <></>;
+        const wrapItems: JSX.Element[] = node.childNodes[0].childNodes.map(
+            (node: any) => {
+                return node.childNodes.map((node: any) => {
+                    return (
+                        <div className="self-stretch">
+                            <img
+                                className="h-full w-full object-contain"
+                                src={node.childNodes[0].attrs.src}
+                            />
+                        </div>
+                    );
+                });
+            }
+        );
+        return (
+            <div className="grid-cols-2 grid place-items-center bg-slate-200 p-5 rounded-md bg-opacity-50 gap-5">
+                {wrapItems}
+            </div>
+        );
     },
 };
 
