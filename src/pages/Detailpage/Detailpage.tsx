@@ -4,8 +4,8 @@ import React from 'react';
 import { Flex, Box, VStack } from '@chakra-ui/react';
 import { parse } from 'node-html-parser';
 import { useParams } from 'react-router-dom';
-import env from '@/env';
 import { includes, isEmpty } from 'lodash';
+import { getFetchSinglePostUrl } from '@/util/util';
 import { DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Render from './Render';
@@ -27,7 +27,7 @@ const months = [
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
-    const path = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts/${postId}?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags`;
+    const path = getFetchSinglePostUrl(postId);
     const { data, isLoading, error, message } = useFetch(path);
 
     let post: any;

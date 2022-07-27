@@ -1,8 +1,8 @@
 import React from 'react';
-import env from '@/env';
+import { getFetchAllPostUrl } from '@/util/util';
 import BlogPost from '../../components/BlogPost';
 import BaseLayout from '../../layout/BaseLayout';
-import { DetailPost, Pagination, imgPartner } from '../../types/types';
+import { DetailPost, imgPartner } from '../../types/types';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import { listOfMedpar, sponsorMD } from '../Partnerpage/PartnerPage';
@@ -12,7 +12,7 @@ const sponsorTitle = 'S\uE064o\uE01Esore\uE03A B\uE05A:';
 const medparTitle = '\uE023e\uE053ia Partner';
 
 const Homepage: React.FC<{}> = () => {
-    const path = `${env.VITE_GHOST_API_URL}/ghost/api/content/posts?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags,authors`;
+    const path = getFetchAllPostUrl();
     const { data, isLoading, error, message } = useFetch(path);
 
     if (isLoading) {

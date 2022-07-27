@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { FetchingState } from '../types/interface';
 
@@ -12,7 +12,7 @@ const useFetch = (url: string) => {
         message: '',
     });
 
-    const fetchData = useCallback(async () => {
+    const fetchData = React.useCallback(async () => {
         try {
             const response = await axios.get(url, {
                 signal: abortController.signal,
@@ -45,7 +45,7 @@ const useFetch = (url: string) => {
         }
     }, [url]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         fetchData();
         return () => {
             abortController.abort();
