@@ -1,8 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { FetchingState } from '../types/interface';
 
-const useFetch = (url: string) => {
+const useFetch = (url: Promise<any>) => {
     let abortController = new AbortController();
 
     const [fetchedData, setFetchedData] = React.useState<FetchingState>({
@@ -14,10 +13,7 @@ const useFetch = (url: string) => {
 
     const fetchData = React.useCallback(async () => {
         try {
-            const response = await axios.get(url, {
-                signal: abortController.signal,
-            });
-            const data = await response.data;
+            const data = await url;
             if (data) {
                 setFetchedData({
                     data: data.results || data,
@@ -27,21 +23,12 @@ const useFetch = (url: string) => {
                 });
             }
         } catch (err: any) {
-            if (axios.isCancel(err)) {
-                setFetchedData({
-                    data: {},
-                    isLoading: false,
-                    error: true,
-                    message: err.message || 'Fetching cancelled',
-                });
-            } else {
-                setFetchedData({
-                    data: {},
-                    isLoading: false,
-                    error: true,
-                    message: err.message || 'An error occured from server',
-                });
-            }
+            setFetchedData({
+                data: {},
+                isLoading: false,
+                error: true,
+                message: err.message || 'An error occured from server',
+            });
         }
     }, [url]);
 

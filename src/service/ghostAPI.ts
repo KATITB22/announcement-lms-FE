@@ -17,3 +17,14 @@ export const fetchPost = async () => {
     }
     return errMessage;
 };
+
+export const fetchSinglePost = async (postId: string) => {
+    let errMessage;
+    try {
+        const detailPost = await GhostAPI.posts.read({ id: postId });
+        return detailPost;
+    } catch (err: any) {
+        errMessage = err.message || 'An error occured from server';
+    }
+    return errMessage;
+};

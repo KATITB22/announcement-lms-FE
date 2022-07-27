@@ -9,7 +9,6 @@ const BlogPost: React.FC<PostOrPage> = (props) => {
     const {
         id,
         title,
-        slug,
         // primary_author: { name },
         excerpt: description,
         feature_image,
