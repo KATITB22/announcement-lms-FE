@@ -11,6 +11,7 @@ import {
     HStack,
     Link,
     Center,
+    Button,
 } from '@chakra-ui/react';
 
 const Render = {
@@ -118,14 +119,6 @@ const Render = {
             </UnorderedList>
         </Box>
     ),
-    heading: (id: number, heading: string, subheading: string) => (
-        <Box key={id}>
-            <VStack>
-                <Heading mb={0}>{heading}</Heading>
-                <Text fontSize="xl">{subheading}</Text>
-            </VStack>
-        </Box>
-    ),
     blockquote: (id: number, text: string) => {
         return (
             <HStack key={id} width={'100%'}>
@@ -184,6 +177,47 @@ const Render = {
             </Text>
         </Flex>
     ),
+    header: (id: number, node: any) => {
+        const textHeader = node.childNodes[0].text;
+        const textSubHeader = node.childNodes[1].text;
+        return (
+            <VStack
+                justifyContent={'center'}
+                alignItems={'center'}
+                width={'100%'}
+                bg={'rgba(255,235,176,0.65)'}
+            >
+                <Text fontSize={'5xl'}>{textHeader}</Text>
+                <Text fontSize={'3xl'}>{textSubHeader}</Text>
+            </VStack>
+        );
+    },
+    product: (id: number, node: any) => {
+        const srcImage = node.childNodes[0].childNodes[0].attrs.src;
+        const title = node.childNodes[0].childNodes[1].text;
+        const description = node.childNodes[0].childNodes[2].text;
+        const button = node.childNodes[0].childNodes[3]?.attrs.href;
+        const buttonText = node.childNodes[0].childNodes[3]?.text;
+        return (
+            <div className="max-w-sm rounded overflow-hidden shadow-lg">
+                <img className="w-full" src={srcImage} alt="product" />
+                <div className="px-6 py-4">
+                    <div className="font-bold text-xl mb-2">{title}</div>
+                    <p className="text-gray-700 text-base">{description}</p>
+                </div>
+                {button && (
+                    <Center className="px-6 pt-2 pb-2">
+                        <Link href={button} isExternal>
+                            <Button>{buttonText}</Button>
+                        </Link>
+                    </Center>
+                )}
+            </div>
+        );
+    },
+    gallery: (id: number, node: any) => {
+        return <></>;
+    },
 };
 
 export default Render;
