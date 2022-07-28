@@ -50,17 +50,16 @@ const Render = {
         </Link>
     ),
     image: (id: number, src: string) => {
-        const formattedUrl = formatUrl(src);
         return (
             <Center key={id}>
-                <img src={formattedUrl} alt="content" width="80%" />
+                <img src={formatUrl(src)} alt="content" width="80%" />
             </Center>
         );
     },
     video: (id: number, pathOfThumbnail: string, src: string) => (
         <Flex key={id} alignItems="center" justifyContent="center">
             <video controls poster={pathOfThumbnail} width="80%">
-                <source src={src} type="video/mp4" />
+                <source src={formatUrl(src)} type="video/mp4" />
             </video>
         </Flex>
     ),
@@ -146,7 +145,7 @@ const Render = {
         </HStack>
     ),
     file: (id: number, titleFile: string, src: string) => (
-        <Link href={src} width="50%">
+        <Link href={formatUrl(src)} width="50%">
             <Center
                 boxShadow="5px 5px 3px #E38F6E"
                 borderRadius="lg"
@@ -167,7 +166,7 @@ const Render = {
             >
                 <Center>{titleAudio}</Center>
                 <audio controls>
-                    <source src={src} type="audio/mpeg" />
+                    <source src={formatUrl(src)} type="audio/mpeg" />
                 </audio>
             </VStack>
         );
@@ -209,7 +208,11 @@ const Render = {
         const buttonText = node.childNodes[0].childNodes[3]?.text;
         return (
             <div className="max-w-sm rounded overflow-hidden shadow-lg">
-                <img className="w-full" src={srcImage} alt="product" />
+                <img
+                    className="w-full"
+                    src={formatUrl(srcImage)}
+                    alt="product"
+                />
                 <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{title}</div>
                     <p className="text-gray-700 text-base">{description}</p>

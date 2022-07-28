@@ -38,7 +38,7 @@ const useFetch = (url: Promise<any>) => {
             abortController.abort();
             abortController = new AbortController();
         };
-    }, [url, fetchData]);
+    }, []);
 
     const { data, isLoading, error, message } = fetchedData;
     return { data, isLoading, error, message };
