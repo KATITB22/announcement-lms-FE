@@ -9,7 +9,7 @@ import { DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
-import { months } from '@/types/enum';
+import { months } from '@/types/constant';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();

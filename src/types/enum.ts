@@ -4,18 +4,3 @@ export enum typePartner {
     MD = '150px',
     SM = '100px',
 }
-
-export const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec',
-];
