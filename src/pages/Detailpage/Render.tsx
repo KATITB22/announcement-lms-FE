@@ -124,17 +124,15 @@ const Render = {
         </div>
     ),
     blockquote: (id: number, text: string) => (
-        <HStack key={id} width="100%">
-            <Box bg="#737B5C" height="100%" width="3px" marginRight="20px" />
-            <Box>
-                <i>{text}</i>
-            </Box>
-        </HStack>
-        // <div
-        //     key={id}
-        //     className='w-full text-caption sm:text-body lg:text-h4'>
-        //     <em>{text}</em>
-        // </div>
+        <div
+            key={id}
+            className="w-full text-caption md:text-body font-Body text-justify flex flex-row"
+        >
+            <div className={'w-1 h-full rounded bg-gray-600'}></div>
+            <p className={'ml-6'}>
+                <em>{text}</em>
+            </p>
+        </div>
     ),
     file: (id: number, titleFile: string, src: string) => (
         <Link key={id} href={formatUrl(src)} width="50%">
