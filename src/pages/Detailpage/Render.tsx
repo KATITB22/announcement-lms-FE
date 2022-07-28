@@ -49,13 +49,11 @@ const Render = {
             <Text as="u">{text}</Text>
         </Link>
     ),
-    image: (id: number, src: string) => {
-        return (
-            <Center key={id}>
-                <img src={formatUrl(src)} alt="content" width="80%" />
-            </Center>
-        );
-    },
+    image: (id: number, src: string) => (
+        <Center key={id}>
+            <img src={formatUrl(src)} alt="content" width="80%" />
+        </Center>
+    ),
     video: (id: number, pathOfThumbnail: string, src: string) => (
         <Flex key={id} alignItems="center" justifyContent="center">
             <video controls poster={pathOfThumbnail} width="80%">
@@ -63,30 +61,19 @@ const Render = {
             </video>
         </Flex>
     ),
-    youtube: (id: number, title: string, src: string, isYoutube: boolean) => (
-        // kalo mau responsive ini aspect rationya diedit untuk spotify
+    iframe: (id: number, attr: any, aspectRatio: boolean) => (
         <div
             key={id}
             className={`w-full max-w-screen-sm flex justify-center ${
-                isYoutube ? 'aspect-video' : 'aspect-video'
+                aspectRatio ? 'aspect-video' : ''
             }`}
         >
-            <iframe
-                src={src}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={title}
-                width="80%"
-            />
+            <iframe title={attr.title} {...attr} />
         </div>
     ),
-    twitter: () => (
-        <div className="w-full">
-            <Tweet
-                tweetId="1552277594707742720"
-                options={{ align: 'center' }}
-            />
+    twitter: (id: number, tweetId: string) => (
+        <div key={id} className="w-full">
+            <Tweet tweetId={tweetId} options={{ align: 'center' }} />
         </div>
     ),
     divider: () => (
@@ -162,10 +149,10 @@ const Render = {
         return (
             <VStack
                 key={id}
-                className="block p-6 rounded-lg shadow-lg bg-white max-w-sm"
+                className="block p-5 md:p-7 w-40 sm:w-60 md:w-72 lg:w-80 rounded-lg shadow-lg bg-white"
             >
                 <Center>{titleAudio}</Center>
-                <audio controls>
+                <audio controls className="w-full">
                     <source src={formatUrl(src)} type="audio/mpeg" />
                 </audio>
             </VStack>
@@ -195,8 +182,8 @@ const Render = {
                 width="100%"
                 bg="rgba(255,235,176,0.65)"
             >
-                <Text fontSize="5xl">{textHeader}</Text>
-                <Text fontSize="3xl">{textSubHeader}</Text>
+                <Text fontSize={['2xl', '3xl', '4xl']}>{textHeader}</Text>
+                <Text fontSize={['lg', 'xl', '2xl']}>{textSubHeader}</Text>
             </VStack>
         );
     },
@@ -207,15 +194,19 @@ const Render = {
         const button = node.childNodes[0].childNodes[3]?.attrs.href;
         const buttonText = node.childNodes[0].childNodes[3]?.text;
         return (
-            <div className="max-w-sm rounded overflow-hidden shadow-lg">
+            <div className="w-40 sm:w-44 md:w-60 lg:w-80 rounded overflow-hidden shadow-lg bg-LightBrown">
                 <img
                     className="w-full"
                     src={formatUrl(srcImage)}
                     alt="product"
                 />
-                <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">{title}</div>
-                    <p className="text-gray-700 text-base">{description}</p>
+                <div className="px-3 py-2 md:px-6 md:py-4">
+                    <div className="font-bold text-md sm:text-lg md:text-xl mb-2">
+                        {title}
+                    </div>
+                    <p className="text-gray-700 text-sm sm:text-base md:text-lg">
+                        {description}
+                    </p>
                 </div>
                 {button && (
                     <Center className="px-6 pt-2 pb-2">

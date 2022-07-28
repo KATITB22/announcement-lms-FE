@@ -58,25 +58,38 @@ export const renderHTMLContent = (post: any) => {
                     node.childNodes[0].childNodes[0].attrs.src
                 );
             } else if (includes(node.attrs.class, 'kg-embed-card')) {
+                let attr;
+                let aspectRatio = false;
+                if (node.childNodes[0].attrs.src) {
+                    attr = {
+                        allow: node.childNodes[0].attrs.allow,
+                        allowFullScreen:
+                            node.childNodes[0].attrs.allowfullscreen,
+                        frameBorder: node.childNodes[0].attrs.frameborder,
+                        src: node.childNodes[0].attrs.src,
+                        title: node.childNodes[0].attrs.tile,
+                        height: node.childNodes[0].attrs.height,
+                        width: node.childNodes[0].attrs.width,
+                    };
+                    if (
+                        includes(node.childNodes[0].rawAttrs, 'www.youtube.com')
+                    ) {
+                        attr.width = '100%';
+                        delete attr?.height;
+                        aspectRatio = true;
+                    }
+                }
                 if (node.childNodes[0].attrs.class === 'twitter-tweet') {
-                    component = Render.twitter();
-                } else if (
-                    // render for embed, youtube & spotify
-                    includes(node.childNodes[0].rawAttrs, 'www.youtube.com')
-                ) {
-                    component = Render.youtube(
-                        id,
-                        node.childNodes[0].attrs.title,
-                        node.childNodes[0].attrs.src,
-                        true
-                    );
+                    // twitter
+                    const src = node.childNodes[0].childNodes[2].rawAttrs;
+                    const idExp = /status\/(\d+)/g;
+                    const regexExp = new RegExp(idExp);
+                    const match = regexExp.exec(src);
+                    const tweetId = match![1];
+                    component = Render.twitter(id, tweetId);
                 } else {
-                    component = Render.youtube(
-                        id,
-                        node.childNodes[0].attrs.title,
-                        node.childNodes[0].attrs.src,
-                        false
-                    );
+                    // youtube & spotify
+                    component = Render.iframe(id, attr, aspectRatio);
                 }
             } else if (includes(node.attrs.class, 'kg-gallery-card')) {
                 component = Render.gallery(id, node);
