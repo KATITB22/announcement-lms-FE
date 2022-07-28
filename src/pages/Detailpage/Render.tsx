@@ -17,33 +17,27 @@ import { Tweet } from 'react-twitter-widgets';
 
 const Render = {
     paragraph: (id: number, text: string) => (
-        <Box
+        <div
             key={id}
-            textAlign="left"
-            fontFamily="Alegreya"
-            width="100%"
-            fontSize={{
-                base: '12px',
-                md: '18px',
-            }}
+            className={
+                'text-caption md:text-body w-full font-Body text-justify'
+            }
             dangerouslySetInnerHTML={{
                 __html: text.replaceAll(
                     '<a',
                     '<a style="color: #D27C2F; text-decoration: underline" target="_blank"'
                 ),
             }}
-        />
+        ></div>
     ),
     link: (id: number, text: string, url: string) => (
         <Link
             key={id}
-            fontSize={{
-                base: '12px',
-                md: '18px',
-            }}
+            className={
+                'text-caption md:text-body w-full font-Body text-justify'
+            }
             color="#D27C2F"
             href={url}
-            w="full"
             isExternal
         >
             <Text as="u">{text}</Text>
@@ -81,16 +75,17 @@ const Render = {
             />
         </div>
     ),
-    twitter: () => (
-        <div className="w-full">
+    twitter: (id: number) => (
+        <div key={id} className="w-full">
             <Tweet
                 tweetId="1552277594707742720"
                 options={{ align: 'center' }}
             />
         </div>
     ),
-    divider: () => (
+    divider: (id: number) => (
         <Box
+            key={id}
             width="95%"
             height="4px"
             bg="#B8C094"
@@ -101,40 +96,32 @@ const Render = {
         // <hr style={{width :'50px', height : '40px', color:'black'}}/>
     ),
     ol: (id: number, node: any) => (
-        <Box width="100%">
-            <OrderedList
-                key={id}
-                textAlign="justify"
-                fontFamily="Alegreya"
-                width="100%"
-                fontSize={{
-                    base: '12px',
-                    md: '18px',
-                }}
-            >
+        <div
+            key={id}
+            className={
+                'w-full text-caption md:text-body font-Body text-justify'
+            }
+        >
+            <ol className={'list-decimal ml-8'}>
                 {node.childNodes.map((innerNode: any) => (
-                    <ListItem>{innerNode.text}</ListItem>
+                    <li>{innerNode.text}</li>
                 ))}
-            </OrderedList>
-        </Box>
+            </ol>
+        </div>
     ),
     ul: (id: number, node: any) => (
-        <Box width="100%">
-            <UnorderedList
-                key={id}
-                textAlign="justify"
-                fontFamily="Alegreya"
-                width="100%"
-                fontSize={{
-                    base: '12px',
-                    md: '18px',
-                }}
-            >
+        <div
+            key={id}
+            className={
+                'w-full text-caption md:text-body font-Body text-justify'
+            }
+        >
+            <ul className={'list-disc ml-9'}>
                 {node.childNodes.map((innerNode: any) => (
-                    <ListItem>{innerNode.text}</ListItem>
+                    <li>{innerNode.text}</li>
                 ))}
-            </UnorderedList>
-        </Box>
+            </ul>
+        </div>
     ),
     blockquote: (id: number, text: string) => (
         <HStack key={id} width="100%">
@@ -143,9 +130,14 @@ const Render = {
                 <i>{text}</i>
             </Box>
         </HStack>
+        // <div
+        //     key={id}
+        //     className='w-full text-caption sm:text-body lg:text-h4'>
+        //     <em>{text}</em>
+        // </div>
     ),
     file: (id: number, titleFile: string, src: string) => (
-        <Link href={formatUrl(src)} width="50%">
+        <Link key={id} href={formatUrl(src)} width="50%">
             <Center
                 boxShadow="5px 5px 3px #E38F6E"
                 borderRadius="lg"
@@ -190,6 +182,7 @@ const Render = {
         const textSubHeader = node.childNodes[1].text;
         return (
             <VStack
+                key={id}
                 justifyContent="center"
                 alignItems="center"
                 width="100%"
@@ -207,7 +200,10 @@ const Render = {
         const button = node.childNodes[0].childNodes[3]?.attrs.href;
         const buttonText = node.childNodes[0].childNodes[3]?.text;
         return (
-            <div className="max-w-sm rounded overflow-hidden shadow-lg">
+            <div
+                key={id}
+                className="max-w-sm rounded overflow-hidden shadow-lg"
+            >
                 <img
                     className="w-full"
                     src={formatUrl(srcImage)}
@@ -243,7 +239,10 @@ const Render = {
                 ))
         );
         return (
-            <div className="grid-cols-2 grid place-items-center bg-slate-200 p-5 rounded-md bg-opacity-50 gap-5">
+            <div
+                key={id}
+                className="grid-cols-2 grid place-items-center bg-slate-200 p-5 rounded-md bg-opacity-50 gap-5"
+            >
                 {wrapItems}
             </div>
         );

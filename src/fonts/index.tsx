@@ -21,6 +21,11 @@ const Fonts = () => (
             font-family: 'Alegreya Sans Thin';
             src: url('./fonts/AlegreyaSans-Light.ttf');
         }
+
+        @font-face {
+            font-family: 'Alegreya Sans Medium';
+            src: url('./fonts/AlegreyaSans-Medium.ttf');
+        }
         `}
     />
 );

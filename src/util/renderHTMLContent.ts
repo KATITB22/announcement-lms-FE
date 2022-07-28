@@ -23,7 +23,7 @@ export const renderHTMLContent = (post: any) => {
                 components.push(Render.paragraph(id, node.outerHTML));
             }
         } else if (node.tagName === 'HR') {
-            components.push(Render.divider());
+            components.push(Render.divider(id));
         } else if (node.tagName === 'OL') {
             components.push(Render.ol(id, node));
         } else if (node.tagName === 'UL') {
@@ -59,7 +59,7 @@ export const renderHTMLContent = (post: any) => {
                 );
             } else if (includes(node.attrs.class, 'kg-embed-card')) {
                 if (node.childNodes[0].attrs.class === 'twitter-tweet') {
-                    component = Render.twitter();
+                    component = Render.twitter(id);
                 } else if (
                     // render for embed, youtube & spotify
                     includes(node.childNodes[0].rawAttrs, 'www.youtube.com')
