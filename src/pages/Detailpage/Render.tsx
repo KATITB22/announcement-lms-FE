@@ -61,30 +61,19 @@ const Render = {
             </video>
         </Flex>
     ),
-    youtube: (id: number, title: string, src: string, isYoutube: boolean) => (
-        // kalo mau responsive ini aspect rationya diedit untuk spotify
+    iframe: (id: number, attr: any, aspectRatio: boolean) => (
         <div
             key={id}
             className={`w-full max-w-screen-sm flex justify-center ${
-                isYoutube ? 'aspect-video' : 'aspect-video'
+                aspectRatio ? 'aspect-video' : ''
             }`}
         >
-            <iframe
-                src={src}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={title}
-                width="80%"
-            />
+            <iframe title={attr.title} {...attr} />
         </div>
     ),
-    twitter: () => (
-        <div className="w-full">
-            <Tweet
-                tweetId="1552277594707742720"
-                options={{ align: 'center' }}
-            />
+    twitter: (id: number, tweetId: string) => (
+        <div key={id} className="w-full">
+            <Tweet tweetId={tweetId} options={{ align: 'center' }} />
         </div>
     ),
     divider: () => (
