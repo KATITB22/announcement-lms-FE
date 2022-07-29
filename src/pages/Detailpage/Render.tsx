@@ -84,16 +84,11 @@ const Render = {
         </div>
     ),
     divider: (id: number) => (
-        <Box
-            key={id}
-            width="95%"
-            height="4px"
-            bg="#B8C094"
-            borderRadius="lg"
-            dropShadow="outline"
-        />
-        // <Divider  orientation='horizontal' colorScheme={'black'}/>
-        // <hr style={{width :'50px', height : '40px', color:'black'}}/>
+        <div key={id} className={'w-10 py-7 flex justify-evenly items-center'}>
+            <div className="w-1 h-1 bg-black rounded-lg"></div>
+            <div className="w-1 h-1 bg-black rounded-lg"></div>
+            <div className="w-1 h-1 bg-black rounded-lg"></div>
+        </div>
     ),
     ol: (id: number, node: any) => (
         <div
