@@ -87,7 +87,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     }}
                 >
                     <Box maxWidth="100%">
-                        <img src={post!.feature_image} alt="featured" />
+                        <img src={post!.feature_image!} alt="featured" />
                     </Box>
                     {renderHTMLContent(post!)}
                 </VStack>
