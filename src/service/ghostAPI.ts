@@ -1,4 +1,4 @@
-import { DetailPost, Posts } from '@/types/types';
+import { Posts, DetailPost } from '@/types/interface';
 import { getBaseUrl, getGhostKey } from '@/util/util';
 import GhostContentAPI from '@tryghost/content-api';
 
@@ -12,7 +12,7 @@ export const fetchPost = async () => {
     let errMessage;
     try {
         const listOfAllPosts: Posts = await GhostAPI.posts.browse({
-            include: 'tags',
+            include: ['tags', 'authors'],
         });
         return [...listOfAllPosts];
     } catch (err: any) {
@@ -26,7 +26,7 @@ export const fetchSinglePost = async (postId: string) => {
     try {
         const detailPost: DetailPost = await GhostAPI.posts.read(
             { id: postId },
-            { include: 'tags' }
+            { include: ['tags', 'authors'] }
         );
         return detailPost;
     } catch (err: any) {

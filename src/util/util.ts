@@ -8,7 +8,7 @@ export const formatDate = (date: string | undefined) =>
 
 export const formatUrl = (url: string | null) => {
     if (!url) return Logo;
-    const newUrl = env.PROD
+    const newUrl = env.DEV
         ? url.replace('localhost', env.VITE_IP_ADDRESS)
         : url;
     return newUrl;
@@ -25,3 +25,10 @@ export const getFetchSinglePostUrl = (postId: string | undefined) =>
 
 export const getFetchAllTags = () =>
     `${BASE_URL}/posts?key=${env.VITE_GHOST_API_CONTENT_API_KEY}&include=tags,authors`;
+
+export const trimString = (desc: string | undefined, maxLength: number) => {
+    if (!desc) return '';
+    return desc.length > maxLength
+        ? `${desc.substring(0, maxLength)}...`
+        : desc;
+};

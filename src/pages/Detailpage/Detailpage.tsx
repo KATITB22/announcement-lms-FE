@@ -5,7 +5,7 @@ import { Flex, Box, VStack } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
-import { months } from '@/types/constant';
+import { MONTHS } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
 import { DetailPost } from '@/types/types';
 import { DetailpageProps } from '../../types/interface';
@@ -24,7 +24,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         post = data;
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
-            months[date.getMonth()]
+            MONTHS[date.getMonth()]
         } ${date.getFullYear()}`;
     }
 

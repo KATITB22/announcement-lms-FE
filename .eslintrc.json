@@ -11,7 +11,9 @@
     },
     "globals": {
         "React": true,
-        "JSX": true
+        "JSX": true,
+        "ChildNode": true,
+        "NodeListOf": true
     },
     "env": {
         "browser": true,

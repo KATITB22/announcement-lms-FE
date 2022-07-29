@@ -1,15 +1,16 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { formatDate, formatUrl } from '@/util/util';
+import { formatDate, formatUrl, trimString } from '@/util/util';
 // import { Post } from '../types/types';
 import { PostOrPage } from '@tryghost/content-api';
+import { MAX_DESCRIPTION } from '@/types/constant';
 
 const BlogPost: React.FC<PostOrPage> = (props) => {
     const {
         id,
         title,
-        // primary_author: { name },
+        primary_author,
         excerpt: description,
         feature_image,
         url: link,
@@ -18,6 +19,8 @@ const BlogPost: React.FC<PostOrPage> = (props) => {
     } = props;
     const formattedDate = formatDate(date!);
     const formattedUrl = formatUrl(feature_image!);
+    const trimmedText = trimString(description, MAX_DESCRIPTION);
+    const authorName = primary_author?.name;
     return (
         <Link to={`/post/${id}`}>
             <div
@@ -31,12 +34,10 @@ const BlogPost: React.FC<PostOrPage> = (props) => {
                     justify-between
                     flex-col
                     flex
-                    shrink
                     w-full
                     h-full
                     max-w-xs
                     md:max-w-md
-                    max-h-fit
                 "
             >
                 <img
@@ -49,33 +50,28 @@ const BlogPost: React.FC<PostOrPage> = (props) => {
                         {/* title  */}
                         <div>
                             <p className="font-Body text-body font-normal mb-2">
-                                {formattedDate} | Posted by ujang
+                                {formattedDate} | Posted by {authorName}
                             </p>
                             <a
                                 href={link}
-                                className="font-Heading text-h6 font-semibold"
+                                className="font-Heading text-title font-semibold"
                             >
                                 {title}
                             </a>
-                            <p className="font-Body text-body font-normal">
-                                {description}
+                            <p className="font-Body text-body font-normal mb-3">
+                                {trimmedText}
                             </p>
                         </div>
                         {/* tags  */}
                         <div>
-                            <a
-                                className="font-Caption text-body font-semibold hover:text-Orange"
-                                href={link}
-                            >
-                                Read More
-                            </a>
                             {tags ? (
                                 <div className="flex items-center mt-2 flex-wrap gap-2">
                                     {tags.map((tag) => (
                                         // TODO: change # to tags link
                                         <a
-                                            href="www.google.com"
+                                            href={tag.url}
                                             className="px-2 py-2 rounded bg-Orange text-white hover:text-black"
+                                            key={tag.slug}
                                         >
                                             {tag.name}
                                         </a>

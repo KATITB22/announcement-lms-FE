@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-export const months = [
+export const MONTHS = [
     'Jan',
     'Feb',
     'Mar',
@@ -13,3 +13,5 @@ export const months = [
     'Nov',
     'Dec',
 ];
+
+export const MAX_DESCRIPTION = 150;
