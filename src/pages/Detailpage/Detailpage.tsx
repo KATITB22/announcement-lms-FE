@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { months } from '@/types/constant';
+import BaseLayout from '@/layout/BaseLayout';
 import { DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
@@ -36,64 +37,66 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     }
 
     return (
-        <Flex background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)">
-            <Flex width="15%">
-                <Box width="100%" height="100%" />
-            </Flex>
-            <Flex className="my-36" flexDirection="column" width="70%">
-                <div
-                    className={
-                        'font-Body text-overline md:text-body cursor-pointer'
-                    }
-                >
-                    <a className={'hover:underline'} href={'/'}>
-                        {'Home'}
-                    </a>
-                    {post!.primary_tag && (
-                        <span>
-                            {' '}
-                            {'>'}{' '}
-                            <a
-                                className={'hover:underline'}
-                                href={`/search?${post!.primary_tag.name}`}
-                            >
-                                {post!.primary_tag.name}
-                            </a>
-                        </span>
-                    )}
-                </div>
-                <Box
-                    fontFamily="Magilio"
-                    fontSize={{
-                        base: '20px',
-                        md: '35px',
-                    }}
-                >
-                    {post!.title}
-                </Box>
-                <Box
-                    fontFamily="Alegreya"
-                    fontSize={{
-                        base: '12px',
-                        md: '18px',
-                    }}
-                >
-                    {published_at!}
-                </Box>
-                <VStack
-                    spacing={{
-                        base: '12px',
-                        md: '24px',
-                    }}
-                >
-                    <Box maxWidth="100%">
-                        <img src={post!.feature_image!} alt="featured" />
+        <BaseLayout>
+            <Flex background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)">
+                <Flex width="15%">
+                    <Box width="100%" height="100%" />
+                </Flex>
+                <Flex className="my-36" flexDirection="column" width="70%">
+                    <div
+                        className={
+                            'font-Body text-overline md:text-body cursor-pointer'
+                        }
+                    >
+                        <a className={'hover:underline'} href={'/'}>
+                            {'Home'}
+                        </a>
+                        {post!.primary_tag && (
+                            <span>
+                                {' '}
+                                {'>'}{' '}
+                                <a
+                                    className={'hover:underline'}
+                                    href={`/search?${post!.primary_tag.name}`}
+                                >
+                                    {post!.primary_tag.name}
+                                </a>
+                            </span>
+                        )}
+                    </div>
+                    <Box
+                        fontFamily="Magilio"
+                        fontSize={{
+                            base: '20px',
+                            md: '35px',
+                        }}
+                    >
+                        {post!.title}
                     </Box>
-                    {renderHTMLContent(post!)}
-                </VStack>
+                    <Box
+                        fontFamily="Alegreya"
+                        fontSize={{
+                            base: '12px',
+                            md: '18px',
+                        }}
+                    >
+                        {published_at!}
+                    </Box>
+                    <VStack
+                        spacing={{
+                            base: '12px',
+                            md: '24px',
+                        }}
+                    >
+                        <Box maxWidth="100%">
+                            <img src={post!.feature_image!} alt="featured" />
+                        </Box>
+                        {renderHTMLContent(post!)}
+                    </VStack>
+                </Flex>
+                <Flex width="15%" />
             </Flex>
-            <Flex width="15%" />
-        </Flex>
+        </BaseLayout>
     );
 };
 
