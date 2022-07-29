@@ -15,3 +15,4 @@ export const MONTHS = [
 ];
 
 export const MAX_DESCRIPTION = 150;
+export const MAX_POST = 12;

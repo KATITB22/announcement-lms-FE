@@ -1,3 +1,4 @@
+import { MAX_POST } from '@/types/constant';
 import { Posts, DetailPost } from '@/types/interface';
 import { getBaseUrl, getGhostKey } from '@/util/util';
 import GhostContentAPI from '@tryghost/content-api';
@@ -8,11 +9,13 @@ const GhostAPI = new GhostContentAPI({
     version: 'v5.0',
 });
 
-export const fetchPost = async () => {
+export const fetchPost = async (page?: number) => {
     let errMessage;
     try {
         const listOfAllPosts: Posts = await GhostAPI.posts.browse({
             include: ['tags', 'authors'],
+            limit: MAX_POST,
+            page: page || 1,
         });
         return [...listOfAllPosts];
     } catch (err: any) {
