@@ -10,7 +10,7 @@ const GhostAPI = new GhostContentAPI({
 export const fetchPost = async () => {
     let errMessage;
     try {
-        const listOfAllPosts = await GhostAPI.posts.browse();
+        const listOfAllPosts = await GhostAPI.posts.browse({ include: 'tags' });
         return [...listOfAllPosts];
     } catch (err: any) {
         errMessage = err.message || 'An error occured from server';
@@ -21,7 +21,10 @@ export const fetchPost = async () => {
 export const fetchSinglePost = async (postId: string) => {
     let errMessage;
     try {
-        const detailPost = await GhostAPI.posts.read({ id: postId });
+        const detailPost = await GhostAPI.posts.read(
+            { id: postId },
+            { include: 'tags' }
+        );
         return detailPost;
     } catch (err: any) {
         errMessage = err.message || 'An error occured from server';

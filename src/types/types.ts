@@ -74,7 +74,7 @@ export type DetailPost = {
     custom_template?: string;
     canonical_url?: string;
     tags: Tag[];
-    primary_tag: Tag;
+    primary_tag?: Tag;
     authors: Author[];
     primary_author: Author;
     url: string;

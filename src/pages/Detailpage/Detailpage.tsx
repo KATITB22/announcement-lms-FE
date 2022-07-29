@@ -10,12 +10,13 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
 import { months } from '@/types/constant';
+import { DetailPost } from '@/types/types';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
     const { data, isLoading, error } = useFetch(fetchSinglePost(postId!));
 
-    let post: any;
+    let post: DetailPost;
     let published_at: string;
 
     if (data) {
@@ -40,15 +41,27 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 <Box width="100%" height="100%" />
             </Flex>
             <Flex className="my-36" flexDirection="column" width="70%">
-                <Box
-                    fontFamily="Alegreya"
-                    fontSize={{
-                        base: '14px',
-                        md: '18px',
-                    }}
+                <div
+                    className={
+                        'font-Body text-overline md:text-body cursor-pointer'
+                    }
                 >
-                    {'Home > Category >  Kemahasiswaan'}
-                </Box>
+                    <a className={'hover:underline'} href={'/'}>
+                        {'Home'}
+                    </a>
+                    {post!.primary_tag && (
+                        <span>
+                            {' '}
+                            {'>'}{' '}
+                            <a
+                                className={'hover:underline'}
+                                href={`/search?${post!.primary_tag.name}`}
+                            >
+                                {post!.primary_tag.name}
+                            </a>
+                        </span>
+                    )}
+                </div>
                 <Box
                     fontFamily="Magilio"
                     fontSize={{
@@ -56,7 +69,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         md: '35px',
                     }}
                 >
-                    {post.title}
+                    {post!.title}
                 </Box>
                 <Box
                     fontFamily="Alegreya"
@@ -74,12 +87,9 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     }}
                 >
                     <Box maxWidth="100%">
-                        <img
-                            src="http://localhost:2368/content/images/2022/07/IMG_6351.jpg"
-                            alt="featured"
-                        />
+                        <img src={post!.feature_image} alt="featured" />
                     </Box>
-                    {renderHTMLContent(post)}
+                    {renderHTMLContent(post!)}
                 </VStack>
             </Flex>
             <Flex width="15%" />
