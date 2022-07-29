@@ -1,3 +1,4 @@
+import { DetailPost, Posts } from '@/types/types';
 import { getBaseUrl, getGhostKey } from '@/util/util';
 import GhostContentAPI from '@tryghost/content-api';
 
@@ -10,7 +11,9 @@ const GhostAPI = new GhostContentAPI({
 export const fetchPost = async () => {
     let errMessage;
     try {
-        const listOfAllPosts = await GhostAPI.posts.browse({ include: 'tags' });
+        const listOfAllPosts: Posts = await GhostAPI.posts.browse({
+            include: 'tags',
+        });
         return [...listOfAllPosts];
     } catch (err: any) {
         errMessage = err.message || 'An error occured from server';
@@ -21,7 +24,7 @@ export const fetchPost = async () => {
 export const fetchSinglePost = async (postId: string) => {
     let errMessage;
     try {
-        const detailPost = await GhostAPI.posts.read(
+        const detailPost: DetailPost = await GhostAPI.posts.read(
             { id: postId },
             { include: 'tags' }
         );

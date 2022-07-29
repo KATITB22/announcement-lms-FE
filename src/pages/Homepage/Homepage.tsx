@@ -2,7 +2,7 @@ import React from 'react';
 import { fetchPost } from '@/service/ghostAPI';
 import { PostOrPage } from '@tryghost/content-api';
 import useFetch from '@/hooks/useFetch';
-import { imgPartner } from '@/types/types';
+import { imgPartner, Posts } from '@/types/types';
 import BlogPost from '../../components/BlogPost';
 import BaseLayout from '../../layout/BaseLayout';
 import Loading from '../Loading';
@@ -24,7 +24,7 @@ const Homepage: React.FC<{}> = () => {
         return <PageNotFound />;
     }
 
-    const posts: PostOrPage[] = data;
+    const posts: Posts = data;
 
     const blogPostElements = posts.map((item) => (
         <BlogPost
