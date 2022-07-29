@@ -7,11 +7,11 @@ import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { months } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
+import { DetailPost } from '@/types/types';
 import { DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
-import { DetailPost } from '@/types/types';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
@@ -38,7 +38,10 @@ const Detailpage: React.FC<DetailpageProps> = () => {
 
     return (
         <BaseLayout>
-            <Flex background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)">
+            <Flex
+                background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)"
+                className="min-h-screen"
+            >
                 <Flex width="15%">
                     <Box width="100%" height="100%" />
                 </Flex>
@@ -47,20 +50,16 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     flexDirection="column"
                     width="70%"
                 >
-                    <div
-                        className={
-                            'font-Body text-overline md:text-body cursor-pointer'
-                        }
-                    >
-                        <a className={'hover:underline'} href={'/'}>
-                            {'Home'}
+                    <div className="font-Body text-overline md:text-body cursor-pointer">
+                        <a className="hover:underline" href="/">
+                            Home
                         </a>
                         {post!.primary_tag && (
                             <span>
                                 {' '}
                                 {'>'}{' '}
                                 <a
-                                    className={'hover:underline'}
+                                    className="hover:underline"
                                     href={`/search?${post!.primary_tag.name}`}
                                 >
                                     {post!.primary_tag.name}
