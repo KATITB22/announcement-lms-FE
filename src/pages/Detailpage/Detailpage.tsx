@@ -5,11 +5,11 @@ import { Flex, Box, VStack } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
+import { months } from '@/types/constant';
 import { DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
-import { months } from '@/types/constant';
 import { DetailPost } from '@/types/types';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
