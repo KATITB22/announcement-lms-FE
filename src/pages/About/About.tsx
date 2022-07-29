@@ -3,7 +3,7 @@ import oskmLogo from '../../assets/oskm-logo.svg';
 import AboutDetail from './AboutDetail';
 import { useToggle } from '../../hooks/useToggle';
 
-const About = () => {
+const About: React.FC<{}> = () => {
     const [isOn, toggle] = useToggle();
     const aboutContents: Array<string> = [
         'Pemasaran yang dulu dilakukan dengan menggunakan flyer, spanduk, koran, kini beralih ke media digital dan juga internet',
