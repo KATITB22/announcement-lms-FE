@@ -42,7 +42,11 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 <Flex width="15%">
                     <Box width="100%" height="100%" />
                 </Flex>
-                <Flex className="my-36" flexDirection="column" width="70%">
+                <Flex
+                    className="my-12 md:my-20"
+                    flexDirection="column"
+                    width="70%"
+                >
                     <div
                         className={
                             'font-Body text-overline md:text-body cursor-pointer'
