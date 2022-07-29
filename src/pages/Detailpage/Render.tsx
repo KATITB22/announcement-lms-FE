@@ -147,7 +147,7 @@ const Render = {
             );
         } else {
             const textHeader = node.childNodes[0].text;
-            const textSubHeader = node.childNodes[1].text;
+            const textSubHeader = node.childNodes[1]?.text;
             return (
                 <VStack
                     key={id}
@@ -157,7 +157,11 @@ const Render = {
                     bg="rgba(255,235,176,0.65)"
                 >
                     <Text fontSize={['2xl', '3xl', '4xl']}>{textHeader}</Text>
-                    <Text fontSize={['lg', 'xl', '2xl']}>{textSubHeader}</Text>
+                    {textSubHeader && (
+                        <Text fontSize={['lg', 'xl', '2xl']}>
+                            {textSubHeader}
+                        </Text>
+                    )}
                 </VStack>
             );
         }
