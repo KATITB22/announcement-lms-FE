@@ -3,6 +3,7 @@ import { fetchPost } from '@/service/ghostAPI';
 import useFetch from '@/hooks/useFetch';
 import { imgPartner } from '@/types/types';
 import { Posts } from '@/types/interface';
+import Pagination from '@/components/Pagination';
 import BlogPost from '../../components/BlogPost';
 import BaseLayout from '../../layout/BaseLayout';
 import Loading from '../Loading';
@@ -52,6 +53,9 @@ const Homepage: React.FC<{}> = () => {
                 </div>
                 <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 min-h-screen">
                     <div className="container max-w-screen-xl mx-auto px-[3.75rem]">
+                        <div className="my-4">
+                            <Pagination pageCount={5} currentPage={5} />
+                        </div>
                         <div className="flex justify-center">
                             <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
                                 {blogPostElements}

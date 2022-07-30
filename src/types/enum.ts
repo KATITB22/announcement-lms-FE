@@ -4,3 +4,9 @@ export enum typePartner {
     MD = '150px',
     SM = '100px',
 }
+
+export enum iconSize {
+    small = 12,
+    medium = 18,
+    large = 24,
+}

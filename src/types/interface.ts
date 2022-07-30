@@ -27,6 +27,12 @@ export interface NavBarProps {
     children: React.ReactNode;
     to: string;
 }
+
+export interface PaginationProps extends Omit<BaseProps, 'children'> {
+    pageCount: number;
+    currentPage: number;
+}
+
 export interface FetchingState {
     data: any;
     isLoading: boolean;

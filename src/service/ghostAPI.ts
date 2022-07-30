@@ -37,3 +37,17 @@ export const fetchSinglePost = async (postId: string) => {
     }
     return errMessage;
 };
+
+export const fetchPostsFilterByTag = async (tag: string[]) => {
+    let errMessage;
+    try {
+        const filteredPosts: Posts = await GhostAPI.posts.browse({
+            include: ['tags', 'authors'],
+            filter: `tag:${tag}`,
+        });
+        return filteredPosts;
+    } catch (err: any) {
+        errMessage = err.message || 'An error occured from server';
+    }
+    return errMessage;
+};

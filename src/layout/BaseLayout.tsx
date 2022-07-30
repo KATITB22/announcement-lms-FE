@@ -109,7 +109,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             pr="4.5rem"
                             placeholder="Search"
                             _placeholder={{ color: '#D27C2F' }}
-                            onChange={(event) =>
+                            onChange={(event: any) =>
                                 setSearchValue(event.target.value)
                             }
                         />
