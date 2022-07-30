@@ -15,5 +15,5 @@ export const MONTHS = [
 ];
 
 export const MAX_DESCRIPTION = 150;
-export const MAX_POST = 12;
+export const MAX_POST = 2;
 export const PAGINATION_PER_PAGE = 4;

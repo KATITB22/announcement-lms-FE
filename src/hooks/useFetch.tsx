@@ -1,9 +1,7 @@
 import React from 'react';
 import { FetchingState } from '../types/interface';
 
-const useFetch = (url: Promise<any>) => {
-    let abortController = new AbortController();
-
+const useFetch = (url: Promise<any>, page?: number) => {
     const [fetchedData, setFetchedData] = React.useState<FetchingState>({
         data: {},
         isLoading: true,
@@ -34,11 +32,7 @@ const useFetch = (url: Promise<any>) => {
 
     React.useEffect(() => {
         fetchData();
-        return () => {
-            abortController.abort();
-            abortController = new AbortController();
-        };
-    }, []);
+    }, [page]);
 
     const { data, isLoading, error, message } = fetchedData;
     return { data, isLoading, error, message };

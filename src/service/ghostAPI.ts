@@ -17,7 +17,7 @@ export const fetchPost = async (page?: number) => {
             limit: MAX_POST,
             page: page || 1,
         });
-        return [...listOfAllPosts];
+        return listOfAllPosts;
     } catch (err: any) {
         errMessage = err.message || 'An error occured from server';
     }
