@@ -8,6 +8,7 @@ import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { MONTHS } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
 import { DetailPost } from '@/types/types';
+import BlogPost from '@/components/BlogPost';
 import { DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
@@ -20,8 +21,9 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     let post: DetailPost;
     let published_at: string;
 
-    if (data) {
-        post = data;
+    if (data.detailPost) {
+        // console.log('related', data.relatedPosts)
+        post = data.detailPost;
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
             MONTHS[date.getMonth()]
@@ -35,6 +37,8 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     if (error) {
         return <PageNotFound />;
     }
+
+    // console.log('promise', data, isLoading, error)
 
     return (
         <BaseLayout>
@@ -96,6 +100,23 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         </Box>
                         {renderHTMLContent(post!)}
                     </VStack>
+                    <Flex>
+                        {data.relatedPosts &&
+                            data.relatedPosts.map((item) => (
+                                <BlogPost
+                                    key={item.slug}
+                                    slug={item.slug}
+                                    id={item.id}
+                                    title={item.title}
+                                    published_at={item.published_at}
+                                    primary_author={item.primary_author}
+                                    excerpt={item.excerpt}
+                                    feature_image={item.feature_image}
+                                    url={item.slug}
+                                    tags={item.tags}
+                                />
+                            ))}
+                    </Flex>
                 </Flex>
                 <Flex width="15%" />
             </Flex>

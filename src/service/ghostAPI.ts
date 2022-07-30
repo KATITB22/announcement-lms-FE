@@ -1,5 +1,5 @@
 import { MAX_POST } from '@/types/constant';
-import { Posts, DetailPost } from '@/types/interface';
+import { Posts, DetailPost, RelatedPosts } from '@/types/interface';
 import { getBaseUrl, getGhostKey } from '@/util/util';
 import GhostContentAPI from '@tryghost/content-api';
 
@@ -31,7 +31,21 @@ export const fetchSinglePost = async (postId: string) => {
             { id: postId },
             { include: ['tags', 'authors'] }
         );
-        return detailPost;
+        let relatedPosts = null;
+        const tags = detailPost.tags?.map((tag) => tag.name);
+        console.log('tags', tags);
+        let rawRelatedPosts: RelatedPosts = await GhostAPI.posts.browse({
+            include: ['tags', 'authors'],
+            filter: `tag:[${tags}]`,
+        });
+        relatedPosts = rawRelatedPosts.filter(
+            (post) => post.id !== detailPost.id
+        );
+
+        // TODO: RELATED POST WHEN PROMISE IS FAILED
+
+        // console.log('final', { detailPost, relatedPosts});
+        return { detailPost, relatedPosts };
     } catch (err: any) {
         errMessage = err.message || 'An error occured from server';
     }
