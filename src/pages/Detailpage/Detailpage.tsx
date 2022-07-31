@@ -7,11 +7,12 @@ import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { MONTHS } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
-import { DetailPost } from '@/types/types';
+import { DetailPost } from '@/types/interface';
 import { DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
+import DefaultImage from '../../assets/images/logo-sementara.jpeg';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
@@ -76,6 +77,11 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     >
                         {post!.title}
                     </Box>
+
+                    {post!.primary_author && (
+                        <Box>Author: {post!.primary_author.name}</Box>
+                    )}
+
                     <Box
                         fontFamily="Alegreya"
                         fontSize={{
@@ -91,9 +97,16 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                             md: '24px',
                         }}
                     >
-                        <Box maxWidth="100%">
-                            <img src={post!.feature_image!} alt="featured" />
-                        </Box>
+                        {post!.feature_image ? (
+                            <Box maxWidth="100%">
+                                <img src={post!.feature_image} alt="featured" />
+                            </Box>
+                        ) : (
+                            <Box maxWidth="100%">
+                                <img src={DefaultImage} alt="default image" />
+                            </Box>
+                        )}
+
                         {renderHTMLContent(post!)}
                     </VStack>
                 </Flex>
