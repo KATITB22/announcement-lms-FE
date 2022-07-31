@@ -3,6 +3,8 @@ import { NodeExtended } from '@/types/types';
 import { formatUrl } from '@/util/util';
 import { Flex, VStack, Text, Link, Center, Button } from '@chakra-ui/react';
 import { Tweet } from 'react-twitter-widgets';
+import DownloadLogo from '@styles/images/icon-download-file.png';
+import { trimString } from '@/util/util';
 
 const Render = {
     P: (id: number, node: NodeExtended) => {
@@ -88,18 +90,38 @@ const Render = {
     },
     DIV: (id: number, node: NodeExtended) => {
         if (node.attrs.class.includes('kg-file-card')) {
+            const { innerWidth, innerHeight } = window;
+            const filename =
+                innerWidth > 768
+                    ? node.childNodes[1].childNodes[1].childNodes[3]
+                          .childNodes[1].text
+                    : trimString(
+                          node.childNodes[1].childNodes[1].childNodes[3]
+                              .childNodes[1].text,
+                          25
+                      );
             const src = node.childNodes[1].attrs.href;
             return (
-                <Link key={id} href={formatUrl(src)} width="50%">
-                    <Center
-                        boxShadow="5px 5px 3px #E38F6E"
-                        borderRadius="lg"
-                        width="100%"
-                        bg="#D26033"
+                <a
+                    key={id}
+                    className={
+                        'w-32 h-20 md:w-80 md:h-28 bg-white rounded-md flex items-center hover:drop-shadow-lg hover:relative hover:bottom-1 hover:right-1'
+                    }
+                    href={src}
+                    target={'_blank'}
+                >
+                    <img className={'h-4/6'} src={DownloadLogo} />
+                    <div
+                        className={
+                            'h-5/6 w-0.5 bg-gray-400 opacity-50 rounded-md'
+                        }
+                    ></div>
+                    <div
+                        className={'text-caption_smaller md:text-caption ml-3'}
                     >
-                        {`Download File ${id}`}
-                    </Center>
-                </Link>
+                        {filename}
+                    </div>
+                </a>
             );
         } else if (node.attrs.class.includes('kg-audio-card')) {
             const { src } = node.childNodes[2].childNodes[0].attrs;
