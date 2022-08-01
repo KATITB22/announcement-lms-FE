@@ -41,7 +41,7 @@ const Render = {
                         </a>
                     );
                 } else {
-                    childs.push(innerNode.text);
+                    childs.push(<span>{innerNode.text}</span>);
                 }
             });
             textElmt = (

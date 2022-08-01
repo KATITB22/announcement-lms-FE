@@ -55,6 +55,7 @@ export interface NodeExtended extends ChildNode {
     attrs: Record<string, string>;
     rawAttrs: string;
     tagName: string;
+    rawTagName: string;
     text: string;
     childNodes: NodeListOf<NodeExtended>;
     outerHTML: string;
