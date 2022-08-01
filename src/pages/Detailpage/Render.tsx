@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { NodeExtended, jsxElmt } from '@/types/types';
+import { jsxElmt } from '@/types/types';
+import { NodeExtended } from '@/types/interface';
 import { formatUrl } from '@/util/util';
 import { Flex, VStack, Text, Link, Center, Button } from '@chakra-ui/react';
 import { Tweet } from 'react-twitter-widgets';

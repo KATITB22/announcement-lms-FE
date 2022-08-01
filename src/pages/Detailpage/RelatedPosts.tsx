@@ -3,7 +3,6 @@ import { Posts } from '../../types/interface';
 /* eslint-disable */
 import BlogPost from '../../components/BlogPost';
 const RelatedPosts = ({ posts }: { posts: Posts }) => {
-    console.log('posts', posts);
     if (!posts || posts.length === 0) {
         return null;
     }

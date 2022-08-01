@@ -21,7 +21,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     let published_at: string;
 
     if (data.detailPost) {
-        // console.log('related', data.relatedPosts)
         post = data.detailPost;
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
@@ -36,8 +35,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     if (error) {
         return <PageNotFound />;
     }
-
-    // console.log('promise', data, isLoading, error)
 
     return (
         <BaseLayout>
