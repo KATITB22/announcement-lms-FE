@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { NodeExtended } from '@/types/types';
+import { NodeExtended } from '@/types/interface';
 import { formatUrl } from '@/util/util';
 import { Flex, VStack, Text, Link, Center, Button } from '@chakra-ui/react';
 import { Tweet } from 'react-twitter-widgets';
@@ -239,22 +239,6 @@ const Render = {
                 );
             }
         } else if (node.attrs.class.includes('kg-gallery-card')) {
-            // const wrapItems: JSX.Element[] = [];
-            // for (let innerNode of node.childNodes[0].childNodes) {
-            //     for (let extraInnerNode of innerNode.childNodes) {
-            //         wrapItems.push(
-            //             <div className="self-stretch">
-            //                 <img
-            //                     className="h-full w-full object-contain"
-            //                     src={formatUrl(
-            //                         extraInnerNode.childNodes[0].attrs.src
-            //                     )}
-            //                     alt={extraInnerNode.childNodes[0].attrs.desc}
-            //                 />
-            //             </div>
-            //         );
-            //     }
-            // }
             const srcItems: string[] = [];
             for (let innerNode of node.childNodes[0].childNodes) {
                 for (let extraInnerNode of innerNode.childNodes) {
