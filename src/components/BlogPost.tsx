@@ -2,10 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
-import { PostOrPage } from '@tryghost/content-api';
 import { MAX_DESCRIPTION } from '@/types/constant';
+import { BlogPost as BlogPostCard } from '@/types/interface';
 
-const BlogPost: React.FC<PostOrPage> = (props) => {
+const BlogPost: React.FC<BlogPostCard> = (props) => {
     const {
         id,
         title,
@@ -15,6 +15,7 @@ const BlogPost: React.FC<PostOrPage> = (props) => {
         url: link,
         tags,
         published_at: date,
+        size,
     } = props;
     const formattedDate = formatDate(date!);
     const formattedUrl = formatUrl(feature_image!);
@@ -23,8 +24,7 @@ const BlogPost: React.FC<PostOrPage> = (props) => {
     return (
         <Link to={`/post/${id}`}>
             <div
-                className="
-                    shadow-lg
+                className={`shadow-lg
                     transition
                     duration-500
                     ease-in-out
@@ -36,28 +36,42 @@ const BlogPost: React.FC<PostOrPage> = (props) => {
                     w-full
                     h-full
                     max-w-xs
-                    md:max-w-md
-                "
+                    ${size === 'sm' ? 'md:max-w-xs ' : 'md:max-w-md'}
+                    `}
             >
                 <img
                     alt={title}
                     src={formattedUrl}
                     className="max-h-40 w-full object-cover rounded-t-lg"
                 />
-                <div className="bg-white w-full h-full p-4 rounded-br-lg rounded-bl-lg">
+                <div
+                    className={`bg-white w-full h-full ${
+                        size === 'sm' ? 'p-2' : 'p-4'
+                    } rounded-br-lg rounded-bl-lg`}
+                >
                     <div className="flex flex-col justify-between h-full">
                         {/* title  */}
                         <div>
-                            <p className="font-Body text-body font-normal mb-2">
+                            <p
+                                className={`font-Body ${
+                                    size === 'sm' ? 'text-caption' : 'text-body'
+                                } font-normal mb-2`}
+                            >
                                 {formattedDate} | Posted by {authorName}
                             </p>
                             <a
                                 href={link}
-                                className="font-Heading text-title font-semibold"
+                                className={`font-Heading ${
+                                    size === 'sm' ? 'text-bo' : 'text-title'
+                                } font-semibold`}
                             >
                                 {title}
                             </a>
-                            <p className="font-Body text-body font-normal mb-3">
+                            <p
+                                className={`font-Body  ${
+                                    size === 'sm' ? 'text-caption' : 'text-body'
+                                } font-normal mb-3`}
+                            >
                                 {trimmedText}
                             </p>
                         </div>
@@ -69,7 +83,11 @@ const BlogPost: React.FC<PostOrPage> = (props) => {
                                         // TODO: change # to tags link
                                         <a
                                             href={tag.url}
-                                            className="px-2 py-2 rounded bg-Orange text-white hover:text-black"
+                                            className={`rounded bg-Orange text-white hover:text-black  ${
+                                                size === 'sm'
+                                                    ? 'p-1 text-sm -mt-3'
+                                                    : 'p-2'
+                                            }`}
                                             key={tag.slug}
                                         >
                                             {tag.name}

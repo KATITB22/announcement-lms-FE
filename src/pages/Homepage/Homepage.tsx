@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fetchPost } from '@/service/ghostAPI';
 import useFetch from '@/hooks/useFetch';
 import { imgPartner } from '@/types/types';
@@ -15,7 +15,9 @@ const sponsorTitle = 'S\uE064o\uE01Esore\uE03A B\uE05A:';
 const medparTitle = '\uE023e\uE053ia Partner';
 
 const Homepage: React.FC<{}> = () => {
-    const { data, isLoading, error } = useFetch(fetchPost());
+    const [page, setPage] = useState<number>(1);
+
+    const { data, isLoading, error } = useFetch(fetchPost(page), page);
 
     if (isLoading) {
         return <Loading />;
@@ -26,7 +28,7 @@ const Homepage: React.FC<{}> = () => {
     }
 
     const posts: Posts = data;
-
+    console.log(posts);
     const blogPostElements = posts.map((item) => (
         <BlogPost
             key={item.slug}
@@ -41,6 +43,7 @@ const Homepage: React.FC<{}> = () => {
             tags={item.tags}
         />
     ));
+
     return (
         <BaseLayout>
             <div>
@@ -54,7 +57,11 @@ const Homepage: React.FC<{}> = () => {
                 <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 min-h-screen">
                     <div className="container max-w-screen-xl mx-auto px-[3.75rem]">
                         <div className="my-4">
-                            <Pagination pageCount={5} currentPage={5} />
+                            <Pagination
+                                pagination={posts.meta.pagination}
+                                currentPage={page}
+                                setPage={setPage}
+                            />
                         </div>
                         <div className="flex justify-center">
                             <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">

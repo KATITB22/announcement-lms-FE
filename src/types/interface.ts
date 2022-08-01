@@ -1,5 +1,5 @@
 import React from 'react';
-import { PostOrPage, PostsOrPages } from '@tryghost/content-api';
+import { Pagination, PostOrPage, PostsOrPages } from '@tryghost/content-api';
 
 export interface BaseProps {
     children?: React.ReactNode;
@@ -28,9 +28,14 @@ export interface NavBarProps {
     to: string;
 }
 
+export interface ListPostProps {
+    page: number;
+}
+
 export interface PaginationProps extends Omit<BaseProps, 'children'> {
-    pageCount: number;
+    pagination: Pagination;
     currentPage: number;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface FetchingState {
@@ -42,12 +47,15 @@ export interface FetchingState {
 
 export interface Posts extends PostsOrPages {}
 
+export interface RelatedPosts extends Omit<PostsOrPages, 'meta'> {}
+
 export interface DetailPost extends PostOrPage {}
 
 export interface NodeExtended extends ChildNode {
     attrs: Record<string, string>;
     rawAttrs: string;
     tagName: string;
+    rawTagName: string;
     text: string;
     childNodes: NodeListOf<NodeExtended>;
     outerHTML: string;
@@ -55,4 +63,8 @@ export interface NodeExtended extends ChildNode {
 
 export interface CarouselProps extends BaseProps {
     items: string[];
+}
+
+export interface BlogPost extends PostOrPage {
+    size?: string;
 }

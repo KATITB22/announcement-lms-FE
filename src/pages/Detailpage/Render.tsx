@@ -1,22 +1,24 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+import { jsxElmt } from '@/types/types';
 import { NodeExtended } from '@/types/interface';
 import { formatUrl } from '@/util/util';
 import { Flex, VStack, Text, Link, Center, Button } from '@chakra-ui/react';
 import { Tweet } from 'react-twitter-widgets';
 import Carousel from '@/components/Carousel';
+import DownloadLogo from '@styles/images/icon-download-file.png';
+import { trimString } from '@/util/util';
 
 const Render = {
     P: (id: number, node: NodeExtended) => {
+        let textElmt: jsxElmt;
         if (node.childNodes[0]?.tagName === 'A') {
             // single link for entire paragraph, ex:<p><a>link</a></p>
             const text = node.childNodes[0].childNodes[0].text;
             const href = node.childNodes[0].attrs.href;
-            return (
+            textElmt = (
                 <Link
                     key={id}
-                    className={
-                        'text-caption md:text-body w-full font-Body text-justify'
-                    }
+                    className="text-caption md:text-body w-full font-Body text-justify"
                     color="#D27C2F"
                     href={href}
                     isExternal
@@ -26,22 +28,33 @@ const Render = {
             );
         } else {
             // inline link inside outher text
-            const text = node.outerHTML;
-            return (
-                <div
+            const childs: JSX.Element[] = [];
+            node.childNodes.forEach((innerNode) => {
+                if (innerNode.rawTagName === 'a') {
+                    childs.push(
+                        <a
+                            className="text-DarkerOrange underline"
+                            target="_blank"
+                            href={innerNode.attrs.href}
+                            rel="noreferrer"
+                        >
+                            {innerNode.text}
+                        </a>
+                    );
+                } else {
+                    childs.push(<span>{innerNode.text}</span>);
+                }
+            });
+            textElmt = (
+                <p
                     key={id}
-                    className={
-                        'text-caption md:text-body w-full font-Body text-justify'
-                    }
-                    dangerouslySetInnerHTML={{
-                        __html: text.replaceAll(
-                            '<a',
-                            '<a style="color: #D27C2F; text-decoration: underline" target="_blank"'
-                        ),
-                    }}
-                ></div>
+                    className="text-caption md:text-body w-full font-Body text-left"
+                >
+                    {childs}
+                </p>
             );
         }
+        return textElmt;
     },
     HR: (id: number, node: NodeExtended) => {
         return (
@@ -89,18 +102,38 @@ const Render = {
     },
     DIV: (id: number, node: NodeExtended) => {
         if (node.attrs.class.includes('kg-file-card')) {
+            const { innerWidth, innerHeight } = window;
+            const filename =
+                innerWidth > 768
+                    ? node.childNodes[1].childNodes[1].childNodes[3]
+                          .childNodes[1].text
+                    : trimString(
+                          node.childNodes[1].childNodes[1].childNodes[3]
+                              .childNodes[1].text,
+                          25
+                      );
             const src = node.childNodes[1].attrs.href;
             return (
-                <Link key={id} href={formatUrl(src)} width="50%">
-                    <Center
-                        boxShadow="5px 5px 3px #E38F6E"
-                        borderRadius="lg"
-                        width="100%"
-                        bg="#D26033"
+                <a
+                    key={id}
+                    className={
+                        'w-32 h-20 md:w-80 md:h-28 bg-white rounded-md flex items-center hover:drop-shadow-lg hover:relative hover:bottom-1 hover:right-1'
+                    }
+                    href={src}
+                    target={'_blank'}
+                >
+                    <img className={'h-4/6'} src={DownloadLogo} />
+                    <div
+                        className={
+                            'h-5/6 w-0.5 bg-gray-400 opacity-50 rounded-md'
+                        }
+                    ></div>
+                    <div
+                        className={'text-caption_smaller md:text-caption ml-3'}
                     >
-                        {`Download File ${id}`}
-                    </Center>
-                </Link>
+                        {filename}
+                    </div>
+                </a>
             );
         } else if (node.attrs.class.includes('kg-audio-card')) {
             const { src } = node.childNodes[2].childNodes[0].attrs;
