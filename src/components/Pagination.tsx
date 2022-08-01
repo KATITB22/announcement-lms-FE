@@ -10,6 +10,7 @@ const Pagination: React.FC<PaginationProps> = ({
     setPage,
 }) => {
     const { pages: pageCount, next, prev } = pagination;
+    console.log(pagination);
     const isChevronLeft = currentPage !== 1;
     const isChevronRight = currentPage !== Math.max(pageCount, 1);
     const [listOfPages] = useState([
