@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+import { jsxElmt } from '@/types/types';
 import { NodeExtended } from '@/types/interface';
 import { formatUrl } from '@/util/util';
 import { Flex, VStack, Text, Link, Center, Button } from '@chakra-ui/react';
@@ -8,16 +9,15 @@ import { trimString } from '@/util/util';
 
 const Render = {
     P: (id: number, node: NodeExtended) => {
+        let textElmt: jsxElmt;
         if (node.childNodes[0]?.tagName === 'A') {
             // single link for entire paragraph, ex:<p><a>link</a></p>
             const text = node.childNodes[0].childNodes[0].text;
             const href = node.childNodes[0].attrs.href;
-            return (
+            textElmt = (
                 <Link
                     key={id}
-                    className={
-                        'text-caption md:text-body w-full font-Body text-justify'
-                    }
+                    className="text-caption md:text-body w-full font-Body text-justify"
                     color="#D27C2F"
                     href={href}
                     isExternal
@@ -27,22 +27,33 @@ const Render = {
             );
         } else {
             // inline link inside outher text
-            const text = node.outerHTML;
-            return (
-                <div
+            const childs: JSX.Element[] = [];
+            node.childNodes.forEach((innerNode) => {
+                if (innerNode.rawTagName === 'a') {
+                    childs.push(
+                        <a
+                            className="text-DarkerOrange underline"
+                            target="_blank"
+                            href={innerNode.attrs.href}
+                            rel="noreferrer"
+                        >
+                            {innerNode.text}
+                        </a>
+                    );
+                } else {
+                    childs.push(<span>{innerNode.text}</span>);
+                }
+            });
+            textElmt = (
+                <p
                     key={id}
-                    className={
-                        'text-caption md:text-body w-full font-Body text-justify'
-                    }
-                    dangerouslySetInnerHTML={{
-                        __html: text.replaceAll(
-                            '<a',
-                            '<a style="color: #D27C2F; text-decoration: underline" target="_blank"'
-                        ),
-                    }}
-                ></div>
+                    className="text-caption md:text-body w-full font-Body text-left"
+                >
+                    {childs}
+                </p>
             );
         }
+        return textElmt;
     },
     HR: (id: number, node: NodeExtended) => {
         return (

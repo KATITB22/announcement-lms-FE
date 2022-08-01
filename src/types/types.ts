@@ -6,3 +6,5 @@ export type imgPartner = {
     imageUrl: string;
     link: string; // link href
 };
+
+export type jsxElmt = JSX.Element | JSX.ElementClass;
