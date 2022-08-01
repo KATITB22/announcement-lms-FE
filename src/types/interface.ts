@@ -52,3 +52,7 @@ export interface NodeExtended extends ChildNode {
     childNodes: NodeListOf<NodeExtended>;
     outerHTML: string;
 }
+
+export interface CarouselProps extends BaseProps {
+    items: string[];
+}
