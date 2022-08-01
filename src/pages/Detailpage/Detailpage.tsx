@@ -98,12 +98,12 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         }}
                     >
                         {post!.feature_image ? (
-                            <Box maxWidth="100%">
-                                <img src={post!.feature_image} alt="featured" />
+                            <Box maxWidth="w-full grid place-items-center">
+                                <img className="w-5/12 md:w-4/12 lg:w-3/12" src={post!.feature_image} alt="featured" />
                             </Box>
                         ) : (
-                            <Box maxWidth="100%">
-                                <img src={DefaultImage} alt="default image" />
+                            <Box className="w-full grid place-items-center">
+                                <img className="w-5/12 md:w-4/12 lg:w-3/12" src={DefaultImage} alt="default image" />
                             </Box>
                         )}
 
