@@ -4,6 +4,7 @@ import { NodeExtended } from '@/types/interface';
 import { formatUrl } from '@/util/util';
 import { Flex, VStack, Text, Link, Center, Button } from '@chakra-ui/react';
 import { Tweet } from 'react-twitter-widgets';
+import Carousel from '@/components/Carousel';
 import DownloadLogo from '@styles/images/icon-download-file.png';
 import { trimString } from '@/util/util';
 
@@ -271,30 +272,15 @@ const Render = {
                 );
             }
         } else if (node.attrs.class.includes('kg-gallery-card')) {
-            const wrapItems: JSX.Element[] = [];
+            const srcItems: string[] = [];
             for (let innerNode of node.childNodes[0].childNodes) {
                 for (let extraInnerNode of innerNode.childNodes) {
-                    wrapItems.push(
-                        <div className="self-stretch">
-                            <img
-                                className="h-full w-full object-contain"
-                                src={formatUrl(
-                                    extraInnerNode.childNodes[0].attrs.src
-                                )}
-                                alt={extraInnerNode.childNodes[0].attrs.desc}
-                            />
-                        </div>
+                    srcItems.push(
+                        formatUrl(extraInnerNode.childNodes[0].attrs.src)
                     );
                 }
             }
-            return (
-                <div
-                    key={id}
-                    className="grid-cols-2 grid place-items-center bg-slate-200 p-5 rounded-md bg-opacity-50 gap-5"
-                >
-                    {wrapItems}
-                </div>
-            );
+            return <Carousel key={id} items={srcItems} />;
         }
         return <></>;
     },

@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
-// import { Post } from '../types/types';
 import { MAX_DESCRIPTION } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
 

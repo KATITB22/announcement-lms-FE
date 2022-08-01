@@ -61,6 +61,10 @@ export interface NodeExtended extends ChildNode {
     outerHTML: string;
 }
 
+export interface CarouselProps extends BaseProps {
+    items: string[];
+}
+
 export interface BlogPost extends PostOrPage {
     size?: string;
 }
