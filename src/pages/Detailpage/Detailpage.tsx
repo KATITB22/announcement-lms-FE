@@ -12,6 +12,7 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
 import RelatedPosts from './RelatedPosts';
+import VistockBackground from '@/components/VistockBackground';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
@@ -38,6 +39,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
 
     return (
         <BaseLayout>
+            <VistockBackground />
             <Flex
                 background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)"
                 className="min-h-screen justify-center"
