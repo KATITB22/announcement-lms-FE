@@ -43,7 +43,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         <BaseLayout>
             <Flex
                 background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)"
-                className="min-h-screen"
+                className="min-h-screen justify-center"
             >
                 <Flex width="15%">
                     <Box width="100%" height="100%" />
