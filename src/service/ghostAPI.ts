@@ -24,6 +24,20 @@ export const fetchPost = async (page?: number) => {
     return errMessage;
 };
 
+export const fetchAllPost = async () => {
+    let errMessage;
+    try {
+        const listAllPosts: Posts = await GhostAPI.posts.browse({
+            limit: 'all',
+            include: ['tags', 'authors'],
+        });
+        return listAllPosts;
+    } catch (err: any) {
+        errMessage = err.message || 'An error occured from server';
+    }
+    return errMessage;
+};
+
 export const fetchSinglePost = async (postId: string) => {
     let errMessage;
     let data;
