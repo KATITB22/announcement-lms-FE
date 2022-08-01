@@ -7,12 +7,11 @@ import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { MONTHS } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
-import { DetailPost } from '@/types/types';
-import BlogPost from '@/components/BlogPost';
-import { DetailpageProps } from '../../types/interface';
+import { DetailPost, DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
+import RelatedPosts from './RelatedPosts';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
@@ -50,7 +49,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     <Box width="100%" height="100%" />
                 </Flex>
                 <Flex
-                    className="my-12 md:my-20"
+                    className="my-12 md:my-20 max-w-screen-lg"
                     flexDirection="column"
                     width="70%"
                 >
@@ -100,23 +99,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         </Box>
                         {renderHTMLContent(post!)}
                     </VStack>
-                    <Flex>
-                        {data.relatedPosts &&
-                            data.relatedPosts.map((item) => (
-                                <BlogPost
-                                    key={item.slug}
-                                    slug={item.slug}
-                                    id={item.id}
-                                    title={item.title}
-                                    published_at={item.published_at}
-                                    primary_author={item.primary_author}
-                                    excerpt={item.excerpt}
-                                    feature_image={item.feature_image}
-                                    url={item.slug}
-                                    tags={item.tags}
-                                />
-                            ))}
-                    </Flex>
+                    <RelatedPosts posts={data.relatedPosts} />
                 </Flex>
                 <Flex width="15%" />
             </Flex>

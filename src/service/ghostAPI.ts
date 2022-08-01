@@ -26,26 +26,28 @@ export const fetchPost = async (page?: number) => {
 
 export const fetchSinglePost = async (postId: string) => {
     let errMessage;
+    let data;
     try {
         const detailPost: DetailPost = await GhostAPI.posts.read(
             { id: postId },
             { include: ['tags', 'authors'] }
         );
         let relatedPosts = null;
-        const tags = detailPost.tags?.map((tag) => tag.name);
-        console.log('tags', tags);
-        let rawRelatedPosts: RelatedPosts = await GhostAPI.posts.browse({
-            include: ['tags', 'authors'],
-            filter: `tag:[${tags}]`,
-        });
-        relatedPosts = rawRelatedPosts.filter(
-            (post) => post.id !== detailPost.id
-        );
-
-        // TODO: RELATED POST WHEN PROMISE IS FAILED
-
-        // console.log('final', { detailPost, relatedPosts});
-        return { detailPost, relatedPosts };
+        if (detailPost.tags?.length === 0) {
+            data = { detailPost };
+        } else {
+            const tags = detailPost.tags?.map((tag) => tag.name);
+            const rawRelatedPosts: RelatedPosts = await GhostAPI.posts.browse({
+                limit: 4,
+                include: ['tags', 'authors'],
+                filter: `tag:[${tags}]`,
+            });
+            relatedPosts = rawRelatedPosts.filter(
+                (post) => post.id !== detailPost.id
+            );
+            data = { detailPost, relatedPosts };
+        }
+        return data;
     } catch (err: any) {
         errMessage = err.message || 'An error occured from server';
     }
