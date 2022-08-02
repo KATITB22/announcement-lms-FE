@@ -7,12 +7,12 @@ import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { MONTHS } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
-import { DetailPost } from '@/types/interface';
-import { DetailpageProps } from '../../types/interface';
+import DefaultImage from '../../assets/images/logo-sementara.jpeg';
+import { DetailPost, DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
 import PageNotFound from '../PageNotFound';
-import DefaultImage from '../../assets/images/logo-sementara.jpeg';
+import RelatedPosts from './RelatedPosts';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
@@ -21,8 +21,8 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     let post: DetailPost;
     let published_at: string;
 
-    if (data) {
-        post = data;
+    if (data.detailPost) {
+        post = data.detailPost;
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
             MONTHS[date.getMonth()]
@@ -41,13 +41,13 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         <BaseLayout>
             <Flex
                 background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)"
-                className="min-h-screen"
+                className="min-h-screen justify-center"
             >
                 <Flex width="15%">
                     <Box width="100%" height="100%" />
                 </Flex>
                 <Flex
-                    className="my-12 md:my-20"
+                    className="my-12 md:my-20 max-w-screen-lg"
                     flexDirection="column"
                     width="70%"
                 >
@@ -99,16 +99,25 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     >
                         {post!.feature_image ? (
                             <Box maxWidth="w-full grid place-items-center">
-                                <img className="w-5/12 md:w-4/12 lg:w-3/12" src={post!.feature_image} alt="featured" />
+                                <img
+                                    className="w-5/12 md:w-4/12 lg:w-3/12"
+                                    src={post!.feature_image}
+                                    alt="featured"
+                                />
                             </Box>
                         ) : (
                             <Box className="w-full grid place-items-center">
-                                <img className="w-5/12 md:w-4/12 lg:w-3/12" src={DefaultImage} alt="default image" />
+                                <img
+                                    className="w-5/12 md:w-4/12 lg:w-3/12"
+                                    src={DefaultImage}
+                                    alt="default image"
+                                />
                             </Box>
                         )}
 
                         {renderHTMLContent(post!)}
                     </VStack>
+                    <RelatedPosts posts={data.relatedPosts} />
                 </Flex>
                 <Flex width="15%" />
             </Flex>

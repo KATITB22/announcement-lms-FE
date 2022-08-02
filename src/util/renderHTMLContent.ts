@@ -1,6 +1,6 @@
 import Render from '@/pages/Detailpage/Render';
 import { parse } from 'node-html-parser';
-import { NodeExtended } from '@/types/types';
+import { NodeExtended } from '@/types/interface';
 
 export const renderHTMLContent = (post: any) => {
     const root = parse(post.html.replace(/(\r\n|\n|\r)/gm, ''));
