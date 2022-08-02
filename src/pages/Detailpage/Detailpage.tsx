@@ -7,6 +7,7 @@ import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { MONTHS } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
+import DefaultImage from '../../assets/images/logo-sementara.jpeg';
 import { DetailPost, DetailpageProps } from '../../types/interface';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../Loading';
@@ -76,6 +77,11 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     >
                         {post!.title}
                     </Box>
+
+                    {post!.primary_author && (
+                        <Box>Author: {post!.primary_author.name}</Box>
+                    )}
+
                     <Box
                         fontFamily="Alegreya"
                         fontSize={{
@@ -91,9 +97,24 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                             md: '24px',
                         }}
                     >
-                        <Box maxWidth="100%">
-                            <img src={post!.feature_image!} alt="featured" />
-                        </Box>
+                        {post!.feature_image ? (
+                            <Box maxWidth="w-full grid place-items-center">
+                                <img
+                                    className="w-5/12 md:w-4/12 lg:w-3/12"
+                                    src={post!.feature_image}
+                                    alt="featured"
+                                />
+                            </Box>
+                        ) : (
+                            <Box className="w-full grid place-items-center">
+                                <img
+                                    className="w-5/12 md:w-4/12 lg:w-3/12"
+                                    src={DefaultImage}
+                                    alt="default image"
+                                />
+                            </Box>
+                        )}
+
                         {renderHTMLContent(post!)}
                     </VStack>
                     <RelatedPosts posts={data.relatedPosts} />
