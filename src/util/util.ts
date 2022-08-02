@@ -1,5 +1,5 @@
 import env from '@/env';
-import Logo from '../assets/oskm-logo.svg';
+import Logo from '@/assets/images/oskm-logo.svg';
 
 const BASE_URL = `${env.VITE_GHOST_API_URL}/ghost/api/content`;
 
@@ -8,7 +8,7 @@ export const formatDate = (date: string | undefined) =>
 
 export const formatUrl = (url: string | null) => {
     if (!url) return Logo;
-    const newUrl = env.DEV
+    const newUrl = env.PROD
         ? url.replace('localhost', env.VITE_IP_ADDRESS)
         : url;
     return newUrl;

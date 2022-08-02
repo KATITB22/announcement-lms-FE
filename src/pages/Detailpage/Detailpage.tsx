@@ -7,20 +7,34 @@ import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { MONTHS } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
-import DefaultImage from '../../assets/images/logo-sementara.jpeg';
-import { DetailPost, DetailpageProps } from '../../types/interface';
-import useFetch from '../../hooks/useFetch';
-import Loading from '../Loading';
-import PageNotFound from '../PageNotFound';
-import RelatedPosts from './RelatedPosts';
 import VistockBackground from '@/components/VistockBackground';
+import DefaultImage from '@/assets/images/logo-sementara.jpeg';
+import { DetailPost, DetailpageProps } from '@/types/interface';
+import useFetch from '@/hooks/useFetch';
+import RelatedPosts from './RelatedPosts';
+import Loading from '../Loading';
+import ErrorPage from '../ErrorPage';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
-    const { data, isLoading, error } = useFetch(fetchSinglePost(postId!));
+    const { data, isLoading, error, message } = useFetch(
+        fetchSinglePost(postId!)
+    );
 
     let post: DetailPost;
     let published_at: string;
+
+    if (isLoading) {
+        return (
+            <BaseLayout>
+                <Loading />
+            </BaseLayout>
+        );
+    }
+
+    if (error) {
+        return <ErrorPage message={message} />;
+    }
 
     if (data.detailPost) {
         post = data.detailPost;
@@ -28,14 +42,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         published_at = `${date.getDate()} ${
             MONTHS[date.getMonth()]
         } ${date.getFullYear()}`;
-    }
-
-    if (isLoading) {
-        return <Loading />;
-    }
-
-    if (error) {
-        return <PageNotFound />;
     }
 
     return (
@@ -98,7 +104,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                             base: '12px',
                             md: '24px',
                         }}
-                        className={'bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]'}
+                        className="bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]"
                     >
                         {post!.feature_image ? (
                             <Box maxWidth="w-full grid place-items-center">
@@ -113,7 +119,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                                 <img
                                     className="w-5/12 md:w-4/12 lg:w-3/12"
                                     src={DefaultImage}
-                                    alt="default image"
+                                    alt="default-img"
                                 />
                             </Box>
                         )}

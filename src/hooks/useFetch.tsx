@@ -1,5 +1,5 @@
 import React from 'react';
-import { FetchingState } from '../types/interface';
+import { FetchingState } from '@/types/interface';
 
 const useFetch = (url: Promise<any>, page?: number) => {
     const [fetchedData, setFetchedData] = React.useState<FetchingState>({

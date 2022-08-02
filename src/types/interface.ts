@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { LazyExoticComponent } from 'react';
 import { Pagination, PostOrPage, PostsOrPages } from '@tryghost/content-api';
 
 export interface BaseProps {
@@ -67,4 +67,10 @@ export interface CarouselProps extends BaseProps {
 
 export interface BlogPost extends PostOrPage {
     size?: string;
+}
+
+export interface PageRouting {
+    title: string;
+    path: string;
+    component: LazyExoticComponent<any>;
 }

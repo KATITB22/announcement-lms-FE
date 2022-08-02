@@ -1,7 +1,7 @@
+import React, { useRef, useState, useEffect } from 'react';
 import Vistock1 from '@/assets/images/vistock1.svg';
 import Vistock2 from '@/assets/images/vistock2.svg';
 import Vistock3 from '@/assets/images/vistock3.svg';
-import React, { useRef, useState, useEffect } from 'react';
 
 const breakPointHeight = {
     xl: 2850,
@@ -17,7 +17,6 @@ const VistockBackground: React.FC<{}> = () => {
     useEffect(() => {
         const clientHeight = ref?.current?.clientHeight!;
         const clientWidth = ref?.current?.clientWidth!;
-        console.log(clientHeight, clientWidth);
 
         let count: number;
         if (clientWidth > 1280) {
@@ -34,23 +33,26 @@ const VistockBackground: React.FC<{}> = () => {
 
     const renderedVistock = React.useMemo(() => {
         const retval: JSX.Element[] = [];
-        for (let i = 0; i < countRender; i++) {
+        for (let i = 0; i < countRender; i += 1) {
             retval.push(
                 <div
                     key={i}
-                    className={`relative w-full h-[750px] md:h-[1500px] lg:h-[2000px] xl:h-[2850px]  overflow-y-hidden`}
+                    className="relative w-full h-[750px] md:h-[1500px] lg:h-[2000px] xl:h-[2850px]  overflow-y-hidden"
                 >
                     <img
                         className="w-full h-auto mix-blend-overlay absolute top-[-20px] md:top-[-50px] lg:top-[-80px]"
                         src={Vistock1}
+                        alt="vistock-1"
                     />
                     <img
                         className="w-full h-auto absolute top-[150px] md:top-[300px] lg:top-[400px] xl:top-[600px] z-0"
                         src={Vistock2}
+                        alt="vistock-2"
                     />
                     <img
                         className="w-full h-auto mix-blend-overlay absolute top-[440px] md:top-[890px] lg:top-[1190px] xl:top-[1725px]"
                         src={Vistock3}
+                        alt="vistock-3"
                     />
                 </div>
             );
@@ -59,7 +61,7 @@ const VistockBackground: React.FC<{}> = () => {
     }, [countRender]);
 
     return (
-        <div ref={ref} className={'absolute w-full h-full overflow-hidden'}>
+        <div ref={ref} className="absolute w-full h-full overflow-hidden">
             {renderedVistock}
         </div>
     );

@@ -1,10 +1,10 @@
 import Render from '@/pages/Detailpage/Render';
-import { parse } from 'node-html-parser';
+import { REGEX_PARSE } from '@/types/constant';
 import { NodeExtended } from '@/types/interface';
+import { parse } from 'node-html-parser';
 
 export const renderHTMLContent = (post: any) => {
-    const root = parse(post.html.replace(/(\r\n|\n|\r)/gm, ''));
-    console.log('root', root);
+    const root = parse(post.html.replace(REGEX_PARSE, ''));
 
     const components: JSX.Element[] = [];
     const childNodes = root.childNodes as unknown as NodeExtended[];
@@ -15,7 +15,7 @@ export const renderHTMLContent = (post: any) => {
         if (!funcRender) return;
 
         const component = funcRender(id, node);
-        components.push(component);
+        components.push(component!);
     });
     return components;
 };

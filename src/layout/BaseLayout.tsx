@@ -18,17 +18,11 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { AiFillHome, AiFillTag } from 'react-icons/ai';
-import {
-    FaUser,
-    FaInfo,
-    FaTwitter,
-    FaInstagram,
-    FaYoutube,
-    FaFacebook,
-} from 'react-icons/fa';
+import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
 import Logo from '@styles/images/logo-sementara.jpeg';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LAYOUT_TITLE } from '@/types/constant';
 import { BaseProps } from '../types/interface';
 import Animate from './Animate';
 
@@ -41,11 +35,6 @@ const links = [
     {
         name: 'Partner',
         to: '/partner',
-        icon: <FaUser />,
-    },
-    {
-        name: 'E-Catalogue',
-        to: '/ecatalogue',
         icon: <AiFillTag />,
     },
     {
@@ -57,24 +46,18 @@ const links = [
 
 const socials = [
     {
-        to: 'https://twitter.com',
+        to: 'https://twitter.com/oskmitb',
         icon: <FaTwitter />,
     },
     {
-        to: 'https://instagram.com',
+        to: 'https://www.instagram.com/oskm.itb/',
         icon: <FaInstagram />,
     },
     {
-        to: 'https://youtube.com',
+        to: 'https://www.youtube.com/channel/UCmkkBEqwMZ1SEZN937pdpgA',
         icon: <FaYoutube />,
     },
-    {
-        to: 'https://facebook.com',
-        icon: <FaFacebook />,
-    },
 ];
-
-const title = '\uE028\uE094\uE021\uE086 2022';
 
 const BaseLayout: React.FC<BaseProps> = (props) => {
     const { children } = props;
@@ -90,12 +73,14 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     justifyContent="space-between"
                     minWidth="max-content"
                 >
-                    <Flex alignItems="center" gap="2">
-                        <Avatar size="md" src={Logo} />
-                        <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl">
-                            {title}
-                        </h1>
-                    </Flex>
+                    <Link to="/">
+                        <Flex alignItems="center" gap="2">
+                            <Avatar size="md" src={Logo} />
+                            <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl">
+                                {LAYOUT_TITLE}
+                            </h1>
+                        </Flex>
+                    </Link>
                     <InputGroup
                         minWidth="150px"
                         maxWidth={{ base: '3xs', md: 'xs', lg: 'sm' }}
@@ -121,7 +106,6 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                 size="sm"
                                 onClick={() => {
                                     if (!searchValue) return;
-                                    console.log(`Searching for ${searchValue}`);
                                     // TODO: integrate with search page
                                     navigate(`/search?q=${searchValue}`);
                                 }}
@@ -183,16 +167,18 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     align={{ base: 'center', md: 'center' }}
                 >
                     <Flex direction={{ base: 'column' }}>
-                        <Flex
-                            alignItems="center"
-                            gap="2"
-                            flexDirection={{ base: 'column', md: 'row' }}
-                        >
-                            <Avatar size="md" src={Logo} />
-                            <h1 className="font-Heading pt-3px text-2xl">
-                                {title}
-                            </h1>
-                        </Flex>
+                        <Link to="/">
+                            <Flex
+                                alignItems="center"
+                                gap="2"
+                                flexDirection={{ base: 'column', md: 'row' }}
+                            >
+                                <Avatar size="md" src={Logo} />
+                                <h1 className="font-Heading pt-3px text-2xl">
+                                    {LAYOUT_TITLE}
+                                </h1>
+                            </Flex>
+                        </Link>
                         <Flex>
                             <h1>&copy; DEVA 2022 - Content and Publication</h1>
                         </Flex>
@@ -204,9 +190,6 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         <Text fontSize="md">Find us on</Text>
                         <Stack direction="row" spacing={4}>
                             {socials.map((social) => (
-                                // <Navbar key={social.to} to={social.to}>
-                                //     {social.icon}
-                                // </Navbar>
                                 <chakra.button
                                     rounded="full"
                                     w={8}
@@ -218,6 +201,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                     alignItems="center"
                                     justifyContent="center"
                                     transition="background 0.3s ease"
+                                    key={social.to}
                                 >
                                     {social.icon}
                                 </chakra.button>

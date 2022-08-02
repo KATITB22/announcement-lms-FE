@@ -1,11 +1,9 @@
 import React from 'react';
 import { typePartner } from '@/types/enum';
 import { imgPartner } from '@/types/types';
+import { PARTNER_TITLE } from '@/types/constant';
 import BaseLayout from '@/layout/BaseLayout';
 
-export const pageTitle = '\uE096\uE00Ean\uE01As t\uE032';
-
-// TODO: bikin array terpisah untuk masing2 tipe listOfSponsor, apus enum, hardcode ukuran img
 export const listOfSponsor: imgPartner[] = [
     {
         title: 'Google',
@@ -139,7 +137,7 @@ const PartnerPage: React.FC<{}> = () => (
                 </div>
                 <div className="sponsor-medpar ml-8 md:mb-8 mr-8">
                     <p className="text-h3 font-Heading font-bold mb-2 text-center">
-                        {pageTitle}
+                        {PARTNER_TITLE}
                     </p>
                     <div className="sponsor py-10">
                         <div className="flex relative h-[36px] justify-center">
@@ -182,7 +180,7 @@ const PartnerPage: React.FC<{}> = () => (
                         </div>
                     </div>
                 </div>
-                <div className="vistock-bawah md:hidden block mt-8 mx-8 flex flex-row gap-4">
+                <div className="vistock-bawah md:hidden mt-8 mx-8 flex flex-row gap-4">
                     <div className="img bg-gray-300 w-full h-[200px]">
                         img 1
                     </div>

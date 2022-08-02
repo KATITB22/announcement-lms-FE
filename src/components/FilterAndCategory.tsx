@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react';
-import { BaseProps } from '../types/interface';
+import { BaseProps } from '@/types/interface';
 
 const listOfCategories: string[] = [
     'Test',

@@ -2,7 +2,6 @@ import useFetch from '@/hooks/useFetch';
 import { fetchAllPost } from '@/service/ghostAPI';
 import React, { useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
-// import { listOfPosts } from '../Homepage/Homepage';
 import { useParams } from 'react-router-dom';
 import {
     Pagination as PaginationType,

@@ -1,7 +1,7 @@
-import { CarouselProps } from '@/types/interface';
-import ChevronLeft from '@/assets/chevron-left.svg';
-import ChevronRight from '@/assets/chevron-right.svg';
 import React from 'react';
+import { CarouselProps } from '@/types/interface';
+import ChevronLeft from '@/assets/images/chevron-left.svg';
+import ChevronRight from '@/assets/images/chevron-right.svg';
 
 const Carousel: React.FC<CarouselProps> = (props) => {
     const { items } = props;
@@ -13,47 +13,48 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     } h-1.5 bottom-5 flex justify-between`;
 
     const navigatorBox: JSX.Element[] = React.useMemo(() => {
-        let retval: JSX.Element[] = [];
-        for (let i = 0; i < totalItems; i++) {
+        const retval: JSX.Element[] = [];
+        for (let i = 0; i < totalItems; i += 1) {
             retval.push(
                 <div
                     className={`w-7 h-full rounded-sm ${
-                        currentIndex == i ? 'bg-white' : 'bg-slate-400'
+                        currentIndex === i ? 'bg-white' : 'bg-slate-400'
                     } opacity-75`}
-                ></div>
+                />
             );
         }
         return retval;
     }, [currentIndex]);
 
     const handleClickPrev = React.useCallback(() => {
-        setCurrentIndex(currentIndex == 0 ? totalItems - 1 : currentIndex - 1);
+        setCurrentIndex(currentIndex === 0 ? totalItems - 1 : currentIndex - 1);
     }, [currentIndex]);
 
     const handleClickNext = React.useCallback(() => {
-        setCurrentIndex(currentIndex == totalItems - 1 ? 0 : currentIndex + 1);
+        setCurrentIndex(currentIndex === totalItems - 1 ? 0 : currentIndex + 1);
     }, [currentIndex]);
 
     return (
-        <div
-            className={
-                'w-60 h-44 md:w-96 md:h-72 flex justify-center items-center relative'
-            }
-        >
+        <div className="w-60 h-44 md:w-96 md:h-72 flex justify-center items-center relative">
+            <button type="button" onClick={handleClickPrev}>
+                <img
+                    className="absolute left-px opacity-75"
+                    src={ChevronLeft}
+                    alt="chevron-left"
+                />
+            </button>
             <img
-                onClick={handleClickPrev}
-                className={'absolute left-px opacity-75'}
-                src={ChevronLeft}
-            />
-            <img
-                className={'h-full object-contain'}
+                className="h-full object-contain"
                 src={items[currentIndex]}
+                alt="sponsor images"
             />
-            <img
-                onClick={handleClickNext}
-                className={'absolute right-px opacity-75'}
-                src={ChevronRight}
-            />
+            <button type="button" onClick={handleClickNext}>
+                <img
+                    className="absolute right-px opacity-75"
+                    src={ChevronRight}
+                    alt="chevron-right"
+                />
+            </button>
             <div className={widthNavigationBox}>{navigatorBox}</div>
         </div>
     );

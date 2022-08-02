@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Animate from '../layout/Animate';
+import Animate from '@/layout/Animate';
 
 const PageNotFound: React.FC<{}> = () => (
     <Animate>
