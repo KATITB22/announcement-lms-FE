@@ -65,9 +65,9 @@ const Render = {
     ),
     OL: (id: number, node: NodeExtended) => {
         const listItems: JSX.Element[] = [];
-        for (const innerNode of node.childNodes) {
+        node.childNodes.forEach((innerNode) => {
             listItems.push(<li>{innerNode.text}</li>);
-        }
+        });
         return (
             <div
                 key={id}
@@ -79,9 +79,9 @@ const Render = {
     },
     UL: (id: number, node: NodeExtended) => {
         const listItems: JSX.Element[] = [];
-        for (const innerNode of node.childNodes) {
+        node.childNodes.forEach((innerNode) => {
             listItems.push(<li>{innerNode.text}</li>);
-        }
+        });
         return (
             <div
                 key={id}
@@ -262,13 +262,13 @@ const Render = {
         }
         if (node.attrs.class.includes('kg-gallery-card')) {
             const srcItems: string[] = [];
-            for (const innerNode of node.childNodes[0].childNodes) {
-                for (const extraInnerNode of innerNode.childNodes) {
+            node.childNodes[0].childNodes.forEach((innerNode) => {
+                innerNode.childNodes.forEach((extraInnerNode) => {
                     srcItems.push(
                         formatUrl(extraInnerNode.childNodes[0].attrs.src)
                     );
-                }
-            }
+                });
+            });
             return <Carousel key={id} items={srcItems} />;
         }
         return null;
