@@ -2,7 +2,6 @@ import useFetch from '@/hooks/useFetch';
 import { fetchAllPost } from '@/service/ghostAPI';
 import React, { useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
-// import { listOfPosts } from '../Homepage/Homepage';
 import { useLocation } from 'react-router-dom';
 import {
     Pagination as PaginationType,
@@ -42,8 +41,6 @@ const Searchpage: React.FC<{}> = () => {
         const fuse = new Fuse(data, options);
         setResult(fuse.search<PostOrPage>(query).map((item) => item.item));
         setOriResult(fuse.search<PostOrPage>(query).map((item) => item.item));
-        console.log(query);
-        console.log(result);
     }, [data, query]);
 
     useEffect(() => {
