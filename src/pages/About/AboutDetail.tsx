@@ -1,5 +1,5 @@
 import React from 'react';
-import oskmLogo from '@/assets/images/oskm-logo.svg';
+import oskmLogo from '@/assets/images/oskm-logo-text.svg';
 import { AboutProps } from '@/types/interface';
 
 const AboutDetail: React.FC<AboutProps> = ({ toggle }) => {

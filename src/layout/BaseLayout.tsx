@@ -20,7 +20,7 @@ import React from 'react';
 import { AiFillHome, AiFillTag } from 'react-icons/ai';
 import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
-import Logo from '@styles/images/oskm-logo.svg';
+import Logo from '@/assets/images/oskm-logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { LAYOUT_TITLE } from '@/types/constant';
 import { BaseProps } from '../types/interface';
@@ -75,7 +75,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 >
                     <Link to="/">
                         <Flex alignItems="center" gap="2">
-                            <Avatar size="md" src={Logo} />
+                            <Avatar size="md" src={Logo} bg='transparent' />
                             <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl">
                                 {LAYOUT_TITLE}
                             </h1>
@@ -179,7 +179,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                 gap="2"
                                 flexDirection={{ base: 'column', md: 'row' }}
                             >
-                                <Avatar size="md" src={Logo} />
+                                <Avatar size="md" src={Logo} bg='transparent' />
                                 <h1 className="font-Heading pt-3px text-2xl">
                                     {LAYOUT_TITLE}
                                 </h1>
