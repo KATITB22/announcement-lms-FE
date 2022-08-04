@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { NavBarProps } from '../types/interface';
 
 const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
@@ -9,14 +9,14 @@ const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
         [location.pathname]
     );
     return (
-        <a
-            href={to}
+        <Link
+            to={to}
             className={`cursor-pointer no-underline ${
                 isActive ? 'text-DarkestOrange' : ''
             }`}
         >
             {children}
-        </a>
+        </Link>
     );
 };
 
