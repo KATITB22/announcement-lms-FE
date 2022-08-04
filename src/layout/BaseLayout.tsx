@@ -20,7 +20,7 @@ import React from 'react';
 import { AiFillHome, AiFillTag } from 'react-icons/ai';
 import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
-import Logo from '@styles/images/logo-sementara.jpeg';
+import Logo from '@styles/images/oskm-logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { LAYOUT_TITLE } from '@/types/constant';
 import { BaseProps } from '../types/interface';

@@ -28,6 +28,12 @@ export interface NavBarProps {
     to: string;
 }
 
+export interface FilterCategoryProps extends BaseProps {
+    item: PostOrPage[];
+    originalItem: PostOrPage[];
+    setItem: React.Dispatch<React.SetStateAction<PostOrPage[]>>;
+}
+
 export interface ListPostProps {
     page: number;
 }
