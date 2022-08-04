@@ -19,12 +19,16 @@ const AboutDetail: React.FC<AboutProps> = ({ toggle }) => {
                         alt=""
                     />
                     {aboutDetailContents.map((content: string) => (
-                        <div key={`aboutdetailcontent${aboutDetailContents.indexOf(content)}`}>
+                        <div
+                            key={`aboutdetailcontent${aboutDetailContents.indexOf(
+                                content
+                            )}`}
+                        >
                             <p>{content}</p>
-                            <br/>
+                            <br />
                         </div>
                     ))}
-                    <button 
+                    <button
                         type="button"
                         onClick={toggle}
                         className="bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"

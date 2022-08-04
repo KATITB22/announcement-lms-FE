@@ -29,7 +29,12 @@ const About: React.FC<{}> = () => {
                                 alt=""
                             />
                             {aboutContents.map((content: string) => (
-                                <p key={`aboutcontent${aboutContents.indexOf(content)}`} className="text-h6 md:text-[40px] lg:text-h3">
+                                <p
+                                    key={`aboutcontent${aboutContents.indexOf(
+                                        content
+                                    )}`}
+                                    className="text-h6 md:text-[40px] lg:text-h3"
+                                >
                                     {content}
                                 </p>
                             ))}
