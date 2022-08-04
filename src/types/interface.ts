@@ -51,6 +51,7 @@ export interface FetchingState {
 
 export interface RumpunProps {
     id: number;
+    name: string;
 }
 
 export interface Posts extends PostsOrPages {}

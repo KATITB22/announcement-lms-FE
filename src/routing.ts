@@ -8,7 +8,7 @@ const PageNotFound = React.lazy(() => import('./pages/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
 const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
 const TreasureHuntPage = React.lazy(
-    () => import('./pages/TreasureHuntpage/TreasureHuntpage')
+    () => import('./pages/TreasureHuntPage/TreasureHuntPage')
 );
 
 const PageNotFoundRouting: PageRouting = {
