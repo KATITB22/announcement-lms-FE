@@ -32,7 +32,7 @@ const FilterAndCategory: React.FC<FilterCategoryProps> = ({
 
     return (
         <div className={`bg-Yellow p-8 inline-block rounded-md ${className}`}>
-            <p className="text-h4">Filter</p>
+            <p className="text-h4">Filter tags</p>
             <CheckboxGroup
                 onChange={(value) => setChecked(value.map((i) => `${i}`))}
             >
