@@ -6,6 +6,7 @@ import { Posts } from '@/types/interface';
 import Pagination from '@/components/Pagination';
 import { PAGE_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import BlogPost from '@/components/BlogPost';
+import { ErrorTypes } from '@/types/enum';
 import { listOfMedpar, sponsorMD } from '../Partnerpage/PartnerPage';
 import { LoadingSpecific } from '../Loading';
 import ErrorPage from '../ErrorPage';
@@ -19,7 +20,7 @@ const Homepage: React.FC<{}> = () => {
     }
 
     if (error) {
-        return <ErrorPage message={message} />;
+        return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
     }
 
     const posts: Posts = data;
