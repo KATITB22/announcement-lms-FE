@@ -1,5 +1,6 @@
 import React, { LazyExoticComponent } from 'react';
 import { Pagination, PostOrPage, PostsOrPages } from '@tryghost/content-api';
+import { ErrorTypes } from './enum';
 
 export interface BaseProps {
     children?: React.ReactNode;
@@ -82,4 +83,9 @@ export interface PageRouting {
     title: string;
     path: string;
     component: LazyExoticComponent<any>;
+}
+
+export interface ErrorProps {
+    message?: string;
+    type: ErrorTypes;
 }

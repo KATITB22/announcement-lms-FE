@@ -4,7 +4,7 @@ import { PageRouting } from './types/interface';
 const HomePage = React.lazy(() => import('./pages/Homepage/Homepage'));
 const AboutPage = React.lazy(() => import('./pages/About/About'));
 const PartnerPage = React.lazy(() => import('./pages/Partnerpage/PartnerPage'));
-const PageNotFound = React.lazy(() => import('./pages/PageNotFound'));
+const PageNotFound = React.lazy(() => import('./pages/Error/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
 const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
 const TreasureHuntPage = React.lazy(

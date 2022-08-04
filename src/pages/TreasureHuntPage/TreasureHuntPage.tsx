@@ -20,7 +20,11 @@ const TreasureHuntPage = () => {
             <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full">
                     {mockData.map((rumpun, index) => (
-                        <Rumpun id={index} name={rumpun.name} />
+                        <Rumpun
+                            key={rumpun.name}
+                            id={index}
+                            name={rumpun.name}
+                        />
                     ))}
                 </div>
             </div>

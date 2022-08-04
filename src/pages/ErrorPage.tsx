@@ -1,18 +1,30 @@
 import React from 'react';
-import { Animate } from '@/layout/Animate';
-import { SpinnerProps } from '@/types/interface';
+import { ErrorProps } from '@/types/interface';
+import { ErrorTypes } from '@/types/enum';
+import ServerError from './Error/ServerError';
+import EmptyPost from './Error/EmptyPost';
+import PageNotFound from './Error/PageNotFound';
+import PostNotFound from './Error/PostNotFound';
+import SearchNotFound from './Error/SearchNotFound';
 
-const ErrorPage: React.FC<SpinnerProps> = ({ message }) => (
-    <Animate>
-        <div className="min-h-screen flex items-center justify-center flex-col text-center bg-gradient-to-b from-Orange to-LightOrange">
-            <p className="m-0 mb-2 font-Heading text-h3">
-                {message || 'Internal server error'}{' '}
-            </p>
-            <p className="bg-Yellow rounded p-2 hover:shadow-sm">
-                Please refresh the page
-            </p>
-        </div>
-    </Animate>
-);
+const ErrorPage: React.FC<ErrorProps> = ({ message, type }) => {
+    if (type === ErrorTypes.EmptyPost) {
+        return <EmptyPost />;
+    }
+
+    if (type === ErrorTypes.PageNotFound) {
+        return <PageNotFound />;
+    }
+
+    if (type === ErrorTypes.PostNotFound) {
+        return <PostNotFound />;
+    }
+
+    if (type === ErrorTypes.SearchNotFound) {
+        return <SearchNotFound />;
+    }
+
+    return <ServerError message={message} />;
+};
 
 export default ErrorPage;

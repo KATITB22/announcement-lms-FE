@@ -5,12 +5,13 @@ import { Animate } from '@/layout/Animate';
 const PageNotFound: React.FC<{}> = () => (
     <Animate>
         <div className="min-h-screen flex items-center justify-center flex-col text-center bg-gradient-to-b from-Orange to-LightOrange">
+            {/* TODO masukan image  */}
             <p className="m-0 mb-2 font-Heading text-h3">
-                Your requested page is not found
+                Halaman tidak ditemukan
             </p>
             <Link to="/" className="text-xl ">
-                <div className="bg-Yellow rounded p-2 hover:shadow-sm">
-                    Click here to go back to main page{' '}
+                <div className="bg-Yellow rounded-full p-2 px-4 hover:shadow-sm">
+                    Kembali ke halaman utama{' '}
                 </div>
             </Link>
         </div>

@@ -12,7 +12,7 @@ import Pagination from '@/components/Pagination';
 import BlogPost from '@/components/BlogPost';
 import FilterAndCategory from '@/components/FilterAndCategory';
 import { LoadingSpecific } from '../Loading';
-import PageNotFound from '../PageNotFound';
+import PageNotFound from '../Error/PageNotFound';
 
 const Searchpage: React.FC<{}> = () => {
     const [page, setPage] = useState<number>(1);
