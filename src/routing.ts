@@ -8,6 +8,9 @@ const PageNotFound = React.lazy(() => import('./pages/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
 const Loading = React.lazy(() => import('./pages/Loading'));
 const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
+const TreasureHuntPage = React.lazy(
+    () => import('./pages/TreasureHuntpage/TreasureHuntpage')
+);
 
 const PageNotFoundRouting: PageRouting = {
     title: 'Page Not Found',
@@ -45,6 +48,11 @@ export const Routing: PageRouting[] = [
         title: 'Detail Post',
         path: '/post/:postId',
         component: DetailPage,
+    },
+    {
+        title: 'Treasure Hunt',
+        path: '/treasure',
+        component: TreasureHuntPage,
     },
     PageNotFoundRouting,
 ];

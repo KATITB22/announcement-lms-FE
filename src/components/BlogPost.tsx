@@ -12,7 +12,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
         primary_author,
         excerpt: description,
         feature_image,
-        url: link,
+        // url: link,
         tags,
         published_at: date,
         size,
@@ -59,14 +59,14 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                             >
                                 {formattedDate} | Posted by {authorName}
                             </p>
-                            <a
-                                href={link}
+                            <span
+                                // href={link}
                                 className={`font-Heading ${
                                     size === 'sm' ? 'text-bo' : 'text-title'
                                 } font-semibold`}
                             >
                                 {title}
-                            </a>
+                            </span>
                             <p
                                 className={`font-Body  ${
                                     size === 'sm' ? 'text-caption' : 'text-body'

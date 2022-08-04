@@ -73,7 +73,12 @@ const Homepage: React.FC<{}> = () => {
                             </h2>
                             <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                                 {sponsorMD.map((image: imgPartner) => (
-                                    <a href={image.link} key={image.link}>
+                                    <a
+                                        href={image.link}
+                                        key={`sponsorimg${sponsorMD.indexOf(
+                                            image
+                                        )}`}
+                                    >
                                         <img
                                             alt={image.title}
                                             src={image.imageUrl}
@@ -89,7 +94,12 @@ const Homepage: React.FC<{}> = () => {
                             </h2>
                             <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                                 {listOfMedpar.map((image: imgPartner) => (
-                                    <a href={image.link} key={image.link}>
+                                    <a
+                                        href={image.link}
+                                        key={`medparimg${listOfMedpar.indexOf(
+                                            image
+                                        )}`}
+                                    >
                                         <img
                                             alt={image.title}
                                             src={image.imageUrl}

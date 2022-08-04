@@ -148,7 +148,12 @@ const PartnerPage: React.FC<{}> = () => (
                         <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md ">
                             <div className="image flex flex-wrap place-content-center gap-3">
                                 {sponsorLG.map((image: imgPartner) => (
-                                    <a href={image.link}>
+                                    <a
+                                        href={image.link}
+                                        key={`sponsorimg${sponsorLG.indexOf(
+                                            image
+                                        )}`}
+                                    >
                                         <img
                                             alt={image.title}
                                             src={image.imageUrl}
@@ -168,7 +173,12 @@ const PartnerPage: React.FC<{}> = () => (
                         <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md">
                             <div className="image flex flex-wrap place-content-center gap-3">
                                 {listOfMedpar.map((image: imgPartner) => (
-                                    <a href={image.link}>
+                                    <a
+                                        href={image.link}
+                                        key={`medparimg${listOfMedpar.indexOf(
+                                            image
+                                        )}`}
+                                    >
                                         <img
                                             alt={image.title}
                                             src={image.imageUrl}

@@ -28,6 +28,12 @@ export interface NavBarProps {
     to: string;
 }
 
+export interface FilterCategoryProps extends BaseProps {
+    item: PostOrPage[];
+    originalItem: PostOrPage[];
+    setItem: React.Dispatch<React.SetStateAction<PostOrPage[]>>;
+}
+
 export interface ListPostProps {
     page: number;
 }
@@ -43,6 +49,10 @@ export interface FetchingState {
     isLoading: boolean;
     error: boolean;
     message: string;
+}
+
+export interface RumpunProps {
+    id: number;
 }
 
 export interface Posts extends PostsOrPages {}
