@@ -28,6 +28,7 @@ export const fetchAllPost = async () => {
     let errMessage;
     try {
         const listAllPosts: Posts = await GhostAPI.posts.browse({
+            limit: 'all',
             include: ['tags', 'authors'],
         });
         return listAllPosts;
