@@ -1,6 +1,6 @@
 import React from 'react';
-import oskmLogo from '../../assets/oskm-logo.svg';
-import { AboutProps } from '../../types/interface';
+import oskmLogo from '@/assets/images/oskm-logo.svg';
+import { AboutProps } from '@/types/interface';
 
 const AboutDetail: React.FC<AboutProps> = ({ toggle }) => {
     const aboutDetailContents: Array<string> = [

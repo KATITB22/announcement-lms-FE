@@ -1,6 +1,6 @@
 import React from 'react';
-import Spinner from '../components/Spinner';
-import Animate from '../layout/Animate';
+import Spinner from '@/components/Spinner';
+import Animate from '@/layout/Animate';
 
 const Loading: React.FC<{}> = () => (
     <Animate>

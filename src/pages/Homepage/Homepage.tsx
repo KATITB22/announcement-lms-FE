@@ -4,31 +4,30 @@ import useFetch from '@/hooks/useFetch';
 import { imgPartner } from '@/types/types';
 import { Posts } from '@/types/interface';
 import Pagination from '@/components/Pagination';
-import BlogPost from '../../components/BlogPost';
-import BaseLayout from '../../layout/BaseLayout';
-import Loading from '../Loading';
+import { PAGE_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
+import BlogPost from '@/components/BlogPost';
+import BaseLayout from '@/layout/BaseLayout';
 import { listOfMedpar, sponsorMD } from '../Partnerpage/PartnerPage';
-import PageNotFound from '../PageNotFound';
-
-const pageTitle = '\uE000nno\uE070nce\uE063ent';
-const sponsorTitle = 'S\uE064o\uE01Esore\uE03A B\uE05A:';
-const medparTitle = '\uE023e\uE053ia Partner';
+import Loading from '../Loading';
+import ErrorPage from '../ErrorPage';
 
 const Homepage: React.FC<{}> = () => {
     const [page, setPage] = useState<number>(1);
-
-    const { data, isLoading, error } = useFetch(fetchPost(page), page);
+    const { data, isLoading, error, message } = useFetch(fetchPost(page), page);
 
     if (isLoading) {
-        return <Loading />;
+        return (
+            <BaseLayout>
+                <Loading />
+            </BaseLayout>
+        );
     }
 
     if (error) {
-        return <PageNotFound />;
+        return <ErrorPage message={message} />;
     }
 
     const posts: Posts = data;
-    console.log(posts);
     const blogPostElements = posts.map((item) => (
         <BlogPost
             key={item.slug}
@@ -50,7 +49,7 @@ const Homepage: React.FC<{}> = () => {
                 <div className="py-20 bg-Yellow">
                     <div className="container mx-auto px-6">
                         <h1 className="text-4xl font-Heading font-bold mb-2 text-center">
-                            {pageTitle}
+                            {PAGE_TITLE}
                         </h1>
                     </div>
                 </div>
@@ -70,7 +69,7 @@ const Homepage: React.FC<{}> = () => {
                         </div>
                         <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center">
                             <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
-                                {sponsorTitle}
+                                {SPONSOR_TITLE}
                             </h2>
                             <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                                 {sponsorMD.map((image: imgPartner) => (
@@ -86,7 +85,7 @@ const Homepage: React.FC<{}> = () => {
                         </div>
                         <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center">
                             <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
-                                {medparTitle}
+                                {MEDPAR_TITLE}
                             </h2>
                             <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                                 {listOfMedpar.map((image: imgPartner) => (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SpinnerProps } from '../types/interface';
+import { SpinnerProps } from '@/types/interface';
 
 const LoaderStyle: React.CSSProperties = {
     width: '100px',

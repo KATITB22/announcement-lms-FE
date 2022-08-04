@@ -1,7 +1,7 @@
-import React from 'react';
-import { Posts } from '../../types/interface';
 /* eslint-disable */
-import BlogPost from '../../components/BlogPost';
+import React from 'react';
+import { Posts } from '@/types/interface';
+import BlogPost from '@/components/BlogPost';
 const RelatedPosts = ({ posts }: { posts: Posts }) => {
     if (!posts || posts.length === 0) {
         return null;
