@@ -24,7 +24,7 @@ import Logo from '@styles/images/oskm-logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { LAYOUT_TITLE } from '@/types/constant';
 import { BaseProps } from '../types/interface';
-import Animate from './Animate';
+import { Animate } from './Animate';
 
 const links = [
     {
