@@ -122,7 +122,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         fontSize={{ lg: 'xl', md: 'md' }}
                     >
                         {links.map((link) => (
-                            <Navbar key={link.to} to={link.to}>
+                            <Navbar key={`navlink${links.indexOf(link)}`} to={link.to}>
                                 {link.name}
                             </Navbar>
                         ))}
@@ -144,7 +144,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     >
                         <Stack as="nav" spacing={4}>
                             {links.map((link) => (
-                                <Navbar key={link.to} to={link.to}>
+                                <Navbar key={`navlink${links.indexOf(link)}`} to={link.to}>
                                     <Flex alignItems="center" gap="2">
                                         {link.icon}
                                         <span>{link.name}</span>

@@ -19,6 +19,7 @@ const Pagination: React.FC<PaginationProps> = ({
         const isActive = pageNumber + 1 === currentPage;
         return (
             <button
+                key={`button${pageNumber}`}
                 className="mx-2"
                 onClick={() => {
                     setPage(pageNumber + 1);
