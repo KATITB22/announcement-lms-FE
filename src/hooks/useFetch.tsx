@@ -10,22 +10,20 @@ const useFetch = (url: Promise<any>, page?: number) => {
     });
 
     const fetchData = React.useCallback(async () => {
-        try {
-            const data = await url;
-            if (data) {
-                setFetchedData({
-                    data: data.results || data,
-                    isLoading: false,
-                    error: false,
-                    message: '',
-                });
-            }
-        } catch (err: any) {
+        const data = await url;
+        if (data instanceof Error) {
             setFetchedData({
                 data: {},
                 isLoading: false,
                 error: true,
-                message: err.message || 'An error occured from server',
+                message: data.message || 'An error occured from server',
+            });
+        } else {
+            setFetchedData({
+                data: data.results || data,
+                isLoading: false,
+                error: false,
+                message: '',
             });
         }
     }, [url]);

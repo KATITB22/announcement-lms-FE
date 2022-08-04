@@ -38,7 +38,6 @@ export const fetchAllPost = async () => {
 };
 
 export const fetchSinglePost = async (postId: string) => {
-    let errMessage;
     let data;
     try {
         const detailPost: DetailPost = await GhostAPI.posts.read(
@@ -62,9 +61,8 @@ export const fetchSinglePost = async (postId: string) => {
         }
         return data;
     } catch (err: any) {
-        errMessage = err.message || 'An error occured from server';
+        return err;
     }
-    return errMessage;
 };
 
 export const fetchPostsFilterByTag = async (tag: string[]) => {

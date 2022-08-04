@@ -1,6 +1,6 @@
 import BaseLayout from '@/layout/BaseLayout';
 import { ABOUT_US_TITLE } from '@/types/constant';
-import oskmLogo from '@/assets/images/oskm-logo.svg';
+import oskmLogo from '@/assets/images/oskm-logo-text.svg';
 import { useToggle } from '@/hooks/useToggle';
 import AboutDetail from './AboutDetail';
 
