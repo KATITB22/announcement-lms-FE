@@ -10,7 +10,6 @@ const GhostAPI = new GhostContentAPI({
 });
 
 export const fetchPost = async (page?: number) => {
-    let errMessage;
     try {
         const listOfAllPosts: Posts = await GhostAPI.posts.browse({
             include: ['tags', 'authors'],
@@ -19,13 +18,11 @@ export const fetchPost = async (page?: number) => {
         });
         return listOfAllPosts;
     } catch (err: any) {
-        errMessage = err.message || 'An error occured from server';
+        return err;
     }
-    return errMessage;
 };
 
 export const fetchAllPost = async () => {
-    let errMessage;
     try {
         const listAllPosts: Posts = await GhostAPI.posts.browse({
             limit: 'all',
@@ -33,9 +30,8 @@ export const fetchAllPost = async () => {
         });
         return listAllPosts;
     } catch (err: any) {
-        errMessage = err.message || 'An error occured from server';
+        return err;
     }
-    return errMessage;
 };
 
 export const fetchSinglePost = async (postId: string) => {
@@ -67,7 +63,6 @@ export const fetchSinglePost = async (postId: string) => {
 };
 
 export const fetchPostsFilterByTag = async (tag: string[]) => {
-    let errMessage;
     try {
         const filteredPosts: Posts = await GhostAPI.posts.browse({
             include: ['tags', 'authors'],
@@ -75,7 +70,6 @@ export const fetchPostsFilterByTag = async (tag: string[]) => {
         });
         return filteredPosts;
     } catch (err: any) {
-        errMessage = err.message || 'An error occured from server';
+        return err;
     }
-    return errMessage;
 };

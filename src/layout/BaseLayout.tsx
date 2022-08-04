@@ -75,7 +75,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 >
                     <Link to="/">
                         <Flex alignItems="center" gap="2">
-                            <Avatar size="md" src={Logo} bg='transparent' />
+                            <Avatar size="md" src={Logo} bg="transparent" />
                             <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl">
                                 {LAYOUT_TITLE}
                             </h1>
@@ -179,7 +179,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                 gap="2"
                                 flexDirection={{ base: 'column', md: 'row' }}
                             >
-                                <Avatar size="md" src={Logo} bg='transparent' />
+                                <Avatar size="md" src={Logo} bg="transparent" />
                                 <h1 className="font-Heading pt-3px text-2xl">
                                     {LAYOUT_TITLE}
                                 </h1>
