@@ -10,6 +10,7 @@ import VistockBackground from '@/components/VistockBackground';
 import DefaultImage from '@/assets/images/logo-sementara.jpeg';
 import { DetailPost, DetailpageProps } from '@/types/interface';
 import useFetch from '@/hooks/useFetch';
+import { ErrorTypes } from '@/types/enum';
 import RelatedPosts from './RelatedPosts';
 import { LoadingSpecific } from '../Loading';
 import ErrorPage from '../ErrorPage';
@@ -28,7 +29,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     }
 
     if (error) {
-        return <ErrorPage message={message} />;
+        return <ErrorPage message={message} type={ErrorTypes.ServerError} />;
     }
 
     if (data.detailPost) {
