@@ -11,8 +11,7 @@ import { MAX_POST } from '@/types/constant';
 import Pagination from '@/components/Pagination';
 import BlogPost from '@/components/BlogPost';
 import FilterAndCategory from '@/components/FilterAndCategory';
-import BaseLayout from '../../layout/BaseLayout';
-import Loading from '../Loading';
+import { LoadingSpecific } from '../Loading';
 import PageNotFound from '../PageNotFound';
 
 const Searchpage: React.FC<{}> = () => {
@@ -56,13 +55,13 @@ const Searchpage: React.FC<{}> = () => {
     }, [page]);
 
     if (isLoading) {
-        return <Loading />;
+        return <LoadingSpecific />;
     }
     if (error) {
         return <PageNotFound />;
     }
     return (
-        <BaseLayout>
+        <div>
             <div>
                 <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 min-h-screen">
                     <div className="container max-w-screen-xl mx-auto px-[3.75rem] grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
@@ -113,7 +112,7 @@ const Searchpage: React.FC<{}> = () => {
                     </div>
                 </div>
             </div>
-        </BaseLayout>
+        </div>
     );
 };
 

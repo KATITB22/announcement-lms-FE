@@ -6,7 +6,6 @@ const AboutPage = React.lazy(() => import('./pages/About/About'));
 const PartnerPage = React.lazy(() => import('./pages/Partnerpage/PartnerPage'));
 const PageNotFound = React.lazy(() => import('./pages/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
-const Loading = React.lazy(() => import('./pages/Loading'));
 const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
 const TreasureHuntPage = React.lazy(
     () => import('./pages/TreasureHuntPage/TreasureHuntPage')
@@ -28,11 +27,6 @@ export const Routing: PageRouting[] = [
         title: 'About',
         path: '/about',
         component: AboutPage,
-    },
-    {
-        title: 'Loading',
-        path: '/loading',
-        component: Loading,
     },
     {
         title: 'Partner',
