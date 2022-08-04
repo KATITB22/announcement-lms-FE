@@ -45,6 +45,10 @@ export interface FetchingState {
     message: string;
 }
 
+export interface RumpunProps {
+    id: number;
+}
+
 export interface Posts extends PostsOrPages {}
 
 export interface RelatedPosts extends Omit<PostsOrPages, 'meta'> {}
