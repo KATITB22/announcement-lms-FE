@@ -15,9 +15,7 @@ export interface AboutProps {
     toggle(): void;
 }
 
-export interface DetailpageProps extends BaseProps {
-    id: string;
-}
+export interface DetailpageProps extends BaseProps {}
 
 export interface SpinnerProps {
     message?: string;

@@ -1,4 +1,3 @@
-import BaseLayout from '@/layout/BaseLayout';
 import { ABOUT_US_TITLE } from '@/types/constant';
 import oskmLogo from '@/assets/images/oskm-logo.svg';
 import { useToggle } from '@/hooks/useToggle';
@@ -10,7 +9,7 @@ const About: React.FC<{}> = () => {
         'Pemasaran yang dulu dilakukan dengan menggunakan flyer, spanduk, koran, kini beralih ke media digital dan juga internet',
     ];
     return (
-        <BaseLayout>
+        <div>
             {isOn ? (
                 <AboutDetail toggle={toggle} />
             ) : (
@@ -44,7 +43,7 @@ const About: React.FC<{}> = () => {
                     </div>
                 </div>
             )}
-        </BaseLayout>
+        </div>
     );
 };
 
