@@ -17,6 +17,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
         for (let i = 0; i < totalItems; i += 1) {
             retval.push(
                 <div
+                    key={i}
                     className={`w-7 h-full rounded-sm ${
                         currentIndex === i ? 'bg-white' : 'bg-slate-400'
                     } opacity-75`}
