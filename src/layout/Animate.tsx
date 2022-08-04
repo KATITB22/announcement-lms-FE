@@ -6,11 +6,20 @@ const Animate: React.FC<BaseProps> = ({ children }) => (
     <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
         transition={{ duration: 0.7 }}
     >
         {children}
     </motion.div>
 );
 
-export default Animate;
+const AnimateLoading: React.FC<BaseProps> = ({ children }) => (
+    <motion.div
+        animate={{
+            opacity: [1, 0.75, 0.5, 0.25, 0],
+        }}
+    >
+        {children}
+    </motion.div>
+);
+
+export { Animate, AnimateLoading };

@@ -1,5 +1,5 @@
 import React from 'react';
-import Animate from '@/layout/Animate';
+import { Animate } from '@/layout/Animate';
 import { SpinnerProps } from '@/types/interface';
 
 const ErrorPage: React.FC<SpinnerProps> = ({ message }) => (
