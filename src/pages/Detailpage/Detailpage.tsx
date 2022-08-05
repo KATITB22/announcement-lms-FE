@@ -29,6 +29,11 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     }
 
     if (error) {
+        if (message === 'Validation error, cannot read post.') {
+            return (
+                <ErrorPage message={message} type={ErrorTypes.PostNotFound} />
+            );
+        }
         return <ErrorPage message={message} type={ErrorTypes.ServerError} />;
     }
 
