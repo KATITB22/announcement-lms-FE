@@ -9,7 +9,7 @@
         "preview": "vite preview",
         "prepare": "husky install",
         "lint": "yarn eslint --fix  && yarn prettier --write .",
-        "lint:auto": "yarn eslint --fix --no-color --ext .js,.jsx,.ts,.tsx && yarn prettier --write --no-color .",
+        "lint:auto": "yarn eslint src/ --fix --no-color --ext .js,.jsx,.ts,.tsx && yarn prettier --write --no-color .",
         "ci": "yarn install --immutable --immutable-cache --check-cache"
     },
     "dependencies": {
