@@ -32,7 +32,7 @@ const About: React.FC<{}> = () => {
                                     key={`aboutcontent${aboutContents.indexOf(
                                         content
                                     )}`}
-                                    className="text-h6 md:text-[40px] lg:text-h3"
+                                    className="font-Subheading text-h6 md:text-[40px] lg:text-h3"
                                 >
                                     {content}
                                 </p>
@@ -40,7 +40,7 @@ const About: React.FC<{}> = () => {
                             <button
                                 type="button"
                                 onClick={toggle}
-                                className="bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
+                                className="font-title bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
                             >
                                 see more
                             </button>

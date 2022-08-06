@@ -2,6 +2,8 @@ import React from 'react';
 import { typePartner } from '@/types/enum';
 import { imgPartner } from '@/types/types';
 import { PARTNER_TITLE } from '@/types/constant';
+import { SPONSOR_TITLE } from '@/types/constant';
+import { MEDPAR_TITLE } from '@/types/constant';
 
 export const listOfSponsor: imgPartner[] = [
     {
@@ -139,8 +141,8 @@ const PartnerPage: React.FC<{}> = () => (
                 </p>
                 <div className="sponsor py-10">
                     <div className="flex relative h-[36px] justify-center">
-                        <div className="text-h6 text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
-                            Sponsor
+                        <div className="font-Heading text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
+                            { SPONSOR_TITLE }
                         </div>
                     </div>
                     <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md ">
@@ -159,8 +161,8 @@ const PartnerPage: React.FC<{}> = () => (
                 </div>
                 <div className="medpart">
                     <div className="flex relative h-[36px] justify-center">
-                        <div className="text-h6 text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
-                            Media Partner
+                        <div className="text-h6 font-Heading text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
+                            { MEDPAR_TITLE }
                         </div>
                     </div>
                     <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md">
