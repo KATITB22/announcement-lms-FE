@@ -1,7 +1,7 @@
 {
-    "name": "template-fe",
+    "name": "annoucement-lms-fe",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
     "scripts": {
         "preinstall": "npx only-allow yarn",
         "dev": "vite",
