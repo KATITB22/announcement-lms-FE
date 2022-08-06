@@ -18,7 +18,7 @@ const Render = {
             textElmt = (
                 <Link
                     key={id}
-                    className="text-caption md:text-body w-full font-Body text-justify"
+                    className="font-Body text-caption md:text-body w-full font-Body text-justify"
                     color="#D27C2F"
                     href={href}
                     isExternal
@@ -42,7 +42,9 @@ const Render = {
                         </a>
                     );
                 } else {
-                    childs.push(<span>{innerNode.text}</span>);
+                    childs.push(
+                        <span className="font-Body">{innerNode.text}</span>
+                    );
                 }
             });
             textElmt = (

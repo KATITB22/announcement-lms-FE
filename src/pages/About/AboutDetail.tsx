@@ -22,14 +22,17 @@ const AboutDetail: React.FC<AboutProps> = ({ toggle }) => (
                             content
                         )}`}
                     >
-                        <p>{content}</p>
+
+                        <p className="font-Body">{content}</p>
+
                         <br />
                     </div>
                 ))}
                 <button
                     type="button"
                     onClick={toggle}
-                    className="bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
+
+                    className="font-Title bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
                 >
                     go back
                 </button>

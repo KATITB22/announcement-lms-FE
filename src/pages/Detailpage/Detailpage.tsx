@@ -79,19 +79,21 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 <Box
                     fontFamily="Magilio"
                     fontSize={{
-                        base: '20px',
-                        md: '35px',
+                        base: '2rem',
+                        md: '3rem',
                     }}
                 >
                     {post!.title}
                 </Box>
 
                 {post!.primary_author && (
-                    <Box>Author: {post!.primary_author.name}</Box>
+                    <Box fontFamily="Alegreya Semibold">
+                        Author: {post!.primary_author.name}
+                    </Box>
                 )}
 
                 <Box
-                    fontFamily="Alegreya"
+                    fontFamily="Alegreya Semibold"
                     fontSize={{
                         base: '12px',
                         md: '18px',

@@ -16,7 +16,8 @@ const About: React.FC<{}> = () => {
             ) : (
                 <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown">
                     <div className="container max-w-screen-lg h-content mx-auto px-[3.75rem]">
-                        <p className="font-Heading text-h3 text-center pt-16 pb-20">
+
+                        <p className="font-Heading text-[24px] text-center pt-16 pb-16">
                             {ABOUT_US_TITLE}
                         </p>
                         <div className="relative flex flex-col items-center bg-MediumBrown opacity-70 rounded-[37px] pb-6 px-4 lg:bg-transparent text-center">
@@ -33,7 +34,7 @@ const About: React.FC<{}> = () => {
                                     key={`aboutcontent${aboutContents.indexOf(
                                         content
                                     )}`}
-                                    className="text-h6 md:text-[40px] lg:text-h3"
+                                    className="font-Subheading text-h6 md:text-[40px] lg:text-h3"
                                 >
                                     {content}
                                 </p>
@@ -41,7 +42,7 @@ const About: React.FC<{}> = () => {
                             <button
                                 type="button"
                                 onClick={toggle}
-                                className="bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
+                                className="font-title bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
                             >
                                 see more
                             </button>
