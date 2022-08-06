@@ -142,7 +142,7 @@ const PartnerPage: React.FC<{}> = () => (
                 <div className="sponsor py-10">
                     <div className="flex relative h-[36px] justify-center">
                         <div className="font-Heading text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
-                            { SPONSOR_TITLE }
+                            {SPONSOR_TITLE}
                         </div>
                     </div>
                     <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md ">
@@ -162,7 +162,7 @@ const PartnerPage: React.FC<{}> = () => (
                 <div className="medpart">
                     <div className="flex relative h-[36px] justify-center">
                         <div className="text-h6 font-Heading text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
-                            { MEDPAR_TITLE }
+                            {MEDPAR_TITLE}
                         </div>
                     </div>
                     <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md">

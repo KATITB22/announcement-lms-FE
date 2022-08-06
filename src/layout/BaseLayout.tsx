@@ -186,14 +186,18 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             </Flex>
                         </Link>
                         <Flex>
-                            <h1 className="font-Caption">&copy; DEVA 2022 - Content and Publication</h1>
+                            <h1 className="font-Caption">
+                                &copy; DEVA 2022 - Content and Publication
+                            </h1>
                         </Flex>
                     </Flex>
                     <Flex
                         flexDirection="column"
                         alignItems={{ base: 'center', md: 'flex-start' }}
                     >
-                        <Text className="font-Caption" fontSize="md">Find us on</Text>
+                        <Text className="font-Caption" fontSize="md">
+                            Find us on
+                        </Text>
                         <Stack direction="row" spacing={4}>
                             {socials.map((social) => (
                                 <chakra.button

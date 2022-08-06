@@ -3,18 +3,19 @@ import oskmLogo from '@/assets/images/oskm-logo-text.svg';
 import { useToggle } from '@/hooks/useToggle';
 import AboutDetail from './AboutDetail';
 
+const aboutContents: Array<string> = [
+    'Pemasaran yang dulu dilakukan dengan menggunakan flyer, spanduk, koran, kini beralih ke media digital dan juga internet',
+];
+
 const About: React.FC<{}> = () => {
     const [isOn, toggle] = useToggle();
-    const aboutContents: Array<string> = [
-        'Pemasaran yang dulu dilakukan dengan menggunakan flyer, spanduk, koran, kini beralih ke media digital dan juga internet',
-    ];
     return (
         <div>
             {isOn ? (
                 <AboutDetail toggle={toggle} />
             ) : (
                 <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown">
-                    <div className="container max-w-screen-lg min-h-screen mx-auto px-[3.75rem]">
+                    <div className="container max-w-screen-lg h-content mx-auto px-[3.75rem]">
                         <p className="font-Heading text-[24px] text-center pt-16 pb-16">
                             {ABOUT_US_TITLE}
                         </p>

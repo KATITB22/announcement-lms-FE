@@ -82,9 +82,9 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 </Box>
 
                 {post!.primary_author && (
-                    <Box 
-                        fontFamily="Alegreya Semibold"                       
-                    >Author: {post!.primary_author.name}</Box>
+                    <Box fontFamily="Alegreya Semibold">
+                        Author: {post!.primary_author.name}
+                    </Box>
                 )}
 
                 <Box

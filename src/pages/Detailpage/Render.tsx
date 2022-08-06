@@ -42,7 +42,9 @@ const Render = {
                         </a>
                     );
                 } else {
-                    childs.push(<span className="font-Body">{innerNode.text}</span>);
+                    childs.push(
+                        <span className="font-Body">{innerNode.text}</span>
+                    );
                 }
             });
             textElmt = (
