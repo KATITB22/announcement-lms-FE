@@ -2,13 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Vistock1 from '@/assets/images/vistock1.svg';
 import Vistock2 from '@/assets/images/vistock2.svg';
 import Vistock3 from '@/assets/images/vistock3.svg';
-
-const breakPointHeight = {
-    xl: 2850,
-    l: 2000,
-    m: 1500,
-    base: 750,
-};
+import { breakPointHeight } from '@/types/constant';
 
 const VistockBackground: React.FC<{}> = () => {
     const [countRender, setCountRender] = useState(0);

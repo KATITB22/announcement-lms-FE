@@ -14,6 +14,13 @@ export const MONTHS = [
     'Dec',
 ];
 
+export const breakPointHeight = {
+    xl: 2850,
+    l: 2000,
+    m: 1500,
+    base: 750,
+};
+
 export const MAX_DESCRIPTION = 150;
 export const MAX_POST = 2;
 export const PAGINATION_PER_PAGE = 4;

@@ -8,10 +8,7 @@ export const formatDate = (date: string | undefined) =>
 
 export const formatUrl = (url: string | null) => {
     if (!url) return Logo;
-    const newUrl = env.PROD
-        ? url.replace('localhost', env.VITE_IP_ADDRESS)
-        : url;
-    return newUrl;
+    return url;
 };
 
 export const getBaseUrl = () => env.VITE_GHOST_API_URL;
