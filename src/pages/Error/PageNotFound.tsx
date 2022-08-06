@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Animate } from '@/layout/Animate';
+import vistock from '@/assets/images/page-not-found.svg';
 
 const PageNotFound: React.FC<{}> = () => (
     <Animate>
-        <div className="min-h-screen flex items-center justify-center flex-col text-center bg-gradient-to-b from-Orange to-LightOrange">
-            {/* TODO masukan image  */}
-            <p className="m-0 mb-2 font-Heading text-h3">
+        <div className="relative h-content flex items-center justify-center flex-col text-center bg-gradient-to-b from-Orange to-LightOrange z-10">
+            <img
+                src={vistock}
+                alt="gambar vistock"
+                className="w-96 absolute left-[50%] bottom-[40%] translate-x-[-50%] -z-10"
+            />
+            <p className="m-0 mb-2 font-Heading text-h3 text-DarkerOrange drop-shadow-errorStyle">
                 Halaman tidak ditemukan
             </p>
             <Link to="/" className="text-xl ">

@@ -40,6 +40,12 @@ module.exports = {
                 caption_smaller: 12,
                 overline_smaller: 10,
             },
+            dropShadow: {
+                errorStyle: '-1px -2px 0px #463322',
+            },
+            height: {
+                content: 'calc(100vh - 4rem)',
+            },
         },
     },
     plugins: [],
