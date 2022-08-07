@@ -1,9 +1,7 @@
 import React from 'react';
 import { typePartner } from '@/types/enum';
 import { imgPartner } from '@/types/types';
-import { PARTNER_TITLE } from '@/types/constant';
-import { SPONSOR_TITLE } from '@/types/constant';
-import { MEDPAR_TITLE } from '@/types/constant';
+import { PARTNER_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 
 export const listOfSponsor: imgPartner[] = [
     {
