@@ -10,19 +10,13 @@ const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
 const TreasureHuntPage = React.lazy(
     () => import('./pages/TreasureHuntPage/TreasureHuntPage')
 );
-const ServerErrorPage = React.lazy(() => import('./pages/Error/ServerError'));
 
 const PageNotFoundRouting: PageRouting = {
     title: 'Page Not Found',
     path: '*',
     component: PageNotFound,
 };
-/* TODO: routing for server error page */
-const ServerErrorRouting: PageRouting = {
-    title: 'Server Error',
-    path: '/servererror',
-    component: ServerErrorPage,
-};
+
 export const Routing: PageRouting[] = [
     {
         title: 'Homepage',
@@ -55,5 +49,4 @@ export const Routing: PageRouting[] = [
         component: TreasureHuntPage,
     },
     PageNotFoundRouting,
-    ServerErrorRouting,
 ];
