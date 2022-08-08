@@ -39,6 +39,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
 
     if (data.detailPost) {
         post = data.detailPost;
+        console.log(post);
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
             MONTHS[date.getMonth()]
@@ -109,17 +110,22 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     className="bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]"
                 >
                     {post!.feature_image ? (
-                        <Box maxWidth="w-full grid place-items-center">
+                        <figure className="w-full grid place-items-center">
                             <img
-                                className="w-5/12 md:w-4/12 lg:w-3/12"
+                                className="w-full"
                                 src={post!.feature_image}
-                                alt="featured"
+                                alt={post!.feature_image_alt!}
                             />
-                        </Box>
+                            {post!.feature_image_caption && (
+                                <figcaption className="font-Caption text-[13px] md:text-caption">
+                                    {post!.feature_image_caption}
+                                </figcaption>
+                            )}
+                        </figure>
                     ) : (
                         <Box className="w-full grid place-items-center">
                             <img
-                                className="w-5/12 md:w-4/12 lg:w-3/12"
+                                className="w-full"
                                 src={DefaultImage}
                                 alt="default-img"
                             />

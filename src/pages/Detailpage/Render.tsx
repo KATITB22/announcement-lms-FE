@@ -2,15 +2,12 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 // import { jsxElmt } from '@/types/types';
 // import { formatUrl, trimString } from '@/util/util';
-import {
-    // VStack,
-    Text,
-    // Link, Center, Button
-} from '@chakra-ui/react';
+import { VStack, Text, Link, Center, Button } from '@chakra-ui/react';
 // import { Tweet } from 'react-twitter-widgets';
 // import Carousel from '@/components/Carousel';
-// import DownloadLogo from '@styles/images/icon-download-file.png';
+import DownloadLogo from '@styles/images/icon-download-file.png';
 import { ElementExtended } from '@/types/interface';
+import { formatUrl, trimString } from '@/util/util';
 
 const Render = {
     p: (id: number, node: ElementExtended) => {
@@ -71,102 +68,137 @@ const Render = {
             </div>
         );
     },
-    // div: (id: number, node: ElementExtended) => {
-    //     if (node.attrs.class.includes('kg-file-card')) {
-    //         const { innerWidth } = window;
-    //         const filename =
-    //             innerWidth > 768
-    //                 ? node.childNodes[1].childNodes[1].childNodes[3]
-    //                     .childNodes[1].text
-    //                 : trimString(
-    //                     node.childNodes[1].childNodes[1].childNodes[3]
-    //                         .childNodes[1].text,
-    //                     25
-    //                 );
-    //         const src = node.childNodes[1].attrs.href;
-    //         return (
-    //             <a
-    //                 key={id}
-    //                 className="w-32 h-20 md:w-80 md:h-28 bg-white rounded-md flex items-center hover:drop-shadow-lg hover:relative hover:bottom-1 hover:right-1"
-    //                 href={src}
-    //                 target="_blank"
-    //                 rel="noreferrer"
-    //             >
-    //                 <img
-    //                     className="h-4/6"
-    //                     src={DownloadLogo}
-    //                     alt="download-logo"
-    //                 />
-    //                 <div className="h-5/6 w-0.5 bg-gray-400 opacity-50 rounded-md" />
-    //                 <div className="text-caption_smaller md:text-caption ml-3">
-    //                     {filename}
-    //                 </div>
-    //             </a>
-    //         );
-    //     }
-    //     if (node.attrs.class.includes('kg-audio-card')) {
-    //         const { src } = node.childNodes[2].childNodes[0].attrs;
-    //         const titleAudio = node.childNodes[2].childNodes[1].text;
-    //         return (
-    //             <VStack
-    //                 key={id}
-    //                 className="block p-5 md:p-7 w-40 sm:w-60 md:w-72 lg:w-80 rounded-lg shadow-lg bg-white"
-    //             >
-    //                 <Center>{titleAudio}</Center>
-    //                 <audio controls className="w-full">
-    //                     <source src={formatUrl(src)} type="audio/mpeg" />
-    //                 </audio>
-    //             </VStack>
-    //         );
-    //     }
-    //     if (node.attrs.class.includes('kg-product-card')) {
-    //         const srcImage = node.childNodes[0].childNodes[0].attrs.src;
-    //         const title = node.childNodes[0].childNodes[1].text;
-    //         const description = node.childNodes[0].childNodes[2].text;
-    //         const button = node.childNodes[0].childNodes[3]?.attrs.href;
-    //         const buttonText = node.childNodes[0].childNodes[3]?.text;
-    //         return (
-    //             <div className="w-40 sm:w-44 md:w-60 lg:w-80 rounded overflow-hidden shadow-lg bg-LightBrown">
-    //                 <img
-    //                     className="w-full"
-    //                     src={formatUrl(srcImage)}
-    //                     alt="product"
-    //                 />
-    //                 <div className="px-3 py-2 md:px-6 md:py-4">
-    //                     <div className="font-bold text-md sm:text-lg md:text-xl mb-2">
-    //                         {title}
-    //                     </div>
-    //                     <p className="text-gray-700 text-sm sm:text-base md:text-lg">
-    //                         {description}
-    //                     </p>
-    //                 </div>
-    //                 {button && (
-    //                     <Center className="px-6 pt-2 pb-2">
-    //                         <Link href={button} isExternal>
-    //                             <Button>{buttonText}</Button>
-    //                         </Link>
-    //                     </Center>
-    //                 )}
-    //             </div>
-    //         );
-    //     }
-    //     const textHeader = node.childNodes[0].text;
-    //     const textSubHeader = node.childNodes[1]?.text;
-    //     return (
-    //         <VStack
-    //             key={id}
-    //             justifyContent="center"
-    //             alignItems="center"
-    //             width="100%"
-    //             bg="rgba(255,235,176,0.65)"
-    //         >
-    //             <Text fontSize={['2xl', '3xl', '4xl']}>{textHeader}</Text>
-    //             {textSubHeader && (
-    //                 <Text fontSize={['lg', 'xl', '2xl']}>{textSubHeader}</Text>
-    //             )}
-    //         </VStack>
-    //     );
-    // },
+    div: (id: number, node: ElementExtended) => {
+        if (node.attrs[0].value.includes('kg-file-card')) {
+            const { innerWidth } = window;
+            const rawFileName =
+                node.childNodes[1].childNodes[1].childNodes.length > 5
+                    ? node.childNodes[1].childNodes[1].childNodes[5]
+                          .childNodes[1].childNodes[0].value
+                    : node.childNodes[1].childNodes[1].childNodes[3]
+                          .childNodes[1].childNodes[0].value;
+            const filename =
+                innerWidth > 768 ? rawFileName : trimString(rawFileName, 25);
+            const altTextFile =
+                node.childNodes[1].childNodes[1].childNodes[3]?.attrs[0].value.includes(
+                    'kg-file-card-caption'
+                )
+                    ? node.childNodes[1].childNodes[1].childNodes[3]
+                          .childNodes[0].value
+                    : undefined;
+
+            const src = node.childNodes[1].attrs[1].value;
+            return (
+                <a
+                    key={id}
+                    className="w-32 h-20 md:w-80 md:h-28 bg-white rounded-md flex items-center hover:drop-shadow-lg hover:relative hover:bottom-1 hover:right-1"
+                    href={src}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <img
+                        className="h-4/6"
+                        src={DownloadLogo}
+                        alt="download-logo"
+                    />
+                    <div className="h-5/6 w-0.5 bg-gray-400 opacity-50 rounded-md" />
+                    <div className="flex flex-col">
+                        <div className="text-caption_smaller md:text-caption ml-3">
+                            {filename}
+                        </div>
+                        <div className="text-[8px] md:text-[10px] text-gray-400 ml-3">
+                            {altTextFile}
+                        </div>
+                    </div>
+                </a>
+            );
+        }
+        if (node.attrs[0].value.includes('kg-audio-card')) {
+            const srcThumbnail = node.childNodes[0].attrs[0].value || undefined;
+            const src = node.childNodes[2].childNodes[0].attrs[0].value;
+            const titleAudio =
+                node.childNodes[2].childNodes[1].childNodes[0].value;
+            return (
+                <VStack
+                    key={id}
+                    className="block p-5 md:p-7 w-40 sm:w-60 md:w-72 lg:w-80 rounded-lg shadow-lg bg-white"
+                >
+                    <div className="w-full flex">
+                        {srcThumbnail && (
+                            <img
+                                src={srcThumbnail}
+                                className="w-1/5  rounded-md"
+                                alt=""
+                            />
+                        )}
+                        <div className="w-4/5 pl-3">{titleAudio}</div>
+                    </div>
+                    <audio controls className="w-full">
+                        <source src={src} type="audio/mpeg" />
+                    </audio>
+                </VStack>
+            );
+        }
+        if (node.attrs[0].value.includes('kg-product-card')) {
+            const srcImage = node.childNodes[0].childNodes[0].attrs[0].value;
+            const title =
+                node.childNodes[0].childNodes[1].childNodes[0].childNodes[0]
+                    .value;
+            const description =
+                node.childNodes[0].childNodes[2].childNodes[0].childNodes[0]
+                    .value;
+            const button = node.childNodes[0].childNodes[3]?.attrs[0].value;
+            const buttonText =
+                node.childNodes[0].childNodes[3]?.childNodes[0].childNodes[0]
+                    .value;
+            return (
+                <div className="w-40 sm:w-44 md:w-60 lg:w-80 rounded overflow-hidden shadow-lg bg-LightBrown">
+                    <img
+                        className="w-full"
+                        src={formatUrl(srcImage)}
+                        alt="product"
+                    />
+                    <div className="px-3 py-2 md:px-6 md:py-4">
+                        <div className="font-Bold text-base md:text-xl mb-2">
+                            {title}
+                        </div>
+                        <p className="text-gray-700 text-sm md:text-base">
+                            {description}
+                        </p>
+                    </div>
+                    {button && (
+                        <Center className="px-6 pt-2 pb-2">
+                            <Link href={button} isExternal>
+                                <Button>{buttonText}</Button>
+                            </Link>
+                        </Center>
+                    )}
+                </div>
+            );
+        }
+        if (node.attrs[0].value.includes('kg-header-card')) {
+            const textHeader = node.childNodes[0].childNodes[0].value;
+            const textSubHeader = node.childNodes[1]?.childNodes[0].value;
+            return (
+                <VStack
+                    key={id}
+                    justifyContent="center"
+                    alignItems="center"
+                    width="100%"
+                    bg="rgba(255,235,176,0.65)"
+                >
+                    <Text fontSize={['2xl', '3xl', '4xl']}>{textHeader}</Text>
+                    {textSubHeader && (
+                        <Text fontSize={['lg', 'xl', '2xl']}>
+                            {textSubHeader}
+                        </Text>
+                    )}
+                </VStack>
+            );
+        }
+
+        return <div />;
+    },
     // figure: (id: number, node: ElementExtended) => {
     //     if (node.attrs.class.includes('kg-image-card')) {
     //         const { src } = node.childNodes[0].attrs;
@@ -253,20 +285,20 @@ const Render = {
     //     }
     //     return null;
     // },
-    // blockquote: (id: number, node: ElementExtended) => {
-    //     const { text } = node;
-    //     return (
-    //         <div
-    //             key={id}
-    //             className="w-full text-caption md:text-body font-Body text-justify flex flex-row"
-    //         >
-    //             <div className="w-1 h-full rounded bg-gray-600" />
-    //             <p className="ml-6">
-    //                 <em>{text}</em>
-    //             </p>
-    //         </div>
-    //     );
-    // },
+    blockquote: (id: number, node: ElementExtended) => {
+        const text = node.childNodes[0].childNodes[0].value;
+        return (
+            <div
+                key={id}
+                className="w-full text-caption md:text-body font-Body text-justify flex flex-row"
+            >
+                <div className="w-1 h-full rounded bg-gray-600" />
+                <p className="ml-6">
+                    <em>{text}</em>
+                </p>
+            </div>
+        );
+    },
     h2: (id: number, node: ElementExtended) => {
         const text = node.childNodes[0].value;
         return (
@@ -303,6 +335,13 @@ const renderText = (node: ElementExtended, idx: number) => {
     if (node.nodeName === 'em') {
         return (
             <span className="font-Italic" key={idx}>
+                {node.childNodes[0].value}
+            </span>
+        );
+    }
+    if (node.nodeName === 'u') {
+        return (
+            <span className="underline" key={idx}>
                 {node.childNodes[0].value}
             </span>
         );
