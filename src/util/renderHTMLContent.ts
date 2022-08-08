@@ -1,7 +1,7 @@
 import Render from '@/pages/Detailpage/Render';
 import { REGEX_PARSE } from '@/types/constant';
 import { NodeExtended } from '@/types/interface';
-import parse from 'node-html-parser';
+import { parse } from 'node-html-parser';
 
 export const renderHTMLContent = (post: any) => {
     const root = parse(post.html.replace(REGEX_PARSE, ''));
