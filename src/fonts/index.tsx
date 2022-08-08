@@ -29,7 +29,7 @@ const Fonts = () => (
 
         @font-face {
             font-family: 'Alegreya Sans Bold';
-            src: url('./fonts/AlegreyaSans-Black.ttf');
+            src: url('./fonts/AlegreyaSans-Bold.ttf');
         }
         
         @font-face {
@@ -39,7 +39,7 @@ const Fonts = () => (
         
         @font-face {
             font-family: 'Alegreya Sans Bold and Italic';
-            src: url('./fonts/AlegreyaSans-BlackItalic.ttf');
+            src: url('./fonts/AlegreyaSans-BoldItalic.ttf');
         }
         `}
     />

@@ -3,7 +3,7 @@
 // import { jsxElmt } from '@/types/types';
 // import { formatUrl, trimString } from '@/util/util';
 import {
-    // Flex, VStack,
+    // VStack,
     Text,
     // Link, Center, Button
 } from '@chakra-ui/react';
@@ -17,137 +17,60 @@ const Render = {
         const { childNodes } = node;
         const textComponents: JSX.Element[] = [];
         childNodes.forEach((innerNode, idx) => {
-            let textComponent: JSX.Element;
-            if (innerNode.nodeName === '#text') {
-                textComponent = (
-                    <span key={innerNode.nodeName + idx.toString()}>
-                        {innerNode.value}
-                    </span>
-                );
-            } else if (innerNode.nodeName === 'strong') {
-                textComponent = (
-                    <span
-                        className="font-Bold"
-                        key={innerNode.nodeName + idx.toString()}
-                    >
-                        {innerNode.childNodes[0].value}
-                    </span>
-                );
-            } else if (innerNode.nodeName === 'em') {
-                textComponent = (
-                    <span
-                        className="font-Italic"
-                        key={innerNode.nodeName + idx.toString()}
-                    >
-                        {innerNode.childNodes[0].value}
-                    </span>
-                );
-            } else {
-                // <a> tag
-                textComponent = (
-                    <a
-                        className="text-DarkerOrange underline"
-                        target="_blank"
-                        rel="noreferrer"
-                        key={innerNode.nodeName + idx.toString()}
-                        href={innerNode.attrs[0].value}
-                    >
-                        {innerNode.childNodes[0].value}
-                    </a>
-                );
-            }
-            textComponents.push(textComponent);
+            textComponents.push(renderText(innerNode, idx));
         });
         return (
             <Text
                 key={id}
-                className="font-Body text-caption md:text-body w-full text-justify"
+                className=" text-caption md:text-body w-full text-justify"
             >
                 {textComponents}
             </Text>
         );
-        // let textElmt: jsxElmt;
-        // if (node.childNodes[1]?.tagName === 'a') {
-        //     // single link for entire paragraph, ex:<p><a>link</a></p>
-        //     const { text } = node.childNodes[0].childNodes[0];
-        //     const { href } = node.childNodes[0].attrs;
-        //     textElmt = (
-        //         <Link
-        //             key={id}
-        //             className="font-Body text-caption md:text-body w-full text-justify"
-        //             color="#D27C2F"
-        //             href={href}
-        //             isExternal
-        //         >
-        //             <Text as="u">{text}</Text>
-        //         </Link>
-        //     );
-        // } else {
-        //     // inline link inside outher text
-        //     const childs: JSX.ElementExtended[] = [];
-        //     node.childNodes.forEach((innerNode) => {
-        //         if (innerNode.rawTagName === 'a') {
-        //             childs.push(
-        //                 <a
-        //                     className="text-DarkerOrange underline"
-        //                     target="_blank"
-        //                     href={innerNode.attrs.href}
-        //                     rel="noreferrer"
-        //                 >
-        //                     {innerNode.text}
-        //                 </a>
-        //             );
-        //         } else {
-        //             childs.push(
-        //                 <span className="font-Body">{innerNode.text}</span>
-        //             );
-        //         }
-        //     });
-        //     textElmt = (
-        //         <p
-        //             key={id}
-        //             className="text-caption md:text-body w-full font-Body text-left"
-        //         >
-        //             {childs}
-        //         </p>
-        //     );
-        // }
     },
-    // hr: (id: number) => (
-    //     <div key={id} className="w-10 py-7 flex justify-evenly items-center">
-    //         <div className="w-1 h-1 bg-black rounded-lg" />
-    //         <div className="w-1 h-1 bg-black rounded-lg" />
-    //         <div className="w-1 h-1 bg-black rounded-lg" />
-    //     </div>
-    // ),
-    // ol: (id: number, node: ElementExtended) => {
-    //     const listItems: JSX.ElementExtended[] = [];
-    //     node.childNodes.forEach((innerNode) => {
-    //         listItems.push(<li>{innerNode.text}</li>);
-    //     });
-    //     return (
-    //         <div
-    //             key={id}
-    //             className="w-full text-caption md:text-body font-Body text-justify"
-    //         >
-    //             <ol className="list-decimal ml-8">{listItems}</ol>
-    //         </div>
-    //     );
-    // },
-    // ul: (id: number, node: ElementExtended) => {
-    //     const listItems: JSX.ElementExtended[] = [];
-    //     node.childNodes.forEach((innerNode) => {
-    //         listItems.push(<li>{innerNode.text}</li>);
-    //     });
-    //     return (
-    //         <div
-    //             key={id}
-    //             className="w-full text-caption md:text-body font-Body text-justify"
-    //         >
-    //             <ul className="list-disc ml-9">{listItems}</ul>
-    //         </div>
-    //     );
-    // },
+    hr: (id: number) => (
+        <div key={id} className="w-10 py-7 flex justify-evenly items-center">
+            <div className="w-1 h-1 bg-black rounded-lg" />
+            <div className="w-1 h-1 bg-black rounded-lg" />
+            <div className="w-1 h-1 bg-black rounded-lg" />
+        </div>
+    ),
+    ol: (id: number, node: ElementExtended) => {
+        const listItems: JSX.Element[] = [];
+        node.childNodes.forEach((innerNode) => {
+            const textPerList: JSX.Element[] = [];
+            innerNode.childNodes.forEach((extraInnerNode, index) => {
+                textPerList.push(renderText(extraInnerNode, index));
+            });
+            listItems.push(<li>{textPerList}</li>);
+        });
+        return (
+            <div
+                key={id}
+                className="w-full text-caption md:text-body font-Body text-justify"
+            >
+                <ol className="list-decimal ml-8">{listItems}</ol>
+            </div>
+        );
+    },
+    ul: (id: number, node: ElementExtended) => {
+        const listItems: JSX.Element[] = [];
+        node.childNodes.forEach((innerNode) => {
+            const textPerList: JSX.Element[] = [];
+            innerNode.childNodes.forEach((extraInnerNode, index) => {
+                textPerList.push(renderText(extraInnerNode, index));
+            });
+            listItems.push(<li>{textPerList}</li>);
+        });
+        return (
+            <div
+                key={id}
+                className="w-full text-caption md:text-body font-Body text-justify"
+            >
+                <ul className="list-disc ml-8">{listItems}</ul>
+            </div>
+        );
+    },
     // div: (id: number, node: ElementExtended) => {
     //     if (node.attrs.class.includes('kg-file-card')) {
     //         const { innerWidth } = window;
@@ -344,26 +267,59 @@ const Render = {
     //         </div>
     //     );
     // },
-    // h2: (id: number, node: ElementExtended) => {
-    //     const { text } = node;
-    //     return (
-    //         <Flex key={id} justifyContent="flex-start" w="full">
-    //             <Text align="left" fontSize="xl">
-    //                 {text}
-    //             </Text>
-    //         </Flex>
-    //     );
-    // },
-    // h3: (id: number, node: ElementExtended) => {
-    //     const { text } = node;
-    //     return (
-    //         <Flex key={id} justifyContent="flex-start" w="full">
-    //             <Text align="right" fontSize="lg">
-    //                 {text}
-    //             </Text>
-    //         </Flex>
-    //     );
-    // },
+    h2: (id: number, node: ElementExtended) => {
+        const text = node.childNodes[0].value;
+        return (
+            <h1 key={id} className="text-[22px] md:text-title font-Bold w-full">
+                {text}
+            </h1>
+        );
+    },
+    h3: (id: number, node: ElementExtended) => {
+        const text = node.childNodes[0].value;
+        return (
+            <h2 key={id} className="text-body md:text-[22px] font-Bold w-full">
+                {text}
+            </h2>
+        );
+    },
+};
+
+const renderText = (node: ElementExtended, idx: number) => {
+    if (node.nodeName === '#text') {
+        return (
+            <span className="font-Body" key={idx}>
+                {node.value}
+            </span>
+        );
+    }
+    if (node.nodeName === 'strong') {
+        return (
+            <span className="font-Bold" key={idx}>
+                {node.childNodes[0].value}
+            </span>
+        );
+    }
+    if (node.nodeName === 'em') {
+        return (
+            <span className="font-Italic" key={idx}>
+                {node.childNodes[0].value}
+            </span>
+        );
+    }
+
+    // <a> tag
+    return (
+        <a
+            className="text-DarkerOrange underline"
+            target="_blank"
+            rel="noreferrer"
+            key={idx}
+            href={node.attrs[0].value}
+        >
+            {node.childNodes[0].value}
+        </a>
+    );
 };
 
 export default Render;
