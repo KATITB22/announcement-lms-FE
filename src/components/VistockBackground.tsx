@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Vistock1 from '@/assets/images/vistock-detail-1.svg';
 import Vistock21 from '@/assets/images/vistock-detail-2-1.svg';
 import Vistock22 from '@/assets/images/vistock-detail-2-2.svg';
@@ -11,18 +11,18 @@ import Vistock5 from '@/assets/images/vistock-detail-5.svg';
 import Vistock6 from '@/assets/images/vistock-detail-6.svg';
 
 const VistockBackground: React.FC<{}> = () => {
-    const [countAddVistock, setCountAddVistock] = useState(0);
-    const refDetailPage: React.LegacyRef<HTMLDivElement> = useRef(null);
-    const refVistock: React.LegacyRef<HTMLDivElement> = useRef(null);
+    const [countAddVistock] = useState(10);
+    // const refDetailPage: React.LegacyRef<HTMLDivElement> = useRef(null);
+    // const refVistock: React.LegacyRef<HTMLDivElement> = useRef(null);
 
-    useEffect(() => {
-        const clientHeight = refDetailPage?.current?.clientHeight!;
-        // const clientWidth = refDetailPage?.current?.clientWidth!;
-        const vistockHeight = refVistock?.current?.clientHeight!;
-        // const vistockWidth = refVistock?.current?.clientWidth!;
+    // useEffect(() => {
+    //     const clientHeight = refDetailPage?.current?.clientHeight!;
+    //     // const clientWidth = refDetailPage?.current?.clientWidth!;
+    //     const vistockHeight = refVistock?.current?.clientHeight!;
+    //     // const vistockWidth = refVistock?.current?.clientWidth!;
 
-        setCountAddVistock(clientHeight / vistockHeight);
-    }, [refDetailPage]);
+    //     setCountAddVistock(clientHeight / vistockHeight);
+    // }, []);
 
     const renderedVistock = React.useMemo(() => {
         const retval: JSX.Element[] = [];
@@ -84,10 +84,13 @@ const VistockBackground: React.FC<{}> = () => {
 
     return (
         <div
-            ref={refDetailPage}
+            // ref={refDetailPage}
             className="absolute w-full h-full overflow-hidden"
         >
-            <div ref={refVistock} className="relative w-full overflow-y-hidden">
+            <div
+                // ref={refVistock}
+                className="relative w-full overflow-y-hidden"
+            >
                 <img
                     className="w-full mix-blend-overlay relative"
                     src={Vistock1}
