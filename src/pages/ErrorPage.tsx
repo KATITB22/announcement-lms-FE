@@ -7,7 +7,7 @@ import PageNotFound from './Error/PageNotFound';
 import PostNotFound from './Error/PostNotFound';
 import SearchNotFound from './Error/SearchNotFound';
 
-const ErrorPage: React.FC<ErrorProps> = ({ message, type }) => {
+const ErrorPage: React.FC<ErrorProps> = ({ type }) => {
     if (type === ErrorTypes.EmptyPost) {
         return <EmptyPost />;
     }
@@ -24,7 +24,7 @@ const ErrorPage: React.FC<ErrorProps> = ({ message, type }) => {
         return <SearchNotFound />;
     }
 
-    return <ServerError message={message} />;
+    return <ServerError />;
 };
 
 export default ErrorPage;
