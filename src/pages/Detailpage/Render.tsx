@@ -2,12 +2,12 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 // import { jsxElmt } from '@/types/types';
 // import { formatUrl, trimString } from '@/util/util';
-import { VStack, Text, Link, Center, Button } from '@chakra-ui/react';
-// import { Tweet } from 'react-twitter-widgets';
-// import Carousel from '@/components/Carousel';
+import { VStack, Text, Link, Center, Button, Flex } from '@chakra-ui/react';
+import { Tweet } from 'react-twitter-widgets';
+import Carousel from '@/components/Carousel';
 import DownloadLogo from '@styles/images/icon-download-file.png';
-import { ElementExtended } from '@/types/interface';
-import { formatUrl, trimString } from '@/util/util';
+import { ElementExtended, figureAttr } from '@/types/interface';
+import { formatUrl, trimString, getAttr } from '@/util/util';
 
 const Render = {
     p: (id: number, node: ElementExtended) => {
@@ -199,92 +199,93 @@ const Render = {
 
         return <div />;
     },
-    // figure: (id: number, node: ElementExtended) => {
-    //     if (node.attrs.class.includes('kg-image-card')) {
-    //         const { src } = node.childNodes[0].attrs;
-    //         return (
-    //             <Center key={id}>
-    //                 <img src={formatUrl(src)} alt="content" width="80%" />
-    //             </Center>
-    //         );
-    //     }
-    //     if (node.attrs.class.includes('kg-video-card')) {
-    //         const pathOfThumbnails =
-    //             node.childNodes[0].childNodes[0].attrs.style.match(
-    //                 /(https?:\/\/[^\s]+)/g
-    //             );
-    //         const pathOfThumbnail = pathOfThumbnails
-    //             ? pathOfThumbnails[0].slice(0, -2)
-    //             : '';
-    //         const { src } = node.childNodes[0].childNodes[0].attrs;
-    //         return (
-    //             <Flex key={id} alignItems="center" justifyContent="center">
-    //                 <video controls poster={pathOfThumbnail} width="80%">
-    //                     <source src={formatUrl(src)} type="video/mp4" />
-    //                 </video>
-    //             </Flex>
-    //         );
-    //     }
-    //     if (node.attrs.class.includes('kg-embed-card')) {
-    //         let attrs: Record<string, any>;
-    //         let aspectRatio = false;
-    //         if (node.childNodes[0].attrs.src) {
-    //             attrs = {
-    //                 allow: node.childNodes[0].attrs.allow,
-    //                 allowFullScreen: node.childNodes[0].attrs.allowfullscreen,
-    //                 frameBorder: node.childNodes[0].attrs.frameborder,
-    //                 src: node.childNodes[0].attrs.src,
-    //                 title: node.childNodes[0].attrs.tile,
-    //                 height: node.childNodes[0].attrs.height,
-    //                 width: node.childNodes[0].attrs.width,
-    //             };
-    //             if (node.childNodes[0].rawAttrs.includes('www.youtube.com')) {
-    //                 attrs.width = '100%';
-    //                 delete attrs?.height;
-    //                 aspectRatio = true;
-    //             }
-    //         }
-    //         if (node.childNodes[0].attrs.class === 'twitter-tweet') {
-    //             // twitter
-    //             const src = node.childNodes[0].childNodes[2].rawAttrs;
-    //             const idExp = /status\/(\d+)/g;
-    //             const regexExp = new RegExp(idExp);
-    //             const match = regexExp.exec(src);
-    //             const tweetId = match![1];
-    //             return (
-    //                 <div key={id} className="w-full">
-    //                     <Tweet
-    //                         tweetId={tweetId}
-    //                         options={{ align: 'center' }}
-    //                     />
-    //                 </div>
-    //             );
-    //         }
-    //         // youtube & spotify
-    //         return (
-    //             <div
-    //                 key={id}
-    //                 className={`w-full max-w-screen-sm flex justify-center ${
-    //                     aspectRatio ? 'aspect-video' : ''
-    //                 }`}
-    //             >
-    //                 <iframe title={attrs!.title} {...attrs!} />
-    //             </div>
-    //         );
-    //     }
-    //     if (node.attrs.class.includes('kg-gallery-card')) {
-    //         const srcItems: string[] = [];
-    //         node.childNodes[0].childNodes.forEach((innerNode) => {
-    //             innerNode.childNodes.forEach((extraInnerNode) => {
-    //                 srcItems.push(
-    //                     formatUrl(extraInnerNode.childNodes[0].attrs.src)
-    //                 );
-    //             });
-    //         });
-    //         return <Carousel key={id} items={srcItems} />;
-    //     }
-    //     return null;
-    // },
+    figure: (id: number, node: ElementExtended) => {
+        if (node.attrs[0].value.includes('kg-image-card')) {
+            const attr: figureAttr = getAttr(node.childNodes[0].attrs);
+            return (
+                <Center key={id}>
+                    <img src={formatUrl(attr.src!)} alt="content" width="80%" />
+                </Center>
+            );
+        }
+        if (node.attrs[0].value.includes('kg-video-card')) {
+            const attr: figureAttr = getAttr(
+                node.childNodes[0].childNodes[0].attrs
+            );
+            const pathOfThumbnails = attr?.style?.match(/(https?:\/\/[^\s]+)/g);
+            const pathOfThumbnail = pathOfThumbnails
+                ? pathOfThumbnails[0].slice(0, -2)
+                : '';
+            return (
+                <Flex key={id} alignItems="center" justifyContent="center">
+                    <video controls poster={pathOfThumbnail} width="80%">
+                        <source src={formatUrl(attr.src!)} type="video/mp4" />
+                    </video>
+                </Flex>
+            );
+        }
+
+        if (node.attrs[0].value.includes('kg-embed-card')) {
+            if (node.childNodes[0].attrs[0].value === 'twitter-tweet') {
+                // twitter
+                const src = node.childNodes[0].childNodes[2].attrs[0].value;
+                const idExp = /status\/(\d+)/g;
+                const regexExp = new RegExp(idExp);
+                const match = regexExp.exec(src);
+                const tweetId = match![1];
+                return (
+                    <div key={id} className="w-full">
+                        <Tweet
+                            tweetId={tweetId}
+                            options={{ align: 'center' }}
+                        />
+                    </div>
+                );
+            }
+            let attrs: Record<string, any>;
+            let aspectRatio = false;
+            const srcAttr: figureAttr = getAttr(node.childNodes[0].attrs);
+            if (node.childNodes[0].attrs) {
+                attrs = {
+                    allow: srcAttr.allow,
+                    allowFullScreen: srcAttr.allowFullScreen,
+                    frameBorder: srcAttr.frameBorder,
+                    src: srcAttr.src,
+                    title: srcAttr.title,
+                    height: srcAttr.height,
+                    width: srcAttr.width,
+                };
+                if (attrs.src.includes('www.youtube.com')) {
+                    attrs.width = '100%';
+                    delete attrs?.height;
+                    aspectRatio = true;
+                }
+            }
+            // youtube & spotify
+            return (
+                <div
+                    key={id}
+                    className={`w-full max-w-screen-sm flex justify-center ${
+                        aspectRatio ? 'aspect-video' : ''
+                    }`}
+                >
+                    <iframe title={attrs!.title} {...attrs!} />
+                </div>
+            );
+        }
+        if (node.attrs[0].value.includes('kg-gallery-card')) {
+            const srcItems: string[] = [];
+            node.childNodes[0].childNodes.forEach((innerNode) => {
+                innerNode.childNodes.forEach((extraInnerNode) => {
+                    srcItems.push(
+                        formatUrl(extraInnerNode.childNodes[0].attrs[0].value)
+                    );
+                });
+            });
+            return <Carousel key={id} items={srcItems} />;
+        }
+        return null;
+    },
     blockquote: (id: number, node: ElementExtended) => {
         const text = node.childNodes[0].childNodes[0].value;
         return (
