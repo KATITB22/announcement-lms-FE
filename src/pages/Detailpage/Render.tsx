@@ -141,12 +141,22 @@ const Render = {
         }
         if (node.attrs[0].value.includes('kg-product-card')) {
             const srcImage = node.childNodes[0].childNodes[0].attrs[0].value;
-            const title =
-                node.childNodes[0].childNodes[1].childNodes[0].childNodes[0]
-                    .value;
-            const description =
-                node.childNodes[0].childNodes[2].childNodes[0].childNodes[0]
-                    .value;
+            const title = node.childNodes[0].childNodes[1].childNodes[0]
+                .childNodes[0]
+                ? renderText(
+                      node.childNodes[0].childNodes[1].childNodes[0]
+                          .childNodes[0],
+                      id,
+                      'font-Bold'
+                  )
+                : undefined;
+            const description = node.childNodes[0].childNodes[2].childNodes[0]
+                ? renderText(
+                      node.childNodes[0].childNodes[2].childNodes[0]
+                          .childNodes[0],
+                      id
+                  )
+                : undefined;
             const button = node.childNodes[0].childNodes[3]?.attrs[0].value;
             const buttonText =
                 node.childNodes[0].childNodes[3]?.childNodes[0].childNodes[0]
@@ -159,12 +169,16 @@ const Render = {
                         alt="product"
                     />
                     <div className="px-3 py-2 md:px-6 md:py-4">
-                        <div className="font-Bold text-base md:text-xl mb-2">
-                            {title}
-                        </div>
-                        <p className="text-gray-700 text-sm md:text-base">
-                            {description}
-                        </p>
+                        {title && (
+                            <div className="text-base md:text-xl mb-2">
+                                {title}
+                            </div>
+                        )}
+                        {description && (
+                            <p className="text-gray-700 text-sm md:text-base">
+                                {description}
+                            </p>
+                        )}
                     </div>
                     {button && (
                         <Center className="px-6 pt-2 pb-2">
@@ -177,8 +191,10 @@ const Render = {
             );
         }
         if (node.attrs[0].value.includes('kg-header-card')) {
-            const textHeader = node.childNodes[0].childNodes[0].value;
-            const textSubHeader = node.childNodes[1]?.childNodes[0].value;
+            const textHeader = renderText(node.childNodes[0].childNodes[0], id);
+            const textSubHeader = node.childNodes[1]
+                ? renderText(node.childNodes[1].childNodes[0], id)
+                : undefined;
             return (
                 <VStack
                     key={id}
@@ -286,7 +302,7 @@ const Render = {
     //     return null;
     // },
     blockquote: (id: number, node: ElementExtended) => {
-        const text = node.childNodes[0].childNodes[0].value;
+        const text = renderText(node.childNodes[0], id);
         return (
             <div
                 key={id}
@@ -300,7 +316,7 @@ const Render = {
         );
     },
     h2: (id: number, node: ElementExtended) => {
-        const text = node.childNodes[0].value;
+        const text = renderText(node.childNodes[0], id);
         return (
             <h1 key={id} className="text-[22px] md:text-title font-Bold w-full">
                 {text}
@@ -308,7 +324,7 @@ const Render = {
         );
     },
     h3: (id: number, node: ElementExtended) => {
-        const text = node.childNodes[0].value;
+        const text = renderText(node.childNodes[0], id);
         return (
             <h2 key={id} className="text-body md:text-[22px] font-Bold w-full">
                 {text}
@@ -317,40 +333,57 @@ const Render = {
     },
 };
 
-const renderText = (node: ElementExtended, idx: number) => {
+const renderText = (
+    node: ElementExtended,
+    idx: number,
+    optionalFont?: string
+): JSX.Element => {
+    let className: string = optionalFont || '';
+    if (className.includes('Bold') && className.includes('Italic')) {
+        className = className.replace('font-Bold', '');
+        className = className.replace('font-Italic', 'font-BoldItalic');
+    }
+
     if (node.nodeName === '#text') {
         return (
-            <span className="font-Body" key={idx}>
+            <span
+                className={className.length === 0 ? 'font-Body' : className}
+                key={idx}
+            >
                 {node.value}
             </span>
         );
     }
     if (node.nodeName === 'strong') {
-        return (
-            <span className="font-Bold" key={idx}>
-                {node.childNodes[0].value}
-            </span>
+        className += ' font-Bold';
+        // console.log(className);
+        return renderText(
+            node.childNodes[1] ? node.childNodes[1] : node.childNodes[0],
+            idx,
+            className
         );
     }
     if (node.nodeName === 'em') {
-        return (
-            <span className="font-Italic" key={idx}>
-                {node.childNodes[0].value}
-            </span>
+        className += ' font-Italic';
+        return renderText(
+            node.childNodes[1] ? node.childNodes[1] : node.childNodes[0],
+            idx,
+            className
         );
     }
     if (node.nodeName === 'u') {
-        return (
-            <span className="underline" key={idx}>
-                {node.childNodes[0].value}
-            </span>
+        className += ' underline';
+        return renderText(
+            node.childNodes[1] ? node.childNodes[1] : node.childNodes[0],
+            idx,
+            className
         );
     }
 
     // <a> tag
     return (
         <a
-            className="text-DarkerOrange underline"
+            className={`text-DarkerOrange underline ${className}`}
             target="_blank"
             rel="noreferrer"
             key={idx}
