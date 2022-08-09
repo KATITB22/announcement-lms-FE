@@ -1,74 +1,45 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/media-has-caption */
-import { jsxElmt } from '@/types/types';
-import { NodeExtended } from '@/types/interface';
-import { formatUrl, trimString } from '@/util/util';
-import { Flex, VStack, Text, Link, Center, Button } from '@chakra-ui/react';
-import { Tweet } from 'react-twitter-widgets';
-import Carousel from '@/components/Carousel';
+// import { jsxElmt } from '@/types/types';
+// import { formatUrl, trimString } from '@/util/util';
+import { VStack, Text, Link, Center, Button } from '@chakra-ui/react';
+// import { Tweet } from 'react-twitter-widgets';
+// import Carousel from '@/components/Carousel';
 import DownloadLogo from '@styles/images/icon-download-file.png';
+import { ElementExtended } from '@/types/interface';
+import { formatUrl, trimString } from '@/util/util';
 
 const Render = {
-    P: (id: number, node: NodeExtended) => {
-        let textElmt: jsxElmt;
-        if (node.childNodes[0]?.tagName === 'A') {
-            // single link for entire paragraph, ex:<p><a>link</a></p>
-            const { text } = node.childNodes[0].childNodes[0];
-            const { href } = node.childNodes[0].attrs;
-            textElmt = (
-                <Link
-                    key={id}
-                    className="font-Body text-caption md:text-body w-full font-Body text-justify"
-                    color="#D27C2F"
-                    href={href}
-                    isExternal
-                >
-                    <Text as="u">{text}</Text>
-                </Link>
-            );
-        } else {
-            // inline link inside outher text
-            const childs: JSX.Element[] = [];
-            node.childNodes.forEach((innerNode) => {
-                if (innerNode.rawTagName === 'a') {
-                    childs.push(
-                        <a
-                            className="text-DarkerOrange underline"
-                            target="_blank"
-                            href={innerNode.attrs.href}
-                            rel="noreferrer"
-                        >
-                            {innerNode.text}
-                        </a>
-                    );
-                } else {
-                    childs.push(
-                        <span className="font-Body">{innerNode.text}</span>
-                    );
-                }
-            });
-            textElmt = (
-                <p
-                    key={id}
-                    className="text-caption md:text-body w-full font-Body text-left"
-                >
-                    {childs}
-                </p>
-            );
-        }
-        return textElmt;
+    p: (id: number, node: ElementExtended) => {
+        const { childNodes } = node;
+        const textComponents: JSX.Element[] = [];
+        childNodes.forEach((innerNode, idx) => {
+            textComponents.push(renderText(innerNode, idx));
+        });
+        return (
+            <Text
+                key={id}
+                className=" text-caption md:text-body w-full text-justify"
+            >
+                {textComponents}
+            </Text>
+        );
     },
-    HR: (id: number) => (
+    hr: (id: number) => (
         <div key={id} className="w-10 py-7 flex justify-evenly items-center">
             <div className="w-1 h-1 bg-black rounded-lg" />
             <div className="w-1 h-1 bg-black rounded-lg" />
             <div className="w-1 h-1 bg-black rounded-lg" />
         </div>
     ),
-    OL: (id: number, node: NodeExtended) => {
+    ol: (id: number, node: ElementExtended) => {
         const listItems: JSX.Element[] = [];
         node.childNodes.forEach((innerNode) => {
-            listItems.push(<li>{innerNode.text}</li>);
+            const textPerList: JSX.Element[] = [];
+            innerNode.childNodes.forEach((extraInnerNode, index) => {
+                textPerList.push(renderText(extraInnerNode, index));
+            });
+            listItems.push(<li>{textPerList}</li>);
         });
         return (
             <div
@@ -79,33 +50,44 @@ const Render = {
             </div>
         );
     },
-    UL: (id: number, node: NodeExtended) => {
+    ul: (id: number, node: ElementExtended) => {
         const listItems: JSX.Element[] = [];
         node.childNodes.forEach((innerNode) => {
-            listItems.push(<li>{innerNode.text}</li>);
+            const textPerList: JSX.Element[] = [];
+            innerNode.childNodes.forEach((extraInnerNode, index) => {
+                textPerList.push(renderText(extraInnerNode, index));
+            });
+            listItems.push(<li>{textPerList}</li>);
         });
         return (
             <div
                 key={id}
                 className="w-full text-caption md:text-body font-Body text-justify"
             >
-                <ul className="list-disc ml-9">{listItems}</ul>
+                <ul className="list-disc ml-8">{listItems}</ul>
             </div>
         );
     },
-    DIV: (id: number, node: NodeExtended) => {
-        if (node.attrs.class.includes('kg-file-card')) {
+    div: (id: number, node: ElementExtended) => {
+        if (node.attrs[0].value.includes('kg-file-card')) {
             const { innerWidth } = window;
+            const rawFileName =
+                node.childNodes[1].childNodes[1].childNodes.length > 5
+                    ? node.childNodes[1].childNodes[1].childNodes[5]
+                          .childNodes[1].childNodes[0].value
+                    : node.childNodes[1].childNodes[1].childNodes[3]
+                          .childNodes[1].childNodes[0].value;
             const filename =
-                innerWidth > 768
+                innerWidth > 768 ? rawFileName : trimString(rawFileName, 25);
+            const altTextFile =
+                node.childNodes[1].childNodes[1].childNodes[3]?.attrs[0].value.includes(
+                    'kg-file-card-caption'
+                )
                     ? node.childNodes[1].childNodes[1].childNodes[3]
-                          .childNodes[1].text
-                    : trimString(
-                          node.childNodes[1].childNodes[1].childNodes[3]
-                              .childNodes[1].text,
-                          25
-                      );
-            const src = node.childNodes[1].attrs.href;
+                          .childNodes[0].value
+                    : undefined;
+
+            const src = node.childNodes[1].attrs[1].value;
             return (
                 <a
                     key={id}
@@ -120,33 +102,55 @@ const Render = {
                         alt="download-logo"
                     />
                     <div className="h-5/6 w-0.5 bg-gray-400 opacity-50 rounded-md" />
-                    <div className="text-caption_smaller md:text-caption ml-3">
-                        {filename}
+                    <div className="flex flex-col">
+                        <div className="text-caption_smaller md:text-caption ml-3">
+                            {filename}
+                        </div>
+                        <div className="text-[8px] md:text-[10px] text-gray-400 ml-3">
+                            {altTextFile}
+                        </div>
                     </div>
                 </a>
             );
         }
-        if (node.attrs.class.includes('kg-audio-card')) {
-            const { src } = node.childNodes[2].childNodes[0].attrs;
-            const titleAudio = node.childNodes[2].childNodes[1].text;
+        if (node.attrs[0].value.includes('kg-audio-card')) {
+            const srcThumbnail = node.childNodes[0].attrs[0].value || undefined;
+            const src = node.childNodes[2].childNodes[0].attrs[0].value;
+            const titleAudio =
+                node.childNodes[2].childNodes[1].childNodes[0].value;
             return (
                 <VStack
                     key={id}
                     className="block p-5 md:p-7 w-40 sm:w-60 md:w-72 lg:w-80 rounded-lg shadow-lg bg-white"
                 >
-                    <Center>{titleAudio}</Center>
+                    <div className="w-full flex">
+                        {srcThumbnail && (
+                            <img
+                                src={srcThumbnail}
+                                className="w-1/5  rounded-md"
+                                alt=""
+                            />
+                        )}
+                        <div className="w-4/5 pl-3">{titleAudio}</div>
+                    </div>
                     <audio controls className="w-full">
-                        <source src={formatUrl(src)} type="audio/mpeg" />
+                        <source src={src} type="audio/mpeg" />
                     </audio>
                 </VStack>
             );
         }
-        if (node.attrs.class.includes('kg-product-card')) {
-            const srcImage = node.childNodes[0].childNodes[0].attrs.src;
-            const title = node.childNodes[0].childNodes[1].text;
-            const description = node.childNodes[0].childNodes[2].text;
-            const button = node.childNodes[0].childNodes[3]?.attrs.href;
-            const buttonText = node.childNodes[0].childNodes[3]?.text;
+        if (node.attrs[0].value.includes('kg-product-card')) {
+            const srcImage = node.childNodes[0].childNodes[0].attrs[0].value;
+            const title =
+                node.childNodes[0].childNodes[1].childNodes[0].childNodes[0]
+                    .value;
+            const description =
+                node.childNodes[0].childNodes[2].childNodes[0].childNodes[0]
+                    .value;
+            const button = node.childNodes[0].childNodes[3]?.attrs[0].value;
+            const buttonText =
+                node.childNodes[0].childNodes[3]?.childNodes[0].childNodes[0]
+                    .value;
             return (
                 <div className="w-40 sm:w-44 md:w-60 lg:w-80 rounded overflow-hidden shadow-lg bg-LightBrown">
                     <img
@@ -155,10 +159,10 @@ const Render = {
                         alt="product"
                     />
                     <div className="px-3 py-2 md:px-6 md:py-4">
-                        <div className="font-bold text-md sm:text-lg md:text-xl mb-2">
+                        <div className="font-Bold text-base md:text-xl mb-2">
                             {title}
                         </div>
-                        <p className="text-gray-700 text-sm sm:text-base md:text-lg">
+                        <p className="text-gray-700 text-sm md:text-base">
                             {description}
                         </p>
                     </div>
@@ -172,111 +176,117 @@ const Render = {
                 </div>
             );
         }
-        const textHeader = node.childNodes[0].text;
-        const textSubHeader = node.childNodes[1]?.text;
-        return (
-            <VStack
-                key={id}
-                justifyContent="center"
-                alignItems="center"
-                width="100%"
-                bg="rgba(255,235,176,0.65)"
-            >
-                <Text fontSize={['2xl', '3xl', '4xl']}>{textHeader}</Text>
-                {textSubHeader && (
-                    <Text fontSize={['lg', 'xl', '2xl']}>{textSubHeader}</Text>
-                )}
-            </VStack>
-        );
-    },
-    FIGURE: (id: number, node: NodeExtended) => {
-        if (node.attrs.class.includes('kg-image-card')) {
-            const { src } = node.childNodes[0].attrs;
+        if (node.attrs[0].value.includes('kg-header-card')) {
+            const textHeader = node.childNodes[0].childNodes[0].value;
+            const textSubHeader = node.childNodes[1]?.childNodes[0].value;
             return (
-                <Center key={id}>
-                    <img src={formatUrl(src)} alt="content" width="80%" />
-                </Center>
-            );
-        }
-        if (node.attrs.class.includes('kg-video-card')) {
-            const pathOfThumbnails =
-                node.childNodes[0].childNodes[0].attrs.style.match(
-                    /(https?:\/\/[^\s]+)/g
-                );
-            const pathOfThumbnail = pathOfThumbnails
-                ? pathOfThumbnails[0].slice(0, -2)
-                : '';
-            const { src } = node.childNodes[0].childNodes[0].attrs;
-            return (
-                <Flex key={id} alignItems="center" justifyContent="center">
-                    <video controls poster={pathOfThumbnail} width="80%">
-                        <source src={formatUrl(src)} type="video/mp4" />
-                    </video>
-                </Flex>
-            );
-        }
-        if (node.attrs.class.includes('kg-embed-card')) {
-            let attrs: Record<string, any>;
-            let aspectRatio = false;
-            if (node.childNodes[0].attrs.src) {
-                attrs = {
-                    allow: node.childNodes[0].attrs.allow,
-                    allowFullScreen: node.childNodes[0].attrs.allowfullscreen,
-                    frameBorder: node.childNodes[0].attrs.frameborder,
-                    src: node.childNodes[0].attrs.src,
-                    title: node.childNodes[0].attrs.tile,
-                    height: node.childNodes[0].attrs.height,
-                    width: node.childNodes[0].attrs.width,
-                };
-                if (node.childNodes[0].rawAttrs.includes('www.youtube.com')) {
-                    attrs.width = '100%';
-                    delete attrs?.height;
-                    aspectRatio = true;
-                }
-            }
-            if (node.childNodes[0].attrs.class === 'twitter-tweet') {
-                // twitter
-                const src = node.childNodes[0].childNodes[2].rawAttrs;
-                const idExp = /status\/(\d+)/g;
-                const regexExp = new RegExp(idExp);
-                const match = regexExp.exec(src);
-                const tweetId = match![1];
-                return (
-                    <div key={id} className="w-full">
-                        <Tweet
-                            tweetId={tweetId}
-                            options={{ align: 'center' }}
-                        />
-                    </div>
-                );
-            }
-            // youtube & spotify
-            return (
-                <div
+                <VStack
                     key={id}
-                    className={`w-full max-w-screen-sm flex justify-center ${
-                        aspectRatio ? 'aspect-video' : ''
-                    }`}
+                    justifyContent="center"
+                    alignItems="center"
+                    width="100%"
+                    bg="rgba(255,235,176,0.65)"
                 >
-                    <iframe title={attrs!.title} {...attrs!} />
-                </div>
+                    <Text fontSize={['2xl', '3xl', '4xl']}>{textHeader}</Text>
+                    {textSubHeader && (
+                        <Text fontSize={['lg', 'xl', '2xl']}>
+                            {textSubHeader}
+                        </Text>
+                    )}
+                </VStack>
             );
         }
-        if (node.attrs.class.includes('kg-gallery-card')) {
-            const srcItems: string[] = [];
-            node.childNodes[0].childNodes.forEach((innerNode) => {
-                innerNode.childNodes.forEach((extraInnerNode) => {
-                    srcItems.push(
-                        formatUrl(extraInnerNode.childNodes[0].attrs.src)
-                    );
-                });
-            });
-            return <Carousel key={id} items={srcItems} />;
-        }
-        return null;
+
+        return <div />;
     },
-    BLOCKQUOTE: (id: number, node: NodeExtended) => {
-        const { text } = node;
+    // figure: (id: number, node: ElementExtended) => {
+    //     if (node.attrs.class.includes('kg-image-card')) {
+    //         const { src } = node.childNodes[0].attrs;
+    //         return (
+    //             <Center key={id}>
+    //                 <img src={formatUrl(src)} alt="content" width="80%" />
+    //             </Center>
+    //         );
+    //     }
+    //     if (node.attrs.class.includes('kg-video-card')) {
+    //         const pathOfThumbnails =
+    //             node.childNodes[0].childNodes[0].attrs.style.match(
+    //                 /(https?:\/\/[^\s]+)/g
+    //             );
+    //         const pathOfThumbnail = pathOfThumbnails
+    //             ? pathOfThumbnails[0].slice(0, -2)
+    //             : '';
+    //         const { src } = node.childNodes[0].childNodes[0].attrs;
+    //         return (
+    //             <Flex key={id} alignItems="center" justifyContent="center">
+    //                 <video controls poster={pathOfThumbnail} width="80%">
+    //                     <source src={formatUrl(src)} type="video/mp4" />
+    //                 </video>
+    //             </Flex>
+    //         );
+    //     }
+    //     if (node.attrs.class.includes('kg-embed-card')) {
+    //         let attrs: Record<string, any>;
+    //         let aspectRatio = false;
+    //         if (node.childNodes[0].attrs.src) {
+    //             attrs = {
+    //                 allow: node.childNodes[0].attrs.allow,
+    //                 allowFullScreen: node.childNodes[0].attrs.allowfullscreen,
+    //                 frameBorder: node.childNodes[0].attrs.frameborder,
+    //                 src: node.childNodes[0].attrs.src,
+    //                 title: node.childNodes[0].attrs.tile,
+    //                 height: node.childNodes[0].attrs.height,
+    //                 width: node.childNodes[0].attrs.width,
+    //             };
+    //             if (node.childNodes[0].rawAttrs.includes('www.youtube.com')) {
+    //                 attrs.width = '100%';
+    //                 delete attrs?.height;
+    //                 aspectRatio = true;
+    //             }
+    //         }
+    //         if (node.childNodes[0].attrs.class === 'twitter-tweet') {
+    //             // twitter
+    //             const src = node.childNodes[0].childNodes[2].rawAttrs;
+    //             const idExp = /status\/(\d+)/g;
+    //             const regexExp = new RegExp(idExp);
+    //             const match = regexExp.exec(src);
+    //             const tweetId = match![1];
+    //             return (
+    //                 <div key={id} className="w-full">
+    //                     <Tweet
+    //                         tweetId={tweetId}
+    //                         options={{ align: 'center' }}
+    //                     />
+    //                 </div>
+    //             );
+    //         }
+    //         // youtube & spotify
+    //         return (
+    //             <div
+    //                 key={id}
+    //                 className={`w-full max-w-screen-sm flex justify-center ${
+    //                     aspectRatio ? 'aspect-video' : ''
+    //                 }`}
+    //             >
+    //                 <iframe title={attrs!.title} {...attrs!} />
+    //             </div>
+    //         );
+    //     }
+    //     if (node.attrs.class.includes('kg-gallery-card')) {
+    //         const srcItems: string[] = [];
+    //         node.childNodes[0].childNodes.forEach((innerNode) => {
+    //             innerNode.childNodes.forEach((extraInnerNode) => {
+    //                 srcItems.push(
+    //                     formatUrl(extraInnerNode.childNodes[0].attrs.src)
+    //                 );
+    //             });
+    //         });
+    //         return <Carousel key={id} items={srcItems} />;
+    //     }
+    //     return null;
+    // },
+    blockquote: (id: number, node: ElementExtended) => {
+        const text = node.childNodes[0].childNodes[0].value;
         return (
             <div
                 key={id}
@@ -289,26 +299,66 @@ const Render = {
             </div>
         );
     },
-    H2: (id: number, node: NodeExtended) => {
-        const { text } = node;
+    h2: (id: number, node: ElementExtended) => {
+        const text = node.childNodes[0].value;
         return (
-            <Flex key={id} justifyContent="flex-start" w="full">
-                <Text align="left" fontSize="xl">
-                    {text}
-                </Text>
-            </Flex>
+            <h1 key={id} className="text-[22px] md:text-title font-Bold w-full">
+                {text}
+            </h1>
         );
     },
-    H3: (id: number, node: NodeExtended) => {
-        const { text } = node;
+    h3: (id: number, node: ElementExtended) => {
+        const text = node.childNodes[0].value;
         return (
-            <Flex key={id} justifyContent="flex-start" w="full">
-                <Text align="right" fontSize="lg">
-                    {text}
-                </Text>
-            </Flex>
+            <h2 key={id} className="text-body md:text-[22px] font-Bold w-full">
+                {text}
+            </h2>
         );
     },
+};
+
+const renderText = (node: ElementExtended, idx: number) => {
+    if (node.nodeName === '#text') {
+        return (
+            <span className="font-Body" key={idx}>
+                {node.value}
+            </span>
+        );
+    }
+    if (node.nodeName === 'strong') {
+        return (
+            <span className="font-Bold" key={idx}>
+                {node.childNodes[0].value}
+            </span>
+        );
+    }
+    if (node.nodeName === 'em') {
+        return (
+            <span className="font-Italic" key={idx}>
+                {node.childNodes[0].value}
+            </span>
+        );
+    }
+    if (node.nodeName === 'u') {
+        return (
+            <span className="underline" key={idx}>
+                {node.childNodes[0].value}
+            </span>
+        );
+    }
+
+    // <a> tag
+    return (
+        <a
+            className="text-DarkerOrange underline"
+            target="_blank"
+            rel="noreferrer"
+            key={idx}
+            href={node.attrs[0].value}
+        >
+            {node.childNodes[0].value}
+        </a>
+    );
 };
 
 export default Render;

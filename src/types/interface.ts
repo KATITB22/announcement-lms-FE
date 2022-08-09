@@ -1,5 +1,6 @@
 import React, { LazyExoticComponent } from 'react';
 import { Pagination, PostOrPage, PostsOrPages } from '@tryghost/content-api';
+import { Element } from 'parse5/dist/tree-adapters/default';
 import { ErrorTypes } from './enum';
 
 export interface BaseProps {
@@ -61,14 +62,9 @@ export interface RelatedPosts extends Omit<PostsOrPages, 'meta'> {}
 
 export interface DetailPost extends PostOrPage {}
 
-export interface NodeExtended extends ChildNode {
-    attrs: Record<string, string>;
-    rawAttrs: string;
-    tagName: string;
-    rawTagName: string;
-    text: string;
-    childNodes: NodeListOf<NodeExtended>;
-    outerHTML: string;
+export interface ElementExtended extends Element {
+    childNodes: ElementExtended[];
+    value?: string;
 }
 
 export interface CarouselProps extends BaseProps {

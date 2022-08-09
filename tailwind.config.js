@@ -28,6 +28,9 @@ module.exports = {
                 Title: 'Alegreya Sans Medium',
                 Body: 'Alegreya Sans Regular',
                 Caption: 'Alegreya Sans Thin',
+                Bold: 'Alegreya Sans Bold',
+                Italic: 'Alegreya Sans Italic',
+                BoldItalic: 'Alegreya Sans Bold and Italic',
             },
             fontSize: {
                 h1: 96,
