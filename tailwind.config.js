@@ -20,6 +20,7 @@ module.exports = {
                 Brown: '#66402C',
                 LightBrown: '#FFECD0',
                 MediumBrown: '#F9DCB0',
+                White: '#FFFFFF',
             },
             fontFamily: {
                 Heading: 'Magilio',
