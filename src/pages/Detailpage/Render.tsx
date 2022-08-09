@@ -220,7 +220,19 @@ const Render = {
             const attr: figureAttr = getAttr(node.childNodes[0].attrs);
             return (
                 <Center key={id}>
-                    <img src={formatUrl(attr.src!)} alt="content" width="80%" />
+                    <figure className="flex flex-col items-center">
+                        <img
+                            src={formatUrl(attr.src!)}
+                            alt={attr.alt}
+                            width="80%"
+                        />
+                        {node.childNodes[1]?.childNodes[0]?.parentNode
+                            ?.nodeName === 'figcaption' ? (
+                            <figcaption className="text-center text-sm md:text-base">
+                                {node.childNodes[1].childNodes[0].value}
+                            </figcaption>
+                        ) : null}
+                    </figure>
                 </Center>
             );
         }
@@ -300,7 +312,7 @@ const Render = {
             });
             return <Carousel key={id} items={srcItems} />;
         }
-        return null;
+        return <figure />;
     },
     blockquote: (id: number, node: ElementExtended) => {
         const text = renderText(node.childNodes[0], id);
