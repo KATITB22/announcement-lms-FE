@@ -369,7 +369,6 @@ const renderText = (
     }
     if (node.nodeName === 'strong') {
         className += ' font-Bold';
-        // console.log(className);
         return renderText(
             node.childNodes[1] ? node.childNodes[1] : node.childNodes[0],
             idx,

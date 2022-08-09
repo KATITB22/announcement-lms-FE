@@ -39,7 +39,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
 
     if (data.detailPost) {
         post = data.detailPost;
-        console.log(post);
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
             MONTHS[date.getMonth()]

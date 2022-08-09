@@ -8,8 +8,6 @@ export const renderHTMLContent = (post: any) => {
         .childNodes[0] as ElementExtended;
     const { childNodes } = root.childNodes[1];
 
-    console.log(childNodes);
-
     const components: JSX.Element[] = [];
     childNodes.forEach((node: ElementExtended, id: number) => {
         type ObjectKey = keyof typeof Render;
