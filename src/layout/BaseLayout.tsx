@@ -10,7 +10,6 @@ import {
     IconButton,
     Input,
     InputGroup,
-    InputLeftElement,
     InputRightElement,
     Stack,
     Text,
@@ -71,12 +70,18 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     h={16}
                     alignItems="center"
                     justifyContent="space-between"
-                    minWidth="max-content"
+                    maxW="6xl"
+                    className="mx-auto"
                 >
                     <Link to="/">
                         <Flex alignItems="center" gap="2">
-                            <Avatar size="md" src={Logo} bg="transparent" />
-                            <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl">
+                            <Avatar
+                                size="md"
+                                src={Logo}
+                                bg="transparent"
+                                className="transition-all hover:scale-105"
+                            />
+                            <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl transition-all hover:scale-105">
                                 {LAYOUT_TITLE}
                             </h1>
                         </Flex>
@@ -85,32 +90,39 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         minWidth="150px"
                         maxWidth={{ base: '3xs', md: 'xs', lg: 'sm' }}
                     >
-                        <InputLeftElement pointerEvents="none" color="white">
-                            {' '}
-                            <SearchIcon />{' '}
-                        </InputLeftElement>
                         <Input
                             bg="#FFCD90"
-                            pr="4.5rem"
-                            placeholder="Search"
+                            pr="3rem"
+                            focusBorderColor="#D27C2F"
+                            borderColor="#D27C2F"
+                            placeholder="Search post"
                             _placeholder={{ color: '#D27C2F' }}
+                            color="#511D05"
                             onChange={(event: any) =>
                                 setSearchValue(event.target.value)
                             }
+                            outline="none"
+                            className="text-DarkerOrange"
+                            _hover={{ border: '1px solid #D27C2F' }}
                         />
-                        <InputRightElement width="4.5rem">
+                        <InputRightElement width="3rem">
                             <Button
-                                bg="#D27C2F"
+                                bg="none"
                                 h="1.75rem"
                                 color="#511D05"
                                 size="sm"
                                 onClick={() => {
                                     if (!searchValue) return;
-                                    // TODO: integrate with search page
                                     navigate(`/search?q=${searchValue}`);
                                 }}
+                                transition="background transform .5s ease-out"
+                                _hover={{
+                                    background: '#D27C2F',
+                                    transform: 'scale(1.05)',
+                                }}
+                                _active={{}}
                             >
-                                Search
+                                <SearchIcon />
                             </Button>
                         </InputRightElement>
                     </InputGroup>
@@ -179,8 +191,13 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                 gap="2"
                                 flexDirection={{ base: 'column', md: 'row' }}
                             >
-                                <Avatar size="md" src={Logo} bg="transparent" />
-                                <h1 className="font-Heading pt-3px text-2xl">
+                                <Avatar
+                                    size="md"
+                                    src={Logo}
+                                    bg="transparent"
+                                    className="transition-all hover:scale-105"
+                                />
+                                <h1 className="font-Heading pt-3px text-2xl transition-all hover:scale-105">
                                     {LAYOUT_TITLE}
                                 </h1>
                             </Flex>
@@ -210,7 +227,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                     display="inline-flex"
                                     alignItems="center"
                                     justifyContent="center"
-                                    transition="background 0.3s ease"
+                                    className="transition-all hover:scale-105 hover:text-Brown"
                                     key={social.to}
                                 >
                                     {social.icon}

@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/media-has-caption */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Flex, Box, VStack } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { fetchSinglePost } from '@/service/ghostAPI';
@@ -18,8 +18,16 @@ import ErrorPage from '../ErrorPage';
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
     const { data, isLoading, error, message } = useFetch(
-        fetchSinglePost(postId!)
+        fetchSinglePost(postId!),
+        postId
     );
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }, [postId]);
 
     let post: DetailPost;
     let published_at: string;
