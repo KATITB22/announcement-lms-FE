@@ -29,3 +29,11 @@ export const trimString = (desc: string | undefined, maxLength: number) => {
         ? `${desc.substring(0, maxLength)}...`
         : desc;
 };
+
+export const getAttr = (attrArr: any) => {
+    const attrObj: any = {};
+    attrArr.forEach((element: any) => {
+        attrObj[element.name] = element.value;
+    });
+    return attrObj;
+};
