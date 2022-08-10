@@ -102,6 +102,11 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             onChange={(event: any) =>
                                 setSearchValue(event.target.value)
                             }
+                            onKeyUp={(event: React.KeyboardEvent) => {
+                                if (!searchValue) return;
+                                if (event.key !== 'Enter') return;
+                                navigate(`/search?q=${searchValue}`);
+                            }}
                             outline="none"
                             className="text-DarkerOrange"
                             _hover={{ border: '1px solid #D27C2F' }}
