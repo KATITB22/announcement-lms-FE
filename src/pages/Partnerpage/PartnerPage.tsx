@@ -134,7 +134,7 @@ const PartnerPage: React.FC<{}> = () => (
                 </div>
             </div>
             <div className="sponsor-medpar ml-8 md:mb-8 mr-8">
-                <p className="text-h3 font-Heading font-bold mb-2 text-center">
+                <p className="text-4xl md:text-h3 font-Heading font-bold mb-2 text-center">
                     {PARTNER_TITLE}
                 </p>
                 <div className="sponsor py-10">
