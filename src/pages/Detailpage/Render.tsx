@@ -8,6 +8,7 @@ import Carousel from '@/components/Carousel';
 import DownloadLogo from '@styles/images/icon-download-file.png';
 import { ElementExtended, figureAttr } from '@/types/interface';
 import { formatUrl, trimString, getAttr } from '@/util/util';
+import { parse } from 'parse5';
 
 const Render = {
     p: (id: number, node: ElementExtended) => {
@@ -404,6 +405,16 @@ const renderText = (
             {node.childNodes[0].value}
         </a>
     );
+};
+
+export const renderCaption = (rawCaption: string): JSX.Element[] => {
+    // @ts-ignore: childNodes is undetected as ElementExtended property
+    const parsed = parse(rawCaption).childNodes[0].childNodes[1].childNodes;
+    const textComponents: JSX.Element[] = [];
+    parsed.forEach((innerNode: ElementExtended) => {
+        textComponents.push(renderText(innerNode, 0));
+    });
+    return textComponents;
 };
 
 export default Render;

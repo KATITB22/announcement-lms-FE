@@ -14,6 +14,7 @@ import { ErrorTypes } from '@/types/enum';
 import RelatedPosts from './RelatedPosts';
 import { LoadingSpecific } from '../Loading';
 import ErrorPage from '../ErrorPage';
+import { renderCaption } from './Render';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
@@ -114,20 +115,20 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     className="bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]"
                 >
                     {post!.feature_image ? (
-                        <figure className="w-full grid place-items-center">
+                        <figure className="w-full flex flex-col items-center">
                             <img
-                                className="w-full"
+                                className="w-full max-h-[500px] object-cover"
                                 src={post!.feature_image}
                                 alt={post!.feature_image_alt!}
                             />
                             {post!.feature_image_caption && (
-                                <figcaption className="font-Caption text-[13px] md:text-caption">
-                                    {post!.feature_image_caption}
+                                <figcaption className="font-Caption text-[13px] md:text-caption w-full">
+                                    {renderCaption(post!.feature_image_caption)}
                                 </figcaption>
                             )}
                         </figure>
                     ) : (
-                        <Box className="w-full grid place-items-center">
+                        <Box className="w-full flex flex-col items-center">
                             <img
                                 className="w-full"
                                 src={DefaultImage}
