@@ -57,7 +57,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                     size === 'sm' ? 'text-caption' : 'text-body'
                                 } font-normal mb-2`}
                             >
-                                {formattedDate} | Posted by {authorName}
+                                {formattedDate} | {authorName}
                             </p>
                             <span
                                 // href={link}

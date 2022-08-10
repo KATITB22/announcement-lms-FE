@@ -37,7 +37,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     }
 
     if (error) {
-        if (message === 'Validation error, cannot read post.') {
+        if (message === 'Resource not found error, cannot read post.') {
             return (
                 <ErrorPage message={message} type={ErrorTypes.PostNotFound} />
             );
@@ -95,20 +95,17 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 </Box>
 
                 {post!.primary_author && (
-                    <Box fontFamily="Alegreya Semibold">
-                        Author: {post!.primary_author.name}
+                    <Box
+                        fontFamily="Alegreya Semibold"
+                        fontSize={{
+                            base: '12px',
+                            md: '18px',
+                        }}
+                    >
+                        Author: {post!.primary_author.name} | {published_at!}
                     </Box>
                 )}
 
-                <Box
-                    fontFamily="Alegreya Semibold"
-                    fontSize={{
-                        base: '12px',
-                        md: '18px',
-                    }}
-                >
-                    {published_at!}
-                </Box>
                 <VStack
                     spacing={{
                         base: '12px',
