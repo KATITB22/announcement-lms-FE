@@ -15,7 +15,7 @@ const About: React.FC<{}> = () => {
                 <AboutDetail toggle={toggle} />
             ) : (
                 <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown">
-                    <div className="container max-w-screen-lg h-content mx-auto px-[3.75rem]">
+                    <div className="container max-w-screen-lg min-min-h-content mx-auto px-[3.75rem]">
                         <p className="font-Heading text-[24px] text-center pt-16 pb-16">
                             {ABOUT_US_TITLE}
                         </p>

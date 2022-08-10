@@ -20,6 +20,7 @@ import { AiFillHome, AiFillTag } from 'react-icons/ai';
 import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
 // import Logo from '@/assets/images/oskm-logo.svg';
+import Logo from '@/assets/images/logo-sementara.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { LAYOUT_TITLE } from '@/types/constant';
 import { BaseProps } from '../types/interface';
@@ -77,7 +78,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         <Flex alignItems="center" gap="2">
                             <Avatar
                                 size="md"
-                                // src={Logo}
+                                src={Logo}
                                 // bg="transparent"
                                 className="transition-all hover:scale-105"
                             />
@@ -193,7 +194,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             >
                                 <Avatar
                                     size="md"
-                                    // src={Logo}
+                                    src={Logo}
                                     // bg="transparent"
                                     className="transition-all hover:scale-105"
                                 />

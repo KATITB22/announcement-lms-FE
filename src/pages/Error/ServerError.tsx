@@ -5,7 +5,7 @@ import Vistock from '@/assets/images/server-error.svg';
 
 const ServerError: React.FC<{}> = () => (
     <Animate>
-        <div className="relative h-content flex items-center justify-center flex-col text-center bg-gradient-to-b from-Orange to-LightOrange z-10">
+        <div className="relative min-h-content flex items-center justify-center flex-col text-center bg-gradient-to-b from-Orange to-LightOrange z-10">
             <img
                 src={Vistock}
                 alt="Server Error"

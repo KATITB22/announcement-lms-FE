@@ -69,7 +69,7 @@ const Searchpage: React.FC<{}> = () => {
         }
 
         return (
-            <div className="container max-w-screen-xl mx-auto px-[3.75rem] grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 h-content">
+            <div className="container max-w-screen-xl mx-auto py-6 px-[3.75rem] grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 min-h-content">
                 <div className="col-span-1 mx-auto">
                     <FilterAndCategory
                         item={result}
@@ -111,7 +111,7 @@ const Searchpage: React.FC<{}> = () => {
     };
 
     return (
-        <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0]">
+        <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] min-h-content">
             {renderResult(result)}
         </div>
     );
