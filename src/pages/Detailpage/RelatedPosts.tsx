@@ -8,9 +8,9 @@ const RelatedPosts = ({ posts }: { posts: Posts }) => {
     }
     return (
         <div>
-            <p className="text-xl md:text-2xl mt-8 mb-4">Related Posts:</p>
+            <p className="text-2xl md:text-2xl mt-8 mb-4">Related Posts:</p>
             <div className="flex justify-center">
-                <div className="grid place-items-stretch grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid mx-8 sm:mx-0 place-items-stretch grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {posts.map((item) => (
                         <BlogPost
                             key={item.slug}

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
-import { MAX_DESCRIPTION } from '@/types/constant';
+import { MAX_DESCRIPTION, MAX_DESCRIPTION_RELATED } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
@@ -20,6 +20,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
     const formattedDate = formatDate(date!);
     const formattedUrl = formatUrl(feature_image!);
     const trimmedText = trimString(description, MAX_DESCRIPTION);
+    const trimmedRelatedText = trimString(description, MAX_DESCRIPTION_RELATED);
     const authorName = primary_author?.name;
     return (
         <Link to={`/post/${slug}`}>
@@ -39,14 +40,17 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     ${size === 'sm' ? '' : 'md:max-w-md'}
                     `}
             >
-                <img
-                    alt={title}
-                    src={formattedUrl}
-                    className="max-h-40 w-full object-cover rounded-t-lg"
-                />
+                {size === 'sm' ? null : (
+                    <img
+                        alt={title}
+                        src={formattedUrl}
+                        className="max-h-40 w-full object-cover rounded-t-lg"
+                    />
+                )}
+
                 <div
                     className={`bg-white w-full h-full p-3 ${
-                        size === 'sm' ? '' : 'md:p-4'
+                        size === 'sm' ? 'rounded-lg' : 'md:p-4'
                     } rounded-br-lg rounded-bl-lg`}
                 >
                     <div className="flex flex-col justify-between h-full">
@@ -54,7 +58,9 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                         <div>
                             <p
                                 className={`font-Body text-caption ${
-                                    size === 'sm' ? '' : 'md:text-caption'
+                                    size === 'sm'
+                                        ? 'text-sm'
+                                        : 'md:text-caption'
                                 } font-normal mb-1 md:mb-0`}
                             >
                                 {formattedDate} | {authorName}
@@ -70,9 +76,11 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                             <p
                                 className={`font-Body text-caption  ${
                                     size === 'sm' ? '' : 'md:text-body'
-                                } font-normal md:mb-2`}
+                                } font-normal md:mb-1`}
                             >
-                                {trimmedText}
+                                {size === 'sm'
+                                    ? trimmedRelatedText
+                                    : trimmedText}
                             </p>
                         </div>
                         {/* tags  */}
@@ -85,7 +93,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                             href={tag.url}
                                             className={`rounded bg-Orange text-white hover:text-black py-1 px-2 text-sm ${
                                                 size === 'sm'
-                                                    ? '-mt-3'
+                                                    ? ''
                                                     : 'md:text-caption'
                                             }`}
                                             key={tag.slug}

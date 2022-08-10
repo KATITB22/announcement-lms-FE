@@ -15,6 +15,7 @@ export const MONTHS = [
 ];
 
 export const MAX_DESCRIPTION = 150;
+export const MAX_DESCRIPTION_RELATED = 100;
 export const MAX_POST = 5;
 export const PAGINATION_PER_PAGE = 5;
 export const PAGE_TITLE = '\uE000nno\uE070nce\uE063ent';
