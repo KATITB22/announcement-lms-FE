@@ -40,7 +40,7 @@ export interface ListPostProps {
 
 export interface PaginationProps extends Omit<BaseProps, 'children'> {
     pagination: Pagination;
-    currentPage: number;
+    page: number;
     setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 

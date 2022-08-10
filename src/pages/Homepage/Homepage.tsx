@@ -53,7 +53,7 @@ const Homepage: React.FC<{}> = () => {
                     <div className="my-4">
                         <Pagination
                             pagination={posts.meta.pagination}
-                            currentPage={page}
+                            page={page}
                             setPage={setPage}
                         />
                     </div>
