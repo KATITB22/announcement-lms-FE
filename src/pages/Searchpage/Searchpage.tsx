@@ -81,7 +81,7 @@ const Searchpage: React.FC<{}> = () => {
                     <div className="my-4">
                         <Pagination
                             pagination={pagination}
-                            currentPage={page}
+                            page={page}
                             setPage={setPage}
                         />
                     </div>
