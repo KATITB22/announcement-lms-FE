@@ -34,11 +34,11 @@ export const fetchAllPost = async () => {
     }
 };
 
-export const fetchSinglePost = async (postId: string) => {
+export const fetchSinglePost = async (slug: string) => {
     let data;
     try {
         const detailPost: DetailPost = await GhostAPI.posts.read(
-            { id: postId },
+            { slug },
             { include: ['tags', 'authors'] }
         );
         let relatedPosts = null;

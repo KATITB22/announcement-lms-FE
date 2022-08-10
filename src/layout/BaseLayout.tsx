@@ -19,7 +19,7 @@ import React from 'react';
 import { AiFillHome, AiFillTag } from 'react-icons/ai';
 import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
-import Logo from '@/assets/images/oskm-logo.svg';
+// import Logo from '@/assets/images/oskm-logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { LAYOUT_TITLE } from '@/types/constant';
 import { BaseProps } from '../types/interface';
@@ -77,8 +77,8 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         <Flex alignItems="center" gap="2">
                             <Avatar
                                 size="md"
-                                src={Logo}
-                                bg="transparent"
+                                // src={Logo}
+                                // bg="transparent"
                                 className="transition-all hover:scale-105"
                             />
                             <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl transition-all hover:scale-105">
@@ -193,8 +193,8 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                             >
                                 <Avatar
                                     size="md"
-                                    src={Logo}
-                                    bg="transparent"
+                                    // src={Logo}
+                                    // bg="transparent"
                                     className="transition-all hover:scale-105"
                                 />
                                 <h1 className="font-Heading pt-3px text-2xl transition-all hover:scale-105">

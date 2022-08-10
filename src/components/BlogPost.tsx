@@ -7,7 +7,6 @@ import { BlogPost as BlogPostCard } from '@/types/interface';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
     const {
-        id,
         title,
         primary_author,
         excerpt: description,
@@ -16,13 +15,14 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
         tags,
         published_at: date,
         size,
+        slug,
     } = props;
     const formattedDate = formatDate(date!);
     const formattedUrl = formatUrl(feature_image!);
     const trimmedText = trimString(description, MAX_DESCRIPTION);
     const authorName = primary_author?.name;
     return (
-        <Link to={`/post/${id}`}>
+        <Link to={`/post/${slug}`}>
             <div
                 className={`shadow-lg
                     transition
