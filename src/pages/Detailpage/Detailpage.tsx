@@ -130,7 +130,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     ) : (
                         <Box className="w-full flex flex-col items-center">
                             <img
-                                className="w-full"
+                                className="w-full max-h-[500px]"
                                 src={DefaultImage}
                                 alt="default-img"
                             />
