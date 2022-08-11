@@ -130,7 +130,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     ) : (
                         <Box className="w-full flex flex-col items-center">
                             <img
-                                className="w-full"
+                                className="w-full max-h-[500px] object-cover"
                                 src={DefaultImage}
                                 alt="default-img"
                             />
@@ -139,7 +139,9 @@ const Detailpage: React.FC<DetailpageProps> = () => {
 
                     {renderHTMLContent(post!)}
                 </VStack>
+                {/* <Flex justifyContent="center"> */}
                 <RelatedPosts posts={data.relatedPosts} />
+                {/* </Flex> */}
             </Flex>
             <Flex width="15%" />
         </Flex>

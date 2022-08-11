@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
-import { MAX_DESCRIPTION } from '@/types/constant';
+import { MAX_DESCRIPTION, MAX_DESCRIPTION_RELATED } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
@@ -20,6 +20,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
     const formattedDate = formatDate(date!);
     const formattedUrl = formatUrl(feature_image!);
     const trimmedText = trimString(description, MAX_DESCRIPTION);
+    const trimmedRelatedText = trimString(description, MAX_DESCRIPTION_RELATED);
     const authorName = primary_author?.name;
     return (
         <div
@@ -35,7 +36,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     w-full
                     h-full
                     max-w-xs
-                    ${size === 'sm' ? 'md:max-w-xs ' : 'md:max-w-md'}
+                    ${size === 'sm' ? '' : 'md:max-w-md'}
                     `}
         >
             <img
@@ -54,26 +55,30 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     <Link to={`/post/${slug}`}>
                         <div>
                             <p
-                                className={`font-Body ${
-                                    size === 'sm' ? 'text-caption' : 'text-body'
-                                } font-normal mb-2`}
+                                className={`font-Body text-caption ${
+                                    size === 'sm'
+                                        ? 'text-sm'
+                                        : 'md:text-caption'
+                                } font-normal mb-1 md:mb-0`}
                             >
                                 {formattedDate} | {authorName}
                             </p>
                             <span
                                 // href={link}
-                                className={`font-Heading ${
-                                    size === 'sm' ? 'text-bo' : 'text-title'
+                                className={`font-Heading text-body ${
+                                    size === 'sm' ? '' : 'md:text-title'
                                 } font-semibold`}
                             >
                                 {title}
                             </span>
                             <p
-                                className={`font-Body  ${
-                                    size === 'sm' ? 'text-caption' : 'text-body'
-                                } font-normal mb-3`}
+                                className={`font-Body text-caption  ${
+                                    size === 'sm' ? '' : 'md:text-body'
+                                } font-normal md:mb-1`}
                             >
-                                {trimmedText}
+                                {size === 'sm'
+                                    ? trimmedRelatedText
+                                    : trimmedText}
                             </p>
                         </div>
                     </Link>
