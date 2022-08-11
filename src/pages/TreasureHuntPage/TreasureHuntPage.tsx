@@ -1,23 +1,17 @@
 import Rumpun from '@/components/Rumpun';
 
 const mockData = [
-    { name: 'BSO',
-      pageLink: '/treasure/1'
+    { name: 'BSO'
     },
-    { name: 'Agama',
-      pageLink: '/treasure/2'
+    { name: 'Agama'
     },
-    { name: 'Budaya',
-      pageLink: '/treasure/3'
+    { name: 'Budaya'
     },
-    { name: 'Olahraga',
-      pageLink: '/treasure/4'
+    { name: 'Olahraga'
     },
-    { name: 'Seni',
-      pageLink: '/treasure/5'
+    { name: 'Seni'
     },
-    { name: 'P/M/K',
-      pageLink: '/treasure/6'
+    { name: 'P/M/K'
     },
 ];
 
@@ -36,7 +30,6 @@ const TreasureHuntPage = () => {
                             key={rumpun.name}
                             id={index}
                             name={rumpun.name}
-                            pageLink={rumpun.pageLink}
                         />
                     ))}
                 </div>

@@ -69,15 +69,15 @@ export interface FetchingState {
 export interface RumpunProps {
     id: number;
     name: string;
-    pageLink: string;
 }
 
 export interface UnitProps{
+    id: number;
     name: string;
-    page_link: string;
 }
 
-export interface UnitListProps {
+export interface TreasureHuntPageProps extends UnitProps {
+    unit: UnitProps;
     name: string;
 }
 
