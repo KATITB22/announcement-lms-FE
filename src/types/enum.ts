@@ -18,3 +18,7 @@ export enum ErrorTypes {
     SearchNotFound = 3,
     ServerError = 4,
 }
+
+export enum breakPointSize {
+    md = 768,
+}

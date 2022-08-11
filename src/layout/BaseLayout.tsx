@@ -18,8 +18,10 @@ import React from 'react';
 import { AiFillHome, AiFillTag } from 'react-icons/ai';
 import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
+import Logo from '@/assets/images/logo/logo.png';
 import LogoTextRight from '@/assets/images/logo/logo-oskm-itb.png';
 import { Link, useNavigate } from 'react-router-dom';
+import { breakPointSize } from '@/types/enum';
 import { BaseProps } from '../types/interface';
 import { Animate } from './Animate';
 
@@ -61,6 +63,13 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [searchValue, setSearchValue] = React.useState('');
     const navigate = useNavigate();
+
+    let defaultLogo = LogoTextRight;
+    const { width } = window.screen;
+    if (width < breakPointSize.md) {
+        defaultLogo = Logo;
+    }
+
     return (
         <Animate>
             <Box className="bg-Yellow px-4 text-DarkerOrange">
@@ -72,7 +81,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     className="mx-auto"
                 >
                     <Link className="h-full min-w-max flex items-center" to="/">
-                        <img className="h-[90%]" src={LogoTextRight} alt="" />
+                        <img className="h-[90%]" src={defaultLogo} alt="" />
                     </Link>
                     <InputGroup
                         minWidth="150px"
