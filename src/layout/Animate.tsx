@@ -12,14 +12,4 @@ const Animate: React.FC<BaseProps> = ({ children }) => (
     </motion.div>
 );
 
-const AnimateLoading: React.FC<BaseProps> = ({ children }) => (
-    <motion.div
-        animate={{
-            opacity: [1, 0.75, 0.5, 0.25, 0],
-        }}
-    >
-        {children}
-    </motion.div>
-);
-
-export { Animate, AnimateLoading };
+export { Animate };

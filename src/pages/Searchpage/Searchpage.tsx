@@ -12,7 +12,7 @@ import Pagination from '@/components/Pagination';
 import BlogPost from '@/components/BlogPost';
 import FilterAndCategory from '@/components/FilterAndCategory';
 import { ErrorTypes } from '@/types/enum';
-import { LoadingSpecific } from '../Loading';
+import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 
 const Searchpage: React.FC<{}> = () => {
@@ -64,7 +64,7 @@ const Searchpage: React.FC<{}> = () => {
     }, [page, result]);
 
     if (isLoading) {
-        return <LoadingSpecific />;
+        return <Loading />;
     }
 
     if (error) {
