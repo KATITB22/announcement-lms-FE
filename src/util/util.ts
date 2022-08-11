@@ -1,5 +1,5 @@
 import env from '@/env';
-import Logo from '@/assets/images/logo/logo.png';
+import DefaultImage from '@/assets/images/logo/logo.png';
 
 const BASE_URL = `${env.VITE_GHOST_API_URL}/ghost/api/content`;
 
@@ -7,7 +7,7 @@ export const formatDate = (date: string | undefined) =>
     new Date(Date.parse(date!)).toLocaleString();
 
 export const formatUrl = (url: string | null) => {
-    if (!url) return Logo;
+    if (!url) return DefaultImage;
     return url;
 };
 

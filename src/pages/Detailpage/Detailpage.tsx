@@ -11,6 +11,7 @@ import DefaultImage from '@/assets/images/logo/logo.png';
 import { DetailPost, DetailpageProps } from '@/types/interface';
 import useFetch from '@/hooks/useFetch';
 import { ErrorTypes } from '@/types/enum';
+import { formatUrl } from '@/util/util';
 import RelatedPosts from './RelatedPosts';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
@@ -22,6 +23,20 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         fetchSinglePost(postId!),
         postId
     );
+
+    const [formattedUrl, setFormattedUrl] = React.useState('');
+    const [isError, setIsError] = React.useState(false);
+
+    React.useEffect(() => {
+        if (isError) {
+            setFormattedUrl(DefaultImage);
+            setIsError(false);
+        } else {
+            const srcImage = formatUrl(post?.feature_image!);
+            setFormattedUrl(srcImage || DefaultImage);
+        }
+    }, [isError]);
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -118,8 +133,11 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         <figure className="w-full flex flex-col items-center">
                             <img
                                 className="w-full max-h-[500px] object-cover"
-                                src={post!.feature_image}
+                                src={formattedUrl}
                                 alt={post!.feature_image_alt!}
+                                onError={() => {
+                                    setIsError(true);
+                                }}
                             />
                             {post!.feature_image_caption && (
                                 <figcaption className="font-Caption text-[13px] md:text-caption w-full">
