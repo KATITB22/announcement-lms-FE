@@ -2,12 +2,13 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 // import { jsxElmt } from '@/types/types';
 // import { formatUrl, trimString } from '@/util/util';
-import { VStack, Text, Link, Center, Button } from '@chakra-ui/react';
-// import { Tweet } from 'react-twitter-widgets';
-// import Carousel from '@/components/Carousel';
+import { VStack, Text, Link, Center, Button, Flex } from '@chakra-ui/react';
+import { Tweet } from 'react-twitter-widgets';
+import Carousel from '@/components/Carousel';
 import DownloadLogo from '@styles/images/icon-download-file.png';
-import { ElementExtended } from '@/types/interface';
-import { formatUrl, trimString } from '@/util/util';
+import { ElementExtended, figureAttr } from '@/types/interface';
+import { formatUrl, trimString, getAttr } from '@/util/util';
+import { parse } from 'parse5';
 
 const Render = {
     p: (id: number, node: ElementExtended) => {
@@ -141,12 +142,22 @@ const Render = {
         }
         if (node.attrs[0].value.includes('kg-product-card')) {
             const srcImage = node.childNodes[0].childNodes[0].attrs[0].value;
-            const title =
-                node.childNodes[0].childNodes[1].childNodes[0].childNodes[0]
-                    .value;
-            const description =
-                node.childNodes[0].childNodes[2].childNodes[0].childNodes[0]
-                    .value;
+            const title = node.childNodes[0].childNodes[1].childNodes[0]
+                .childNodes[0]
+                ? renderText(
+                      node.childNodes[0].childNodes[1].childNodes[0]
+                          .childNodes[0],
+                      id,
+                      'font-Bold'
+                  )
+                : undefined;
+            const description = node.childNodes[0].childNodes[2].childNodes[0]
+                ? renderText(
+                      node.childNodes[0].childNodes[2].childNodes[0]
+                          .childNodes[0],
+                      id
+                  )
+                : undefined;
             const button = node.childNodes[0].childNodes[3]?.attrs[0].value;
             const buttonText =
                 node.childNodes[0].childNodes[3]?.childNodes[0].childNodes[0]
@@ -159,12 +170,16 @@ const Render = {
                         alt="product"
                     />
                     <div className="px-3 py-2 md:px-6 md:py-4">
-                        <div className="font-Bold text-base md:text-xl mb-2">
-                            {title}
-                        </div>
-                        <p className="text-gray-700 text-sm md:text-base">
-                            {description}
-                        </p>
+                        {title && (
+                            <div className="text-base md:text-xl mb-2">
+                                {title}
+                            </div>
+                        )}
+                        {description && (
+                            <p className="text-gray-700 text-sm md:text-base">
+                                {description}
+                            </p>
+                        )}
                     </div>
                     {button && (
                         <Center className="px-6 pt-2 pb-2">
@@ -177,8 +192,10 @@ const Render = {
             );
         }
         if (node.attrs[0].value.includes('kg-header-card')) {
-            const textHeader = node.childNodes[0].childNodes[0].value;
-            const textSubHeader = node.childNodes[1]?.childNodes[0].value;
+            const textHeader = renderText(node.childNodes[0].childNodes[0], id);
+            const textSubHeader = node.childNodes[1]
+                ? renderText(node.childNodes[1].childNodes[0], id)
+                : undefined;
             return (
                 <VStack
                     key={id}
@@ -199,94 +216,107 @@ const Render = {
 
         return <div />;
     },
-    // figure: (id: number, node: ElementExtended) => {
-    //     if (node.attrs.class.includes('kg-image-card')) {
-    //         const { src } = node.childNodes[0].attrs;
-    //         return (
-    //             <Center key={id}>
-    //                 <img src={formatUrl(src)} alt="content" width="80%" />
-    //             </Center>
-    //         );
-    //     }
-    //     if (node.attrs.class.includes('kg-video-card')) {
-    //         const pathOfThumbnails =
-    //             node.childNodes[0].childNodes[0].attrs.style.match(
-    //                 /(https?:\/\/[^\s]+)/g
-    //             );
-    //         const pathOfThumbnail = pathOfThumbnails
-    //             ? pathOfThumbnails[0].slice(0, -2)
-    //             : '';
-    //         const { src } = node.childNodes[0].childNodes[0].attrs;
-    //         return (
-    //             <Flex key={id} alignItems="center" justifyContent="center">
-    //                 <video controls poster={pathOfThumbnail} width="80%">
-    //                     <source src={formatUrl(src)} type="video/mp4" />
-    //                 </video>
-    //             </Flex>
-    //         );
-    //     }
-    //     if (node.attrs.class.includes('kg-embed-card')) {
-    //         let attrs: Record<string, any>;
-    //         let aspectRatio = false;
-    //         if (node.childNodes[0].attrs.src) {
-    //             attrs = {
-    //                 allow: node.childNodes[0].attrs.allow,
-    //                 allowFullScreen: node.childNodes[0].attrs.allowfullscreen,
-    //                 frameBorder: node.childNodes[0].attrs.frameborder,
-    //                 src: node.childNodes[0].attrs.src,
-    //                 title: node.childNodes[0].attrs.tile,
-    //                 height: node.childNodes[0].attrs.height,
-    //                 width: node.childNodes[0].attrs.width,
-    //             };
-    //             if (node.childNodes[0].rawAttrs.includes('www.youtube.com')) {
-    //                 attrs.width = '100%';
-    //                 delete attrs?.height;
-    //                 aspectRatio = true;
-    //             }
-    //         }
-    //         if (node.childNodes[0].attrs.class === 'twitter-tweet') {
-    //             // twitter
-    //             const src = node.childNodes[0].childNodes[2].rawAttrs;
-    //             const idExp = /status\/(\d+)/g;
-    //             const regexExp = new RegExp(idExp);
-    //             const match = regexExp.exec(src);
-    //             const tweetId = match![1];
-    //             return (
-    //                 <div key={id} className="w-full">
-    //                     <Tweet
-    //                         tweetId={tweetId}
-    //                         options={{ align: 'center' }}
-    //                     />
-    //                 </div>
-    //             );
-    //         }
-    //         // youtube & spotify
-    //         return (
-    //             <div
-    //                 key={id}
-    //                 className={`w-full max-w-screen-sm flex justify-center ${
-    //                     aspectRatio ? 'aspect-video' : ''
-    //                 }`}
-    //             >
-    //                 <iframe title={attrs!.title} {...attrs!} />
-    //             </div>
-    //         );
-    //     }
-    //     if (node.attrs.class.includes('kg-gallery-card')) {
-    //         const srcItems: string[] = [];
-    //         node.childNodes[0].childNodes.forEach((innerNode) => {
-    //             innerNode.childNodes.forEach((extraInnerNode) => {
-    //                 srcItems.push(
-    //                     formatUrl(extraInnerNode.childNodes[0].attrs.src)
-    //                 );
-    //             });
-    //         });
-    //         return <Carousel key={id} items={srcItems} />;
-    //     }
-    //     return null;
-    // },
+    figure: (id: number, node: ElementExtended) => {
+        if (node.attrs[0].value.includes('kg-image-card')) {
+            const attr: figureAttr = getAttr(node.childNodes[0].attrs);
+            return (
+                <Center key={id}>
+                    <figure className="flex flex-col items-center">
+                        <img
+                            src={formatUrl(attr.src!)}
+                            alt={attr.alt}
+                            width="80%"
+                        />
+                        {node.childNodes[1]?.childNodes[0]?.parentNode
+                            ?.nodeName === 'figcaption' ? (
+                            <figcaption className="text-center text-sm md:text-base">
+                                {node.childNodes[1].childNodes[0].value}
+                            </figcaption>
+                        ) : null}
+                    </figure>
+                </Center>
+            );
+        }
+        if (node.attrs[0].value.includes('kg-video-card')) {
+            const attr: figureAttr = getAttr(
+                node.childNodes[0].childNodes[0].attrs
+            );
+            const pathOfThumbnails = attr?.style?.match(/(https?:\/\/[^\s]+)/g);
+            const pathOfThumbnail = pathOfThumbnails
+                ? pathOfThumbnails[0].slice(0, -2)
+                : '';
+            return (
+                <Flex key={id} alignItems="center" justifyContent="center">
+                    <video controls poster={pathOfThumbnail} width="80%">
+                        <source src={formatUrl(attr.src!)} type="video/mp4" />
+                    </video>
+                </Flex>
+            );
+        }
+
+        if (node.attrs[0].value.includes('kg-embed-card')) {
+            if (node.childNodes[0].attrs[0].value === 'twitter-tweet') {
+                // twitter
+                const src = node.childNodes[0].childNodes[2].attrs[0].value;
+                const idExp = /status\/(\d+)/g;
+                const regexExp = new RegExp(idExp);
+                const match = regexExp.exec(src);
+                const tweetId = match![1];
+                return (
+                    <div key={id} className="w-full">
+                        <Tweet
+                            tweetId={tweetId}
+                            options={{ align: 'center' }}
+                        />
+                    </div>
+                );
+            }
+            let attrs: Record<string, any>;
+            let aspectRatio = false;
+            const srcAttr: figureAttr = getAttr(node.childNodes[0].attrs);
+            if (node.childNodes[0].attrs) {
+                attrs = {
+                    allow: srcAttr.allow,
+                    allowFullScreen: srcAttr.allowFullScreen,
+                    frameBorder: srcAttr.frameBorder,
+                    src: srcAttr.src,
+                    title: srcAttr.title,
+                    height: srcAttr.height,
+                    width: srcAttr.width,
+                };
+                if (attrs.src.includes('www.youtube.com')) {
+                    attrs.width = '100%';
+                    delete attrs?.height;
+                    aspectRatio = true;
+                }
+            }
+            // youtube & spotify
+            return (
+                <div
+                    key={id}
+                    className={`w-full max-w-screen-sm flex justify-center ${
+                        aspectRatio ? 'aspect-video' : ''
+                    }`}
+                >
+                    <iframe title={attrs!.title} {...attrs!} />
+                </div>
+            );
+        }
+        if (node.attrs[0].value.includes('kg-gallery-card')) {
+            const srcItems: string[] = [];
+            node.childNodes[0].childNodes.forEach((innerNode) => {
+                innerNode.childNodes.forEach((extraInnerNode) => {
+                    srcItems.push(
+                        formatUrl(extraInnerNode.childNodes[0].attrs[0].value)
+                    );
+                });
+            });
+            return <Carousel key={id} items={srcItems} />;
+        }
+        return <figure />;
+    },
     blockquote: (id: number, node: ElementExtended) => {
-        const text = node.childNodes[0].childNodes[0].value;
+        const text = renderText(node.childNodes[0], id);
         return (
             <div
                 key={id}
@@ -300,7 +330,7 @@ const Render = {
         );
     },
     h2: (id: number, node: ElementExtended) => {
-        const text = node.childNodes[0].value;
+        const text = renderText(node.childNodes[0], id);
         return (
             <h1 key={id} className="text-[22px] md:text-title font-Bold w-full">
                 {text}
@@ -308,7 +338,7 @@ const Render = {
         );
     },
     h3: (id: number, node: ElementExtended) => {
-        const text = node.childNodes[0].value;
+        const text = renderText(node.childNodes[0], id);
         return (
             <h2 key={id} className="text-body md:text-[22px] font-Bold w-full">
                 {text}
@@ -317,40 +347,56 @@ const Render = {
     },
 };
 
-const renderText = (node: ElementExtended, idx: number) => {
+const renderText = (
+    node: ElementExtended,
+    idx: number,
+    optionalFont?: string
+): JSX.Element => {
+    let className: string = optionalFont || '';
+    if (className.includes('Bold') && className.includes('Italic')) {
+        className = className.replace('font-Bold', '');
+        className = className.replace('font-Italic', 'font-BoldItalic');
+    }
+
     if (node.nodeName === '#text') {
         return (
-            <span className="font-Body" key={idx}>
+            <span
+                className={className.length === 0 ? 'font-Body' : className}
+                key={idx}
+            >
                 {node.value}
             </span>
         );
     }
     if (node.nodeName === 'strong') {
-        return (
-            <span className="font-Bold" key={idx}>
-                {node.childNodes[0].value}
-            </span>
+        className += ' font-Bold';
+        return renderText(
+            node.childNodes[1] ? node.childNodes[1] : node.childNodes[0],
+            idx,
+            className
         );
     }
     if (node.nodeName === 'em') {
-        return (
-            <span className="font-Italic" key={idx}>
-                {node.childNodes[0].value}
-            </span>
+        className += ' font-Italic';
+        return renderText(
+            node.childNodes[1] ? node.childNodes[1] : node.childNodes[0],
+            idx,
+            className
         );
     }
     if (node.nodeName === 'u') {
-        return (
-            <span className="underline" key={idx}>
-                {node.childNodes[0].value}
-            </span>
+        className += ' underline';
+        return renderText(
+            node.childNodes[1] ? node.childNodes[1] : node.childNodes[0],
+            idx,
+            className
         );
     }
 
     // <a> tag
     return (
         <a
-            className="text-DarkerOrange underline"
+            className={`text-DarkerOrange underline ${className}`}
             target="_blank"
             rel="noreferrer"
             key={idx}
@@ -359,6 +405,16 @@ const renderText = (node: ElementExtended, idx: number) => {
             {node.childNodes[0].value}
         </a>
     );
+};
+
+export const renderCaption = (rawCaption: string): JSX.Element[] => {
+    // @ts-ignore: childNodes is undetected as ElementExtended property
+    const parsed = parse(rawCaption).childNodes[0].childNodes[1].childNodes;
+    const textComponents: JSX.Element[] = [];
+    parsed.forEach((innerNode: ElementExtended) => {
+        textComponents.push(renderText(innerNode, 0));
+    });
+    return textComponents;
 };
 
 export default Render;

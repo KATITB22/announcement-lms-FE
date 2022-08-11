@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/media-has-caption */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Flex, Box, VStack } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { fetchSinglePost } from '@/service/ghostAPI';
@@ -14,12 +14,21 @@ import { ErrorTypes } from '@/types/enum';
 import RelatedPosts from './RelatedPosts';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
+import { renderCaption } from './Render';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
     const { data, isLoading, error, message } = useFetch(
-        fetchSinglePost(postId!)
+        fetchSinglePost(postId!),
+        postId
     );
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }, [postId]);
 
     let post: DetailPost;
     let published_at: string;
@@ -29,7 +38,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     }
 
     if (error) {
-        if (message === 'Validation error, cannot read post.') {
+        if (message === 'Resource not found error, cannot read post.') {
             return (
                 <ErrorPage message={message} type={ErrorTypes.PostNotFound} />
             );
@@ -39,7 +48,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
 
     if (data.detailPost) {
         post = data.detailPost;
-        console.log(post);
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
             MONTHS[date.getMonth()]
@@ -88,20 +96,17 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 </Box>
 
                 {post!.primary_author && (
-                    <Box fontFamily="Alegreya Semibold">
-                        Author: {post!.primary_author.name}
+                    <Box
+                        fontFamily="Alegreya Semibold"
+                        fontSize={{
+                            base: '12px',
+                            md: '18px',
+                        }}
+                    >
+                        Author: {post!.primary_author.name} | {published_at!}
                     </Box>
                 )}
 
-                <Box
-                    fontFamily="Alegreya Semibold"
-                    fontSize={{
-                        base: '12px',
-                        md: '18px',
-                    }}
-                >
-                    {published_at!}
-                </Box>
                 <VStack
                     spacing={{
                         base: '12px',
@@ -110,22 +115,22 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     className="bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]"
                 >
                     {post!.feature_image ? (
-                        <figure className="w-full grid place-items-center">
+                        <figure className="w-full flex flex-col items-center">
                             <img
-                                className="w-full"
+                                className="w-full max-h-[500px] object-cover"
                                 src={post!.feature_image}
                                 alt={post!.feature_image_alt!}
                             />
                             {post!.feature_image_caption && (
-                                <figcaption className="font-Caption text-[13px] md:text-caption">
-                                    {post!.feature_image_caption}
+                                <figcaption className="font-Caption text-[13px] md:text-caption w-full">
+                                    {renderCaption(post!.feature_image_caption)}
                                 </figcaption>
                             )}
                         </figure>
                     ) : (
-                        <Box className="w-full grid place-items-center">
+                        <Box className="w-full flex flex-col items-center">
                             <img
-                                className="w-full"
+                                className="w-full max-h-[500px] object-cover"
                                 src={DefaultImage}
                                 alt="default-img"
                             />
@@ -134,7 +139,9 @@ const Detailpage: React.FC<DetailpageProps> = () => {
 
                     {renderHTMLContent(post!)}
                 </VStack>
+                {/* <Flex justifyContent="center"> */}
                 <RelatedPosts posts={data.relatedPosts} />
+                {/* </Flex> */}
             </Flex>
             <Flex width="15%" />
         </Flex>

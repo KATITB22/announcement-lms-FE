@@ -2,12 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
-import { MAX_DESCRIPTION } from '@/types/constant';
+import { MAX_DESCRIPTION, MAX_DESCRIPTION_RELATED } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
     const {
-        id,
         title,
         primary_author,
         excerpt: description,
@@ -16,13 +15,15 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
         tags,
         published_at: date,
         size,
+        slug,
     } = props;
     const formattedDate = formatDate(date!);
     const formattedUrl = formatUrl(feature_image!);
     const trimmedText = trimString(description, MAX_DESCRIPTION);
+    const trimmedRelatedText = trimString(description, MAX_DESCRIPTION_RELATED);
     const authorName = primary_author?.name;
     return (
-        <Link to={`/post/${id}`}>
+        <Link to={`/post/${slug}`}>
             <div
                 className={`shadow-lg
                     transition
@@ -36,57 +37,64 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     w-full
                     h-full
                     max-w-xs
-                    ${size === 'sm' ? 'md:max-w-xs ' : 'md:max-w-md'}
+                    ${size === 'sm' ? '' : 'md:max-w-md'}
                     `}
             >
-                <img
-                    alt={title}
-                    src={formattedUrl}
-                    className="max-h-40 w-full object-cover rounded-t-lg"
-                />
+                {size === 'sm' ? null : (
+                    <img
+                        alt={title}
+                        src={formattedUrl}
+                        className="max-h-40 w-full object-cover rounded-t-lg"
+                    />
+                )}
+
                 <div
-                    className={`bg-white w-full h-full ${
-                        size === 'sm' ? 'p-2' : 'p-4'
+                    className={`bg-white w-full h-full p-3 ${
+                        size === 'sm' ? 'rounded-lg' : 'md:p-4'
                     } rounded-br-lg rounded-bl-lg`}
                 >
                     <div className="flex flex-col justify-between h-full">
                         {/* title  */}
                         <div>
                             <p
-                                className={`font-Body ${
-                                    size === 'sm' ? 'text-caption' : 'text-body'
-                                } font-normal mb-2`}
+                                className={`font-Body text-caption ${
+                                    size === 'sm'
+                                        ? 'text-sm'
+                                        : 'md:text-caption'
+                                } font-normal mb-1 md:mb-0`}
                             >
-                                {formattedDate} | Posted by {authorName}
+                                {formattedDate} | {authorName}
                             </p>
                             <span
                                 // href={link}
-                                className={`font-Heading ${
-                                    size === 'sm' ? 'text-bo' : 'text-title'
+                                className={`font-Heading text-body ${
+                                    size === 'sm' ? '' : 'md:text-title'
                                 } font-semibold`}
                             >
                                 {title}
                             </span>
                             <p
-                                className={`font-Body  ${
-                                    size === 'sm' ? 'text-caption' : 'text-body'
-                                } font-normal mb-3`}
+                                className={`font-Body text-caption  ${
+                                    size === 'sm' ? '' : 'md:text-body'
+                                } font-normal md:mb-1`}
                             >
-                                {trimmedText}
+                                {size === 'sm'
+                                    ? trimmedRelatedText
+                                    : trimmedText}
                             </p>
                         </div>
                         {/* tags  */}
                         <div>
-                            {tags ? (
+                            {tags?.length !== 0 ? (
                                 <div className="flex items-center mt-2 flex-wrap gap-2">
-                                    {tags.map((tag) => (
+                                    {tags!.map((tag) => (
                                         // TODO: change # to tags link
                                         <a
                                             href={tag.url}
-                                            className={`rounded bg-Orange text-white hover:text-black  ${
+                                            className={`rounded bg-Orange text-white hover:text-black py-1 px-2 text-sm ${
                                                 size === 'sm'
-                                                    ? 'p-1 text-sm -mt-3'
-                                                    : 'p-2'
+                                                    ? ''
+                                                    : 'md:text-caption'
                                             }`}
                                             key={tag.slug}
                                         >
@@ -94,11 +102,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                         </a>
                                     ))}
                                 </div>
-                            ) : (
-                                <div className="flex items-center mt-2 bg-White">
-                                    <div className="pl-2 bg-White" />
-                                </div>
-                            )}
+                            ) : null}
                         </div>
                     </div>
                 </div>

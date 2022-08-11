@@ -50,6 +50,9 @@ module.exports = {
             height: {
                 content: 'calc(100vh - 4rem)',
             },
+            minHeight: {
+                content: 'calc(100vh - 4rem)',
+            },
         },
     },
     plugins: [],

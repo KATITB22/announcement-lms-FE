@@ -3,62 +3,81 @@ import { PaginationProps } from '@/types/interface';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { PAGINATION_PER_PAGE } from '@/types/constant';
 import { iconSize } from '@/types/enum';
+import { generateArray, setupFirstPage } from '@/util/util';
 
 const Pagination: React.FC<PaginationProps> = ({
     pagination,
-    currentPage,
+    page: currentPage,
     setPage,
 }) => {
-    const { pages: pageCount, next, prev } = pagination;
-    const isChevronLeft = currentPage !== 1;
-    const isChevronRight = currentPage !== Math.max(pageCount, 1);
-    const [listOfPages] = useState([
-        ...Array(Math.min(PAGINATION_PER_PAGE + 1, pageCount)).keys(),
-    ]);
+    const { pages: pageCount } = pagination;
+    const startPage = setupFirstPage(currentPage, PAGINATION_PER_PAGE);
+    const endPage = Math.min(startPage + PAGINATION_PER_PAGE, pageCount + 1);
+    const [listOfPages, setListOfPages] = useState<number[]>(
+        generateArray(startPage, endPage)
+    );
+
+    const isChevronLeft = startPage > 1;
+    const isChevronRight = endPage - 1 < pageCount;
+
     const displayPages = listOfPages.map((pageNumber) => {
-        const isActive = pageNumber + 1 === currentPage;
+        const isActive = pageNumber === currentPage;
         return (
             <button
                 key={`button${pageNumber}`}
                 className="mx-2"
                 onClick={() => {
-                    setPage(pageNumber + 1);
+                    setPage(pageNumber);
                 }}
                 type="button"
             >
                 <p
-                    className={`font-Subheading text-title border-black px-2 text-Yellow border-solid border-si border-2 hover:border-Yellow hover:text-black ${
+                    className={`font-Subheading text-title border-black px-2 text-Yellow border-solid border-si border-2 transition-all hover:border-Yellow hover:text-black ${
                         isActive ? 'bg-Brown text-black' : null
                     }`}
                 >
-                    {pageNumber + 1}
+                    {pageNumber}
                 </p>
             </button>
         );
     });
 
-    const renderChevron = (isChevron: boolean, isLeft: boolean) =>
-        isChevron ? (
+    return (
+        <div className="flex flex-row justify-center items-center self-center">
             <button
                 type="button"
                 onClick={() => {
-                    if (isLeft) setPage(prev!);
-                    else setPage(next!);
+                    setListOfPages(
+                        generateArray(
+                            startPage - PAGINATION_PER_PAGE,
+                            startPage
+                        )
+                    );
+                    setPage(startPage - 1);
                 }}
+                className={!isChevronLeft ? 'hidden' : undefined}
             >
-                {isLeft ? (
-                    <BsChevronLeft size={iconSize.medium} />
-                ) : (
-                    <BsChevronRight size={iconSize.medium} />
-                )}
+                <BsChevronLeft size={iconSize.medium} />
             </button>
-        ) : null;
-
-    return (
-        <div className="flex flex-row justify-center items-center self-center">
-            {renderChevron(isChevronLeft, true)}
             {displayPages}
-            {renderChevron(isChevronRight, false)}
+            <button
+                type="button"
+                onClick={() => {
+                    setListOfPages(
+                        generateArray(
+                            endPage,
+                            Math.min(
+                                endPage + PAGINATION_PER_PAGE,
+                                pageCount + 1
+                            )
+                        )
+                    );
+                    setPage(endPage);
+                }}
+                className={!isChevronRight ? 'hidden' : undefined}
+            >
+                <BsChevronRight size={iconSize.medium} />
+            </button>
         </div>
     );
 };

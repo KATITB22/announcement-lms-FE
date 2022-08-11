@@ -29,3 +29,26 @@ export const trimString = (desc: string | undefined, maxLength: number) => {
         ? `${desc.substring(0, maxLength)}...`
         : desc;
 };
+
+export const getAttr = (attrArr: any) => {
+    const attrObj: any = {};
+    attrArr.forEach((element: any) => {
+        attrObj[element.name] = element.value;
+    });
+    return attrObj;
+};
+
+export const moduloSetup = (num: number, mod: number) => {
+    if (num % mod === 0) return mod;
+    return num % mod;
+};
+
+export const setupFirstPage = (currentPage: number, pagination: number) => {
+    if (currentPage % pagination === 1) return currentPage;
+    return currentPage - moduloSetup(currentPage, pagination) + 1;
+};
+
+export const generateArray = (start: number, end: number) =>
+    [...new Array(end - start)]
+        .map((_, index) => start + index)
+        .filter((index) => index > 0);

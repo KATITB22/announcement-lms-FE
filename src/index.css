@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+::before,
+::after {
+    font-family: 'Alegreya Semibold';
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+}
+
 @font-face {
     font-family: 'Magilio';
     src: url('./fonts/Magilio.otf');
@@ -46,13 +64,4 @@
 @font-face {
     font-family: 'Alegreya Sans Bold and Italic';
     src: url('./fonts/AlegreyaSans-BoldItalic.ttf');
-}
-
-*,
-::before,
-::after {
-    font-family: 'Alegreya Semibold';
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
 }

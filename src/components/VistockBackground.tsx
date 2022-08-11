@@ -31,51 +31,69 @@ const VistockBackground: React.FC<{}> = () => {
             retval.push(
                 <div key={i} className="relative w-full overflow-y-hidden">
                     <img
+                        draggable={false}
                         className="w-full mix-blend-overlay relative"
                         src={Vistock1}
                         alt="vistock1"
                     />
                     <div className="grid grid-cols-7 w-full relative">
                         <img
+                            draggable={false}
                             className="col-start-1 col-end-2"
                             src={Vistock21}
                             alt="vistock21"
                         />
                         <img
+                            draggable={false}
                             className="col-start-2 col-end-7 mix-blend-overlay"
                             src={Vistock22}
                             alt="vistock22"
                         />
                         <img
+                            draggable={false}
                             className="col-start-7 col-end-7"
                             src={Vistock23}
                             alt="vistock23"
                         />
                     </div>
-                    <img className="w-full" src={Vistock3} alt="vistock3" />
+                    <img
+                        draggable={false}
+                        className="w-full"
+                        src={Vistock3}
+                        alt="vistock3"
+                    />
                     <div className="grid grid-cols-7 relative">
                         <img
+                            draggable={false}
                             className="col-start-1 col-end-2"
                             src={Vistock41}
                             alt="vistock41"
                         />
                         <img
+                            draggable={false}
                             className="col-start-2 col-end-7 mix-blend-overlay"
                             src={Vistock42}
                             alt="vistock42"
                         />
                         <img
+                            draggable={false}
                             className="col-start-7 col-end-7 w-full"
                             src={Vistock43}
                             alt="vistock43"
                         />
                     </div>
                     <img
+                        draggable={false}
                         className="w-full mix-blend-overlay"
                         src={Vistock5}
                         alt="vistock5"
                     />
-                    <img className="w-full" src={Vistock6} alt="vistock6" />
+                    <img
+                        draggable={false}
+                        className="w-full"
+                        src={Vistock6}
+                        alt="vistock6"
+                    />
                 </div>
             );
         }
@@ -92,51 +110,69 @@ const VistockBackground: React.FC<{}> = () => {
                 className="relative w-full overflow-y-hidden"
             >
                 <img
+                    draggable={false}
                     className="w-full mix-blend-overlay relative"
                     src={Vistock1}
                     alt="vistock1"
                 />
                 <div className="grid grid-cols-7 w-full relative">
                     <img
+                        draggable={false}
                         className="col-start-1 col-end-2"
                         src={Vistock21}
                         alt="vistock21"
                     />
                     <img
+                        draggable={false}
                         className="col-start-2 col-end-7 mix-blend-overlay"
                         src={Vistock22}
                         alt="vistock22"
                     />
                     <img
+                        draggable={false}
                         className="col-start-7 col-end-7"
                         src={Vistock23}
                         alt="vistock23"
                     />
                 </div>
-                <img className="w-full" src={Vistock3} alt="vistock3" />
+                <img
+                    draggable={false}
+                    className="w-full"
+                    src={Vistock3}
+                    alt="vistock3"
+                />
                 <div className="grid grid-cols-7 relative">
                     <img
+                        draggable={false}
                         className="col-start-1 col-end-2"
                         src={Vistock41}
                         alt="vistock41"
                     />
                     <img
+                        draggable={false}
                         className="col-start-2 col-end-7 mix-blend-overlay"
                         src={Vistock42}
                         alt="vistock42"
                     />
                     <img
+                        draggable={false}
                         className="col-start-7 col-end-7 w-full"
                         src={Vistock43}
                         alt="vistock43"
                     />
                 </div>
                 <img
+                    draggable={false}
                     className="w-full mix-blend-overlay"
                     src={Vistock5}
                     alt="vistock5"
                 />
-                <img className="w-full" src={Vistock6} alt="vistock6" />
+                <img
+                    draggable={false}
+                    className="w-full"
+                    src={Vistock6}
+                    alt="vistock6"
+                />
             </div>
             {renderedVistock}
         </div>

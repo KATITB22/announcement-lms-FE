@@ -11,7 +11,7 @@ const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
     return (
         <Link
             to={to}
-            className={`cursor-pointer no-underline ${
+            className={`cursor-pointer no-underline transition-all hover:scale-105 ${
                 isActive ? 'text-DarkestOrange' : ''
             }`}
         >

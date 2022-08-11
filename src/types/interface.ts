@@ -40,7 +40,7 @@ export interface ListPostProps {
 
 export interface PaginationProps extends Omit<BaseProps, 'children'> {
     pagination: Pagination;
-    currentPage: number;
+    page: number;
     setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -84,4 +84,23 @@ export interface PageRouting {
 export interface ErrorProps {
     message?: string;
     type: ErrorTypes;
+}
+
+export interface figureAttr {
+    alt?: string;
+    class?: string;
+    height?: string;
+    loading?: string;
+    sizes?: string;
+    src?: string | undefined;
+    srcset?: string;
+    width?: string;
+    playsinline?: string;
+    poster?: string;
+    preload?: string;
+    style?: string;
+    allow?: string;
+    allowFullScreen?: string;
+    frameBorder?: string;
+    title?: string;
 }
