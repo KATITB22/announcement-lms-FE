@@ -1,5 +1,5 @@
 import env from '@/env';
-import Logo from '@/assets/images/oskm-logo.svg';
+import Logo from '@/assets/images/logo/logo.png';
 
 const BASE_URL = `${env.VITE_GHOST_API_URL}/ghost/api/content`;
 
