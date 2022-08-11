@@ -20,7 +20,9 @@ import { AiFillHome, AiFillTag } from 'react-icons/ai';
 import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
 // import Logo from '@/assets/images/oskm-logo.svg';
-import Logo from '@/assets/images/logo-sementara.png';
+// import Logo from '@/assets/images/logo-sementara.png';
+import LogoTextRight from '@/assets/images/logo/logo-oskm-itb.png';
+import Logo from '@/assets/images/logo/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { LAYOUT_TITLE } from '@/types/constant';
 import { BaseProps } from '../types/interface';
@@ -74,18 +76,8 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     maxW="6xl"
                     className="mx-auto"
                 >
-                    <Link to="/">
-                        <Flex alignItems="center" gap="2">
-                            <Avatar
-                                size="md"
-                                src={Logo}
-                                // bg="transparent"
-                                className="transition-all hover:scale-105"
-                            />
-                            <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl transition-all hover:scale-105">
-                                {LAYOUT_TITLE}
-                            </h1>
-                        </Flex>
+                    <Link className="h-full min-w-max" to="/">
+                        <img className="h-full" src={LogoTextRight} alt="" />
                     </Link>
                     <InputGroup
                         minWidth="150px"
