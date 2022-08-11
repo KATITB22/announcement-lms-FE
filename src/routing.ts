@@ -7,7 +7,7 @@ const PartnerPage = React.lazy(() => import('./pages/Partnerpage/PartnerPage'));
 const PageNotFound = React.lazy(() => import('./pages/Error/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
 const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
-// const LoadingPage = React.lazy(() => import('./pages/Loading')); comment in jangan diapus, biarin aja biar kalo mau ubah2 gampang
+// const LoadingPage = React.lazy(() => import('./pages/Loading')); // comment in jangan diapus, biarin aja biar kalo mau ubah2 gampang
 const TreasureHuntPage = React.lazy(
     () => import('./pages/TreasureHuntPage/TreasureHuntPage')
 );
