@@ -1,8 +1,21 @@
+/* eslint-disable no-unused-vars */
 import React, { LazyExoticComponent } from 'react';
 import { Pagination, PostOrPage, PostsOrPages } from '@tryghost/content-api';
 import { Element } from 'parse5/dist/tree-adapters/default';
+import { URLSearchParamsInit } from 'react-router-dom';
 import { ErrorTypes } from './enum';
 
+interface setUseSearchParams {
+    (
+        nextInit: URLSearchParamsInit,
+        navigateOptions?:
+            | {
+                  replace?: boolean | undefined;
+                  state?: any;
+              }
+            | undefined
+    ): void;
+}
 export interface BaseProps {
     children?: React.ReactNode;
     style?: React.CSSProperties;
@@ -32,6 +45,8 @@ export interface FilterCategoryProps extends BaseProps {
     item: PostOrPage[];
     originalItem: PostOrPage[];
     setItem: React.Dispatch<React.SetStateAction<PostOrPage[]>>;
+    initParams: URLSearchParams;
+    setParams: setUseSearchParams;
 }
 
 export interface ListPostProps {

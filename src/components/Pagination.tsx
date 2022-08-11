@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PaginationProps } from '@/types/interface';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { PAGINATION_PER_PAGE } from '@/types/constant';
@@ -19,6 +19,10 @@ const Pagination: React.FC<PaginationProps> = ({
 
     const isChevronLeft = startPage > 1;
     const isChevronRight = endPage - 1 < pageCount;
+
+    useEffect(() => {
+        setListOfPages(generateArray(startPage, endPage));
+    }, [startPage, endPage]);
 
     const displayPages = listOfPages.map((pageNumber) => {
         const isActive = pageNumber === currentPage;

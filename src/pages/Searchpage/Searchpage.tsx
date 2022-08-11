@@ -2,7 +2,7 @@ import useFetch from '@/hooks/useFetch';
 import { fetchAllPost } from '@/service/ghostAPI';
 import React, { useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import {
     Pagination as PaginationType,
     PostOrPage,
@@ -18,14 +18,14 @@ import ErrorPage from '../ErrorPage';
 const Searchpage: React.FC<{}> = () => {
     const [page, setPage] = useState<number>(1);
     const { data, isLoading, error } = useFetch(fetchAllPost());
-    const { search } = useLocation();
-    const q = new URLSearchParams(search).get('q');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const q = searchParams.get('q');
     const query = q || '';
     const [result, setResult] = useState<PostOrPage[]>([]);
     const [oriResult, setOriResult] = useState<PostOrPage[]>([]);
 
     const options = {
-        keys: ['title', 'tags.name'],
+        keys: ['title'],
     };
 
     const [pagination, setPagination] = useState<PaginationType>({
@@ -38,9 +38,17 @@ const Searchpage: React.FC<{}> = () => {
     });
 
     useEffect(() => {
-        const fuse = new Fuse(data, options);
-        setResult(fuse.search<PostOrPage>(query).map((item) => item.item));
-        setOriResult(fuse.search<PostOrPage>(query).map((item) => item.item));
+        if (isLoading) return;
+        if (query) {
+            const fuse = new Fuse(data, options);
+            setResult(fuse.search<PostOrPage>(query).map((item) => item.item));
+            setOriResult(
+                fuse.search<PostOrPage>(query).map((item) => item.item)
+            );
+        } else {
+            setResult((data as Array<PostOrPage>).map((item) => item));
+            setOriResult((data as Array<PostOrPage>).map((item) => item));
+        }
     }, [data, query]);
 
     useEffect(() => {
@@ -53,7 +61,7 @@ const Searchpage: React.FC<{}> = () => {
                 page !== Math.ceil(result.length / MAX_POST) ? page + 1 : null,
             prev: page !== 1 ? page - 1 : null,
         });
-    }, [page]);
+    }, [page, result]);
 
     if (isLoading) {
         return <LoadingSpecific />;
@@ -75,6 +83,8 @@ const Searchpage: React.FC<{}> = () => {
                         item={result}
                         setItem={setResult}
                         originalItem={oriResult}
+                        initParams={searchParams}
+                        setParams={setSearchParams}
                     />
                 </div>
                 <div className="col-span-1 xl:col-span-3 lg:col-span-2">
