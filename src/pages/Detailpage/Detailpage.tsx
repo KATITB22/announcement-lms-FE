@@ -12,7 +12,7 @@ import { DetailPost, DetailpageProps } from '@/types/interface';
 import useFetch from '@/hooks/useFetch';
 import { ErrorTypes } from '@/types/enum';
 import RelatedPosts from './RelatedPosts';
-import { LoadingSpecific } from '../Loading';
+import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
@@ -25,7 +25,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
     let published_at: string;
 
     if (isLoading) {
-        return <LoadingSpecific />;
+        return <Loading />;
     }
 
     if (error) {
