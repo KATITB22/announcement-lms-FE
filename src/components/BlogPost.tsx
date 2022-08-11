@@ -22,9 +22,8 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
     const trimmedText = trimString(description, MAX_DESCRIPTION);
     const authorName = primary_author?.name;
     return (
-        <Link to={`/post/${slug}`}>
-            <div
-                className={`shadow-lg
+        <div
+            className={`shadow-lg
                     transition
                     duration-500
                     ease-in-out
@@ -38,19 +37,21 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     max-w-xs
                     ${size === 'sm' ? 'md:max-w-xs ' : 'md:max-w-md'}
                     `}
+        >
+            <img
+                alt={title}
+                src={formattedUrl}
+                className="max-h-40 w-full object-cover rounded-t-lg"
+            />
+            <div
+                className={`bg-white w-full h-full ${
+                    size === 'sm' ? 'p-2' : 'p-4'
+                } rounded-br-lg rounded-bl-lg`}
             >
-                <img
-                    alt={title}
-                    src={formattedUrl}
-                    className="max-h-40 w-full object-cover rounded-t-lg"
-                />
-                <div
-                    className={`bg-white w-full h-full ${
-                        size === 'sm' ? 'p-2' : 'p-4'
-                    } rounded-br-lg rounded-bl-lg`}
-                >
-                    <div className="flex flex-col justify-between h-full">
-                        {/* title  */}
+                <div className="flex flex-col justify-between h-full">
+                    {/* title  */}
+
+                    <Link to={`/post/${slug}`}>
                         <div>
                             <p
                                 className={`font-Body ${
@@ -75,35 +76,35 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                 {trimmedText}
                             </p>
                         </div>
-                        {/* tags  */}
-                        <div>
-                            {tags ? (
-                                <div className="flex items-center mt-2 flex-wrap gap-2">
-                                    {tags.map((tag) => (
-                                        // TODO: change # to tags link
-                                        <a
-                                            href={tag.url}
-                                            className={`rounded bg-Orange text-white hover:text-black  ${
-                                                size === 'sm'
-                                                    ? 'p-1 text-sm -mt-3'
-                                                    : 'p-2'
-                                            }`}
-                                            key={tag.slug}
-                                        >
-                                            {tag.name}
-                                        </a>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="flex items-center mt-2 bg-White">
-                                    <div className="pl-2 bg-White" />
-                                </div>
-                            )}
-                        </div>
+                    </Link>
+                    {/* tags  */}
+                    <div>
+                        {tags ? (
+                            <div className="flex items-center mt-2 flex-wrap gap-2">
+                                {tags.map((tag) => (
+                                    // TODO: change # to tags link
+                                    <a
+                                        href={`/search?tag=${tag.name}`}
+                                        className={`rounded bg-Orange text-white hover:text-black  ${
+                                            size === 'sm'
+                                                ? 'p-1 text-sm -mt-3'
+                                                : 'p-2'
+                                        }`}
+                                        key={tag.slug}
+                                    >
+                                        {tag.name}
+                                    </a>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="flex items-center mt-2 bg-White">
+                                <div className="pl-2 bg-White" />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
-        </Link>
+        </div>
     );
 };
 
