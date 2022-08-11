@@ -69,6 +69,16 @@ export interface FetchingState {
 export interface RumpunProps {
     id: number;
     name: string;
+    pageLink: string;
+}
+
+export interface UnitProps{
+    name: string;
+    page_link: string;
+}
+
+export interface UnitListProps {
+    name: string;
 }
 
 export interface Posts extends PostsOrPages {}

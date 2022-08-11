@@ -1,15 +1,27 @@
 import Rumpun from '@/components/Rumpun';
 
-const TreasureHuntPage = () => {
-    const mockData = [
-        { name: 'BSO' },
-        { name: 'Agama' },
-        { name: 'Budaya' },
-        { name: 'Olahraga' },
-        { name: 'Seni' },
-        { name: 'P/M/K' },
-    ];
+const mockData = [
+    { name: 'BSO',
+      pageLink: '/treasure/1'
+    },
+    { name: 'Agama',
+      pageLink: '/treasure/2'
+    },
+    { name: 'Budaya',
+      pageLink: '/treasure/3'
+    },
+    { name: 'Olahraga',
+      pageLink: '/treasure/4'
+    },
+    { name: 'Seni',
+      pageLink: '/treasure/5'
+    },
+    { name: 'P/M/K',
+      pageLink: '/treasure/6'
+    },
+];
 
+const TreasureHuntPage = () => {
     return (
         <div>
             <div className="py-20 bg-Yellow">
@@ -24,6 +36,7 @@ const TreasureHuntPage = () => {
                             key={rumpun.name}
                             id={index}
                             name={rumpun.name}
+                            pageLink={rumpun.pageLink}
                         />
                     ))}
                 </div>
