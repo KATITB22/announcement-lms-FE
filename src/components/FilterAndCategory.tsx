@@ -39,7 +39,6 @@ const FilterAndCategory: React.FC<FilterCategoryProps> = ({
                 (data as Array<Tag>).map((tag) => (tag.name ? tag.name : ''))
             );
         }
-        console.log(listOfCategories, checked);
     }, [data, isLoading]);
 
     useEffect(() => {

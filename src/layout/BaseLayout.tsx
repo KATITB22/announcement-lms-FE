@@ -1,7 +1,6 @@
 import { CloseIcon, HamburgerIcon, SearchIcon } from '@chakra-ui/icons';
 import {
     chakra,
-    Avatar,
     Box,
     Button,
     Container,
@@ -19,10 +18,10 @@ import React from 'react';
 import { AiFillHome, AiFillTag } from 'react-icons/ai';
 import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
-// import Logo from '@/assets/images/oskm-logo.png';
-import Logo from '@/assets/images/logo-sementara.png';
+import Logo from '@/assets/images/logo/logo.png';
+import LogoTextRight from '@/assets/images/logo/logo-oskm-itb.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { LAYOUT_TITLE } from '@/types/constant';
+import { breakPointSize } from '@/types/enum';
 import { BaseProps } from '../types/interface';
 import { Animate } from './Animate';
 
@@ -64,6 +63,13 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [searchValue, setSearchValue] = React.useState('');
     const navigate = useNavigate();
+
+    let defaultLogo = LogoTextRight;
+    const { width } = window.screen;
+    if (width < breakPointSize.md) {
+        defaultLogo = Logo;
+    }
+
     return (
         <Animate>
             <Box className="bg-Yellow px-4 text-DarkerOrange">
@@ -74,18 +80,8 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     maxW="6xl"
                     className="mx-auto"
                 >
-                    <Link to="/">
-                        <Flex alignItems="center" gap="2">
-                            <Avatar
-                                size="md"
-                                src={Logo}
-                                // bg="transparent"
-                                className="transition-all hover:scale-105"
-                            />
-                            <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl transition-all hover:scale-105">
-                                {LAYOUT_TITLE}
-                            </h1>
-                        </Flex>
+                    <Link className="h-full min-w-max flex items-center" to="/">
+                        <img className="h-[90%]" src={defaultLogo} alt="" />
                     </Link>
                     <InputGroup
                         minWidth="150px"
@@ -180,40 +176,26 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 ) : null}
             </Box>
             <Box>{children}</Box>
-            <Box className="bg-Orange text-DarkestOrange">
+            <Box h={48} className="bg-Orange text-DarkestOrange">
                 <Container
-                    as={Stack}
                     maxW="6xl"
+                    className="h-full flex flex-col md:flex-row justify-center md:justify-between items-center"
                     py={4}
-                    direction={{ base: 'column', md: 'row' }}
-                    spacing={4}
-                    justify={{ base: 'center', md: 'space-between' }}
-                    align={{ base: 'center', md: 'center' }}
                 >
-                    <Flex direction={{ base: 'column' }}>
-                        <Link to="/">
-                            <Flex
-                                alignItems="center"
-                                gap="2"
-                                flexDirection={{ base: 'column', md: 'row' }}
-                            >
-                                <Avatar
-                                    size="md"
-                                    src={Logo}
-                                    // bg="transparent"
-                                    className="transition-all hover:scale-105"
-                                />
-                                <h1 className="font-Heading pt-3px text-2xl transition-all hover:scale-105">
-                                    {LAYOUT_TITLE}
-                                </h1>
-                            </Flex>
+                    <div className="h-[80%] md:h-full flex flex-col justify-center">
+                        <Link className="h-[40%] flex justify-center" to="/">
+                            <img
+                                className="h-full"
+                                src={LogoTextRight}
+                                alt=""
+                            />
                         </Link>
-                        <Flex>
+                        <Flex className="h-[20%]">
                             <h1 className="font-Caption">
                                 &copy; DEVA 2022 - Content and Publication
                             </h1>
                         </Flex>
-                    </Flex>
+                    </div>
                     <Flex
                         flexDirection="column"
                         alignItems={{ base: 'center', md: 'flex-start' }}

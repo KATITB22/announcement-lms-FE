@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
 import { MAX_DESCRIPTION, MAX_DESCRIPTION_RELATED } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
+import DefaultImage from '@/assets/images/logo/logo.png';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
     const {
@@ -17,8 +18,21 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
         size,
         slug,
     } = props;
+
+    const [formattedUrl, setFormattedUrl] = React.useState('');
+    const [isError, setIsError] = React.useState(false);
+
+    React.useEffect(() => {
+        if (isError) {
+            setFormattedUrl(DefaultImage);
+            setIsError(false);
+        } else {
+            const srcImage = formatUrl(feature_image!);
+            setFormattedUrl(srcImage || DefaultImage);
+        }
+    }, [isError]);
+
     const formattedDate = formatDate(date!);
-    const formattedUrl = formatUrl(feature_image!);
     const trimmedText = trimString(description, MAX_DESCRIPTION);
     const trimmedRelatedText = trimString(description, MAX_DESCRIPTION_RELATED);
     const authorName = primary_author?.name;
@@ -42,6 +56,9 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
             <img
                 alt={title}
                 src={formattedUrl}
+                onError={() => {
+                    setIsError(true);
+                }}
                 className="min-h-[160px] max-h-40 w-full object-cover rounded-t-lg"
             />
             <div
