@@ -40,6 +40,8 @@ const Homepage: React.FC<{}> = () => {
         />
     ));
 
+    document.title = 'Home - OSKM ITB 2022';
+
     return (
         <PageTransition>
             <div>

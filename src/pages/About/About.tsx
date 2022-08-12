@@ -1,5 +1,5 @@
 import { ABOUT_US_TITLE } from '@/types/constant';
-import oskmLogo from '@/assets/images/oskm-logo-text.svg';
+import oskmLogo from '@/assets/images/logo/logo-oskm-itb-bawah.png';
 import { useToggle } from '@/hooks/useToggle';
 import PageTransition from '@/components/PageTransition';
 import AboutDetail from './AboutDetail';
@@ -10,6 +10,7 @@ const aboutContents: Array<string> = [
 
 const About: React.FC<{}> = () => {
     const [isOn, toggle] = useToggle();
+    document.title = 'About - OSKM ITB 2022';
     return (
         <PageTransition>
             <div>
@@ -48,7 +49,6 @@ const About: React.FC<{}> = () => {
                                     see more
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 )}
