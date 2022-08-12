@@ -62,7 +62,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                 className="min-h-[160px] max-h-40 w-full object-cover rounded-t-lg"
             />
             <div
-                className={`bg-white w-full h-full ${
+                className={`bg-white w-full h-full min-h-[12.5rem] ${
                     size === 'sm' ? 'p-2' : 'p-4'
                 } rounded-br-lg rounded-bl-lg`}
             >
