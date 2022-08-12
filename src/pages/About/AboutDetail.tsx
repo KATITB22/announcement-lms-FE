@@ -1,5 +1,5 @@
 import React from 'react';
-import oskmLogo from '@/assets/images/oskm-logo-text.svg';
+import oskmLogo from '@/assets/images/oskm-logo-text.png';
 import { AboutProps } from '@/types/interface';
 
 const aboutDetailContents: Array<string> = [

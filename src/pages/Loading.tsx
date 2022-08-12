@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import LoadingVector from '@/assets/images/loading/loading-vector.svg';
+import LoadingVector from '@/assets/images/loading/loading-vector.png';
 import LoadingMaskot from '@/assets/images/loading/loading-maskot.png';
 
 const Loading: React.FC<{}> = () => (
