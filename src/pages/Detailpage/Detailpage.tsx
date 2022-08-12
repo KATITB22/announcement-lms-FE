@@ -69,6 +69,8 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         } ${date.getFullYear()}`;
     }
 
+    document.title = `${post!.title} - OSKM ITB 2022`;
+
     return (
         <Flex
             background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)"
