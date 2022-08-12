@@ -1,5 +1,5 @@
 import React from 'react';
-import vistock from '@/assets/images/search-not-found.svg';
+import vistock from '@/assets/images/search-not-found.png';
 
 const SearchNotFound: React.FC<{}> = () => (
     <div className="relative min-h-content flex items-center justify-center flex-col text-center bg-gradient-to-b from-Orange to-LightOrange z-10">

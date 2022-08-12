@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Animate } from '@/layout/Animate';
-import vistock from '@/assets/images/page-not-found.svg';
+import vistock from '@/assets/images/page-not-found.png';
 
 const PageNotFound: React.FC<{}> = () => (
     <Animate>

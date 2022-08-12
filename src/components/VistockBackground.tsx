@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Vistock1 from '@/assets/images/background-detail-page/vistock-detail-1.svg';
-import Vistock21 from '@/assets/images/background-detail-page/vistock-detail-2-1.svg';
-import Vistock22 from '@/assets/images/background-detail-page/vistock-detail-2-2.svg';
-import Vistock23 from '@/assets/images/background-detail-page/vistock-detail-2-3.svg';
-import Vistock3 from '@/assets/images/background-detail-page/vistock-detail-3.svg';
-import Vistock41 from '@/assets/images/background-detail-page/vistock-detail-4-1.svg';
-import Vistock42 from '@/assets/images/background-detail-page/vistock-detail-4-2.svg';
-import Vistock43 from '@/assets/images/background-detail-page/vistock-detail-4-3.svg';
-import Vistock5 from '@/assets/images/background-detail-page/vistock-detail-5.svg';
-import Vistock6 from '@/assets/images/background-detail-page/vistock-detail-6.svg';
+import Vistock1 from '@/assets/images/background-detail-page/vistock-detail-1.png';
+import Vistock21 from '@/assets/images/background-detail-page/vistock-detail-2-1.png';
+import Vistock22 from '@/assets/images/background-detail-page/vistock-detail-2-2.png';
+import Vistock23 from '@/assets/images/background-detail-page/vistock-detail-2-3.png';
+import Vistock3 from '@/assets/images/background-detail-page/vistock-detail-3.png';
+import Vistock41 from '@/assets/images/background-detail-page/vistock-detail-4-1.png';
+import Vistock42 from '@/assets/images/background-detail-page/vistock-detail-4-2.png';
+import Vistock43 from '@/assets/images/background-detail-page/vistock-detail-4-3.png';
+import Vistock5 from '@/assets/images/background-detail-page/vistock-detail-5.png';
+import Vistock6 from '@/assets/images/background-detail-page/vistock-detail-6.png';
 
 const VistockBackground: React.FC<{}> = () => {
     const [countAddVistock] = useState(5);

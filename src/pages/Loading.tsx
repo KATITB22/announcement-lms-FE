@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingVector from '@/assets/images/loading/loading-vector.svg';
+import LoadingVector from '@/assets/images/loading/loading-vector.png';
 import LoadingMaskot from '@/assets/images/loading/loading-maskot.gif';
 
 const Loading: React.FC<{}> = () => (
