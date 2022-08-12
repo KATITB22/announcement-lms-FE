@@ -39,6 +39,8 @@ const Homepage: React.FC<{}> = () => {
         />
     ));
 
+    document.title = 'Home - OSKM ITB 2022';
+
     return (
         <div>
             <div className="py-20 bg-Yellow">

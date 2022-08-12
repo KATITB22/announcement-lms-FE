@@ -10,6 +10,8 @@ const TreasureHuntPage = () => {
         { name: 'P/M/K' },
     ];
 
+    document.title = 'Defile Unit - OSKM ITB 2022';
+
     return (
         <div>
             <div className="py-20 bg-Yellow">

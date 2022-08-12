@@ -71,6 +71,8 @@ const Searchpage: React.FC<{}> = () => {
         return <ErrorPage type={ErrorTypes.ServerError} />;
     }
 
+    document.title = `${query} - OSKM ITB 2022`;
+
     const renderResult = (input: PostOrPage[]) => {
         if (input.length === 0) {
             return <ErrorPage type={ErrorTypes.SearchNotFound} />;

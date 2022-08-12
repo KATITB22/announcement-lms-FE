@@ -8,6 +8,8 @@ import PostNotFound from './Error/PostNotFound';
 import SearchNotFound from './Error/SearchNotFound';
 
 const ErrorPage: React.FC<ErrorProps> = ({ type }) => {
+    document.title = 'Error - OSKM ITB 2022';
+
     if (type === ErrorTypes.EmptyPost) {
         return <EmptyPost />;
     }
