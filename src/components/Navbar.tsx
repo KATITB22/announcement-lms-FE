@@ -15,7 +15,16 @@ const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
                 isActive ? 'text-DarkestOrange' : ''
             }`}
         >
-            {children}
+            <Text
+                textUnderlineOffset={5}
+                textDecoration={isActive ? 'underline' : 'none'}
+                transition="all 0.15s ease-in-out"
+                _hover={{
+                    textDecoration: 'underline',
+                }}
+            >
+                {children}
+            </Text>
         </Link>
     );
 };
