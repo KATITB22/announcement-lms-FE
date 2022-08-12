@@ -59,7 +59,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                 onError={() => {
                     setIsError(true);
                 }}
-                className="max-h-40 w-full object-cover rounded-t-lg"
+                className="min-h-[160px] max-h-40 w-full object-cover rounded-t-lg"
             />
             <div
                 className={`bg-white w-full h-full ${
@@ -101,8 +101,8 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     </Link>
                     {/* tags  */}
                     <div>
-                        {tags ? (
-                            <div className="flex items-center mt-2 flex-wrap gap-2">
+                        {tags && tags.length > 0 ? (
+                            <div className="flex items-center mt-6 flex-wrap gap-2 gap-y-5">
                                 {tags.map((tag) => (
                                     // TODO: change # to tags link
                                     <a
