@@ -1,7 +1,6 @@
 import { CloseIcon, HamburgerIcon, SearchIcon } from '@chakra-ui/icons';
 import {
     chakra,
-    Avatar,
     Box,
     Button,
     Container,
@@ -10,7 +9,6 @@ import {
     IconButton,
     Input,
     InputGroup,
-    InputLeftElement,
     InputRightElement,
     Stack,
     Text,
@@ -20,9 +18,10 @@ import React from 'react';
 import { AiFillHome, AiFillTag } from 'react-icons/ai';
 import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
-import Logo from '@/assets/images/oskm-logo.svg';
+import Logo from '@/assets/images/logo/logo.png';
+import LogoTextRight from '@/assets/images/logo/logo-oskm-itb.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { LAYOUT_TITLE } from '@/types/constant';
+import { breakPointSize } from '@/types/enum';
 import { BaseProps } from '../types/interface';
 import { Animate } from './Animate';
 
@@ -64,6 +63,13 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [searchValue, setSearchValue] = React.useState('');
     const navigate = useNavigate();
+
+    let defaultLogo = LogoTextRight;
+    const { width } = window.screen;
+    if (width < breakPointSize.md) {
+        defaultLogo = Logo;
+    }
+
     return (
         <Animate>
             <Box className="bg-Yellow px-4 text-DarkerOrange">
@@ -71,46 +77,54 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     h={16}
                     alignItems="center"
                     justifyContent="space-between"
-                    minWidth="max-content"
+                    maxW="6xl"
+                    className="mx-auto"
                 >
-                    <Link to="/">
-                        <Flex alignItems="center" gap="2">
-                            <Avatar size="md" src={Logo} bg="transparent" />
-                            <h1 className="font-Heading m-auto pt-3px hidden md:block text-2xl">
-                                {LAYOUT_TITLE}
-                            </h1>
-                        </Flex>
+                    <Link className="h-full min-w-max flex items-center" to="/">
+                        <img className="h-[90%]" src={defaultLogo} alt="" />
                     </Link>
                     <InputGroup
                         minWidth="150px"
                         maxWidth={{ base: '3xs', md: 'xs', lg: 'sm' }}
                     >
-                        <InputLeftElement pointerEvents="none" color="white">
-                            {' '}
-                            <SearchIcon />{' '}
-                        </InputLeftElement>
                         <Input
                             bg="#FFCD90"
-                            pr="4.5rem"
-                            placeholder="Search"
+                            pr="3rem"
+                            focusBorderColor="#D27C2F"
+                            borderColor="#D27C2F"
+                            placeholder="Search post"
                             _placeholder={{ color: '#D27C2F' }}
+                            color="#511D05"
                             onChange={(event: any) =>
                                 setSearchValue(event.target.value)
                             }
+                            onKeyUp={(event: React.KeyboardEvent) => {
+                                if (!searchValue) return;
+                                if (event.key !== 'Enter') return;
+                                navigate(`/search?q=${searchValue}`);
+                            }}
+                            outline="none"
+                            className="text-DarkerOrange"
+                            _hover={{ border: '1px solid #D27C2F' }}
                         />
-                        <InputRightElement width="4.5rem">
+                        <InputRightElement width="3rem">
                             <Button
-                                bg="#D27C2F"
+                                bg="none"
                                 h="1.75rem"
                                 color="#511D05"
                                 size="sm"
                                 onClick={() => {
                                     if (!searchValue) return;
-                                    // TODO: integrate with search page
                                     navigate(`/search?q=${searchValue}`);
                                 }}
+                                transition="background transform .5s ease-out"
+                                _hover={{
+                                    background: '#D27C2F',
+                                    transform: 'scale(1.05)',
+                                }}
+                                _active={{}}
                             >
-                                Search
+                                <SearchIcon />
                             </Button>
                         </InputRightElement>
                     </InputGroup>
@@ -162,38 +176,33 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 ) : null}
             </Box>
             <Box>{children}</Box>
-            <Box className="bg-Orange text-DarkestOrange">
+            <Box h={48} className="bg-Orange text-DarkestOrange">
                 <Container
-                    as={Stack}
                     maxW="6xl"
+                    className="h-full flex flex-col md:flex-row justify-center md:justify-between items-center"
                     py={4}
-                    direction={{ base: 'column', md: 'row' }}
-                    spacing={4}
-                    justify={{ base: 'center', md: 'space-between' }}
-                    align={{ base: 'center', md: 'center' }}
                 >
-                    <Flex direction={{ base: 'column' }}>
-                        <Link to="/">
-                            <Flex
-                                alignItems="center"
-                                gap="2"
-                                flexDirection={{ base: 'column', md: 'row' }}
-                            >
-                                <Avatar size="md" src={Logo} bg="transparent" />
-                                <h1 className="font-Heading pt-3px text-2xl">
-                                    {LAYOUT_TITLE}
-                                </h1>
-                            </Flex>
+                    <div className="h-[80%] md:h-full flex flex-col justify-center">
+                        <Link className="h-[40%] flex justify-center" to="/">
+                            <img
+                                className="h-full"
+                                src={LogoTextRight}
+                                alt=""
+                            />
                         </Link>
-                        <Flex>
-                            <h1>&copy; DEVA 2022 - Content and Publication</h1>
+                        <Flex className="h-[20%]">
+                            <h1 className="font-Caption">
+                                &copy; DEVA 2022 - Content and Publication
+                            </h1>
                         </Flex>
-                    </Flex>
+                    </div>
                     <Flex
                         flexDirection="column"
                         alignItems={{ base: 'center', md: 'flex-start' }}
                     >
-                        <Text fontSize="md">Find us on</Text>
+                        <Text className="font-Caption" fontSize="md">
+                            Find us on
+                        </Text>
                         <Stack direction="row" spacing={4}>
                             {socials.map((social) => (
                                 <chakra.button
@@ -206,7 +215,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                     display="inline-flex"
                                     alignItems="center"
                                     justifyContent="center"
-                                    transition="background 0.3s ease"
+                                    className="transition-all hover:scale-105 hover:text-Brown"
                                     key={social.to}
                                 >
                                     {social.icon}

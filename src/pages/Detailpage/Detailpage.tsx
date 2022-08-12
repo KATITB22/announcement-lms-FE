@@ -1,34 +1,63 @@
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/media-has-caption */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Flex, Box, VStack } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { MONTHS } from '@/types/constant';
 import VistockBackground from '@/components/VistockBackground';
-import DefaultImage from '@/assets/images/logo-sementara.jpeg';
+import DefaultImage from '@/assets/images/logo/logo.png';
 import { DetailPost, DetailpageProps } from '@/types/interface';
 import useFetch from '@/hooks/useFetch';
 import { ErrorTypes } from '@/types/enum';
+import { formatUrl } from '@/util/util';
 import RelatedPosts from './RelatedPosts';
-import { LoadingSpecific } from '../Loading';
+import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
+import { renderCaption } from './Render';
 
 const Detailpage: React.FC<DetailpageProps> = () => {
     const { postId } = useParams();
     const { data, isLoading, error, message } = useFetch(
-        fetchSinglePost(postId!)
+        fetchSinglePost(postId!),
+        postId
     );
+
+    const [formattedUrl, setFormattedUrl] = React.useState('');
+    const [isError, setIsError] = React.useState(false);
+
+    React.useEffect(() => {
+        if (isError) {
+            setFormattedUrl(DefaultImage);
+            setIsError(false);
+        } else {
+            const srcImage = formatUrl(post?.feature_image!);
+            setFormattedUrl(srcImage || DefaultImage);
+        }
+    }, [isError]);
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }, [postId]);
 
     let post: DetailPost;
     let published_at: string;
 
     if (isLoading) {
-        return <LoadingSpecific />;
+        return <Loading />;
     }
 
     if (error) {
+        if (message === 'Resource not found error, cannot read post.') {
+            return (
+                <ErrorPage message={message} type={ErrorTypes.PostNotFound} />
+            );
+        }
         return <ErrorPage message={message} type={ErrorTypes.ServerError} />;
     }
 
@@ -74,26 +103,25 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 <Box
                     fontFamily="Magilio"
                     fontSize={{
-                        base: '20px',
-                        md: '35px',
+                        base: '2rem',
+                        md: '3rem',
                     }}
                 >
                     {post!.title}
                 </Box>
 
                 {post!.primary_author && (
-                    <Box>Author: {post!.primary_author.name}</Box>
+                    <Box
+                        fontFamily="Alegreya Semibold"
+                        fontSize={{
+                            base: '12px',
+                            md: '18px',
+                        }}
+                    >
+                        Author: {post!.primary_author.name} | {published_at!}
+                    </Box>
                 )}
 
-                <Box
-                    fontFamily="Alegreya"
-                    fontSize={{
-                        base: '12px',
-                        md: '18px',
-                    }}
-                >
-                    {published_at!}
-                </Box>
                 <VStack
                     spacing={{
                         base: '12px',
@@ -102,17 +130,25 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     className="bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]"
                 >
                     {post!.feature_image ? (
-                        <Box maxWidth="w-full grid place-items-center">
+                        <figure className="w-full flex flex-col items-center">
                             <img
-                                className="w-5/12 md:w-4/12 lg:w-3/12"
-                                src={post!.feature_image}
-                                alt="featured"
+                                className="w-full max-h-[500px] object-cover"
+                                src={formattedUrl}
+                                alt={post!.feature_image_alt!}
+                                onError={() => {
+                                    setIsError(true);
+                                }}
                             />
-                        </Box>
+                            {post!.feature_image_caption && (
+                                <figcaption className="font-Caption text-[13px] md:text-caption w-full">
+                                    {renderCaption(post!.feature_image_caption)}
+                                </figcaption>
+                            )}
+                        </figure>
                     ) : (
-                        <Box className="w-full grid place-items-center">
+                        <Box className="w-full flex flex-col items-center">
                             <img
-                                className="w-5/12 md:w-4/12 lg:w-3/12"
+                                className="w-full max-h-[500px] object-cover"
                                 src={DefaultImage}
                                 alt="default-img"
                             />
@@ -121,7 +157,9 @@ const Detailpage: React.FC<DetailpageProps> = () => {
 
                     {renderHTMLContent(post!)}
                 </VStack>
+                {/* <Flex justifyContent="center"> */}
                 <RelatedPosts posts={data.relatedPosts} />
+                {/* </Flex> */}
             </Flex>
             <Flex width="15%" />
         </Flex>

@@ -26,6 +26,21 @@ const Fonts = () => (
             font-family: 'Alegreya Sans Medium';
             src: url('./fonts/AlegreyaSans-Medium.ttf');
         }
+
+        @font-face {
+            font-family: 'Alegreya Sans Bold';
+            src: url('./fonts/AlegreyaSans-Bold.ttf');
+        }
+        
+        @font-face {
+            font-family: 'Alegreya Sans Italic';
+            src: url('./fonts/AlegreyaSans-Italic.ttf');
+        }
+        
+        @font-face {
+            font-family: 'Alegreya Sans Bold and Italic';
+            src: url('./fonts/AlegreyaSans-BoldItalic.ttf');
+        }
         `}
     />
 );

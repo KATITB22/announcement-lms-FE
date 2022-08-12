@@ -4,7 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import BaseLayout from './layout/BaseLayout';
 import { Routing } from './routing';
-import { Loading } from './pages/Loading';
+import Loading from './pages/Loading';
 
 function App() {
     return (

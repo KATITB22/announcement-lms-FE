@@ -9,7 +9,7 @@ import BlogPost from '@/components/BlogPost';
 import { ErrorTypes } from '@/types/enum';
 import PageTransition from '@/components/PageTransition';
 import { listOfMedpar, sponsorMD } from '../Partnerpage/PartnerPage';
-import { LoadingSpecific } from '../Loading';
+import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 
 const Homepage: React.FC<{}> = () => {
@@ -17,7 +17,7 @@ const Homepage: React.FC<{}> = () => {
     const { data, isLoading, error, message } = useFetch(fetchPost(page), page);
 
     if (isLoading) {
-        return <LoadingSpecific />;
+        return <Loading />;
     }
 
     if (error) {

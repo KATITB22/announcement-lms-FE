@@ -20,6 +20,7 @@ module.exports = {
                 Brown: '#66402C',
                 LightBrown: '#FFECD0',
                 MediumBrown: '#F9DCB0',
+                White: '#FFFFFF',
             },
             fontFamily: {
                 Heading: 'Magilio',
@@ -27,6 +28,9 @@ module.exports = {
                 Title: 'Alegreya Sans Medium',
                 Body: 'Alegreya Sans Regular',
                 Caption: 'Alegreya Sans Thin',
+                Bold: 'Alegreya Sans Bold',
+                Italic: 'Alegreya Sans Italic',
+                BoldItalic: 'Alegreya Sans Bold and Italic',
             },
             fontSize: {
                 h1: 96,
@@ -39,6 +43,15 @@ module.exports = {
                 overline: 14,
                 caption_smaller: 12,
                 overline_smaller: 10,
+            },
+            dropShadow: {
+                errorStyle: '-1px -2px 0px #463322',
+            },
+            height: {
+                content: 'calc(100vh - 4rem)',
+            },
+            minHeight: {
+                content: 'calc(100vh - 4rem)',
             },
         },
     },

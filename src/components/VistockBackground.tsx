@@ -1,67 +1,179 @@
-import React, { useRef, useState, useEffect } from 'react';
-import Vistock1 from '@/assets/images/vistock1.svg';
-import Vistock2 from '@/assets/images/vistock2.svg';
-import Vistock3 from '@/assets/images/vistock3.svg';
-
-const breakPointHeight = {
-    xl: 2850,
-    l: 2000,
-    m: 1500,
-    base: 750,
-};
+import React, { useState } from 'react';
+import Vistock1 from '@/assets/images/background-detail-page/vistock-detail-1.svg';
+import Vistock21 from '@/assets/images/background-detail-page/vistock-detail-2-1.svg';
+import Vistock22 from '@/assets/images/background-detail-page/vistock-detail-2-2.svg';
+import Vistock23 from '@/assets/images/background-detail-page/vistock-detail-2-3.svg';
+import Vistock3 from '@/assets/images/background-detail-page/vistock-detail-3.svg';
+import Vistock41 from '@/assets/images/background-detail-page/vistock-detail-4-1.svg';
+import Vistock42 from '@/assets/images/background-detail-page/vistock-detail-4-2.svg';
+import Vistock43 from '@/assets/images/background-detail-page/vistock-detail-4-3.svg';
+import Vistock5 from '@/assets/images/background-detail-page/vistock-detail-5.svg';
+import Vistock6 from '@/assets/images/background-detail-page/vistock-detail-6.svg';
 
 const VistockBackground: React.FC<{}> = () => {
-    const [countRender, setCountRender] = useState(0);
-    const ref: React.LegacyRef<HTMLDivElement> = useRef(null);
+    const [countAddVistock] = useState(5);
+    // const refDetailPage: React.LegacyRef<HTMLDivElement> = useRef(null);
+    // const refVistock: React.LegacyRef<HTMLDivElement> = useRef(null);
 
-    useEffect(() => {
-        const clientHeight = ref?.current?.clientHeight!;
-        const clientWidth = ref?.current?.clientWidth!;
+    // useEffect(() => {
+    //     const clientHeight = refDetailPage?.current?.clientHeight!;
+    //     // const clientWidth = refDetailPage?.current?.clientWidth!;
+    //     const vistockHeight = refVistock?.current?.clientHeight!;
+    //     // const vistockWidth = refVistock?.current?.clientWidth!;
 
-        let count: number;
-        if (clientWidth > 1280) {
-            count = clientHeight / breakPointHeight.xl;
-        } else if (clientWidth > 1024) {
-            count = clientHeight / breakPointHeight.l;
-        } else if (clientWidth > 768) {
-            count = clientHeight / breakPointHeight.m;
-        } else {
-            count = clientHeight / breakPointHeight.base;
-        }
-        setCountRender(Math.ceil(count) + 1);
-    }, []);
+    //     setCountAddVistock(clientHeight / vistockHeight);
+    // }, []);
 
     const renderedVistock = React.useMemo(() => {
         const retval: JSX.Element[] = [];
-        for (let i = 0; i < countRender; i += 1) {
+
+        for (let i = 0; i < countAddVistock; i += 1) {
             retval.push(
-                <div
-                    key={i}
-                    className="relative w-full h-[750px] md:h-[1500px] lg:h-[2000px] xl:h-[2850px]  overflow-y-hidden"
-                >
+                <div key={i} className="relative w-full overflow-y-hidden">
                     <img
-                        className="w-full h-auto mix-blend-overlay absolute top-[-20px] md:top-[-50px] lg:top-[-80px]"
+                        draggable={false}
+                        className="w-full mix-blend-overlay relative"
                         src={Vistock1}
-                        alt="vistock-1"
+                        alt="vistock1"
                     />
+                    <div className="grid grid-cols-7 w-full relative">
+                        <img
+                            draggable={false}
+                            className="col-start-1 col-end-2"
+                            src={Vistock21}
+                            alt="vistock21"
+                        />
+                        <img
+                            draggable={false}
+                            className="col-start-2 col-end-7 mix-blend-overlay"
+                            src={Vistock22}
+                            alt="vistock22"
+                        />
+                        <img
+                            draggable={false}
+                            className="col-start-7 col-end-7"
+                            src={Vistock23}
+                            alt="vistock23"
+                        />
+                    </div>
                     <img
-                        className="w-full h-auto absolute top-[150px] md:top-[300px] lg:top-[400px] xl:top-[600px] z-0"
-                        src={Vistock2}
-                        alt="vistock-2"
-                    />
-                    <img
-                        className="w-full h-auto mix-blend-overlay absolute top-[440px] md:top-[890px] lg:top-[1190px] xl:top-[1725px]"
+                        draggable={false}
+                        className="w-full"
                         src={Vistock3}
-                        alt="vistock-3"
+                        alt="vistock3"
+                    />
+                    <div className="grid grid-cols-7 relative">
+                        <img
+                            draggable={false}
+                            className="col-start-1 col-end-2"
+                            src={Vistock41}
+                            alt="vistock41"
+                        />
+                        <img
+                            draggable={false}
+                            className="col-start-2 col-end-7 mix-blend-overlay"
+                            src={Vistock42}
+                            alt="vistock42"
+                        />
+                        <img
+                            draggable={false}
+                            className="col-start-7 col-end-7 w-full"
+                            src={Vistock43}
+                            alt="vistock43"
+                        />
+                    </div>
+                    <img
+                        draggable={false}
+                        className="w-full mix-blend-overlay"
+                        src={Vistock5}
+                        alt="vistock5"
+                    />
+                    <img
+                        draggable={false}
+                        className="w-full"
+                        src={Vistock6}
+                        alt="vistock6"
                     />
                 </div>
             );
         }
         return retval;
-    }, [countRender]);
+    }, [countAddVistock]);
 
     return (
-        <div ref={ref} className="absolute w-full h-full overflow-hidden">
+        <div
+            // ref={refDetailPage}
+            className="absolute w-full h-full overflow-hidden"
+        >
+            <div
+                // ref={refVistock}
+                className="relative w-full overflow-y-hidden"
+            >
+                <img
+                    draggable={false}
+                    className="w-full mix-blend-overlay relative"
+                    src={Vistock1}
+                    alt="vistock1"
+                />
+                <div className="grid grid-cols-7 w-full relative">
+                    <img
+                        draggable={false}
+                        className="col-start-1 col-end-2"
+                        src={Vistock21}
+                        alt="vistock21"
+                    />
+                    <img
+                        draggable={false}
+                        className="col-start-2 col-end-7 mix-blend-overlay"
+                        src={Vistock22}
+                        alt="vistock22"
+                    />
+                    <img
+                        draggable={false}
+                        className="col-start-7 col-end-7"
+                        src={Vistock23}
+                        alt="vistock23"
+                    />
+                </div>
+                <img
+                    draggable={false}
+                    className="w-full"
+                    src={Vistock3}
+                    alt="vistock3"
+                />
+                <div className="grid grid-cols-7 relative">
+                    <img
+                        draggable={false}
+                        className="col-start-1 col-end-2"
+                        src={Vistock41}
+                        alt="vistock41"
+                    />
+                    <img
+                        draggable={false}
+                        className="col-start-2 col-end-7 mix-blend-overlay"
+                        src={Vistock42}
+                        alt="vistock42"
+                    />
+                    <img
+                        draggable={false}
+                        className="col-start-7 col-end-7 w-full"
+                        src={Vistock43}
+                        alt="vistock43"
+                    />
+                </div>
+                <img
+                    draggable={false}
+                    className="w-full mix-blend-overlay"
+                    src={Vistock5}
+                    alt="vistock5"
+                />
+                <img
+                    draggable={false}
+                    className="w-full"
+                    src={Vistock6}
+                    alt="vistock6"
+                />
+            </div>
             {renderedVistock}
         </div>
     );

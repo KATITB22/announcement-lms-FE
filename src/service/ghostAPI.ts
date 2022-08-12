@@ -1,7 +1,7 @@
 import { MAX_POST } from '@/types/constant';
 import { Posts, DetailPost, RelatedPosts } from '@/types/interface';
 import { getBaseUrl, getGhostKey } from '@/util/util';
-import GhostContentAPI from '@tryghost/content-api';
+import GhostContentAPI, { Tags } from '@tryghost/content-api';
 
 const GhostAPI = new GhostContentAPI({
     url: getBaseUrl(),
@@ -9,7 +9,16 @@ const GhostAPI = new GhostContentAPI({
     version: 'v5.0',
 });
 
-export const fetchPost = async (page?: number) => {
+export const fetchAllTag = async (): Promise<Tags> => {
+    try {
+        const listOfAllTags: Tags = await GhostAPI.tags.browse();
+        return listOfAllTags;
+    } catch (err: any) {
+        return err;
+    }
+};
+
+export const fetchPost = async (page?: number): Promise<Posts> => {
     try {
         const listOfAllPosts: Posts = await GhostAPI.posts.browse({
             include: ['tags', 'authors'],
@@ -34,11 +43,11 @@ export const fetchAllPost = async () => {
     }
 };
 
-export const fetchSinglePost = async (postId: string) => {
+export const fetchSinglePost = async (slug: string) => {
     let data;
     try {
         const detailPost: DetailPost = await GhostAPI.posts.read(
-            { id: postId },
+            { slug },
             { include: ['tags', 'authors'] }
         );
         let relatedPosts = null;
