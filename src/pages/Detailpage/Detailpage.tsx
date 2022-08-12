@@ -33,7 +33,9 @@ const Detailpage: React.FC<DetailpageProps> = () => {
             setIsError(false);
         } else {
             const srcImage = formatUrl(post?.feature_image!);
-            setFormattedUrl(srcImage || DefaultImage);
+            setFormattedUrl(
+                formattedUrl === DefaultImage ? DefaultImage : srcImage
+            );
         }
     }, [isError]);
 

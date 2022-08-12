@@ -28,7 +28,9 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
             setIsError(false);
         } else {
             const srcImage = formatUrl(feature_image!);
-            setFormattedUrl(srcImage || DefaultImage);
+            setFormattedUrl(
+                formattedUrl === DefaultImage ? DefaultImage : srcImage
+            );
         }
     }, [isError]);
 
