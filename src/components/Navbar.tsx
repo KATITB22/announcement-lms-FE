@@ -12,19 +12,10 @@ const Navbar: React.FC<NavBarProps> = ({ children, to }: NavBarProps) => {
         <Link
             to={to}
             className={`cursor-pointer no-underline transition-all hover:scale-105 ${
-                isActive ? 'text-DarkestOrange' : ''
-            }`}
+                isActive ? 'text-DarkestOrange underline' : ''
+            } hover:underline`}
         >
-            <Text
-                textUnderlineOffset={5}
-                textDecoration={isActive ? 'underline' : 'none'}
-                transition="all 0.15s ease-in-out"
-                _hover={{
-                    textDecoration: 'underline',
-                }}
-            >
-                {children}
-            </Text>
+            {children}
         </Link>
     );
 };
