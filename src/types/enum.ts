@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 export const typePartner = {
-    SM: '100px',
-    MD: '150px',
-    LG: '200px',
+    SM: 'sm',
+    MD: 'md',
+    LG: 'lg',
 };
 
 export enum iconSize {
