@@ -88,23 +88,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 flexDirection="column"
                 width="70%"
             >
-                <div className="font-Body text-overline md:text-body cursor-pointer">
-                    <a className="hover:underline" href="/">
-                        Home
-                    </a>
-                    {post!.primary_tag && (
-                        <span>
-                            {' '}
-                            {'>'}{' '}
-                            <a
-                                className="hover:underline"
-                                href={`/search?${post!.primary_tag.name}`}
-                            >
-                                {post!.primary_tag.name}
-                            </a>
-                        </span>
-                    )}
-                </div>
                 <Box
                     fontFamily="Magilio"
                     fontSize={{
