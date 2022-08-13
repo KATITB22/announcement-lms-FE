@@ -16,7 +16,13 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { AiFillHome, AiFillTag } from 'react-icons/ai';
-import { FaInfo, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
+import {
+    FaInfo,
+    FaTwitter,
+    FaInstagram,
+    FaYoutube,
+    FaPeopleCarry,
+} from 'react-icons/fa';
 import Navbar from '@components/Navbar';
 import Logo from '@/assets/images/logo/logo.png';
 import LogoTextRight from '@/assets/images/logo/logo-oskm-itb.png';
@@ -32,9 +38,14 @@ const links = [
         icon: <AiFillHome />,
     },
     {
-        name: 'Partner',
+        name: 'E-Catalogue',
         to: '/partner',
         icon: <AiFillTag />,
+    },
+    {
+        name: 'Defile',
+        to: '/defile',
+        icon: <FaPeopleCarry />,
     },
     {
         name: 'About',

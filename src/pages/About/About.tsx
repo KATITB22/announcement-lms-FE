@@ -2,6 +2,7 @@ import { ABOUT_US_TITLE } from '@/types/constant';
 import oskmLogo from '@/assets/images/logo/logo-oskm-itb-bawah.png';
 import { useToggle } from '@/hooks/useToggle';
 import PageTransition from '@/components/PageTransition';
+import VistockAbout from '@/components/VistockAbout';
 import AboutDetail from './AboutDetail';
 
 const aboutContents: Array<string> = [
@@ -13,6 +14,7 @@ const About: React.FC<{}> = () => {
     document.title = 'About - OSKM ITB 2022';
     return (
         <PageTransition>
+            <VistockAbout />
             <div>
                 {isOn ? (
                     <AboutDetail toggle={toggle} />

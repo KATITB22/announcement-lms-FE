@@ -45,8 +45,8 @@ export const Routing: PageRouting[] = [
         component: DetailPage,
     },
     {
-        title: 'Treasure Hunt',
-        path: '/treasure',
+        title: 'Defile Unit',
+        path: '/defile',
         component: TreasureHuntPage,
     },
     // {
