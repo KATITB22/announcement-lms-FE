@@ -20,6 +20,18 @@ body {
     scroll-behavior: smooth;
 }
 
+.about-one {
+    background: url('/src/assets/images/about/about-one.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.about-two {
+    background: url('/src/assets/images/about/about-two.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 @font-face {
     font-family: 'Magilio';
     src: url('./fonts/Magilio.otf');
