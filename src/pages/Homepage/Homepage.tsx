@@ -68,7 +68,7 @@ const Homepage: React.FC<{}> = () => {
                     />
                 </div>
                 {/* <Annoucement /> */}
-                <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] min-h-screen relative z-10">
+                <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown min-h-screen relative z-10">
                     <VistockHome />
                     <div className="py-10">
                         <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">

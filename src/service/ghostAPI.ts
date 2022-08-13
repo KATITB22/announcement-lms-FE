@@ -32,7 +32,7 @@ export const fetchPost = async (page?: number): Promise<Posts> => {
     }
 };
 
-export const fetchAllPost = async () => {
+export const fetchAllPost = async (): Promise<Posts> => {
     try {
         const listAllPosts: Posts = await GhostAPI.posts.browse({
             limit: 'all',
