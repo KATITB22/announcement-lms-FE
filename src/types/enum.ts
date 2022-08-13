@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-export const typePartner = {
-    SM: 'sm',
-    MD: 'md',
-    LG: 'lg',
-};
+export enum typePartner {
+    SM = 'sm',
+    MD = 'md',
+    LG = 'lg',
+}
 
 export enum iconSize {
     small = 12,
