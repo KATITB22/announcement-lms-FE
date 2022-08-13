@@ -3,17 +3,22 @@ import { fetchPost } from '@/service/ghostAPI';
 import useFetch from '@/hooks/useFetch';
 import { Posts } from '@/types/interface';
 import Pagination from '@/components/Pagination';
-import { PAGE_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
+import { SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import BlogPost from '@/components/BlogPost';
 import { ErrorTypes } from '@/types/enum';
 import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import VistockHome from '@/components/VistockHome';
-import { medparLG, medparMD } from '../Partnerpage/PartnersList';
+import VistockAnnoucement from '@/assets/images/home/annoucement-min.png';
+import { medparLG, medparMD } from '@/pages/Partnerpage/PartnersList';
 
+import {
+    sponsorLG,
+    sponsorMD,
+    sponsorSM,
+} from '@/pages/Partnerpage/SponsorsList';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
-import { sponsorLG, sponsorMD, sponsorSM } from '../Partnerpage/SponsorsList';
 
 const Homepage: React.FC<{}> = () => {
     const [page, setPage] = useState<number>(1);
@@ -48,13 +53,21 @@ const Homepage: React.FC<{}> = () => {
     return (
         <PageTransition>
             <div>
-                <div className="py-10 bg-Yellow">
+                {/* <div className="py-10 bg-Yellow">
                     <div className="container mx-auto px-6">
                         <h1 className="text-4xl font-Heading font-bold mb-2 text-center">
                             {PAGE_TITLE}
                         </h1>
                     </div>
+                </div> */}
+                <div className="bg-[#FF8952] z-[-1]">
+                    <img
+                        src={VistockAnnoucement}
+                        alt="annoucement"
+                        className="w-screen"
+                    />
                 </div>
+                {/* <Annoucement /> */}
                 <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] min-h-screen relative z-10">
                     <VistockHome />
                     <div className="py-10">
