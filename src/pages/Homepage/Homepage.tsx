@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { fetchPost } from '@/service/ghostAPI';
 import useFetch from '@/hooks/useFetch';
-import { imgPartner } from '@/types/types';
 import { Posts } from '@/types/interface';
 import Pagination from '@/components/Pagination';
 import { PAGE_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import BlogPost from '@/components/BlogPost';
 import { ErrorTypes } from '@/types/enum';
 import PageTransition from '@/components/PageTransition';
-import { listOfMedpar, sponsorMD } from '../Partnerpage/PartnerPage';
+import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
+import { medparLG, medparMD } from '../Partnerpage/PartnersList';
+
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
+import { sponsorLG, sponsorMD, sponsorSM } from '../Partnerpage/SponsorsList';
 
 const Homepage: React.FC<{}> = () => {
     const [page, setPage] = useState<number>(1);
@@ -66,43 +68,30 @@ const Homepage: React.FC<{}> = () => {
                                 {blogPostElements}
                             </div>
                         </div>
-                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center">
+                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex flex-col justify-center">
                             <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
                                 {SPONSOR_TITLE}
                             </h2>
-                            <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                                {sponsorMD.map((image: imgPartner) => (
-                                    <a
-                                        href={image.link}
-                                        key={`${image.link} ${image.imageUrl}`}
-                                    >
-                                        <img
-                                            alt={image.title}
-                                            src={image.imageUrl}
-                                            className={`w-[${image.type}] h-[${image.type}] object-cover`}
-                                        />
-                                    </a>
-                                ))}
-                            </div>
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={sponsorLG}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={sponsorMD}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={sponsorSM}
+                            />
                         </div>
-                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center">
+                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center flex-col">
                             <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
                                 {MEDPAR_TITLE}
                             </h2>
-                            <div className="grid justify-items-center gap-4 p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                                {listOfMedpar.map((image: imgPartner) => (
-                                    <a
-                                        href={image.link}
-                                        key={`${image.link} ${image.imageUrl}`}
-                                    >
-                                        <img
-                                            alt={image.title}
-                                            src={image.imageUrl}
-                                            className={`w-[${image.type}] h-[${image.type}] object-cover`}
-                                        />
-                                    </a>
-                                ))}
-                            </div>
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={medparLG}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={medparMD}
+                            />
                         </div>
                     </div>
                 </div>
