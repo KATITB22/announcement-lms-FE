@@ -1,9 +1,17 @@
 import React from 'react';
-import { imgPartner } from '@/types/types';
 import { PARTNER_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import PageTransition from '@/components/PageTransition';
+import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import { sponsorLG, sponsorMD, sponsorSM } from './SponsorsList';
 import listOfMedpar from './PartnersList';
+
+const SponsorSectionTitle = ({ title }: { title: string }) => (
+    <div className="flex relative h-[36px] justify-center">
+        <div className="font-Heading text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
+            {title}
+        </div>
+    </div>
+);
 
 const PartnerPage: React.FC<{}> = () => {
     document.title = 'Sponsor - OSKM ITB 2022';
@@ -34,64 +42,26 @@ const PartnerPage: React.FC<{}> = () => {
                             {PARTNER_TITLE}
                         </p>
                         <div className="sponsor py-10">
-                            <div className="flex relative h-[36px] justify-center">
-                                <div className="font-Heading text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
-                                    {SPONSOR_TITLE}
-                                </div>
-                            </div>
+                            <SponsorSectionTitle title={SPONSOR_TITLE} />
                             <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center flex-col items-center rounded-md gap-5">
-                                <div className="image flex flex-wrap place-content-center gap-3">
-                                    {sponsorLG.map((image: imgPartner) => (
-                                        <a href={image.link}>
-                                            <img
-                                                alt={image.title}
-                                                src={image.imageUrl}
-                                                className={`w-[${image.type}] h-[${image.type}] object-cover`}
-                                            />
-                                        </a>
-                                    ))}
-                                </div>
-                                <div className="image flex flex-wrap place-content-center gap-3">
-                                    {sponsorMD.map((image: imgPartner) => (
-                                        <a href={image.link}>
-                                            <img
-                                                alt={image.title}
-                                                src={image.imageUrl}
-                                                className={`w-[${image.type}] h-[${image.type}] object-cover`}
-                                            />
-                                        </a>
-                                    ))}
-                                </div>
-                                <div className="image flex flex-wrap place-content-center gap-3">
-                                    {sponsorSM.map((image: imgPartner) => (
-                                        <a href={image.link}>
-                                            <img
-                                                alt={image.title}
-                                                src={image.imageUrl}
-                                                className={`w-[${image.type}] h-[${image.type}] object-cover`}
-                                            />
-                                        </a>
-                                    ))}
-                                </div>
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={sponsorLG}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={sponsorMD}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={sponsorSM}
+                                />
                             </div>
                         </div>
                         <div className="medpart">
-                            <div className="flex relative h-[36px] justify-center">
-                                <div className="text-h6 font-Heading text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
-                                    {MEDPAR_TITLE}
-                                </div>
-                            </div>
+                            <SponsorSectionTitle title={MEDPAR_TITLE} />
                             <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md">
                                 <div className="image flex flex-wrap place-content-center gap-3">
-                                    {listOfMedpar.map((image: imgPartner) => (
-                                        <a href={image.link}>
-                                            <img
-                                                alt={image.title}
-                                                src={image.imageUrl}
-                                                className={`w-[${image.type}] h-[${image.type}] object-cover`}
-                                            />
-                                        </a>
-                                    ))}
+                                    <SponsorAndPartnerContainer
+                                        listOfSponsorAndPartner={listOfMedpar}
+                                    />
                                 </div>
                             </div>
                         </div>
