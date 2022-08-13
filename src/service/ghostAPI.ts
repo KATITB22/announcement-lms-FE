@@ -22,6 +22,7 @@ export const fetchPost = async (page?: number): Promise<Posts> => {
     try {
         const listOfAllPosts: Posts = await GhostAPI.posts.browse({
             include: ['tags', 'authors'],
+            filter: 'tag:-defile-unit+tag:-sponsor',
             limit: MAX_POST,
             page: page || 1,
         });
@@ -54,7 +55,9 @@ export const fetchSinglePost = async (slug: string) => {
         if (detailPost.tags?.length === 0) {
             data = { detailPost };
         } else {
-            const tags = detailPost.tags?.map((tag) => tag.name);
+            const tags = detailPost.tags?.map((tag) =>
+                tag.name?.replace(' ', '-')
+            );
             const rawRelatedPosts: RelatedPosts = await GhostAPI.posts.browse({
                 limit: 4,
                 include: ['tags', 'authors'],

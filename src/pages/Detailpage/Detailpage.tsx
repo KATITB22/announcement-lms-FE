@@ -23,22 +23,11 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         fetchSinglePost(postId!),
         postId
     );
+    const [featureImg, setFeatureImg] = React.useState('');
 
-    // const [formattedUrl, setFormattedUrl] = React.useState('');
-    // // const [isError, setIsError] = React.useState(false);
-
-    // React.useEffect(() => {
-    //     console.log(post?.feature_image!);
-    //     const srcImage = formatUrl(post?.feature_image!);
-    //     setFormattedUrl(srcImage);
-    //     // if (isError) {
-    //     //     setFormattedUrl(DefaultImage);
-    //     //     setIsError(false);
-    //     // } else {
-    //     //     const srcImage = formatUrl(post?.feature_image!);
-    //     //     setFormattedUrl(srcImage);
-    //     // }
-    // }, []);
+    useEffect(() => {
+        setFeatureImg(formatUrl(data.detailPost?.feature_image!));
+    }, [data]);
 
     useEffect(() => {
         window.scrollTo({
@@ -122,12 +111,11 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         <figure className="w-full flex flex-col items-center">
                             <img
                                 className="w-full max-h-[500px] object-cover"
-                                src={formatUrl(post!.feature_image!)}
+                                src={featureImg}
                                 alt={post!.feature_image_alt!}
-                                // onError={(e) => {
-                                //     console.log(e);
-                                //     setIsError(true);
-                                // }}
+                                onError={() => {
+                                    setFeatureImg(DefaultImage);
+                                }}
                             />
                             {post!.feature_image_caption && (
                                 <figcaption className="font-Caption text-[13px] md:text-caption w-full">
