@@ -36,7 +36,6 @@ body {
     background: url('/src/assets/images/search/bg-min.png') no-repeat;
     background-size: cover;
     background-position: center;
-    z-index: -1;
 }
 
 @font-face {
