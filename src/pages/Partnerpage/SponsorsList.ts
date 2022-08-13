@@ -10,25 +10,25 @@ export const listOfSponsor: imgPartner[] = [
         title: 'Frisian Flag',
         type: typePartner.SM,
         imageUrl: FrisianFlag,
-        link: 'www.google.com', // link to detail post
+        link: 'https://www.google.com', // link to detail post
     },
     {
         title: 'Bukit Asam',
         type: typePartner.SM,
         imageUrl: BukitAsam,
-        link: 'www.google.com', // link to detail post
+        link: 'https://www.google.com', // link to detail post
     },
     {
         title: 'Kuaci Rebo',
         type: typePartner.SM,
         imageUrl: KuaciRebo,
-        link: 'www.google.com', // link to detail post
+        link: 'https://www.google.com', // link to detail post
     },
     {
         title: 'IA ITB',
         type: typePartner.MD,
         imageUrl: IAITB,
-        link: 'www.google.com', // link to detail post
+        link: 'https://www.google.com', // link to detail post
     },
 ];
 

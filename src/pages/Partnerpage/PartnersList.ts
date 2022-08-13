@@ -9,13 +9,13 @@ const listOfMedpar: imgPartner[] = [
         title: 'Bahana FM',
         type: typePartner.LG,
         imageUrl: BahanaFM,
-        link: 'www.google.com', // link to detail post
+        link: 'https://www.google.com', // link to detail post
     },
     {
         title: 'MMTC Radio',
         type: typePartner.MD,
         imageUrl: MMTCRADIO,
-        link: 'www.google.com', // link to detail post
+        link: 'https://www.google.com', // link to detail post
     },
 ];
 

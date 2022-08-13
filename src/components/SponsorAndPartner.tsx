@@ -13,7 +13,7 @@ const SponsorAndPartner = ({ imageUrl, title, link, type }: imgPartner) => {
     }
 
     return (
-        <a href={link} className="">
+        <a rel="noreferrer" target="_blank" href={link}>
             <img alt={title} src={imageUrl} className={className} />
         </a>
     );
