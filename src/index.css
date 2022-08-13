@@ -38,6 +38,12 @@ body {
     background-position: center;
 }
 
+.home-bg {
+    background: url('/src/assets/images/home/bg-min.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 @font-face {
     font-family: 'Magilio';
     src: url('./fonts/Magilio.otf');

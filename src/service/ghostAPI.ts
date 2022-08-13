@@ -44,6 +44,36 @@ export const fetchAllPost = async () => {
     }
 };
 
+export const fetchAllUnit = async (tag?: string) => {
+    let definedTag = 'tag:defile-unit';
+    if (tag) {
+        definedTag = `${definedTag}+tag:${tag}`;
+    }
+    try {
+        const listAllUnit: Posts = await GhostAPI.posts.browse({
+            limit: 'all',
+            include: ['tags', 'authors'],
+            filter: definedTag,
+        });
+        return listAllUnit;
+    } catch (err: any) {
+        return err;
+    }
+};
+
+export const fetchAllSponsor = async () => {
+    try {
+        const listAllSponsor: Posts = await GhostAPI.posts.browse({
+            limit: 'all',
+            include: ['tags', 'authors'],
+            filter: 'tag:sponsor',
+        });
+        return listAllSponsor;
+    } catch (err: any) {
+        return err;
+    }
+};
+
 export const fetchSinglePost = async (slug: string) => {
     let data;
     try {
