@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
 import { MAX_DESCRIPTION, MAX_DESCRIPTION_RELATED } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
-// import DefaultImage from '@/assets/images/logo/logo.png';
+import DefaultImage from '@/assets/images/logo/logo.png';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
     const {
@@ -20,22 +20,10 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
     } = props;
 
     const [formattedUrl, setFormattedUrl] = React.useState('');
-    // const [isError, setIsError] = React.useState(false);
-    // const [errored, setErrored] = React.useState(false);
 
     React.useEffect(() => {
         const srcImage = formatUrl(feature_image!);
         setFormattedUrl(srcImage);
-        // if (isError) {
-        //     setErrored(true);
-        //     if (!errored){
-        //         setFormattedUrl(DefaultImage);
-        //         setIsError(true);
-        //     }
-        // } else {
-        //     const srcImage = formatUrl(feature_image!);
-        //     setFormattedUrl(srcImage);
-        // }
     }, []);
 
     const formattedDate = formatDate(date!);
@@ -62,10 +50,9 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
             <img
                 alt={title}
                 src={formattedUrl}
-                // onError={() => {
-                //     console.log("HAI");
-                //     setIsError(true);
-                // }}
+                onError={() => {
+                    setFormattedUrl(DefaultImage);
+                }}
                 className="min-h-[160px] max-h-40 w-full object-cover rounded-t-lg"
             />
             <div
