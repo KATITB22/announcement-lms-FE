@@ -1,117 +1,9 @@
 import React from 'react';
-import { typePartner } from '@/types/enum';
 import { imgPartner } from '@/types/types';
 import { PARTNER_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import PageTransition from '@/components/PageTransition';
-
-export const listOfSponsor: imgPartner[] = [
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.MD,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.MD,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.MD,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-    {
-        title: 'Google',
-        type: typePartner.MD,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-];
-
-export const sponsorLG = listOfSponsor.filter(
-    (sponsor) => sponsor.type === typePartner.LG
-);
-
-export const sponsorMD = listOfSponsor.filter(
-    (sponsor) => sponsor.type === typePartner.MD
-);
-
-export const sponsorSM = listOfSponsor.filter(
-    (sponsor) => sponsor.type === typePartner.SM
-);
-
-export const listOfMedpar: imgPartner[] = [
-    {
-        title: 'Google',
-        type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-        link: 'www.google.com', // link to detail post
-    },
-];
+import { sponsorLG, sponsorMD, sponsorSM } from './SponsorsList';
+import listOfMedpar from './PartnersList';
 
 const PartnerPage: React.FC<{}> = () => {
     document.title = 'Sponsor - OSKM ITB 2022';
@@ -147,9 +39,31 @@ const PartnerPage: React.FC<{}> = () => {
                                     {SPONSOR_TITLE}
                                 </div>
                             </div>
-                            <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md ">
+                            <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center flex-col items-center rounded-md gap-5">
                                 <div className="image flex flex-wrap place-content-center gap-3">
                                     {sponsorLG.map((image: imgPartner) => (
+                                        <a href={image.link}>
+                                            <img
+                                                alt={image.title}
+                                                src={image.imageUrl}
+                                                className={`w-[${image.type}] h-[${image.type}] object-cover`}
+                                            />
+                                        </a>
+                                    ))}
+                                </div>
+                                <div className="image flex flex-wrap place-content-center gap-3">
+                                    {sponsorMD.map((image: imgPartner) => (
+                                        <a href={image.link}>
+                                            <img
+                                                alt={image.title}
+                                                src={image.imageUrl}
+                                                className={`w-[${image.type}] h-[${image.type}] object-cover`}
+                                            />
+                                        </a>
+                                    ))}
+                                </div>
+                                <div className="image flex flex-wrap place-content-center gap-3">
+                                    {sponsorSM.map((image: imgPartner) => (
                                         <a href={image.link}>
                                             <img
                                                 alt={image.title}

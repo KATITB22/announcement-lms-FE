@@ -8,9 +8,11 @@ import { PAGE_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import BlogPost from '@/components/BlogPost';
 import { ErrorTypes } from '@/types/enum';
 import PageTransition from '@/components/PageTransition';
-import { listOfMedpar, sponsorMD } from '../Partnerpage/PartnerPage';
+import listOfMedpar from '../Partnerpage/PartnersList';
+
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
+import { sponsorMD } from '../Partnerpage/SponsorsList';
 
 const Homepage: React.FC<{}> = () => {
     const [page, setPage] = useState<number>(1);
