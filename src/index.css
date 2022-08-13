@@ -32,6 +32,13 @@ body {
     background-position: center;
 }
 
+.search-bg {
+    background: url('/src/assets/images/search/bg-min.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
 @font-face {
     font-family: 'Magilio';
     src: url('./fonts/Magilio.otf');

@@ -12,6 +12,7 @@ import Pagination from '@/components/Pagination';
 import BlogPost from '@/components/BlogPost';
 import FilterAndCategory from '@/components/FilterAndCategory';
 import { ErrorTypes } from '@/types/enum';
+import VistockSearch from '@/components/VistockSearch';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 
@@ -123,7 +124,8 @@ const Searchpage: React.FC<{}> = () => {
     };
 
     return (
-        <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] min-h-content">
+        <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] min-h-content relative z-10">
+            <VistockSearch />
             {renderResult(result)}
         </div>
     );

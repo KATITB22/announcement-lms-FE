@@ -38,8 +38,8 @@ const links = [
         icon: <AiFillHome />,
     },
     {
-        name: 'E-Catalogue',
-        to: '/partner',
+        name: 'Catalogue',
+        to: '/catalogue',
         icon: <AiFillTag />,
     },
     {
@@ -47,6 +47,12 @@ const links = [
         to: '/defile',
         icon: <FaPeopleCarry />,
     },
+    {
+        name: 'Partner',
+        to: '/partner',
+        icon: <AiFillTag />,
+    },
+
     {
         name: 'About',
         to: '/about',

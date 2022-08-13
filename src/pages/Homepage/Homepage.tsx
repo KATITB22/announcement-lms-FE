@@ -47,7 +47,7 @@ const Homepage: React.FC<{}> = () => {
     return (
         <PageTransition>
             <div>
-                <div className="py-20 bg-Yellow">
+                <div className="py-10 bg-Yellow">
                     <div className="container mx-auto px-6">
                         <h1 className="text-4xl font-Heading font-bold mb-2 text-center">
                             {PAGE_TITLE}
@@ -55,18 +55,18 @@ const Homepage: React.FC<{}> = () => {
                     </div>
                 </div>
                 <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 min-h-screen">
-                    <div className="container max-w-screen-xl mx-auto px-[3.75rem]">
+                    <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">
+                        <div className="flex justify-center">
+                            <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
+                                {blogPostElements}
+                            </div>
+                        </div>
                         <div className="my-4">
                             <Pagination
                                 pagination={posts.meta.pagination}
                                 page={page}
                                 setPage={setPage}
                             />
-                        </div>
-                        <div className="flex justify-center">
-                            <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
-                                {blogPostElements}
-                            </div>
                         </div>
                         <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex flex-col justify-center">
                             <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
