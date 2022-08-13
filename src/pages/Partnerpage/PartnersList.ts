@@ -1,12 +1,20 @@
 import { typePartner } from '@/types/enum';
 import { imgPartner } from '@/types/types';
 
+import BahanaFM from '@/assets/images/medpars/Bahana FM.png';
+import MMTCRADIO from '@/assets/images/medpars/MMTC RADIO.png';
+
 const listOfMedpar: imgPartner[] = [
     {
-        title: 'Google',
+        title: 'Bahana FM',
         type: typePartner.LG,
-        imageUrl:
-            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        imageUrl: BahanaFM,
+        link: 'www.google.com', // link to detail post
+    },
+    {
+        title: 'MMTC Radio',
+        type: typePartner.MD,
+        imageUrl: MMTCRADIO,
         link: 'www.google.com', // link to detail post
     },
 ];

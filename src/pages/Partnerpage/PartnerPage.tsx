@@ -3,7 +3,7 @@ import { PARTNER_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import { sponsorLG, sponsorMD, sponsorSM } from './SponsorsList';
-import listOfMedpar from './PartnersList';
+import { medparLG, medparMD } from './PartnersList';
 
 const SponsorSectionTitle = ({ title }: { title: string }) => (
     <div className="flex relative h-[36px] justify-center">
@@ -57,12 +57,13 @@ const PartnerPage: React.FC<{}> = () => {
                         </div>
                         <div className="medpart">
                             <SponsorSectionTitle title={MEDPAR_TITLE} />
-                            <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center items-center rounded-md">
-                                <div className="image flex flex-wrap place-content-center gap-3">
-                                    <SponsorAndPartnerContainer
-                                        listOfSponsorAndPartner={listOfMedpar}
-                                    />
-                                </div>
+                            <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center flex-col items-center rounded-md gap-5">
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparLG}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparMD}
+                                />
                             </div>
                         </div>
                     </div>

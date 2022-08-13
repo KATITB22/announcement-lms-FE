@@ -1,13 +1,17 @@
 import { imgPartner } from '@/types/types';
 import React from 'react';
 
-const SponsorAndPartner = ({ imageUrl, link, title, type }: imgPartner) => (
-    <a href={link} key={`${link} ${imageUrl}`}>
-        <img
+const SponsorAndPartner = ({ imageUrl, link, type }: imgPartner) => (
+    <a
+        href={link}
+        key={`${link} ${imageUrl}`}
+        className={`w-[${type}] h-[${type}] block border-solid border-black border-2`}
+    >
+        {/* <img
             alt={title}
             src={imageUrl}
-            className={`w-[${type}] h-[${type}] object-contain`}
-        />
+            className="object-contain block max-w-full max-h-full"
+        /> */}
     </a>
 );
 

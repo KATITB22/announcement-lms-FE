@@ -8,11 +8,11 @@ import BlogPost from '@/components/BlogPost';
 import { ErrorTypes } from '@/types/enum';
 import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
-import listOfMedpar from '../Partnerpage/PartnersList';
+import { medparLG, medparMD } from '../Partnerpage/PartnersList';
 
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
-import listOfSponsor from '../Partnerpage/SponsorsList';
+import { sponsorLG, sponsorMD, sponsorSM } from '../Partnerpage/SponsorsList';
 
 const Homepage: React.FC<{}> = () => {
     const [page, setPage] = useState<number>(1);
@@ -73,21 +73,24 @@ const Homepage: React.FC<{}> = () => {
                                 {SPONSOR_TITLE}
                             </h2>
                             <SponsorAndPartnerContainer
-                                listOfSponsorAndPartner={listOfSponsor}
+                                listOfSponsorAndPartner={sponsorLG}
                             />
                             <SponsorAndPartnerContainer
-                                listOfSponsorAndPartner={listOfSponsor}
+                                listOfSponsorAndPartner={sponsorMD}
                             />
                             <SponsorAndPartnerContainer
-                                listOfSponsorAndPartner={listOfSponsor}
+                                listOfSponsorAndPartner={sponsorSM}
                             />
                         </div>
-                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center">
+                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center flex-col">
                             <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
                                 {MEDPAR_TITLE}
                             </h2>
                             <SponsorAndPartnerContainer
-                                listOfSponsorAndPartner={listOfMedpar}
+                                listOfSponsorAndPartner={medparLG}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={medparMD}
                             />
                         </div>
                     </div>
