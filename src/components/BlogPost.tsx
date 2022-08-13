@@ -96,7 +96,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                 {title}
                             </span>
                             <p
-                                className={`font-Body text-caption  ${
+                                className={`font-Body text-caption text-left  ${
                                     size === 'sm' ? '' : 'md:text-body'
                                 } font-normal md:mb-1`}
                             >
