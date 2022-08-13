@@ -24,20 +24,21 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         postId
     );
 
-    const [formattedUrl, setFormattedUrl] = React.useState('');
-    const [isError, setIsError] = React.useState(false);
+    // const [formattedUrl, setFormattedUrl] = React.useState('');
+    // // const [isError, setIsError] = React.useState(false);
 
-    React.useEffect(() => {
-        if (isError) {
-            setFormattedUrl(DefaultImage);
-            setIsError(false);
-        } else {
-            const srcImage = formatUrl(post?.feature_image!);
-            setFormattedUrl(
-                formattedUrl === DefaultImage ? DefaultImage : srcImage
-            );
-        }
-    }, [isError]);
+    // React.useEffect(() => {
+    //     console.log(post?.feature_image!);
+    //     const srcImage = formatUrl(post?.feature_image!);
+    //     setFormattedUrl(srcImage);
+    //     // if (isError) {
+    //     //     setFormattedUrl(DefaultImage);
+    //     //     setIsError(false);
+    //     // } else {
+    //     //     const srcImage = formatUrl(post?.feature_image!);
+    //     //     setFormattedUrl(srcImage);
+    //     // }
+    // }, []);
 
     useEffect(() => {
         window.scrollTo({
@@ -137,11 +138,12 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         <figure className="w-full flex flex-col items-center">
                             <img
                                 className="w-full max-h-[500px] object-cover"
-                                src={formattedUrl}
+                                src={formatUrl(post!.feature_image!)}
                                 alt={post!.feature_image_alt!}
-                                onError={() => {
-                                    setIsError(true);
-                                }}
+                                // onError={(e) => {
+                                //     console.log(e);
+                                //     setIsError(true);
+                                // }}
                             />
                             {post!.feature_image_caption && (
                                 <figcaption className="font-Caption text-[13px] md:text-caption w-full">
