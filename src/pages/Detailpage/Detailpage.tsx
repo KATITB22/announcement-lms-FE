@@ -110,7 +110,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     {post!.feature_image ? (
                         <figure className="w-full flex flex-col items-center">
                             <img
-                                className="w-full max-h-[500px] object-cover"
+                                className="w-full max-h-[500px] w-52 object-contain"
                                 src={featureImg}
                                 alt={post!.feature_image_alt!}
                                 onError={() => {

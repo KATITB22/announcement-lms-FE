@@ -58,7 +58,7 @@ export const Routing: PageRouting[] = [
     },
     {
         title: 'Treasure Hunt Unit',
-        path: '/treasure/:unitId',
+        path: '/defile/:unitId',
         component: TreasureHuntPageUnit,
     },
     {

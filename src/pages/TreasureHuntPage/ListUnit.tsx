@@ -46,7 +46,7 @@ export const unitAgama = [
 
 export const unitBudaya = [
     {
-        name: 'KMJ (Keluarga Mahasiswa Jambi) Siginjai ITB',
+        name: "KMJ (Keluarga Mahasiswa Jambi) 'Siginjai' ITB",
 
         page_link: '#',
     },
