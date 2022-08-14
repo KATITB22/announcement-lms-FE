@@ -1,17 +1,20 @@
 import Rumpun from '@/components/Rumpun';
 
+const mockData = [
+    { name: 'BSO'
+    },
+    { name: 'Agama'
+    },
+    { name: 'Budaya'
+    },
+    { name: 'Olahraga'
+    },
+    { name: 'Seni'
+    },
+    { name: 'P/M/K'
+    },
+];
 const TreasureHuntPage = () => {
-    const mockData = [
-        { name: 'BSO' },
-        { name: 'Agama' },
-        { name: 'Budaya' },
-        { name: 'Olahraga' },
-        { name: 'Seni' },
-        { name: 'P/M/K' },
-    ];
-
-    document.title = 'Defile Unit - OSKM ITB 2022';
-
     return (
         <div>
             <div className="py-20 bg-Yellow">

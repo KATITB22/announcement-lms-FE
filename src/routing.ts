@@ -11,7 +11,11 @@ const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
 const TreasureHuntPage = React.lazy(
     () => import('./pages/TreasureHuntPage/TreasureHuntPage')
 );
+const TreasureHuntPageUnit = React.lazy(
+    () => import('./pages/TreasureHuntPage/TreasureHuntPageUnit')
+);
 const CataloguePage = React.lazy(() => import('./pages/Catalogue/Catalogue'));
+
 
 const PageNotFoundRouting: PageRouting = {
     title: 'Page Not Found',
@@ -51,9 +55,16 @@ export const Routing: PageRouting[] = [
         component: TreasureHuntPage,
     },
     {
+
+        title: 'Treasure Hunt Unit',
+        path: '/treasure/:unitId',
+        component: TreasureHuntPageUnit,
+    },
+    {
         title: 'Catalogue',
         path: '/catalogue',
         component: CataloguePage,
+
     },
     // {
     //     title: 'Loading',

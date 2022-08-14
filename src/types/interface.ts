@@ -71,6 +71,16 @@ export interface RumpunProps {
     name: string;
 }
 
+export interface UnitProps{
+    id: number;
+    name: string;
+}
+
+export interface TreasureHuntPageProps extends UnitProps {
+    unit: UnitProps;
+    name: string;
+}
+
 export interface Posts extends PostsOrPages {}
 
 export interface RelatedPosts extends Omit<PostsOrPages, 'meta'> {}
