@@ -49,6 +49,9 @@ module.exports = {
             },
             height: {
                 content: 'calc(100vh - 4rem)',
+                sm: '100px',
+                md: '150px',
+                lg: '200px',
             },
             minHeight: {
                 content: 'calc(100vh - 4rem)',
