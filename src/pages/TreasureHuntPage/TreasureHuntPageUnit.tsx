@@ -27,7 +27,6 @@ function showCard(rumpunName: string){
                     key={unit.name}
                     id={index}
                     name={unit.name}
-                    
                 />
             ))
         case "Agama":
@@ -54,7 +53,6 @@ function showCard(rumpunName: string){
                     key={unit.name}
                     id={index}
                     name={unit.name}
-                    
                 />
             ))
         case "Seni":
@@ -63,7 +61,6 @@ function showCard(rumpunName: string){
                     key={unit.name}
                     id={index}
                     name={unit.name}
-                    
                 />
             ))
         case "P/M/K":
@@ -72,7 +69,6 @@ function showCard(rumpunName: string){
                     key={unit.name}
                     id={index}
                     name={unit.name}
-                    
                 />
             ))
         default:
