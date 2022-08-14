@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Animate } from '@/layout/Animate';
-import Vistock from '@/assets/images/server-error.svg';
+import Vistock from '@/assets/images/server-error.png';
 
 const ServerError: React.FC<{}> = () => (
     <Animate>

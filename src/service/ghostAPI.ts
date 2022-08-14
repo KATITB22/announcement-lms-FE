@@ -22,6 +22,7 @@ export const fetchPost = async (page?: number): Promise<Posts> => {
     try {
         const listOfAllPosts: Posts = await GhostAPI.posts.browse({
             include: ['tags', 'authors'],
+            filter: 'tag:-defile-unit+tag:-sponsor',
             limit: MAX_POST,
             page: page || 1,
         });
@@ -31,13 +32,43 @@ export const fetchPost = async (page?: number): Promise<Posts> => {
     }
 };
 
-export const fetchAllPost = async () => {
+export const fetchAllPost = async (): Promise<Posts> => {
     try {
         const listAllPosts: Posts = await GhostAPI.posts.browse({
             limit: 'all',
             include: ['tags', 'authors'],
         });
         return listAllPosts;
+    } catch (err: any) {
+        return err;
+    }
+};
+
+export const fetchAllUnit = async (tag?: string) => {
+    let definedTag = 'tag:defile-unit';
+    if (tag) {
+        definedTag = `${definedTag}+tag:${tag}`;
+    }
+    try {
+        const listAllUnit: Posts = await GhostAPI.posts.browse({
+            limit: 'all',
+            include: ['tags', 'authors'],
+            filter: definedTag,
+        });
+        return listAllUnit;
+    } catch (err: any) {
+        return err;
+    }
+};
+
+export const fetchAllSponsor = async () => {
+    try {
+        const listAllSponsor: Posts = await GhostAPI.posts.browse({
+            limit: 'all',
+            include: ['tags', 'authors'],
+            filter: 'tag:sponsor',
+        });
+        return listAllSponsor;
     } catch (err: any) {
         return err;
     }
@@ -54,7 +85,9 @@ export const fetchSinglePost = async (slug: string) => {
         if (detailPost.tags?.length === 0) {
             data = { detailPost };
         } else {
-            const tags = detailPost.tags?.map((tag) => tag.name);
+            const tags = detailPost.tags?.map((tag) =>
+                tag.name?.replace(' ', '-')
+            );
             const rawRelatedPosts: RelatedPosts = await GhostAPI.posts.browse({
                 limit: 4,
                 include: ['tags', 'authors'],

@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 export enum typePartner {
-    LG = '200px',
-    MD = '150px',
-    SM = '100px',
+    SM = 'sm',
+    MD = 'md',
+    LG = 'lg',
 }
 
 export enum iconSize {
@@ -17,4 +17,8 @@ export enum ErrorTypes {
     PostNotFound = 2,
     SearchNotFound = 3,
     ServerError = 4,
+}
+
+export enum breakPointSize {
+    md = 768,
 }

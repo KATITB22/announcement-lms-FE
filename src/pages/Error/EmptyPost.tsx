@@ -1,5 +1,5 @@
 import React from 'react';
-import vistock from '@/assets/images/empty-post.svg';
+import vistock from '@/assets/images/empty-post.png';
 
 const EmptyPost: React.FC<{}> = () => (
     <div className="relative min-h-content flex items-center justify-center flex-col text-center bg-gradient-to-b from-Orange to-LightOrange z-10">

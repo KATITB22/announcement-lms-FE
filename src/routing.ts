@@ -7,13 +7,15 @@ const PartnerPage = React.lazy(() => import('./pages/Partnerpage/PartnerPage'));
 const PageNotFound = React.lazy(() => import('./pages/Error/PageNotFound'));
 const SearchPage = React.lazy(() => import('./pages/Searchpage/Searchpage'));
 const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
-// const LoadingPage = React.lazy(() => import('./pages/Loading')); comment in jangan diapus, biarin aja biar kalo mau ubah2 gampang
+// const LoadingPage = React.lazy(() => import('./pages/Loading')); // comment in jangan diapus, biarin aja biar kalo mau ubah2 gampang
 const TreasureHuntPage = React.lazy(
     () => import('./pages/TreasureHuntPage/TreasureHuntPage')
 );
 const TreasureHuntPageUnit = React.lazy(
     () => import('./pages/TreasureHuntPage/TreasureHuntPageUnit')
 );
+const CataloguePage = React.lazy(() => import('./pages/Catalogue/Catalogue'));
+
 
 const PageNotFoundRouting: PageRouting = {
     title: 'Page Not Found',
@@ -48,14 +50,21 @@ export const Routing: PageRouting[] = [
         component: DetailPage,
     },
     {
-        title: 'Treasure Hunt',
-        path: '/treasure',
+        title: 'Defile Unit',
+        path: '/defile',
         component: TreasureHuntPage,
     },
     {
+
         title: 'Treasure Hunt Unit',
         path: '/treasure/:unitId',
         component: TreasureHuntPageUnit,
+    },
+    {
+        title: 'Catalogue',
+        path: '/catalogue',
+        component: CataloguePage,
+
     },
     // {
     //     title: 'Loading',

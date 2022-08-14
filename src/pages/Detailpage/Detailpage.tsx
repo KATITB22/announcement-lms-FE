@@ -7,10 +7,11 @@ import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { MONTHS } from '@/types/constant';
 import VistockBackground from '@/components/VistockBackground';
-import DefaultImage from '@/assets/images/logo-sementara.jpeg';
+import DefaultImage from '@/assets/images/logo/logo.png';
 import { DetailPost, DetailpageProps } from '@/types/interface';
 import useFetch from '@/hooks/useFetch';
 import { ErrorTypes } from '@/types/enum';
+import { formatUrl } from '@/util/util';
 import RelatedPosts from './RelatedPosts';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
@@ -22,6 +23,12 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         fetchSinglePost(postId!),
         postId
     );
+    const [featureImg, setFeatureImg] = React.useState('');
+
+    useEffect(() => {
+        setFeatureImg(formatUrl(data.detailPost?.feature_image!));
+    }, [data]);
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -54,6 +61,8 @@ const Detailpage: React.FC<DetailpageProps> = () => {
         } ${date.getFullYear()}`;
     }
 
+    document.title = `${post!.title} - OSKM ITB 2022`;
+
     return (
         <Flex
             background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)"
@@ -68,23 +77,6 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                 flexDirection="column"
                 width="70%"
             >
-                <div className="font-Body text-overline md:text-body cursor-pointer">
-                    <a className="hover:underline" href="/">
-                        Home
-                    </a>
-                    {post!.primary_tag && (
-                        <span>
-                            {' '}
-                            {'>'}{' '}
-                            <a
-                                className="hover:underline"
-                                href={`/search?${post!.primary_tag.name}`}
-                            >
-                                {post!.primary_tag.name}
-                            </a>
-                        </span>
-                    )}
-                </div>
                 <Box
                     fontFamily="Magilio"
                     fontSize={{
@@ -102,6 +94,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                             base: '12px',
                             md: '18px',
                         }}
+                        pb="12px"
                     >
                         Author: {post!.primary_author.name} | {published_at!}
                     </Box>
@@ -118,8 +111,11 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                         <figure className="w-full flex flex-col items-center">
                             <img
                                 className="w-full max-h-[500px] object-cover"
-                                src={post!.feature_image}
+                                src={featureImg}
                                 alt={post!.feature_image_alt!}
+                                onError={() => {
+                                    setFeatureImg(DefaultImage);
+                                }}
                             />
                             {post!.feature_image_caption && (
                                 <figcaption className="font-Caption text-[13px] md:text-caption w-full">

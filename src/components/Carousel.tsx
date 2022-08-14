@@ -1,7 +1,7 @@
 import React from 'react';
 import { CarouselProps } from '@/types/interface';
-import ChevronLeft from '@/assets/images/chevron-left.svg';
-import ChevronRight from '@/assets/images/chevron-right.svg';
+import ChevronLeft from '@/assets/images/chevron-left.png';
+import ChevronRight from '@/assets/images/chevron-right.png';
 
 const Carousel: React.FC<CarouselProps> = (props) => {
     const { items } = props;

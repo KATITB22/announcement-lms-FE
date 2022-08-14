@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
 import { MAX_DESCRIPTION, MAX_DESCRIPTION_RELATED } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
+import DefaultImage from '@/assets/images/logo/logo.png';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
     const {
@@ -17,8 +18,15 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
         size,
         slug,
     } = props;
+
+    const [formattedUrl, setFormattedUrl] = React.useState('');
+
+    React.useEffect(() => {
+        const srcImage = formatUrl(feature_image!);
+        setFormattedUrl(srcImage);
+    }, []);
+
     const formattedDate = formatDate(date!);
-    const formattedUrl = formatUrl(feature_image!);
     const trimmedText = trimString(description, MAX_DESCRIPTION);
     const trimmedRelatedText = trimString(description, MAX_DESCRIPTION_RELATED);
     const authorName = primary_author?.name;
@@ -42,10 +50,13 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
             <img
                 alt={title}
                 src={formattedUrl}
+                onError={() => {
+                    setFormattedUrl(DefaultImage);
+                }}
                 className="min-h-[160px] max-h-40 w-full object-cover rounded-t-lg"
             />
             <div
-                className={`bg-white w-full h-full ${
+                className={`bg-white w-full h-full min-h-[12.5rem] ${
                     size === 'sm' ? 'p-2' : 'p-4'
                 } rounded-br-lg rounded-bl-lg`}
             >
@@ -72,7 +83,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                 {title}
                             </span>
                             <p
-                                className={`font-Body text-caption  ${
+                                className={`font-Body text-caption text-left  ${
                                     size === 'sm' ? '' : 'md:text-body'
                                 } font-normal md:mb-1`}
                             >

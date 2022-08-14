@@ -14,7 +14,6 @@ const mockData = [
     { name: 'P/M/K'
     },
 ];
-
 const TreasureHuntPage = () => {
     return (
         <div>

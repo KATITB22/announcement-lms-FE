@@ -36,7 +36,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 type="button"
             >
                 <p
-                    className={`font-Subheading text-title border-black px-2 text-Yellow border-solid border-si border-2 transition-all hover:border-Yellow hover:text-black ${
+                    className={`font-Subheading text-title border-black px-2 text-Yellow border-solid rounded-lg border-2 transition-all hover:border-Yellow hover:text-black ${
                         isActive ? 'bg-Brown text-black' : null
                     }`}
                 >
