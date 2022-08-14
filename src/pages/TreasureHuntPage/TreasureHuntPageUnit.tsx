@@ -1,18 +1,21 @@
 import useFetch from '@/hooks/useFetch';
-import { fetchSinglePost } from '@/service/ghostAPI';
-import { TreasureHuntPageProps } from '@/types/interface';
-import { RumpunName, UnitLink } from '@/types/types';
-import Card from '@/components/Unit';
-import {
-    unitBSO,
-    unitAgama,
-    unitBudaya,
-    unitOlahraga,
-    unitSeni,
-    unitPMK,
-} from '@/pages/TreasureHuntPage/ListUnit';
+import { fetchAllUnit } from '@/service/ghostAPI';
+import { Posts, TreasureHuntPageProps } from '@/types/interface';
+import { RumpunName } from '@/types/types';
+import Card from '@/components/Card';
+// import {
+//     unitBSO,
+//     unitAgama,
+//     unitBudaya,
+//     unitOlahraga,
+//     unitSeni,
+//     unitPMK,
+// } from '@/pages/TreasureHuntPage/ListUnit';
 import { useParams } from 'react-router-dom';
+// import { useState } from 'react';
+import { ErrorTypes } from '@/types/enum';
 import Loading from '../Loading';
+import ErrorPage from '../ErrorPage';
 
 function greetings(rumpunName: string) {
     return (
@@ -20,7 +23,7 @@ function greetings(rumpunName: string) {
             <h1 className="text-5xl font-Heading font-bold mb-2 text-center">
                 Rumpun {rumpunName}
             </h1>
-            <p className="text-2xl font-Heading font-bold mb-2 text-center">
+            <p className="text-2xl font-Heading font-bold mb-2 text-center max-w-[95vw] mx-auto">
                 Selamat Datang di rumpun {rumpunName}! di sini ada beberapa unit
                 yang termasuk kategori rumpun {rumpunName} nih, silahkan diklik
                 kalo kepo sama unitnya, buat kenalan lebih lanjut bakal di OHU
@@ -30,43 +33,56 @@ function greetings(rumpunName: string) {
     );
 }
 
-const rumpunToUnit = {
-    BSO: unitBSO,
-    Agama: unitAgama,
-    Budaya: unitBudaya,
-    Olahraga: unitOlahraga,
-    Seni: unitSeni,
-    'P/M/K': unitPMK,
-} as Record<RumpunName, UnitLink[]>;
+const rumpunName = [
+    'BSO',
+    'Agama',
+    'Budaya',
+    'Olahraga',
+    'Seni',
+    'P/M/K',
+] as RumpunName[];
 
-function showCard(rumpunName: RumpunName) {
-    const unit = rumpunToUnit[rumpunName];
-    return unit.map(({ name }, index) => (
-        <Card key={name} id={index} name={name} />
+// const rumpunToUnit = {
+//     BSO: unitBSO,
+//     Agama: unitAgama,
+//     Budaya: unitBudaya,
+//     Olahraga: unitOlahraga,
+//     Seni: unitSeni,
+//     'P/M/K': unitPMK,
+// } as Record<RumpunName, UnitLink[]>;
+
+function showCard(input: Posts) {
+    return input.map((post) => (
+        <Card
+            key={post.slug}
+            slug={post.slug}
+            id={post.slug}
+            title={post.title}
+            feature_image={post.feature_image}
+        />
     ));
 }
 
 const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = () => {
-    const id = useParams().unitId;
-    const { isLoading } = useFetch(fetchSinglePost(id!), id);
+    const { unitId: id } = useParams();
+    // const [page, setPage] = useState<number>(1);
+    const { data, isLoading, error, message } = useFetch(fetchAllUnit());
 
     if (isLoading) {
         return <Loading />;
     }
-    const rumpunName = [
-        'BSO',
-        'Agama',
-        'Budaya',
-        'Olahraga',
-        'Seni',
-        'P/M/K',
-    ] as RumpunName[];
+
+    if (error) {
+        return <ErrorPage message={message} type={ErrorTypes.ServerError} />;
+    }
+    const posts: Posts = data;
+
     return (
         <div>
             {greetings(rumpunName[parseInt(id!, 10)])}
             <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full">
-                    {showCard(rumpunName[parseInt(id!, 10)])}
+                    {showCard(posts)}
                 </div>
             </div>
         </div>

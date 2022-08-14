@@ -73,10 +73,7 @@ export interface RumpunProps {
     link: string;
 }
 
-export interface UnitProps {
-    id?: number;
-    name: string;
-}
+export interface UnitProps extends PostOrPage {}
 
 export interface TreasureHuntPageProps extends UnitProps {
     // unit: UnitProps;
