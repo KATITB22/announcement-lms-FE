@@ -1,8 +1,10 @@
-
+import useFetch from '@/hooks/useFetch';
+import { fetchSinglePost } from '@/service/ghostAPI';
 import { RumpunProps, TreasureHuntPageProps } from "@/types/interface";
 import Card from "@/components/Unit";
 import { unitBSO, unitAgama, unitBudaya, unitOlahraga, unitSeni, unitPMK} from "@/pages/TreasureHuntPage/ListUnit";
 import { useParams } from "react-router-dom";
+import Loading from '../Loading';
 
 function greetings(rumpunName: string){
     return(
@@ -78,6 +80,14 @@ function showCard(rumpunName: string){
 
 const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = ({}) => {
     const id = useParams().unitId;
+    const { isLoading } = useFetch(
+        fetchSinglePost(id!),
+        id
+    );
+
+    if (isLoading) {
+        return <Loading />;
+    }
     const rumpunName = [
         "BSO",
         "Agama",
