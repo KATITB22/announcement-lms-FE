@@ -17,7 +17,7 @@ import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 import { renderCaption } from './Render';
 
-const Detailpage: React.FC<DetailpageProps> = () => {
+const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
     const { postId } = useParams();
     const { data, isLoading, error, message } = useFetch(
         fetchSinglePost(postId!),
@@ -60,6 +60,32 @@ const Detailpage: React.FC<DetailpageProps> = () => {
             MONTHS[date.getMonth()]
         } ${date.getFullYear()}`;
     }
+    const getFeatureImage = () =>
+        post!.feature_image ? (
+            <figure className="w-full flex flex-col items-center">
+                <img
+                    className="w-full max-h-[500px] w-52 object-contain"
+                    src={featureImg}
+                    alt={post!.feature_image_alt!}
+                    onError={() => {
+                        setFeatureImg(DefaultImage);
+                    }}
+                />
+                {post!.feature_image_caption && (
+                    <figcaption className="font-Caption text-[13px] md:text-caption w-full">
+                        {renderCaption(post!.feature_image_caption)}
+                    </figcaption>
+                )}
+            </figure>
+        ) : (
+            <Box className="w-full flex flex-col items-center">
+                <img
+                    className="w-full max-h-[500px] object-cover"
+                    src={DefaultImage}
+                    alt="default-img"
+                />
+            </Box>
+        );
 
     document.title = `${post!.title} - OSKM ITB 2022`;
 
@@ -107,31 +133,7 @@ const Detailpage: React.FC<DetailpageProps> = () => {
                     }}
                     className="bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]"
                 >
-                    {post!.feature_image ? (
-                        <figure className="w-full flex flex-col items-center">
-                            <img
-                                className="w-full max-h-[500px] w-52 object-contain"
-                                src={featureImg}
-                                alt={post!.feature_image_alt!}
-                                onError={() => {
-                                    setFeatureImg(DefaultImage);
-                                }}
-                            />
-                            {post!.feature_image_caption && (
-                                <figcaption className="font-Caption text-[13px] md:text-caption w-full">
-                                    {renderCaption(post!.feature_image_caption)}
-                                </figcaption>
-                            )}
-                        </figure>
-                    ) : (
-                        <Box className="w-full flex flex-col items-center">
-                            <img
-                                className="w-full max-h-[500px] object-cover"
-                                src={DefaultImage}
-                                alt="default-img"
-                            />
-                        </Box>
-                    )}
+                    {!isForUnit && getFeatureImage()}
 
                     {renderHTMLContent(post!)}
                 </VStack>

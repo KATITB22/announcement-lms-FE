@@ -50,6 +50,7 @@ export const Routing: PageRouting[] = [
         title: 'Detail Post',
         path: '/post/:postId',
         component: DetailPage,
+        props: { isForUnit: false },
     },
     {
         title: 'Defile Unit',
