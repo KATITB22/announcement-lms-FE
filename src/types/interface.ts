@@ -4,6 +4,7 @@ import { Pagination, PostOrPage, PostsOrPages } from '@tryghost/content-api';
 import { Element } from 'parse5/dist/tree-adapters/default';
 import { URLSearchParamsInit } from 'react-router-dom';
 import { ErrorTypes } from './enum';
+import { RumpunName } from './types';
 
 interface setUseSearchParams {
     (
@@ -69,9 +70,10 @@ export interface FetchingState {
 export interface RumpunProps {
     id: number;
     name: string;
+    link: string;
 }
 
-export interface UnitProps{
+export interface UnitProps {
     id: number;
     name: string;
 }

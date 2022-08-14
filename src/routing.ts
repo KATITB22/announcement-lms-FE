@@ -19,7 +19,6 @@ const ToBeAnnouncedPage = React.lazy(
 );
 const CataloguePage = React.lazy(() => import('./pages/Catalogue/Catalogue'));
 
-
 const PageNotFoundRouting: PageRouting = {
     title: 'Page Not Found',
     path: '*',
@@ -58,7 +57,6 @@ export const Routing: PageRouting[] = [
         component: TreasureHuntPage,
     },
     {
-
         title: 'Treasure Hunt Unit',
         path: '/treasure/:unitId',
         component: TreasureHuntPageUnit,
@@ -72,7 +70,6 @@ export const Routing: PageRouting[] = [
         title: 'Catalogue',
         path: '/catalogue',
         component: CataloguePage,
-
     },
     // {
     //     title: 'Loading',
