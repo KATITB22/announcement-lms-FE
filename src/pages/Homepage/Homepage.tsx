@@ -60,7 +60,7 @@ const Homepage: React.FC<{}> = () => {
                         </h1>
                     </div>
                 </div> */}
-                <div className="bg-[#FF8952] z-[-1]">
+                <div className="bg-[#FF8952] z-[-3]">
                     <img
                         src={VistockAnnoucement}
                         alt="annoucement"

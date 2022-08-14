@@ -74,12 +74,12 @@ export interface RumpunProps {
 }
 
 export interface UnitProps {
-    id: number;
+    id?: number;
     name: string;
 }
 
 export interface TreasureHuntPageProps extends UnitProps {
-    unit: UnitProps;
+    // unit: UnitProps;
     name: string;
 }
 
