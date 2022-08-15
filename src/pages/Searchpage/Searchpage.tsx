@@ -78,13 +78,13 @@ const Searchpage: React.FC<{}> = () => {
     const renderSearch = (input: PostOrPage[]) => {
         if (input.length === 0) {
             return (
-                <div className="inline-flex flex-grow items-center justify-center flex-col text-center z-10">
+                <div className="min-h-content inline-flex items-center md:ml-10 flex-grow justify-start flex-col text-center z-10">
                     <img
                         src={vistock}
                         alt="tidak ada hasil pencarian"
                         className="w-[20rem] md:w-[30rem] aspect-square absolute -z-[5]"
                     />
-                    <p className="m-0 mb-1 font-Heading text-title md:text-h3 text-DarkerOrange drop-shadow-errorStyle">
+                    <p className="m-0 mb-1 mt-52 justify-center font-Heading text-title md:text-h3 text-DarkerOrange drop-shadow-errorStyle">
                         Hasil tidak ditemukan
                     </p>
                     <div className="bg-Yellow rounded-full p-2 px-4 hover:shadow-sm">
@@ -128,7 +128,7 @@ const Searchpage: React.FC<{}> = () => {
     };
 
     const renderResult = (input: PostOrPage[]) => (
-        <div className="container max-w-screen-xl py-6 px-[3.75rem] mx-auto gap-6 min-h-content inline-flex flex-row items-center justify-center z-10">
+        <div className="container max-w-screen-xl py-6 px-[3.25rem] mx-auto gap-6 min-h-content inline-flex flex-row items-center justify-center z-10">
             <div className="hidden md:block self-start">
                 <FilterAndCategory
                     item={result}
