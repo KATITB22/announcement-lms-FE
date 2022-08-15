@@ -23,8 +23,8 @@ import {
     FaYoutube,
     FaPeopleCarry,
     FaHandshake,
+    FaBook,
 } from 'react-icons/fa';
-import { GrCatalog } from 'react-icons/gr';
 import Navbar from '@components/Navbar';
 import Logo from '@/assets/images/logo/logo.png';
 import LogoTextRight from '@/assets/images/logo/logo-oskm-itb.png';
@@ -42,7 +42,7 @@ const links = [
     {
         name: 'Catalogue',
         to: '/catalogue',
-        icon: <GrCatalog />,
+        icon: <FaBook />,
     },
     {
         name: 'Defile',
@@ -91,13 +91,15 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
 
     return (
         <Animate>
-            <Box className="relative bg-Yellow px-4 text-DarkerOrange z-20">
+            <Box className="relative bg-Yellow text-DarkerOrange z-20">
                 <Flex
                     h={16}
                     alignItems="center"
                     justifyContent="space-between"
                     maxW="6xl"
+                    px={4}
                     className="mx-auto"
+                    borderBottom={isOpen ? '1px solid' : 'none'}
                 >
                     <Link className="h-full min-w-max flex items-center" to="/">
                         <img
@@ -177,10 +179,14 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 </Flex>
                 {isOpen ? (
                     <Box
-                        bg="base.headerBg"
+                        bg="#FFEBB0"
                         pb={4}
+                        pt={2}
                         display={{ md: 'none' }}
-                        zIndex="100"
+                        position="absolute"
+                        top={16}
+                        px={4}
+                        w="100%"
                     >
                         <Stack as="nav" spacing={4}>
                             {links.map((link) => (
@@ -188,7 +194,11 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                     key={`navlink${links.indexOf(link)}`}
                                     to={link.to}
                                 >
-                                    <Flex alignItems="center" gap="2">
+                                    <Flex
+                                        alignItems="center"
+                                        gap="2"
+                                        onClick={onClose}
+                                    >
                                         {link.icon}
                                         <span>{link.name}</span>
                                     </Flex>
@@ -198,7 +208,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     </Box>
                 ) : null}
             </Box>
-            <Box>{children}</Box>
+            <Box onClick={onClose}>{children}</Box>
             <Box className="bg-Orange text-DarkestOrange">
                 <Container
                     maxW="6xl"
@@ -239,6 +249,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                     cursor="pointer"
                                     as="a"
                                     href={social.to}
+                                    target="_blank"
                                     display="inline-flex"
                                     alignItems="center"
                                     justifyContent="center"

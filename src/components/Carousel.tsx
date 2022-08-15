@@ -33,8 +33,12 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     }, [currentIndex]);
 
     return (
-        <div className="flex w-60 h-44 md:w-96 md:h-72 lg:w-[36em] lg:h-[27em]">
-            <button className="w-[15%]" type="button" onClick={handleClickPrev}>
+        <>
+            <button
+                className="w-[15%] flex justify-center items-center"
+                type="button"
+                onClick={handleClickPrev}
+            >
                 <img
                     className="opacity-75"
                     src={ChevronLeft}
@@ -51,14 +55,18 @@ const Carousel: React.FC<CarouselProps> = (props) => {
                     {navigatorBox}
                 </div>
             </div>
-            <button className="w-[15%]" type="button" onClick={handleClickNext}>
+            <button
+                className="w-[15%] flex justify-center items-center"
+                type="button"
+                onClick={handleClickNext}
+            >
                 <img
                     className="opacity-75"
                     src={ChevronRight}
                     alt="chevron-right"
                 />
             </button>
-        </div>
+        </>
     );
 };
 

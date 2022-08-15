@@ -307,7 +307,11 @@ const Render = {
                     );
                 });
             });
-            return <Carousel key={id} items={srcItems} />;
+            return (
+                <div className="flex w-60 h-44 md:w-96 md:h-72 lg:w-[36em] lg:h-[27em]">
+                    <Carousel key={id} items={srcItems} />
+                </div>
+            );
         }
         return <figure />;
     },
