@@ -129,7 +129,7 @@ const Searchpage: React.FC<{}> = () => {
 
     const renderResult = (input: PostOrPage[]) => (
         <div className="container max-w-screen-xl py-6 px-[3.75rem] mx-auto gap-6 min-h-content inline-flex flex-row items-center justify-center z-10">
-            <div className="hidden md:block self-start">
+            <div className="hidden md:block self-center">
                 <FilterAndCategory
                     item={result}
                     setItem={setResult}
