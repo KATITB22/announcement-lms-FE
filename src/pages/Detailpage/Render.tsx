@@ -163,9 +163,9 @@ const Render = {
                 node.childNodes[0].childNodes[3]?.childNodes[0].childNodes[0]
                     .value;
             return (
-                <div className="w-40 sm:w-44 md:w-60 lg:w-80 rounded overflow-hidden shadow-lg bg-LightBrown">
+                <div className="w-48 md:w-64 rounded overflow-hidden shadow-lg bg-LightBrown">
                     <img
-                        className="w-full"
+                        className="w-full max-h-48 lg:max-h-72 object-cover"
                         src={formatUrl(srcImage)}
                         alt="product"
                     />
@@ -176,13 +176,13 @@ const Render = {
                             </div>
                         )}
                         {description && (
-                            <p className="text-gray-700 text-sm md:text-base">
+                            <p className="text-gray-700 text-sm md:text-base min-h-[60px] max-h-[100px] break-all">
                                 {description}
                             </p>
                         )}
                     </div>
                     {button && (
-                        <Center className="px-6 pt-2 pb-2">
+                        <Center className="px-6 pt-2 pb-4">
                             <Link href={button} isExternal>
                                 <Button>{buttonText}</Button>
                             </Link>
