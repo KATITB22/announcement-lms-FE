@@ -1,28 +1,157 @@
+import { useState } from 'react';
+import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react';
 import Rumpun from '@/components/Rumpun';
 import { mockData } from '@/types/constant';
 import ToBeAnnounced from './ToBeAnnounced';
 
 const TreasureHuntPage = () => {
+    const [available, setAvailable] = useState(false);
+    const [password, setPassword] = useState('');
+    const [incorrect, setIncorrect] = useState(false);
+    const [show, setShow] = useState(false);
     const date1 = new Date('2022-08-15');
     const date2 = new Date();
 
+    const handleClick = () => setShow(!show);
     if (date1.getDate() > date2.getDate()) {
         return <ToBeAnnounced />;
     }
+
+    const submitPassword = (e: any) => {
+        if (e.key === 'Enter') {
+            if (password === 'password') {
+                setAvailable(true);
+                window.scrollTo(0, 0);
+            } else {
+                setIncorrect(true);
+            }
+        }
+    };
+
+    const inputPassword = (e: any) => {
+        setIncorrect(false);
+        setPassword(e.target.value);
+    };
+
     return (
         <div>
             <div className="py-20 bg-Yellow">
                 <h1 className="text-4xl font-Heading font-bold mb-2 text-center">
-                    Defile Unit
+                    {available ? 'Defile Unit' : 'Selamat Datang'}
                 </h1>
             </div>
-            <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full">
-                    {mockData.map(({ name, link }) => (
-                        <Rumpun link={link} key={name} name={name} />
-                    ))}
+            {!available ? (
+                <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] flex flex-col items-center justify-center py-5">
+                    <div className="w-full px-3 md:w-2/3 xl:w-1/2 text-center">
+                        <p className="text-xl font-Body">
+                            Defile unit adalah ....
+                        </p>
+                        <p className="text-xl font-Body">
+                            Tapi sebelum itu kalian harus menjawab clue ini buat
+                            menemukan{' '}
+                            <span className="font-bold font-Body">
+                                password
+                            </span>{' '}
+                            yang membawa kalian ke unit - unit
+                        </p>
+                        <iframe
+                            src="https://www.youtube.com/embed/i9LWnyI0VrE"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            className="my-4 mx-auto w-full h-[14em] md:h-[17em] lg:h-[24em]"
+                        />
+                        <div className="flex flex-col gap-3">
+                            <div>
+                                <p className="font-Body font-semibold text-xl">
+                                    Clue 1 :
+                                </p>
+                                <p className="font-Body text-lg">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Laborum nulla optio
+                                    similique?
+                                </p>
+                            </div>
+                            <div>
+                                <p className="font-Body font-semibold text-xl">
+                                    Clue 2 :
+                                </p>
+                                <p className="font-Body text-lg">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Laborum nulla optio
+                                    similique?
+                                </p>
+                            </div>
+                            <div>
+                                <p className="font-Body font-semibold text-xl">
+                                    Clue 3 :
+                                </p>
+                                <p className="font-Body text-lg">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Laborum nulla optio
+                                    similique?
+                                </p>
+                            </div>
+                        </div>
+                        <p className="font-Body mt-5 mb-2">
+                            Kalo udah ketemu, masukin passwordnya di bawah ini
+                        </p>
+                        <InputGroup
+                            minWidth="150px"
+                            maxWidth={{ base: '3xs', md: 'xs', lg: 'sm' }}
+                            mx="auto"
+                            my="2"
+                            onKeyDown={(e: any) => submitPassword(e)}
+                        >
+                            <Input
+                                type={show ? 'text' : 'password'}
+                                bg="#FFCD90"
+                                pr="4.5rem"
+                                focusBorderColor="#D27C2F"
+                                borderColor="#D27C2F"
+                                placeholder="Enter Password"
+                                _placeholder={{ color: '#D27C2F' }}
+                                color="#511D05"
+                                outline="none"
+                                className="text-DarkerOrange"
+                                _hover={{ border: '1px solid #D27C2F' }}
+                                onChange={(e: any) => inputPassword(e)}
+                            />
+                            <InputRightElement width="4.5rem">
+                                <Button
+                                    h="1.75rem"
+                                    size="sm"
+                                    bg="#D27C2F"
+                                    color="white"
+                                    fontFamily="Alegreya Sans Regular"
+                                    fontWeight="400"
+                                    _hover={{
+                                        bg: '#D27C2F',
+                                    }}
+                                    _active={{
+                                        bg: '#D27C2F',
+                                    }}
+                                    onClick={handleClick}
+                                >
+                                    {show ? 'Hide' : 'Show'}
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
+                        {incorrect && (
+                            <p className="text-[red] font-Body text-xl">
+                                Incorrect Password
+                            </p>
+                        )}
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full">
+                        {mockData.map(({ name, link }) => (
+                            <Rumpun link={link} key={name} name={name} />
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
