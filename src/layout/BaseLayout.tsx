@@ -249,6 +249,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                     cursor="pointer"
                                     as="a"
                                     href={social.to}
+                                    target="_blank"
                                     display="inline-flex"
                                     alignItems="center"
                                     justifyContent="center"

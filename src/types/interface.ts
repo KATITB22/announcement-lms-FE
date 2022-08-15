@@ -102,6 +102,17 @@ export interface BlogPost extends PostOrPage {
     size?: string;
 }
 
+export interface MerchPostProps extends BaseProps {
+    item: MerchPostType;
+}
+
+export interface MerchPostType {
+    title: string;
+    images: string[];
+    price: string;
+    url: string;
+}
+
 export interface PageRouting {
     title: string;
     path: string;
