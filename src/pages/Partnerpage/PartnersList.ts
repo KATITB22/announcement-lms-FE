@@ -31,6 +31,7 @@ import SeputarEvent from '@/assets/images/medpars/S/Seputar-Event.png';
 import SeputarInfo from '@/assets/images/medpars/S/Seputar-Info-id.jpg';
 import UpdateMahasiswa from '@/assets/images/medpars/S/Update-Mahasiswa.jpeg';
 
+
 import AISEC from '@/assets/images/medpars/M/AIESEC-Bandung/AIESEC.jpg';
 import BCM from '@/assets/images/medpars/M/Bandung-Creative-Media/BCM.png';
 import MaraFM from '@/assets/images/medpars/M/MaraFM/MaraFM.png';
