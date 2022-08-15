@@ -78,7 +78,7 @@ const Searchpage: React.FC<{}> = () => {
     const renderSearch = (input: PostOrPage[]) => {
         if (input.length === 0) {
             return (
-                <div className="min-h-content inline-flex flex-grow items-center justify-center flex-col text-center z-10">
+                <div className="inline-flex flex-grow items-center justify-center flex-col text-center z-10">
                     <img
                         src={vistock}
                         alt="tidak ada hasil pencarian"
@@ -95,7 +95,7 @@ const Searchpage: React.FC<{}> = () => {
         }
 
         return (
-            <div className="col-span-1 xl:col-span-3 lg:col-span-2 mx-auto">
+            <div className="col-span-1 xl:col-span-3 lg:col-span-2 mx-auto self-start">
                 <div className="my-4">
                     <Pagination
                         pagination={pagination}
@@ -103,7 +103,7 @@ const Searchpage: React.FC<{}> = () => {
                         setPage={setPage}
                     />
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-start">
                     <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
                         {input
                             .slice((page - 1) * MAX_POST, page * MAX_POST)
@@ -128,8 +128,8 @@ const Searchpage: React.FC<{}> = () => {
     };
 
     const renderResult = (input: PostOrPage[]) => (
-        <div className="container max-w-screen-xl py-6 px-[3.75rem] mx-auto gap-6 min-h-content inline-flex flex-col items-center justify-center z-10">
-            <div className="hidden md:block">
+        <div className="container max-w-screen-xl py-6 px-[3.75rem] mx-auto gap-6 min-h-content inline-flex flex-row items-center justify-center z-10">
+            <div className="hidden md:block self-start">
                 <FilterAndCategory
                     item={result}
                     setItem={setResult}
