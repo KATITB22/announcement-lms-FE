@@ -10,7 +10,7 @@ const aboutDetailContents: Array<string> = [
 const AboutDetail: React.FC<AboutProps> = ({ toggle }) => (
     <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown min-h-content">
         <div className="container text-center max-w-screen-lg sm:min-h-content mx-auto px-[2rem] py-20">
-            <div className="relative flex flex-col items-center bg-MediumBrown opacity-70 rounded-[37px] pb-6 px-4 md:text-[18px] md:px-14 lg:px-20">
+            <div className="relative flex flex-col items-center bg-MediumBrown bg-opacity-70 rounded-[37px] pb-6 px-4 md:text-[18px] md:px-14 lg:px-20">
                 <img
                     className="relative mt-2 w-20 md:w-28"
                     src={oskmLogo}
