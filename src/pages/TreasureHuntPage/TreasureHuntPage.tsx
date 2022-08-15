@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react';
 import Rumpun from '@/components/Rumpun';
-import { mockData } from '@/types/constant';
+import { DEFILE_UNIT, mockData, SELAMAT_DATANG } from '@/types/constant';
+import vistock from '@/assets/images/background-detail-page/vistock22.png';
 import ToBeAnnounced from './ToBeAnnounced';
 
 const TreasureHuntPage = () => {
@@ -21,6 +22,7 @@ const TreasureHuntPage = () => {
         if (e.key === 'Enter') {
             if (password === 'password') {
                 setAvailable(true);
+                localStorage.setItem('available', 'true');
                 window.scrollTo(0, 0);
             } else {
                 setIncorrect(true);
@@ -33,11 +35,21 @@ const TreasureHuntPage = () => {
         setPassword(e.target.value);
     };
 
+    useEffect(() => {
+        const result = localStorage.getItem('available');
+        const availableRes = result ? JSON.parse(result) : false;
+        if (availableRes) {
+            setAvailable(availableRes);
+        } else {
+            setAvailable(false);
+        }
+    }, []);
+
     return (
         <div>
             <div className="py-20 bg-Yellow">
                 <h1 className="text-4xl font-Heading font-bold mb-2 text-center">
-                    {available ? 'Defile Unit' : 'Selamat Datang'}
+                    {available ? DEFILE_UNIT : SELAMAT_DATANG}
                 </h1>
                 <p className="text-center text-xl mx-[5em] my-[2em]">
                     Haloo, teman-teman maba! <br />
@@ -58,8 +70,8 @@ const TreasureHuntPage = () => {
                 </p>
             </div>
             {!available ? (
-                <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] flex flex-col items-center justify-center py-5">
-                    <div className="w-full px-3 md:w-2/3 xl:w-1/2 text-center">
+                <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] flex flex-col items-center justify-center py-5 relative">
+                    <div className="w-full px-3 md:w-2/3 xl:w-1/2 text-center z-10">
                         <p className="text-xl font-Body">
                             Defile unit adalah ....
                         </p>
@@ -113,8 +125,8 @@ const TreasureHuntPage = () => {
                             Kalo udah ketemu, masukin passwordnya di bawah ini
                         </p>
                         <InputGroup
-                            minWidth="150px"
-                            maxWidth={{ base: '3xs', md: 'xs', lg: 'sm' }}
+                            minWidth="200px"
+                            maxWidth={{ base: 'xs', md: 'sm', lg: 'md' }}
                             mx="auto"
                             my="2"
                             onKeyDown={(e: any) => submitPassword(e)}
@@ -159,6 +171,11 @@ const TreasureHuntPage = () => {
                             </p>
                         )}
                     </div>
+                    <img
+                        src={vistock}
+                        alt="vistock"
+                        className="absolute z-1 hidden md:block w-screen md:top-0 lg:top-[-2em]"
+                    />
                 </div>
             ) : (
                 <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
