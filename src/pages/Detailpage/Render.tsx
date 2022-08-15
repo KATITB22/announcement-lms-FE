@@ -392,6 +392,9 @@ const renderText = (
             className
         );
     }
+    if (node.nodeName === 'br') {
+        return <br />;
+    }
 
     // <a> tag
     return (
@@ -400,7 +403,7 @@ const renderText = (
             target="_blank"
             rel="noreferrer"
             key={idx}
-            href={node.attrs[0].value}
+            href={node.attrs[0] ? node.attrs[0].value : ''}
         >
             {node.childNodes[0].value}
         </a>
