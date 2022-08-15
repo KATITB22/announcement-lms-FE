@@ -63,15 +63,15 @@ const links = [
 const socials = [
     {
         to: 'https://twitter.com/oskmitb',
-        icon: <FaTwitter />,
+        icon: <FaTwitter size={20} />,
     },
     {
         to: 'https://www.instagram.com/oskm.itb/',
-        icon: <FaInstagram />,
+        icon: <FaInstagram size={20} />,
     },
     {
         to: 'https://www.youtube.com/channel/UCmkkBEqwMZ1SEZN937pdpgA',
-        icon: <FaYoutube />,
+        icon: <FaYoutube size={20} />,
     },
 ];
 
@@ -193,7 +193,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 ) : null}
             </Box>
             <Box>{children}</Box>
-            <Box h={48} className="bg-Orange text-DarkestOrange">
+            <Box className="bg-Orange text-DarkestOrange">
                 <Container
                     maxW="6xl"
                     className="h-full flex flex-col md:flex-row justify-center md:justify-between items-center"
@@ -202,30 +202,34 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     <div className="h-[80%] md:h-full flex flex-col justify-center">
                         <Link className="h-[40%] flex justify-center" to="/">
                             <img
-                                className="h-full"
+                                className="w-[120px]"
                                 src={LogoTextRight}
                                 alt=""
                             />
                         </Link>
                         <Flex className="h-[20%]">
                             <h1 className="font-Caption">
-                                &copy; <em>DEVA 2022 - Content and Publication</em>
+                                &copy;{' '}
+                                <em>DEVA 2022 - Content and Publication</em>
                             </h1>
                         </Flex>
                     </div>
                     <Flex
                         flexDirection="column"
                         alignItems={{ base: 'center', md: 'flex-start' }}
+                        mt={{ base: 2, md: 0 }}
                     >
-                        <Text className="font-Caption" fontSize="md">
+                        <Text className="font-Caption" fontSize="lg">
                             <em>Find us on</em>
                         </Text>
-                        <Stack direction="row" spacing={4}>
+                        <Stack
+                            direction="row"
+                            spacing={4}
+                            mt={{ base: 1, md: 0 }}
+                        >
                             {socials.map((social) => (
                                 <chakra.button
                                     rounded="full"
-                                    w={8}
-                                    h={8}
                                     cursor="pointer"
                                     as="a"
                                     href={social.to}
