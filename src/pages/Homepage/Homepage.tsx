@@ -82,6 +82,13 @@ const Homepage: React.FC<{}> = () => {
                     <VistockHome />
                     <div className="py-10">
                         <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">
+                            <div className="my-4">
+                                <Pagination
+                                    pagination={posts.meta.pagination}
+                                    page={page}
+                                    setPage={setPage}
+                                />
+                            </div>
                             <div className="flex justify-center">
                                 <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
                                     {blogPostElements}
