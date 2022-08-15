@@ -45,13 +45,13 @@ const PartnerPage: React.FC<{}> = () => {
                             <SponsorSectionTitle title={SPONSOR_TITLE} />
                             <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center flex-col items-center rounded-md gap-5">
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorLG}
+                                    listOfSponsorAndPartner={sponsorSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={sponsorMD}
                                 />
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorSM}
+                                    listOfSponsorAndPartner={sponsorLG}
                                 />
                             </div>
                         </div>
@@ -59,16 +59,16 @@ const PartnerPage: React.FC<{}> = () => {
                             <SponsorSectionTitle title={MEDPAR_TITLE} />
                             <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center flex-col items-center rounded-md gap-5">
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparXL}
-                                />
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparLG}
+                                    listOfSponsorAndPartner={medparSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={medparMD}
                                 />
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparSM}
+                                    listOfSponsorAndPartner={medparLG}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparXL}
                                 />
                             </div>
                         </div>

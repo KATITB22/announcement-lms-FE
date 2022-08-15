@@ -112,16 +112,16 @@ const Homepage: React.FC<{}> = () => {
                                     {MEDPAR_TITLE}
                                 </h2>
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparXL}
-                                />
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparLG}
+                                    listOfSponsorAndPartner={medparSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={medparMD}
                                 />
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparSM}
+                                    listOfSponsorAndPartner={medparLG}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparXL}
                                 />
                             </div>
                         </div>
