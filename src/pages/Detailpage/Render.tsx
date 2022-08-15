@@ -197,20 +197,16 @@ const Render = {
                 ? renderText(node.childNodes[1].childNodes[0], id)
                 : undefined;
             return (
-                <VStack
-                    key={id}
-                    justifyContent="center"
-                    alignItems="center"
-                    width="100%"
-                    bg="rgba(255,235,176,0.65)"
-                >
-                    <Text fontSize={['2xl', '3xl', '4xl']}>{textHeader}</Text>
+                <div className="flex justify-center flex-wrap text-center bg-Yellow bg-opacity-[0.65] text-black p-4 md:p-8">
+                    <p className="text-2xl md:text-3xl lg:text-4xl break-all">
+                        {textHeader}
+                    </p>
                     {textSubHeader && (
-                        <Text fontSize={['lg', 'xl', '2xl']}>
+                        <p className="text-lg sm:text-xl md:text-2xl">
                             {textSubHeader}
-                        </Text>
+                        </p>
                     )}
-                </VStack>
+                </div>
             );
         }
 
