@@ -5,11 +5,10 @@ import { Flex, Box, VStack } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
-import { MONTHS, excludeTag } from '@/types/constant';
+import { MONTHS } from '@/types/constant';
 import VistockBackground from '@/components/VistockBackground';
 import DefaultImage from '@/assets/images/logo/logo.png';
 import { DetailPost, DetailpageProps } from '@/types/interface';
-import { PostOrPage } from '@tryghost/content-api';
 import useFetch from '@/hooks/useFetch';
 import { ErrorTypes } from '@/types/enum';
 import { formatUrl } from '@/util/util';
@@ -17,20 +16,6 @@ import RelatedPosts from './RelatedPosts';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 import { renderCaption } from './Render';
-
-const isDefile = (relatedPosts: PostOrPage[]) => {
-    let defile = false;
-    relatedPosts.forEach((post) => {
-        if (post.tags) {
-            post.tags.forEach((tag: any) => {
-                if (excludeTag.includes(tag.name.toUpperCase())) {
-                    defile = true;
-                }
-            });
-        }
-    });
-    return defile;
-};
 
 const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
     const { postId } = useParams();
@@ -69,7 +54,7 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
     }
 
     if (data.detailPost) {
-        if (data.relatedPosts && isDefile(data.relatedPosts)) {
+        if (!isForUnit) {
             return <ErrorPage type={ErrorTypes.PostNotFound} />;
         }
         post = data.detailPost;
