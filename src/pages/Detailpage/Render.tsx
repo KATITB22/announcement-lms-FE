@@ -163,9 +163,9 @@ const Render = {
                 node.childNodes[0].childNodes[3]?.childNodes[0].childNodes[0]
                     .value;
             return (
-                <div className="w-40 sm:w-44 md:w-60 lg:w-80 rounded overflow-hidden shadow-lg bg-LightBrown">
+                <div className="w-48 md:w-64 rounded overflow-hidden shadow-lg bg-LightBrown">
                     <img
-                        className="w-full"
+                        className="w-full max-h-48 lg:max-h-72 object-cover"
                         src={formatUrl(srcImage)}
                         alt="product"
                     />
@@ -176,13 +176,13 @@ const Render = {
                             </div>
                         )}
                         {description && (
-                            <p className="text-gray-700 text-sm md:text-base">
+                            <p className="text-gray-700 text-sm md:text-base min-h-[60px] max-h-[100px] break-all">
                                 {description}
                             </p>
                         )}
                     </div>
                     {button && (
-                        <Center className="px-6 pt-2 pb-2">
+                        <Center className="px-6 pt-2 pb-4">
                             <Link href={button} isExternal>
                                 <Button>{buttonText}</Button>
                             </Link>
@@ -197,20 +197,16 @@ const Render = {
                 ? renderText(node.childNodes[1].childNodes[0], id)
                 : undefined;
             return (
-                <VStack
-                    key={id}
-                    justifyContent="center"
-                    alignItems="center"
-                    width="100%"
-                    bg="rgba(255,235,176,0.65)"
-                >
-                    <Text fontSize={['2xl', '3xl', '4xl']}>{textHeader}</Text>
+                <div className="flex justify-center flex-wrap text-center bg-Yellow bg-opacity-[0.65] text-black p-4 md:p-8">
+                    <p className="text-2xl md:text-3xl lg:text-4xl break-all">
+                        {textHeader}
+                    </p>
                     {textSubHeader && (
-                        <Text fontSize={['lg', 'xl', '2xl']}>
+                        <p className="text-lg sm:text-xl md:text-2xl break-all">
                             {textSubHeader}
-                        </Text>
+                        </p>
                     )}
-                </VStack>
+                </div>
             );
         }
 
@@ -392,6 +388,9 @@ const renderText = (
             className
         );
     }
+    if (node.nodeName === 'br') {
+        return <br />;
+    }
 
     // <a> tag
     return (
@@ -400,7 +399,7 @@ const renderText = (
             target="_blank"
             rel="noreferrer"
             key={idx}
-            href={node.attrs[0].value}
+            href={node.attrs[0] ? node.attrs[0].value : ''}
         >
             {node.childNodes[0].value}
         </a>
