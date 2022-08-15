@@ -91,7 +91,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
 
     return (
         <Animate>
-            <Box className="bg-Yellow px-4 text-DarkerOrange z-20">
+            <Box className="relative bg-Yellow px-4 text-DarkerOrange z-20">
                 <Flex
                     h={16}
                     alignItems="center"
