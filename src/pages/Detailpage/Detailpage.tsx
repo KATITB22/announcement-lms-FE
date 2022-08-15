@@ -64,7 +64,7 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
         post!.feature_image ? (
             <figure className="w-full flex flex-col items-center">
                 <img
-                    className="w-full max-h-[500px] w-52 object-contain"
+                    className="w-full max-h-[500px] object-contain"
                     src={featureImg}
                     alt={post!.feature_image_alt!}
                     onError={() => {
@@ -137,9 +137,7 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
 
                     {renderHTMLContent(post!)}
                 </VStack>
-                {/* <Flex justifyContent="center"> */}
-                <RelatedPosts posts={data.relatedPosts} />
-                {/* </Flex> */}
+                {!isForUnit && <RelatedPosts posts={data.relatedPosts} />}
             </Flex>
             <Flex width="15%" />
         </Flex>

@@ -17,9 +17,5 @@ export const possibleRumpunName = [
     'Seni',
     'BSO',
 ] as const;
-export type RumpunName = typeof possibleRumpunName[number];
 
-export interface UnitLink {
-    name: string;
-    page_link: string;
-}
+export type RumpunName = typeof possibleRumpunName[number];

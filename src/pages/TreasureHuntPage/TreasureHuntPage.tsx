@@ -1,15 +1,7 @@
 import Rumpun from '@/components/Rumpun';
-import { RumpunName } from '@/types/types';
+import { mockData } from '@/types/constant';
 import ToBeAnnounced from './ToBeAnnounced';
 
-const mockData = [
-    { name: 'BSO', link: 'bso' },
-    { name: 'Agama', link: 'agama' },
-    { name: 'Budaya', link: 'budaya' },
-    { name: 'Olahraga', link: 'olahraga' },
-    { name: 'Seni', link: 'seni' },
-    { name: 'P/M/K', link: 'pmk' },
-] as { name: RumpunName; link: string }[];
 const TreasureHuntPage = () => {
     const date1 = new Date('2022-08-13');
     const date2 = new Date();
@@ -26,8 +18,8 @@ const TreasureHuntPage = () => {
             </div>
             <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full">
-                    {mockData.map(({ name, link }, index) => (
-                        <Rumpun link={link} key={name} id={index} name={name} />
+                    {mockData.map(({ name, link }) => (
+                        <Rumpun link={link} key={name} name={name} />
                     ))}
                 </div>
             </div>

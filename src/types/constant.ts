@@ -1,3 +1,5 @@
+import { RumpunName } from './types';
+
 /* eslint-disable no-unused-vars */
 export const MONTHS = [
     'Jan',
@@ -24,3 +26,20 @@ export const MEDPAR_TITLE = '\uE023e\uE053ia Partner';
 export const REGEX_PARSE = /(\r\n|\n|\r)/gm;
 export const PARTNER_TITLE = '\uE096\uE00Ean\uE01As t\uE032';
 export const ABOUT_US_TITLE = '\uE000\uE050o\uE069\uE067 \uE038\uE076';
+export const mockData = [
+    { name: 'BSO', link: 'bso' },
+    { name: 'Agama', link: 'agama' },
+    { name: 'Budaya', link: 'budaya' },
+    { name: 'Olahraga', link: 'olahraga' },
+    { name: 'Seni', link: 'seni' },
+    { name: 'P/M/K', link: 'pmk' },
+] as { name: RumpunName; link: string }[];
+
+export const possibleLink = [
+    'bso',
+    'agama',
+    'budaya',
+    'olahraga',
+    'seni',
+    'pmk',
+];

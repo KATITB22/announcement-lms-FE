@@ -3,17 +3,9 @@ import { fetchAllUnit } from '@/service/ghostAPI';
 import { Posts, TreasureHuntPageProps } from '@/types/interface';
 import { RumpunName } from '@/types/types';
 import Card from '@/components/Card';
-// import {
-//     unitBSO,
-//     unitAgama,
-//     unitBudaya,
-//     unitOlahraga,
-//     unitSeni,
-//     unitPMK,
-// } from '@/pages/TreasureHuntPage/ListUnit';
 import { useParams } from 'react-router-dom';
-// import { useState } from 'react';
 import { ErrorTypes } from '@/types/enum';
+import { possibleLink } from '@/types/constant';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 
@@ -51,7 +43,7 @@ const rumpunName = [
 //     'P/M/K': unitPMK,
 // } as Record<RumpunName, UnitLink[]>;
 
-function showCard(input: Posts) {
+function showCard(input: Posts, slug: string) {
     return input.map((post) => (
         <Card
             key={post.slug}
@@ -59,14 +51,21 @@ function showCard(input: Posts) {
             id={post.slug}
             title={post.title}
             feature_image={post.feature_image}
+            preSlug={slug}
         />
     ));
 }
 
 const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = () => {
     const { unitId: id } = useParams();
-    // const [page, setPage] = useState<number>(1);
-    const { data, isLoading, error, message } = useFetch(fetchAllUnit());
+
+    if (!possibleLink.includes(id!)) {
+        return <ErrorPage type={ErrorTypes.PageNotFound} />;
+    }
+
+    const { data, isLoading, error, message } = useFetch(
+        fetchAllUnit(id!.toUpperCase())
+    );
 
     if (isLoading) {
         return <Loading />;
@@ -77,12 +76,16 @@ const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = () => {
     }
     const posts: Posts = data;
 
+    if (posts.length === 0) {
+        return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
+    }
+
     return (
         <div>
             {greetings(rumpunName[parseInt(id!, 10)])}
             <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full">
-                    {showCard(posts)}
+                    {showCard(posts, id!)}
                 </div>
             </div>
         </div>

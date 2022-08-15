@@ -70,12 +70,13 @@ export interface FetchingState {
 }
 
 export interface RumpunProps {
-    id: number;
     name: string;
     link: string;
 }
 
-export interface UnitProps extends PostOrPage {}
+export interface UnitProps extends PostOrPage {
+    preSlug: string;
+}
 
 export interface TreasureHuntPageProps extends UnitProps {
     // unit: UnitProps;
@@ -130,4 +131,9 @@ export interface figureAttr {
     allowFullScreen?: string;
     frameBorder?: string;
     title?: string;
+}
+
+export interface UnitLink {
+    name: string;
+    page_link: string;
 }
