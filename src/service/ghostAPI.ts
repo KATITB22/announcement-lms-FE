@@ -3,6 +3,9 @@ import { Posts, DetailPost, RelatedPosts } from '@/types/interface';
 import { getBaseUrl, getGhostKey } from '@/util/util';
 import GhostContentAPI, { Tags } from '@tryghost/content-api';
 
+const filteredTag =
+    'tag:-BSO+tag:-AGAMA+tag:-BUDAYA+tag:-OLAHRAGA+tag:-SENI+tag:-PMK+tag:-Merch';
+
 const GhostAPI = new GhostContentAPI({
     url: getBaseUrl(),
     key: getGhostKey(),
@@ -22,7 +25,7 @@ export const fetchPost = async (page?: number): Promise<Posts> => {
     try {
         const listOfAllPosts: Posts = await GhostAPI.posts.browse({
             include: ['tags', 'authors'],
-            filter: 'tag:-defile-unit+tag:-sponsor',
+            filter: filteredTag,
             limit: MAX_POST,
             page: page || 1,
         });
@@ -37,6 +40,7 @@ export const fetchAllPost = async (): Promise<Posts> => {
         const listAllPosts: Posts = await GhostAPI.posts.browse({
             limit: 'all',
             include: ['tags', 'authors'],
+            filter: filteredTag,
         });
         return listAllPosts;
     } catch (err: any) {
@@ -45,9 +49,9 @@ export const fetchAllPost = async (): Promise<Posts> => {
 };
 
 export const fetchAllUnit = async (tag?: string) => {
-    let definedTag = 'tag:defile-unit';
+    let definedTag = '';
     if (tag) {
-        definedTag = `${definedTag}+tag:${tag}`;
+        definedTag = `tag:${tag}`;
     }
     try {
         const listAllUnit: Posts = await GhostAPI.posts.browse({
@@ -66,7 +70,7 @@ export const fetchAllSponsor = async () => {
         const listAllSponsor: Posts = await GhostAPI.posts.browse({
             limit: 'all',
             include: ['tags', 'authors'],
-            filter: 'tag:sponsor',
+            filter: 'tag:merch',
         });
         return listAllSponsor;
     } catch (err: any) {
@@ -108,7 +112,7 @@ export const fetchPostsFilterByTag = async (tag: string[]) => {
     try {
         const filteredPosts: Posts = await GhostAPI.posts.browse({
             include: ['tags', 'authors'],
-            filter: `tag:${tag}`,
+            filter: `${filteredTag}+tag:${tag}`,
         });
         return filteredPosts;
     } catch (err: any) {

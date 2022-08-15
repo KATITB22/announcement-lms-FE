@@ -3,7 +3,7 @@ import { mockData } from '@/types/constant';
 import ToBeAnnounced from './ToBeAnnounced';
 
 const TreasureHuntPage = () => {
-    const date1 = new Date('2022-08-13');
+    const date1 = new Date('2022-08-15');
     const date2 = new Date();
 
     if (date1.getDate() > date2.getDate()) {

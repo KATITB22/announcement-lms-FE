@@ -5,6 +5,7 @@ import { fetchAllTag } from '@/service/ghostAPI';
 import ErrorPage from '@/pages/ErrorPage';
 import { ErrorTypes } from '@/types/enum';
 import { Tag } from '@tryghost/content-api';
+import { excludeTag } from '@/types/constant';
 import { FilterCategoryProps } from '../types/interface';
 
 const parsingQuery = (query: string | null) => {
@@ -36,7 +37,9 @@ const FilterAndCategory: React.FC<FilterCategoryProps> = ({
     useEffect(() => {
         if (!isLoading) {
             setListOfCategories(
-                (data as Array<Tag>).map((tag) => (tag.name ? tag.name : ''))
+                (data as Array<Tag>)
+                    .filter((tag) => !excludeTag.includes(tag.name!))
+                    .map((tag) => (tag.name ? tag.name : ''))
             );
         }
     }, [data, isLoading]);
