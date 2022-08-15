@@ -7,6 +7,7 @@ export const renderHTMLContent = (post: any) => {
     const root = parse(post.html.replace(REGEX_PARSE, ''))
         .childNodes[0] as ElementExtended;
     const { childNodes } = root.childNodes[1];
+    // console.log(childNodes);
 
     const components: JSX.Element[] = [];
     childNodes.forEach((node: ElementExtended, id: number) => {

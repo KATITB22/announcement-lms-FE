@@ -4,7 +4,7 @@ import { MerchPostType } from '@/types/interface';
 import Logo from '@/assets/images/logo/logo.png';
 import React from 'react';
 import MerchPost from '@/components/MerchPost';
-import Kuaci from '@/assets/images/home/annoucement-min.png';
+import Kuaci from '@/assets/images/home/announcement-min.png';
 
 const Data: MerchPostType[] = [
     {

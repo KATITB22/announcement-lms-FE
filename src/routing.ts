@@ -14,9 +14,6 @@ const TreasureHuntPage = React.lazy(
 const TreasureHuntPageUnit = React.lazy(
     () => import('./pages/TreasureHuntPage/TreasureHuntPageUnit')
 );
-const ToBeAnnouncedPage = React.lazy(
-    () => import('./pages/TreasureHuntPage/ToBeAnnounced')
-);
 const CataloguePage = React.lazy(() => import('./pages/Catalogue/Catalogue'));
 
 const PageNotFoundRouting: PageRouting = {
@@ -67,11 +64,6 @@ export const Routing: PageRouting[] = [
         title: 'Treasure Hunt Unit',
         path: '/defile/:unitId',
         component: TreasureHuntPageUnit,
-    },
-    {
-        title: 'To Be Announced',
-        path: '/to-be-announced',
-        component: ToBeAnnouncedPage,
     },
     {
         title: 'Catalogue',

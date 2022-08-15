@@ -54,6 +54,9 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
     }
 
     if (data.detailPost) {
+        if (!isForUnit) {
+            return <ErrorPage type={ErrorTypes.PostNotFound} />;
+        }
         post = data.detailPost;
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
@@ -92,7 +95,7 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
     return (
         <Flex
             background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)"
-            className="min-h-screen justify-center relative"
+            className="min-h-screen justify-center relative z-10"
         >
             <VistockBackground />
             <Flex width="15%">
@@ -131,10 +134,9 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
                         base: '12px',
                         md: '24px',
                     }}
-                    className="bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]"
+                    className="bg-[#D9D9D9] z-30 p-5 bg-opacity-70 rounded-[37px]"
                 >
                     {!isForUnit && getFeatureImage()}
-
                     {renderHTMLContent(post!)}
                 </VStack>
                 {!isForUnit && <RelatedPosts posts={data.relatedPosts} />}
