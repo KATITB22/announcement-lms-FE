@@ -49,6 +49,7 @@ import InilahKoran from '@/assets/images/medpars/XL/INILAH-KORAN.png';
 import JPNN from '@/assets/images/medpars/XL/JPNN.png';
 import Kompasiana from '@/assets/images/medpars/XL/Kompasiana/Kompasiana-Biru.png';
 import Republika from '@/assets/images/medpars/XL/Republika.jpg';
+
 const listOfMedpar: imgPartner[] = [
     {
         title: 'AS Resources Indonesia',

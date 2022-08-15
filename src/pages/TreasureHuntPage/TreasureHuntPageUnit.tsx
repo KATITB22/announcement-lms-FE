@@ -5,6 +5,7 @@ import Card from '@/components/Card';
 import { useParams } from 'react-router-dom';
 import { ErrorTypes } from '@/types/enum';
 import { possibleLink } from '@/types/constant';
+import VistockRumpun from '@/components/VistockRumpum';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 
@@ -64,7 +65,8 @@ const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = () => {
     return (
         <div>
             {greetings(id!.toUpperCase())}
-            <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
+            <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] relative z-10 py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
+                <VistockRumpun />
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full">
                     {showCard(posts, id!)}
                 </div>
