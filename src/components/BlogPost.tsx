@@ -76,7 +76,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                 {formattedDate} | {authorName}
                             </p>
                             <Text
-                                noOfLines={[1, 2]}
+                                noOfLines={[1, 2,3]}
                                 // href={link}
                                 className={`font-Heading text-body  ${
                                     size === 'sm' ? '' : 'md:text-title'
