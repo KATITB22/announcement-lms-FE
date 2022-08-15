@@ -19,6 +19,18 @@ const Data: MerchPostType[] = [
         url: 'https://www.google.com',
         images: [Logo, Kuaci],
     },
+    {
+        title: 'Test',
+        price: 'Rp. 100.000',
+        url: 'https://www.google.com',
+        images: [Logo, Kuaci],
+    },
+    {
+        title: 'Test',
+        price: 'Rp. 100.000',
+        url: 'https://www.google.com',
+        images: [Logo, Kuaci],
+    },
 ];
 
 const Catalogue: React.FC<{}> = () => (
