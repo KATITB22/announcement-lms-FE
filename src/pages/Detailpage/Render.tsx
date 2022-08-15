@@ -202,7 +202,7 @@ const Render = {
                         {textHeader}
                     </p>
                     {textSubHeader && (
-                        <p className="text-lg sm:text-xl md:text-2xl">
+                        <p className="text-lg sm:text-xl md:text-2xl break-all">
                             {textSubHeader}
                         </p>
                     )}
