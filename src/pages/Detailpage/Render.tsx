@@ -20,7 +20,7 @@ const Render = {
         return (
             <Text
                 key={id}
-                className=" text-caption md:text-body w-full text-justify"
+                className=" text-caption md:text-body w-full text-left"
             >
                 {textComponents}
             </Text>

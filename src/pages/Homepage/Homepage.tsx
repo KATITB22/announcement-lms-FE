@@ -10,7 +10,12 @@ import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import VistockHome from '@/components/VistockHome';
 import VistockAnnoucement from '@/assets/images/home/annoucement-min.png';
-import { medparLG, medparMD } from '@/pages/Partnerpage/PartnersList';
+import {
+    medparLG,
+    medparMD,
+    medparSM,
+    medparXL,
+} from '@/pages/Partnerpage/PartnersList';
 
 import {
     sponsorLG,
@@ -48,7 +53,7 @@ const Homepage: React.FC<{}> = () => {
         />
     ));
 
-    document.title = 'Home - OSKM ITB 2022';
+    document.title = 'Home - Deva: Blog OSKM ITB 2022';
 
     if (posts.length === 0) {
         return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
@@ -69,6 +74,7 @@ const Homepage: React.FC<{}> = () => {
                         src={VistockAnnoucement}
                         alt="annoucement"
                         className="w-screen"
+                        draggable="false"
                     />
                 </div>
                 {/* <Annoucement /> */}
@@ -100,13 +106,13 @@ const Homepage: React.FC<{}> = () => {
                                     {SPONSOR_TITLE}
                                 </h2>
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorLG}
+                                    listOfSponsorAndPartner={sponsorSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={sponsorMD}
                                 />
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorSM}
+                                    listOfSponsorAndPartner={sponsorLG}
                                 />
                             </div>
                             <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center flex-col">
@@ -114,10 +120,16 @@ const Homepage: React.FC<{}> = () => {
                                     {MEDPAR_TITLE}
                                 </h2>
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparLG}
+                                    listOfSponsorAndPartner={medparSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={medparMD}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparLG}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparXL}
                                 />
                             </div>
                         </div>

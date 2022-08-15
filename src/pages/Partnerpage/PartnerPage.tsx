@@ -3,7 +3,7 @@ import { PARTNER_TITLE, SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import { sponsorLG, sponsorMD, sponsorSM } from './SponsorsList';
-import { medparLG, medparMD } from './PartnersList';
+import { medparXL, medparLG, medparMD, medparSM } from './PartnersList';
 
 const SponsorSectionTitle = ({ title }: { title: string }) => (
     <div className="flex relative h-[36px] justify-center">
@@ -14,7 +14,7 @@ const SponsorSectionTitle = ({ title }: { title: string }) => (
 );
 
 const PartnerPage: React.FC<{}> = () => {
-    document.title = 'Sponsor - OSKM ITB 2022';
+    document.title = 'Sponsor - Deva: Blog OSKM ITB 2022';
     // const imageArray: Array<image> = [];
     return (
         <PageTransition>
@@ -45,13 +45,13 @@ const PartnerPage: React.FC<{}> = () => {
                             <SponsorSectionTitle title={SPONSOR_TITLE} />
                             <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center flex-col items-center rounded-md gap-5">
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorLG}
+                                    listOfSponsorAndPartner={sponsorSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={sponsorMD}
                                 />
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorSM}
+                                    listOfSponsorAndPartner={sponsorLG}
                                 />
                             </div>
                         </div>
@@ -59,10 +59,16 @@ const PartnerPage: React.FC<{}> = () => {
                             <SponsorSectionTitle title={MEDPAR_TITLE} />
                             <div className="min-h-[200px] py-8 p-4 bg-LightBrown flex justify-center flex-col items-center rounded-md gap-5">
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparLG}
+                                    listOfSponsorAndPartner={medparSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={medparMD}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparLG}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparXL}
                                 />
                             </div>
                         </div>

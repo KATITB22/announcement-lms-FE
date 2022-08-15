@@ -43,3 +43,13 @@ export const possibleLink = [
     'seni',
     'pmk',
 ];
+
+export const excludeTag = [
+    'BSO',
+    'AGAMA',
+    'BUDAYA',
+    'OLAHRAGA',
+    'SENI',
+    'PMK',
+    'MERCH',
+];

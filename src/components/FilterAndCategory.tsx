@@ -5,6 +5,7 @@ import { fetchAllTag } from '@/service/ghostAPI';
 import ErrorPage from '@/pages/ErrorPage';
 import { ErrorTypes } from '@/types/enum';
 import { Tag } from '@tryghost/content-api';
+import { excludeTag } from '@/types/constant';
 import { FilterCategoryProps } from '../types/interface';
 
 const parsingQuery = (query: string | null) => {
@@ -36,7 +37,9 @@ const FilterAndCategory: React.FC<FilterCategoryProps> = ({
     useEffect(() => {
         if (!isLoading) {
             setListOfCategories(
-                (data as Array<Tag>).map((tag) => (tag.name ? tag.name : ''))
+                (data as Array<Tag>)
+                    .filter((tag) => !excludeTag.includes(tag.name!))
+                    .map((tag) => (tag.name ? tag.name : ''))
             );
         }
     }, [data, isLoading]);
@@ -99,30 +102,39 @@ const FilterAndCategory: React.FC<FilterCategoryProps> = ({
     }, [checked]);
 
     return (
-        <div className={`bg-Yellow p-8 inline-block rounded-md ${className}`}>
-            <p className="font-Subheading text-h4">Filter tags</p>
-            <CheckboxGroup
-                onChange={(value) => setChecked(value.map((i) => `${i}`))}
-                value={checked}
+        <div className="bg-Yellow p-4 rounded-md">
+            <div
+                className={`bg-MediumBrown p-6 inline-block rounded-md ${className}`}
             >
-                <Stack
-                    spacing={[1, 5]}
-                    direction={['column']}
-                    className="font-Body bg-MediumBrown p-8 rounded-md"
+                <p className="font-Heading text-title">Filter</p>
+                <CheckboxGroup
+                    onChange={(value) => setChecked(value.map((i) => `${i}`))}
+                    value={checked}
                 >
-                    {listOfCategories.map((category) => (
-                        <Checkbox
-                            key={category}
-                            value={category}
-                            colorScheme="red"
-                            border="1px red"
-                            className="font-Body"
-                        >
-                            {category}
-                        </Checkbox>
-                    ))}
-                </Stack>
-            </CheckboxGroup>
+                    <Stack
+                        spacing={[1, 3]}
+                        direction={['column']}
+                        className="bg-MediumBrown rounded-md"
+                    >
+                        {listOfCategories.map((category) => (
+                            <Checkbox
+                                key={category}
+                                value={category}
+                                border="1px #000000"
+                                className="bg-Gray pl-3 pr-8 py-2 rounded-md font-Title"
+                                _hover={{
+                                    bg: '#FFEBB0',
+                                }}
+                                _checked={{
+                                    bg: '#FFEBB0',
+                                }}
+                            >
+                                {category}
+                            </Checkbox>
+                        ))}
+                    </Stack>
+                </CheckboxGroup>
+            </div>
         </div>
     );
 };

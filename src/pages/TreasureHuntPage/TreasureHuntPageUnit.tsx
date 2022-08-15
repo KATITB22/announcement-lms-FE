@@ -1,7 +1,6 @@
 import useFetch from '@/hooks/useFetch';
 import { fetchAllUnit } from '@/service/ghostAPI';
 import { Posts, TreasureHuntPageProps } from '@/types/interface';
-import { RumpunName } from '@/types/types';
 import Card from '@/components/Card';
 import { useParams } from 'react-router-dom';
 import { ErrorTypes } from '@/types/enum';
@@ -24,24 +23,6 @@ function greetings(rumpunName: string) {
         </div>
     );
 }
-
-const rumpunName = [
-    'BSO',
-    'Agama',
-    'Budaya',
-    'Olahraga',
-    'Seni',
-    'P/M/K',
-] as RumpunName[];
-
-// const rumpunToUnit = {
-//     BSO: unitBSO,
-//     Agama: unitAgama,
-//     Budaya: unitBudaya,
-//     Olahraga: unitOlahraga,
-//     Seni: unitSeni,
-//     'P/M/K': unitPMK,
-// } as Record<RumpunName, UnitLink[]>;
 
 function showCard(input: Posts, slug: string) {
     return input.map((post) => (
@@ -82,7 +63,7 @@ const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = () => {
 
     return (
         <div>
-            {greetings(rumpunName[parseInt(id!, 10)])}
+            {greetings(id!.toUpperCase())}
             <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] py-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl">
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full">
                     {showCard(posts, id!)}
