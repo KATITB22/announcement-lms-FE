@@ -9,7 +9,7 @@ import { ErrorTypes } from '@/types/enum';
 import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import VistockHome from '@/components/VistockHome';
-import VistockAnnoucement from '@/assets/images/home/annoucement-min.png';
+import VistockAnnoucement from '@/assets/images/home/announcement-v1.png';
 import {
     medparLG,
     medparMD,
@@ -69,7 +69,7 @@ const Homepage: React.FC<{}> = () => {
                         </h1>
                     </div>
                 </div> */}
-                <div className="bg-[#FF8952] z-[-3]">
+                <div className="bg-[#FF8952]">
                     <img
                         src={VistockAnnoucement}
                         alt="annoucement"

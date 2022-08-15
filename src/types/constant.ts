@@ -16,6 +16,7 @@ export const MONTHS = [
     'Dec',
 ];
 
+export const MAX_TITLE = 50;
 export const MAX_DESCRIPTION = 150;
 export const MAX_DESCRIPTION_RELATED = 100;
 export const MAX_POST = 6;
