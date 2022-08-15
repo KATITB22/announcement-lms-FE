@@ -17,7 +17,7 @@ import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 import { renderCaption } from './Render';
 
-const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
+const Detailpage: React.FC<DetailpageProps> = ({ isForUnit, fromPost }) => {
     const { postId } = useParams();
     const { data, isLoading, error, message } = useFetch(
         fetchSinglePost(postId!),
@@ -54,7 +54,7 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
     }
 
     if (data.detailPost) {
-        if (!isForUnit) {
+        if (!isForUnit && !fromPost) {
             return <ErrorPage type={ErrorTypes.PostNotFound} />;
         }
         post = data.detailPost;

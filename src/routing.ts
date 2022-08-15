@@ -47,7 +47,7 @@ export const Routing: PageRouting[] = [
         title: 'Detail Post',
         path: '/post/:postId',
         component: DetailPage,
-        props: { isForUnit: false },
+        props: { isForUnit: false, fromPost: true },
     },
     {
         title: 'Defile Unit',
@@ -58,7 +58,7 @@ export const Routing: PageRouting[] = [
         title: 'Detail Unit',
         path: '/defile/:unitId/:postId',
         component: DetailPage,
-        props: { isForUnit: true },
+        props: { isForUnit: true, fromPost: false },
     },
     {
         title: 'Treasure Hunt Unit',
