@@ -26,6 +26,8 @@ export const MEDPAR_TITLE = '\uE023e\uE053ia Partner';
 export const REGEX_PARSE = /(\r\n|\n|\r)/gm;
 export const PARTNER_TITLE = '\uE096\uE00Ean\uE01As t\uE032';
 export const ABOUT_US_TITLE = '\uE000\uE050o\uE069\uE067 \uE038\uE076';
+export const SELAMAT_DATANG = '\uE035elama\uE04C \uE006atan\uE031';
+export const DEFILE_UNIT = '\uE006ef\uE058le \uE039nit';
 export const mockData = [
     { name: 'BSO', link: 'bso' },
     { name: 'Agama', link: 'agama' },
