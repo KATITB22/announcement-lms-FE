@@ -74,6 +74,7 @@ const Homepage: React.FC<{}> = () => {
                         src={VistockAnnoucement}
                         alt="annoucement"
                         className="w-screen"
+                        draggable="false"
                     />
                 </div>
                 {/* <Annoucement /> */}
