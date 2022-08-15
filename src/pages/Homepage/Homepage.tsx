@@ -98,13 +98,13 @@ const Homepage: React.FC<{}> = () => {
                                     {SPONSOR_TITLE}
                                 </h2>
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorLG}
+                                    listOfSponsorAndPartner={sponsorSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={sponsorMD}
                                 />
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorSM}
+                                    listOfSponsorAndPartner={sponsorLG}
                                 />
                             </div>
                             <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center flex-col">
