@@ -15,14 +15,16 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
-import { AiFillHome, AiFillTag } from 'react-icons/ai';
+import { AiFillHome } from 'react-icons/ai';
 import {
     FaInfo,
     FaTwitter,
     FaInstagram,
     FaYoutube,
     FaPeopleCarry,
+    FaHandshake,
 } from 'react-icons/fa';
+import { GrCatalog } from 'react-icons/gr';
 import Navbar from '@components/Navbar';
 import Logo from '@/assets/images/logo/logo.png';
 import LogoTextRight from '@/assets/images/logo/logo-oskm-itb.png';
@@ -40,7 +42,7 @@ const links = [
     {
         name: 'Catalogue',
         to: '/catalogue',
-        icon: <AiFillTag />,
+        icon: <GrCatalog />,
     },
     {
         name: 'Defile',
@@ -50,7 +52,7 @@ const links = [
     {
         name: 'Partner',
         to: '/partner',
-        icon: <AiFillTag />,
+        icon: <FaHandshake />,
     },
 
     {
