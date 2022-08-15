@@ -41,7 +41,7 @@ body {
 .home-bg {
     background: url('/src/assets/images/home/bg-min.png') no-repeat;
     background-size: cover;
-    background-position: center;
+    background-repeat: repeat;
 }
 
 @font-face {

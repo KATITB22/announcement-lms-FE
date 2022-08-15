@@ -12,7 +12,6 @@ import EventList from '@/assets/images/medpars/(S) event.list-min.png';
 import EventNetwork from '@/assets/images/medpars/(S) Event Network-min.png';
 import EventBanget from '@/assets/images/medpars/(S) Event Banget Logo Black-min.png';
 
-
 const listOfMedpar: imgPartner[] = [
     {
         title: 'Bahana FM',
