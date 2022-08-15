@@ -20,7 +20,7 @@ const About: React.FC<{}> = () => {
                 ) : (
                     <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown">
                         <div className="container max-w-screen-lg min-h-screen mx-auto px-[3.75rem] py-4">
-                            <div className="relative flex flex-col items-center bg-MediumBrown opacity-70 rounded-[37px] py-6 px-4 lg:bg-transparent text-center">
+                            <div className="relative flex flex-col items-center bg-MediumBrown bg-opacity-70 rounded-[37px] py-6 px-4 lg:bg-transparent text-center">
                                 <div className="hidden w-60 h-40 rounded-xl absolute mt-16 lg:block">
                                     &nbsp;
                                 </div>

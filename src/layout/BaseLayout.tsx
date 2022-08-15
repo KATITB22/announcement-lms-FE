@@ -15,14 +15,16 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
-import { AiFillHome, AiFillTag } from 'react-icons/ai';
+import { AiFillHome } from 'react-icons/ai';
 import {
     FaInfo,
     FaTwitter,
     FaInstagram,
     FaYoutube,
     FaPeopleCarry,
+    FaHandshake,
 } from 'react-icons/fa';
+import { GrCatalog } from 'react-icons/gr';
 import Navbar from '@components/Navbar';
 import Logo from '@/assets/images/logo/logo.png';
 import LogoTextRight from '@/assets/images/logo/logo-oskm-itb.png';
@@ -40,7 +42,7 @@ const links = [
     {
         name: 'Catalogue',
         to: '/catalogue',
-        icon: <AiFillTag />,
+        icon: <GrCatalog />,
     },
     {
         name: 'Defile',
@@ -50,7 +52,7 @@ const links = [
     {
         name: 'Partner',
         to: '/partner',
-        icon: <AiFillTag />,
+        icon: <FaHandshake />,
     },
 
     {
@@ -63,15 +65,15 @@ const links = [
 const socials = [
     {
         to: 'https://twitter.com/oskmitb',
-        icon: <FaTwitter />,
+        icon: <FaTwitter size={20} />,
     },
     {
         to: 'https://www.instagram.com/oskm.itb/',
-        icon: <FaInstagram />,
+        icon: <FaInstagram size={20} />,
     },
     {
         to: 'https://www.youtube.com/channel/UCmkkBEqwMZ1SEZN937pdpgA',
-        icon: <FaYoutube />,
+        icon: <FaYoutube size={20} />,
     },
 ];
 
@@ -89,7 +91,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
 
     return (
         <Animate>
-            <Box className="bg-Yellow px-4 text-DarkerOrange z-20">
+            <Box className="relative bg-Yellow px-4 text-DarkerOrange z-20">
                 <Flex
                     h={16}
                     alignItems="center"
@@ -98,7 +100,11 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     className="mx-auto"
                 >
                     <Link className="h-full min-w-max flex items-center" to="/">
-                        <img className="h-[90%]" src={defaultLogo} alt="" />
+                        <img
+                            className="h-[75%] md:h-[90%]"
+                            src={defaultLogo}
+                            alt=""
+                        />
                     </Link>
                     <InputGroup
                         minWidth="150px"
@@ -193,7 +199,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 ) : null}
             </Box>
             <Box>{children}</Box>
-            <Box h={48} className="bg-Orange text-DarkestOrange">
+            <Box className="bg-Orange text-DarkestOrange">
                 <Container
                     maxW="6xl"
                     className="h-full flex flex-col md:flex-row justify-center md:justify-between items-center"
@@ -202,30 +208,34 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     <div className="h-[80%] md:h-full flex flex-col justify-center">
                         <Link className="h-[40%] flex justify-center" to="/">
                             <img
-                                className="h-full"
+                                className="w-[120px]"
                                 src={LogoTextRight}
                                 alt=""
                             />
                         </Link>
                         <Flex className="h-[20%]">
                             <h1 className="font-Caption">
-                                &copy; DEVA 2022 - Content and Publication
+                                &copy;{' '}
+                                <em>DEVA 2022 - Content and Publication</em>
                             </h1>
                         </Flex>
                     </div>
                     <Flex
                         flexDirection="column"
                         alignItems={{ base: 'center', md: 'flex-start' }}
+                        mt={{ base: 2, md: 0 }}
                     >
-                        <Text className="font-Caption" fontSize="md">
-                            Find us on
+                        <Text className="font-Caption" fontSize="lg">
+                            <em>Find us on</em>
                         </Text>
-                        <Stack direction="row" spacing={4}>
+                        <Stack
+                            direction="row"
+                            spacing={4}
+                            mt={{ base: 1, md: 0 }}
+                        >
                             {socials.map((social) => (
                                 <chakra.button
                                     rounded="full"
-                                    w={8}
-                                    h={8}
                                     cursor="pointer"
                                     as="a"
                                     href={social.to}
