@@ -53,7 +53,7 @@ const Homepage: React.FC<{}> = () => {
         />
     ));
 
-    document.title = 'Home - OSKM ITB 2022';
+    document.title = 'Home - Deva: Blog OSKM ITB 2022';
 
     if (posts.length === 0) {
         return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;

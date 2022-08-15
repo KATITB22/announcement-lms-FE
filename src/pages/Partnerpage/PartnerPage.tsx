@@ -14,7 +14,7 @@ const SponsorSectionTitle = ({ title }: { title: string }) => (
 );
 
 const PartnerPage: React.FC<{}> = () => {
-    document.title = 'Sponsor - OSKM ITB 2022';
+    document.title = 'Sponsor - Deva: Blog OSKM ITB 2022';
     // const imageArray: Array<image> = [];
     return (
         <PageTransition>
