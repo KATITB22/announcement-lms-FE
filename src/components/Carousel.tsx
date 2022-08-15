@@ -36,7 +36,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     }, [currentIndex]);
 
     return (
-        <div className="w-60 h-44 md:w-96 md:h-72 flex justify-center items-center relative">
+        <div className="w-60 h-44 md:w-72 md:h-64 flex justify-center items-center relative">
             <button type="button" onClick={handleClickPrev}>
                 <img
                     className="absolute left-px opacity-75"
