@@ -21,6 +21,7 @@ module.exports = {
                 LightBrown: '#FFECD0',
                 MediumBrown: '#F9DCB0',
                 White: '#FFFFFF',
+                Gray: '#EEEEEE',
             },
             fontFamily: {
                 Heading: 'Magilio',

@@ -1,6 +1,8 @@
 import IAITB from '@/assets/images/sponsors/IAITB(Colour).png';
 import Ayamayaman from '@/assets/images/sponsors/AYAMAYAMAN.png';
 import BankNeoCommerce from '@/assets/images/sponsors/BANK NEO COMMERCE.png';
+import Dorm from '@/assets/images/sponsors/Dorm.png';
+import Mantappu from '@/assets/images/sponsors/Mantappu-Corp.png';
 import BukitAsam from '@/assets/images/sponsors/Bukit Asam.jpg';
 import byu from '@/assets/images/sponsors/byu.png';
 import FrisianFlag from '@/assets/images/sponsors/Frisian Flag.png';
@@ -21,11 +23,11 @@ export const listOfSponsor: imgPartner[] = [
         type: typePartner.SM,
         imageUrl: Ayamayaman,
     },
-    // {
-    //     title: 'Dorm ID',
-    //     type: typePartner.SM,
-    //     imageUrl:
-    // },
+    {
+        title: 'Dorm ID',
+        type: typePartner.SM,
+        imageUrl: Dorm,
+    },
     {
         title: 'Zebra Asaba Industries',
         type: typePartner.SM,
@@ -36,11 +38,11 @@ export const listOfSponsor: imgPartner[] = [
         type: typePartner.SM,
         imageUrl: FrisianFlag,
     },
-    // {
-    //     title: 'Mantappu Corp',
-    //     type: typePartner.SM,
-    //     imageUrl:
-    // },
+    {
+        title: 'Mantappu Corp',
+        type: typePartner.SM,
+        imageUrl: Mantappu,
+    },
     {
         title: 'PT TIMAH Tbk',
         type: typePartner.SM,

@@ -16,6 +16,7 @@ export const MONTHS = [
     'Dec',
 ];
 
+export const MAX_TITLE = 50;
 export const MAX_DESCRIPTION = 150;
 export const MAX_DESCRIPTION_RELATED = 100;
 export const MAX_POST = 6;
@@ -26,11 +27,13 @@ export const MEDPAR_TITLE = '\uE023e\uE053ia Partner';
 export const REGEX_PARSE = /(\r\n|\n|\r)/gm;
 export const PARTNER_TITLE = '\uE096\uE00Ean\uE01As t\uE032';
 export const ABOUT_US_TITLE = '\uE000\uE050o\uE069\uE067 \uE038\uE076';
+export const SELAMAT_DATANG = '\uE035elama\uE04C \uE006atan\uE031';
+export const DEFILE_UNIT = '\uE006ef\uE058le \uE039nit';
 export const mockData = [
-    { name: 'BSO', link: 'bso' },
-    { name: 'Agama', link: 'agama' },
-    { name: 'Budaya', link: 'budaya' },
-    { name: 'Olahraga', link: 'olahraga' },
+    { name: '\uE003SO', link: 'bso' },
+    { name: '\uE002gama', link: 'agama' },
+    { name: '\uE003u\uE052aya', link: 'budaya' },
+    { name: 'Ola\uE057raga', link: 'olahraga' },
     { name: 'Seni', link: 'seni' },
     { name: 'P/M/K', link: 'pmk' },
 ] as { name: RumpunName; link: string }[];

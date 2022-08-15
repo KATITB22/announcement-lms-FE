@@ -2,14 +2,12 @@ import { RumpunProps } from '@/types/interface';
 import { Link } from 'react-router-dom';
 
 const Rumpun: React.FC<RumpunProps> = ({ link, name }: RumpunProps) => (
-    <div className="flex flex-col justify-center items-center">
+    <div className="w-72 bg-LightBrown rounded-[30px] border-[10px] border-black px-4 py-4">
         <Link
-            className="bg-LightBrown w-full aspect-video hover:scale-105 transition-transform"
+            className=" flex justify-center items-center w-full aspect-video hover:scale-105 transition-transform"
             to={`/defile/${link}`}
         >
-            <div className="flex flex-col text-center pt-20 ">
-                <h2 className="text-6xl">{name}</h2>
-            </div>
+            <h2 className="text-6xl font-[Magilio]">{name}</h2>
         </Link>
     </div>
 );
