@@ -42,6 +42,8 @@ body {
     background: url('/src/assets/images/home/bg-min.png') no-repeat;
     background-size: cover;
     background-repeat: repeat;
+    top: -30vw;
+    height: calc(100% + 30vw);
 }
 
 @font-face {
