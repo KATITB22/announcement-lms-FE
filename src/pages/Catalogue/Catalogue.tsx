@@ -21,7 +21,7 @@ const Catalogue: React.FC<{}> = () => {
     }
 
     if (error) {
-        return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
+        return <ErrorPage message={message} type={ErrorTypes.ServerError} />;
     }
 
     const posts: Posts = data;
@@ -41,6 +41,10 @@ const Catalogue: React.FC<{}> = () => {
     ));
 
     document.title = 'Catalogue - OSKM ITB 2022';
+
+    if (posts.length === 0) {
+        return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
+    }
 
     return (
         <PageTransition>

@@ -29,7 +29,7 @@ const Homepage: React.FC<{}> = () => {
     }
 
     if (error) {
-        return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
+        return <ErrorPage message={message} type={ErrorTypes.ServerError} />;
     }
 
     const posts: Posts = data;
@@ -49,6 +49,10 @@ const Homepage: React.FC<{}> = () => {
     ));
 
     document.title = 'Home - OSKM ITB 2022';
+
+    if (posts.length === 0) {
+        return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
+    }
 
     return (
         <PageTransition>
