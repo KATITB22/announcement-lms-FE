@@ -103,7 +103,7 @@ const VistockBackground: React.FC<{}> = () => {
     return (
         <div
             // ref={refDetailPage}
-            className="absolute w-full h-full overflow-hidden"
+            className="absolute w-full h-full overflow-hidden z-[-1]"
         >
             <div
                 // ref={refVistock}

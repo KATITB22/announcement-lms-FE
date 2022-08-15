@@ -12,14 +12,14 @@ import ErrorPage from '../ErrorPage';
 function greetings(rumpunName: string) {
     return (
         <div className="py-20 bg-Yellow">
-            <h1 className="text-5xl font-Heading font-bold mb-2 text-center">
+            <h1 className="text-5xl font-Heading font-bold mb-2 text-center capitalize">
                 Rumpun {rumpunName}
             </h1>
             <p className="text-2xl font-Heading font-bold mb-2 text-center max-w-[95vw] mx-auto">
-                Selamat Datang di rumpun {rumpunName}! di sini ada beberapa unit
-                yang termasuk kategori rumpun {rumpunName} nih, silahkan diklik
-                kalo kepo sama unitnya, buat kenalan lebih lanjut bakal di OHU
-                nanti tanggalnya.
+                Selamat datang di Rumpun {rumpunName}! Berikut adalah beberapa
+                unit yang tergabung pada rumpun ini. Jika kalian penasaran apa
+                saja kegiatan unit tersebut, langsung saja klik unitnya, baca
+                deskripsinya, lihat fotonya, dan tonton videonya!
             </p>
         </div>
     );
