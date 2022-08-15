@@ -14,6 +14,7 @@ function App() {
                     <Routes>
                         {Routing.map((route) => {
                             const Component = route.component;
+                            const props = route.props ? route.props : {};
                             return (
                                 <Route
                                     caseSensitive
@@ -21,7 +22,7 @@ function App() {
                                     key={route.path}
                                     element={
                                         <Suspense fallback={<Loading />}>
-                                            <Component />
+                                            <Component {...props} />
                                         </Suspense>
                                     }
                                 />

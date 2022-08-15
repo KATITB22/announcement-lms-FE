@@ -31,7 +31,9 @@ export interface AboutProps {
     toggle(): void;
 }
 
-export interface DetailpageProps extends BaseProps {}
+export interface DetailpageProps extends BaseProps {
+    isForUnit: boolean;
+}
 
 export interface SpinnerProps {
     message?: string;
@@ -103,6 +105,7 @@ export interface PageRouting {
     title: string;
     path: string;
     component: LazyExoticComponent<any>;
+    props?: any;
 }
 
 export interface ErrorProps {
