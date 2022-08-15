@@ -323,7 +323,7 @@ const Render = {
                 className="w-full text-caption md:text-body font-Body text-justify flex flex-row"
             >
                 <div className="w-1 h-full rounded bg-gray-600" />
-                <p className="ml-6">
+                <p className="ml-6 break-all">
                     <em>{text}</em>
                 </p>
             </div>
