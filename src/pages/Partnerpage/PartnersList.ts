@@ -36,6 +36,8 @@ import BCM from '@/assets/images/medpars/M/Bandung-Creative-Media/BCM.png';
 import MaraFM from '@/assets/images/medpars/M/MaraFM/MaraFM.png';
 import MMTCRadio from '@/assets/images/medpars/M/MMTC-Radio.png';
 import TRadio from '@/assets/images/medpars/M/TRadio/TRadio.png';
+import Polban from '@/assets/images/medpars/M/LOGO-POLBAN.png';
+import FunRadio from '@/assets/images/medpars/M/FUN-Radio.png';
 
 import LapanEH from '@/assets/images/medpars/L/8EH-Radio-ITB/8EH-Red.png';
 import BahanaFM from '@/assets/images/medpars/L/Bahana-FM.png';
@@ -43,6 +45,7 @@ import Boulevard from '@/assets/images/medpars/L/Boulevard/Boulevard2.png';
 import Hearo from '@/assets/images/medpars/L/Hearo/Hearo-Logotype-Black.png';
 import LFM from '@/assets/images/medpars/L/LFM.jpg';
 import MaveMagazine from '@/assets/images/medpars/L/Mave-Magazine.png';
+import SwaraRadio from '@/assets/images/medpars/L/SwaraRadio.jpeg';
 
 import GNFI from '@/assets/images/medpars/XL/GNFI/GNFI-Horizontal.png';
 import InilahKoran from '@/assets/images/medpars/XL/INILAH-KORAN.png';
@@ -201,10 +204,14 @@ const listOfMedpar: imgPartner[] = [
     { title: 'Mara FM', imageUrl: MaraFM, type: typePartner.MD },
     { title: 'MMTC Radio', imageUrl: MMTCRadio, type: typePartner.MD },
     { title: 'Telkomsel Radio', imageUrl: TRadio, type: typePartner.MD },
+    { title: 'Polban News', imageUrl: Polban, type: typePartner.MD },
+    { title: 'Fun Radio', imageUrl: FunRadio, type: typePartner.MD },
+
     { title: '8EH Radio ITB', imageUrl: LapanEH, type: typePartner.LG },
     { title: 'Bahana FM', imageUrl: BahanaFM, type: typePartner.LG },
     { title: 'Boulevard', imageUrl: Boulevard, type: typePartner.LG },
     { title: 'Hearo', imageUrl: Hearo, type: typePartner.LG },
+    { title: 'Swara Radio', imageUrl: SwaraRadio, type: typePartner.LG },
     { title: 'LFM', imageUrl: LFM, type: typePartner.LG },
     { title: 'Mave Magazine', imageUrl: MaveMagazine, type: typePartner.LG },
     { title: 'GNFI', imageUrl: GNFI, type: typePartner.XL },
