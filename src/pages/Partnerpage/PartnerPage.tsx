@@ -8,7 +8,7 @@ import { medparXL, medparLG, medparMD, medparSM } from './PartnersList';
 
 const SponsorSectionTitle = ({ title }: { title: string }) => (
     <div className="flex relative h-[36px] justify-center">
-        <div className="font-Heading text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
+        <div className="font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
             {title}
         </div>
     </div>
