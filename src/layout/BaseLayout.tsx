@@ -209,7 +209,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         </Link>
                         <Flex className="h-[20%]">
                             <h1 className="font-Caption">
-                                &copy; DEVA 2022 - Content and Publication
+                                &copy; <em>DEVA 2022 - Content and Publication</em>
                             </h1>
                         </Flex>
                     </div>
@@ -218,7 +218,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         alignItems={{ base: 'center', md: 'flex-start' }}
                     >
                         <Text className="font-Caption" fontSize="md">
-                            Find us on
+                            <em>Find us on</em>
                         </Text>
                         <Stack direction="row" spacing={4}>
                             {socials.map((social) => (
