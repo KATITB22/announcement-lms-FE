@@ -14,6 +14,13 @@ const SponsorAndPartner = ({ imageUrl, title, type }: imgPartner) => {
         className = 'h-[150px] object-contain';
     }
 
-    return <img alt={title} src={imageUrl} className={className} />;
+    return (
+        <img
+            alt={title}
+            src={imageUrl}
+            className={className}
+            draggable="false"
+        />
+    );
 };
 export default SponsorAndPartner;
