@@ -10,7 +10,7 @@ import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import VistockHome from '@/components/VistockHome';
 import VistockAnnoucement from '@/assets/images/home/annoucement-min.png';
-import { medparLG, medparMD } from '@/pages/Partnerpage/PartnersList';
+import { medparLG, medparMD, medparSM } from '@/pages/Partnerpage/PartnersList';
 
 import {
     sponsorLG,
@@ -111,6 +111,9 @@ const Homepage: React.FC<{}> = () => {
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={medparMD}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparSM}
                                 />
                             </div>
                         </div>
