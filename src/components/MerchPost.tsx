@@ -14,13 +14,15 @@ const MerchPost: React.FC<MerchPostProps> = ({ item }: MerchPostProps) => (
                     max-w-xs
                     `}
     >
-        <div className="bg-white w-full h-full min-h-[12.5rem]  rounded-br-lg rounded-bl-lg flex flex-col justify-between h-full ">
-            <Carousel items={item.images} />
-            <div className="text-center ">
-                <p className="font-Heading font-semibold text-body">
+        <div className="bg-white w-[17rem] md:w-[20rem] h-[17rem] md:h-[25rem] rounded-br-lg rounded-bl-lg flex flex-col justify-between ">
+            <div className="h-[75%] flex">
+                <Carousel items={item.images} />
+            </div>
+            <div className="h-[25%] text-center ">
+                <p className="font-Heading font-semibold text-caption md:text-body">
                     {item.title}
                 </p>
-                <p className="font-Body text-caption font-normal">
+                <p className="font-Body text-caption_smaller md:text-caption font-normal">
                     {item.price}
                 </p>
 
