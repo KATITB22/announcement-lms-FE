@@ -1,32 +1,26 @@
 import PageTransition from '@/components/PageTransition';
 import VistockHome from '@/components/VistockHome';
 import React, { useEffect, useState } from 'react';
-import { Pagination as PaginationType } from '@tryghost/content-api';
 import MerchPost from '@/components/MerchPost';
-import { CATALOGUE_TITLE, MAX_POST } from '@/types/constant';
 import Pagination from '@/components/Pagination';
+import { CATALOGUE_TITLE } from '@/types/constant';
 import { data } from './MerchList';
 
+const LIMIT_CATALOGUE = 6;
+
 const Catalogue: React.FC<{}> = () => {
-    const [page, setPage] = useState<number>(1);
-    const [pagination, setPagination] = useState<PaginationType>({
-        page,
-        limit: MAX_POST,
-        pages: Math.ceil(data.length / MAX_POST),
-        total: data.length,
-        next: page !== Math.ceil(data.length / MAX_POST) ? page + 1 : null,
-        prev: page !== 1 ? page - 1 : null,
-    });
+    const [currentPage, setCurrentPage] = useState(1);
+    const [merchs, setMerchs] = useState<JSX.Element[]>([]);
+
     useEffect(() => {
-        setPagination({
-            ...pagination,
-            page,
-            pages: Math.ceil(data.length / MAX_POST),
-            total: data.length,
-            next: page !== Math.ceil(data.length / MAX_POST) ? page + 1 : null,
-            prev: page !== 1 ? page - 1 : null,
-        });
-    }, [page, data]);
+        const offsetData = (currentPage - 1) * LIMIT_CATALOGUE;
+        const shownData = data.slice(offsetData, offsetData + LIMIT_CATALOGUE);
+        const shownPosts = shownData.map((item) => (
+            <MerchPost key={item.title} item={item} />
+        ));
+        setMerchs(shownPosts);
+    }, [currentPage]);
+
     return (
         <PageTransition>
             <div>
@@ -37,27 +31,29 @@ const Catalogue: React.FC<{}> = () => {
                             {CATALOGUE_TITLE}
                         </p>
                         <div className="py-10">
-                            <div className="flex justify-center">
-                                <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
-                                    {data
-                                        .slice(
-                                            (page - 1) * MAX_POST,
-                                            page * MAX_POST
-                                        )
-                                        .map((item) => (
-                                            <MerchPost
-                                                key={item.title}
-                                                item={item}
-                                            />
-                                        ))}
+                            <div className="container max-w-max xl:max-w-screen-xl mx-auto">
+                                <div className="flex justify-center relative pt-9">
+                                    <div className="bg-LightBrown absolute top-0 right-[10%] lg:right-[14%] rounded-md flex flex-row justify-between items-center self-center w-44 h-10">
+                                        <Pagination
+                                            pagination={{
+                                                pages: Math.ceil(
+                                                    data.length /
+                                                        LIMIT_CATALOGUE
+                                                ),
+                                                page: 0,
+                                                limit: 0,
+                                                prev: 0,
+                                                next: 0,
+                                                total: 0,
+                                            }}
+                                            page={currentPage}
+                                            setPage={setCurrentPage}
+                                        />
+                                    </div>
+                                    <div className="grid place-items-stretch xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
+                                        {merchs}
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="my-4">
-                                <Pagination
-                                    pagination={pagination}
-                                    page={page}
-                                    setPage={setPage}
-                                />
                             </div>
                         </div>
                     </div>

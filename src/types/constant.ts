@@ -18,6 +18,7 @@ export const MONTHS = [
 
 export const MAX_TITLE = [1, 2]; // max row of title text in search page
 export const MAX_DESCRIPTION = [4, 5]; // max row of description text in search page
+export const MAX_DESCRIPTION_RELATED = [4, 5];
 export const MAX_POST = 6;
 export const PAGINATION_PER_PAGE = 5;
 export const PAGE_TITLE = '\uE000nno\uE070nce\uE063ent';

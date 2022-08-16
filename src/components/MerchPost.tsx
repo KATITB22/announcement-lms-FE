@@ -1,4 +1,5 @@
 import { MerchPostProps } from '@/types/interface';
+import { trimString } from '@/util/util';
 import Carousel from './Carousel';
 
 const MerchPost: React.FC<MerchPostProps> = ({ item }: MerchPostProps) => (
@@ -20,7 +21,7 @@ const MerchPost: React.FC<MerchPostProps> = ({ item }: MerchPostProps) => (
             </div>
             <div className="h-[25%] text-center bg-Yellow  ">
                 <p className="font-Heading font-semibold text-caption md:text-body md:pt-1">
-                    {item.title}
+                    {trimString(item.title, 30)}
                 </p>
                 <p className="font-Body text-caption_smaller md:text-caption font-normal">
                     {item.price}
