@@ -33,6 +33,7 @@ export interface AboutProps {
 
 export interface DetailpageProps extends BaseProps {
     isForUnit: boolean;
+    fromPost: boolean;
 }
 
 export interface SpinnerProps {

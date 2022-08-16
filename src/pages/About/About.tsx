@@ -4,10 +4,6 @@ import PageTransition from '@/components/PageTransition';
 import VistockAbout from '@/components/VistockAbout';
 import AboutDetail from './AboutDetail';
 
-const aboutContents: Array<string> = [
-    'Pemasaran yang dulu dilakukan dengan menggunakan flyer, spanduk, koran, kini beralih ke media digital dan juga internet',
-];
-
 const About: React.FC<{}> = () => {
     const [isOn, toggle] = useToggle();
     document.title = 'About - Deva: Blog OSKM ITB 2022';
@@ -29,16 +25,11 @@ const About: React.FC<{}> = () => {
                                     src={oskmLogo}
                                     alt="logo-oskm"
                                 />
-                                {aboutContents.map((content: string) => (
-                                    <p
-                                        key={`aboutcontent${aboutContents.indexOf(
-                                            content
-                                        )}`}
-                                        className="text-h6 md:text-[40px] lg:text-h4"
-                                    >
-                                        {content}
-                                    </p>
-                                ))}
+                                <p className="text-h6 md:text-[40px] lg:text-h4">
+                                    Sejak awal, OSKM ITB merupakan ajang
+                                    kaderisasi terpusat yang kental dengan
+                                    agenda pergerakan...
+                                </p>
                                 <button
                                     type="button"
                                     onClick={toggle}
