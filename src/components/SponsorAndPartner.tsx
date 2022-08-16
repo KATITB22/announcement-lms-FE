@@ -5,13 +5,13 @@ const SponsorAndPartner = ({ imageUrl, title, type }: imgPartner) => {
     let className = '';
 
     if (type === 'sm') {
-        className = 'h-[60px] object-contain';
+        className = 'h-[30px] object-contain';
     } else if (type === 'md') {
-        className = 'h-[70px] object-contain';
+        className = 'h-[60px] object-contain';
     } else if (type === 'lg') {
-        className = 'h-[120px] object-contain';
+        className = 'h-[90px] object-contain';
     } else if (type === 'xl') {
-        className = 'h-[150px] object-contain';
+        className = 'h-[120px] object-contain';
     }
 
     return (
