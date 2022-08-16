@@ -101,7 +101,10 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     className="mx-auto"
                     borderBottom={isOpen ? '1px solid' : 'none'}
                 >
-                    <Link className="h-full min-w-max flex items-center" to="/">
+                    <Link
+                        className="h-full min-w-max mr-3 flex items-center"
+                        to="/"
+                    >
                         <img
                             className="h-[75%] md:h-[90%]"
                             src={defaultLogo}
