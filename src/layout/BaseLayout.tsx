@@ -103,7 +103,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 >
                     <Link className="h-full min-w-max flex items-center" to="/">
                         <img
-                            className="h-[75%] w-[75%] md:h-[90%] object-contain"
+                            className="h-[75%] md:h-[90%]"
                             src={defaultLogo}
                             alt=""
                         />
