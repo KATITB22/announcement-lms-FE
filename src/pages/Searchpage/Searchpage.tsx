@@ -94,7 +94,7 @@ const Searchpage: React.FC<{}> = () => {
         return (
             <div className="col-span-1 xl:col-span-3 lg:col-span-2 mx-auto self-start">
                 <div className="my-4 w-full flex justify-center items-cente">
-                    <div className="bg-LightBrown flex justify-between w-fit rounded-md py-2 px-4">
+                    <div className="bg-LightBrown flex justify-between w-fit rounded-md py-2 px-2 gap-4">
                         <Pagination
                             pagination={{
                                 pages: Math.ceil(result.length / MAX_POST),

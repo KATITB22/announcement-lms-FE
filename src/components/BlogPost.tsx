@@ -43,6 +43,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     w-full
                     min-h-[27em]
                     max-w-xs
+                    rounded-lg
                     ${size === 'sm' ? 'p-2' : 'p-4 md:max-w-md md:h-[34em]'}
                     bg-white w-full h-full min-h-[12.5rem]
                     rounded-br-lg rounded-bl-lg
@@ -60,11 +61,11 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     onError={() => {
                         setFormattedUrl(DefaultImage);
                     }}
-                    className="bg-LightBrown min-h-[160px] max-h-40 w-full object-contain rounded-t-lg"
+                    className="min-h-[160px] max-h-40 w-full object-contain rounded-t-lg"
                 />
                 <div>
                     <p
-                        className={`font-Body text-caption ${
+                        className={`font-Body text-caption mt-2 ${
                             size === 'sm' ? 'text-sm' : 'md:text-caption'
                         } font-normal mb-1 md:mb-0`}
                     >
