@@ -9,6 +9,7 @@ import {
 } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
 import DefaultImage from '@/assets/images/logo/logo.png';
+import { Text } from '@chakra-ui/react';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
     const {
@@ -47,7 +48,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     flex-col
                     flex
                     w-full
-                    h-full
+                    h-[30em]
                     max-w-xs
                     ${size === 'sm' ? '' : 'md:max-w-md'}
                     `}
@@ -79,18 +80,19 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                             >
                                 {formattedDate} | {authorName}
                             </p>
-                            <span
+                            <Text
+                                noOfLines={[1, 2, 3]}
                                 // href={link}
-                                className={`font-Heading text-body ${
+                                className={`font-Heading text-body  ${
                                     size === 'sm' ? '' : 'md:text-title'
                                 } font-semibold`}
                             >
                                 {trimmedTitle}
-                            </span>
+                            </Text>
                             <p
                                 className={`font-Body text-caption text-left  ${
                                     size === 'sm' ? '' : 'md:text-body'
-                                } font-normal md:mb-1`}
+                                }  font-normal md:mb-1`}
                             >
                                 {size === 'sm'
                                     ? trimmedRelatedText
