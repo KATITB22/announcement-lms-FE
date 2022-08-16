@@ -38,12 +38,15 @@ const Carousel: React.FC<CarouselProps> = (props) => {
                 className="w-[15%] flex justify-center items-center"
                 type="button"
                 onClick={handleClickPrev}
+                disabled={items.length === 1}
             >
-                <img
-                    className="opacity-75"
-                    src={ChevronLeft}
-                    alt="chevron-left"
-                />
+                {items.length > 1 && (
+                    <img
+                        className="opacity-75"
+                        src={ChevronLeft}
+                        alt="chevron-left"
+                    />
+                )}
             </button>
             <div className="flex w-[70%] justify-center items-center relative">
                 <img
@@ -51,20 +54,25 @@ const Carousel: React.FC<CarouselProps> = (props) => {
                     src={items[currentIndex]}
                     alt="sponsor images"
                 />
-                <div className="absolute w-[80%] h-2 bottom-5 flex justify-center">
-                    {navigatorBox}
-                </div>
+                {items.length > 1 && (
+                    <div className="absolute w-[80%] h-2 bottom-5 flex justify-center">
+                        {navigatorBox}
+                    </div>
+                )}
             </div>
             <button
                 className="w-[15%] flex justify-center items-center"
                 type="button"
                 onClick={handleClickNext}
+                disabled={items.length === 1}
             >
-                <img
-                    className="opacity-75"
-                    src={ChevronRight}
-                    alt="chevron-right"
-                />
+                {items.length > 1 && (
+                    <img
+                        className="opacity-75"
+                        src={ChevronRight}
+                        alt="chevron-right"
+                    />
+                )}
             </button>
         </>
     );
