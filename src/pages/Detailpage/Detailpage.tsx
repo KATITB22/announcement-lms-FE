@@ -125,7 +125,7 @@ const Detailpage: React.FC<DetailpageProps> = ({
             <Flex
                 className="my-12 md:my-20 max-w-screen-lg"
                 flexDirection="column"
-                width="70%"
+                width={{ base: '90%', sm: '70%' }}
             >
                 <Box
                     fontFamily="Magilio"
