@@ -33,33 +33,40 @@ const Data: MerchPostType[] = [
     },
 ];
 
-const Catalogue: React.FC<{}> = () => (
-    <PageTransition>
-        <div>
-            <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown min-h-screen relative z-10">
-                <VistockHome />
+const Catalogue: React.FC<{}> = () => {
+    document.title = 'Catalogue - DEVA: Blog OSKM ITB 2022';
 
-                <div className="py-10">
-                    <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">
-                        <div className="flex justify-center">
-                            <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
-                                {Data.map((item) => (
-                                    <MerchPost key={item.title} item={item} />
-                                ))}
+    return (
+        <PageTransition>
+            <div>
+                <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown min-h-screen relative z-10">
+                    <VistockHome />
+
+                    <div className="py-10">
+                        <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">
+                            <div className="flex justify-center">
+                                <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
+                                    {Data.map((item) => (
+                                        <MerchPost
+                                            key={item.title}
+                                            item={item}
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                        <div className="my-4">
-                            {/* <Pagination
+                            <div className="my-4">
+                                {/* <Pagination
                                     pagination={posts.meta.pagination}
                                     page={page}
                                     setPage={setPage}
                                 /> */}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </PageTransition>
-);
+        </PageTransition>
+    );
+};
 
 export default Catalogue;
