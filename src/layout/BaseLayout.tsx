@@ -210,7 +210,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 ) : null}
             </Box>
             <Box onClick={onClose}>{children}</Box>
-            <Box className="bg-Orange text-DarkestOrange">
+            <Box className="bg-Orange relative text-DarkestOrange z-10">
                 <Container
                     maxW={{
                         md: '704px',
