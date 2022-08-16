@@ -73,7 +73,7 @@ const Searchpage: React.FC<{}> = () => {
         return <ErrorPage type={ErrorTypes.ServerError} />;
     }
 
-    document.title = `${query} - Deva: Blog OSKM ITB 2022`;
+    document.title = `${query} - DEVA: Blog OSKM ITB 2022`;
 
     const renderSearch = (input: PostOrPage[]) => {
         if (input.length === 0) {

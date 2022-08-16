@@ -111,7 +111,7 @@ const Detailpage: React.FC<DetailpageProps> = ({
             </Box>
         );
 
-    document.title = `${post!.title} - Deva: Blog OSKM ITB 2022`;
+    document.title = `${post!.title} - DEVA: Blog OSKM ITB 2022`;
 
     return (
         <Flex
