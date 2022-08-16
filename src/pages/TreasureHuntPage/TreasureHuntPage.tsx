@@ -160,11 +160,11 @@ const TreasureHuntPage = () => {
                     <img
                         src={vistock}
                         alt="vistock"
-                        className="absolute z-[-1] hidden md:block w-screen md:top-0 lg:top-[-2em]"
+                        className="absolute z-[-1] h-full hidden md:block w-screen md:top-0 lg:top-[-2em]"
                     />
                 </div>
             ) : (
-                <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] pt-10 pb-20 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl z-10 relative">
+                <div className="bg-gradient-to-b h-full from-[#FF8952] to-[#F9DCB0] pt-10 pb-10 px-[3.75rem] flex flex-col items-center justify-center gap-5 text-4xl z-10 relative overflow-hidden">
                     <VistockBackground />
                     <div className="bg-MediumBrown bg-opacity-70 rounded-[37px] py-6 px-4 text-center">
                         <p className="text-center text-xl ">
@@ -188,7 +188,7 @@ const TreasureHuntPage = () => {
                             OHU pada 27 Agustus 2022 yaa!
                         </p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-screen-xl">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 max-w-screen-xl w-full place-items-center">
                         {mockData.map(({ name, link }) => (
                             <Rumpun link={link} key={name} name={name} />
                         ))}
