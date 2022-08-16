@@ -31,7 +31,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
     }, []);
 
     const formattedDate = formatDate(date!);
-    const trimmedTitle = trimString(description, MAX_TITLE);
+    const trimmedTitle = trimString(title, MAX_TITLE);
     const trimmedText = trimString(description, MAX_DESCRIPTION);
     const trimmedRelatedText = trimString(description, MAX_DESCRIPTION_RELATED);
     const authorName = primary_author?.name;

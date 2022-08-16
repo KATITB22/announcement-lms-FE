@@ -3,7 +3,40 @@ import { PaginationProps } from '@/types/interface';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { PAGINATION_PER_PAGE } from '@/types/constant';
 import { iconSize } from '@/types/enum';
-import { generateArray, setupFirstPage } from '@/util/util';
+
+const generateNumbers = (currentPage: number, totalPage: number) => {
+    let startPage;
+    let endPage;
+    if (totalPage > PAGINATION_PER_PAGE) {
+        startPage =
+            currentPage - Math.floor(PAGINATION_PER_PAGE / 2) > 0
+                ? currentPage - Math.floor(PAGINATION_PER_PAGE / 2)
+                : 1;
+        endPage =
+            currentPage + Math.floor(PAGINATION_PER_PAGE / 2) > totalPage
+                ? totalPage
+                : currentPage + Math.floor(PAGINATION_PER_PAGE / 2);
+        endPage =
+            endPage === startPage + PAGINATION_PER_PAGE - 1
+                ? endPage
+                : startPage + PAGINATION_PER_PAGE - 1;
+        endPage = endPage > totalPage ? totalPage : endPage;
+        startPage =
+            startPage === endPage - PAGINATION_PER_PAGE + 1
+                ? startPage
+                : endPage - PAGINATION_PER_PAGE + 1;
+    } else {
+        startPage = 1;
+        endPage = totalPage;
+    }
+
+    const numbers: number[] = [];
+    for (let i = startPage; i < endPage + 1; i += 1) {
+        numbers.push(i);
+    }
+
+    return numbers;
+};
 
 const Pagination: React.FC<PaginationProps> = ({
     pagination,
@@ -11,37 +44,37 @@ const Pagination: React.FC<PaginationProps> = ({
     setPage,
 }) => {
     const { pages: pageCount } = pagination;
-    const startPage = setupFirstPage(currentPage, PAGINATION_PER_PAGE);
-    const endPage = Math.min(startPage + PAGINATION_PER_PAGE, pageCount + 1);
+    // console.log(pagination);
     const [listOfPages, setListOfPages] = useState<number[]>(
-        generateArray(startPage, endPage)
+        generateNumbers(1, pageCount)
     );
-
-    const isChevronLeft = startPage > 1;
-    const isChevronRight = endPage - 1 < pageCount;
+    const [showLeftChevron, setShowLeftChevron] = useState(false);
+    const [showRightChevron, setShowRightChevron] = useState(false);
 
     useEffect(() => {
-        setListOfPages(generateArray(startPage, endPage));
-    }, [startPage, endPage]);
+        const numbers = generateNumbers(currentPage, pageCount);
+        setShowLeftChevron(numbers[0] !== 1);
+        setShowRightChevron(
+            numbers[PAGINATION_PER_PAGE - 1] !== undefined &&
+                numbers[PAGINATION_PER_PAGE - 1] !== pageCount
+        );
+        setListOfPages(numbers);
+    }, [currentPage]);
 
     const displayPages = listOfPages.map((pageNumber) => {
         const isActive = pageNumber === currentPage;
         return (
             <button
                 key={`button${pageNumber}`}
-                className="mx-2"
+                className={`z-20 w-[13%] ${
+                    isActive ? 'bg-Orange rounded-md' : ''
+                } flex justify-center items-center`}
                 onClick={() => {
                     setPage(pageNumber);
                 }}
                 type="button"
             >
-                <p
-                    className={`font-Subheading text-title px-2 text-Black hover:text-Yellow transition ${
-                        isActive
-                            ? 'text-Yellow border-solid rounded-lg border-2 border-Orange bg-Orange'
-                            : null
-                    }`}
-                >
+                <p className="font-sans font-medium text-caption px-2 text-black transition">
                     {pageNumber}
                 </p>
             </button>
@@ -49,42 +82,39 @@ const Pagination: React.FC<PaginationProps> = ({
     });
 
     return (
-        <div className="flex flex-row justify-center items-center self-center">
-            <button
-                type="button"
-                onClick={() => {
-                    setListOfPages(
-                        generateArray(
-                            startPage - PAGINATION_PER_PAGE,
-                            startPage
-                        )
-                    );
-                    setPage(startPage - 1);
-                }}
-                className={!isChevronLeft ? 'hidden' : undefined}
-            >
-                <BsChevronLeft size={iconSize.medium} />
-            </button>
+        <>
+            <div className="w-[13%] flex justify-center items-center">
+                <button
+                    type="button"
+                    onClick={() => {
+                        setPage(currentPage - 1 > 0 ? currentPage - 1 : 1);
+                    }}
+                    className={`${
+                        !showLeftChevron ? 'hidden' : undefined
+                    } z-20 w-full flex justify-center items-center`}
+                >
+                    <BsChevronLeft size={iconSize.medium} />
+                </button>
+            </div>
             {displayPages}
-            <button
-                type="button"
-                onClick={() => {
-                    setListOfPages(
-                        generateArray(
-                            endPage,
-                            Math.min(
-                                endPage + PAGINATION_PER_PAGE,
-                                pageCount + 1
-                            )
-                        )
-                    );
-                    setPage(endPage);
-                }}
-                className={!isChevronRight ? 'hidden' : undefined}
-            >
-                <BsChevronRight size={iconSize.medium} />
-            </button>
-        </div>
+            <div className="w-[13%] flex justify-center items-center">
+                <button
+                    type="button"
+                    onClick={() => {
+                        setPage(
+                            currentPage + 1 > pageCount
+                                ? pageCount
+                                : currentPage + 1
+                        );
+                    }}
+                    className={`${
+                        !showRightChevron ? 'hidden' : undefined
+                    } z-20 w-full flex justify-center items-center`}
+                >
+                    <BsChevronRight size={iconSize.medium} />
+                </button>
+            </div>
+        </>
     );
 };
 

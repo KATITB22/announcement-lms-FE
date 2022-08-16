@@ -3,10 +3,7 @@ import { fetchAllPost } from '@/service/ghostAPI';
 import React, { useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
 import { useSearchParams } from 'react-router-dom';
-import {
-    Pagination as PaginationType,
-    PostOrPage,
-} from '@tryghost/content-api';
+import { PostOrPage } from '@tryghost/content-api';
 import { MAX_POST } from '@/types/constant';
 import Pagination from '@/components/Pagination';
 import BlogPost from '@/components/BlogPost';
@@ -30,14 +27,14 @@ const Searchpage: React.FC<{}> = () => {
         keys: ['title'],
     };
 
-    const [pagination, setPagination] = useState<PaginationType>({
-        page,
-        limit: MAX_POST,
-        pages: Math.ceil(result.length / MAX_POST),
-        total: result.length,
-        next: page !== Math.ceil(result.length / MAX_POST) ? page + 1 : null,
-        prev: page !== 1 ? page - 1 : null,
-    });
+    // const [pagination, setPagination] = useState<PaginationType>({
+    //     page: 1,
+    //     limit: MAX_POST,
+    //     pages: Math.ceil(result.length / MAX_POST),
+    //     total: result.length,
+    //     next: page !== Math.ceil(result.length / MAX_POST) ? page + 1 : null,
+    //     prev: page !== 1 ? page - 1 : null,
+    // });
 
     useEffect(() => {
         if (isLoading) return;
@@ -53,17 +50,17 @@ const Searchpage: React.FC<{}> = () => {
         }
     }, [data, query]);
 
-    useEffect(() => {
-        setPagination({
-            ...pagination,
-            page,
-            pages: Math.ceil(result.length / MAX_POST),
-            total: result.length,
-            next:
-                page !== Math.ceil(result.length / MAX_POST) ? page + 1 : null,
-            prev: page !== 1 ? page - 1 : null,
-        });
-    }, [page, result]);
+    // useEffect(() => {
+    //     setPagination({
+    //         page,
+    //         pages: Math.ceil(result.length / MAX_POST),
+    //         total: result.length,
+    //         next:
+    //             page !== Math.ceil(result.length / MAX_POST) ? page + 1 : null,
+    //         prev: page !== 1 ? page - 1 : null,
+    //         limit: 0
+    //     });
+    // }, [page, result]);
 
     if (isLoading) {
         return <Loading />;
@@ -96,12 +93,21 @@ const Searchpage: React.FC<{}> = () => {
 
         return (
             <div className="col-span-1 xl:col-span-3 lg:col-span-2 mx-auto self-start">
-                <div className="my-4">
-                    <Pagination
-                        pagination={pagination}
-                        page={page}
-                        setPage={setPage}
-                    />
+                <div className="my-4 w-full flex justify-center items-cente">
+                    <div className=" flex justify-between w-[30%] bg-amber-100 rounded-md">
+                        <Pagination
+                            pagination={{
+                                pages: Math.ceil(result.length / MAX_POST),
+                                page: 0,
+                                limit: 0,
+                                prev: 0,
+                                next: 0,
+                                total: 0,
+                            }}
+                            page={page}
+                            setPage={setPage}
+                        />
+                    </div>
                 </div>
                 <div className="flex justify-start">
                     <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
