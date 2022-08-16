@@ -33,6 +33,7 @@ export interface AboutProps {
 
 export interface DetailpageProps extends BaseProps {
     isForUnit: boolean;
+    fromPost: boolean;
 }
 
 export interface SpinnerProps {
@@ -100,6 +101,17 @@ export interface CarouselProps extends BaseProps {
 
 export interface BlogPost extends PostOrPage {
     size?: string;
+}
+
+export interface MerchPostProps extends BaseProps {
+    item: MerchPostType;
+}
+
+export interface MerchPostType {
+    title: string;
+    images: string[];
+    price: string;
+    url: string;
 }
 
 export interface PageRouting {

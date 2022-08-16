@@ -2,7 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate, formatUrl, trimString } from '@/util/util';
-import { MAX_DESCRIPTION, MAX_DESCRIPTION_RELATED } from '@/types/constant';
+import {
+    MAX_DESCRIPTION,
+    MAX_DESCRIPTION_RELATED,
+    MAX_TITLE,
+} from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
 import DefaultImage from '@/assets/images/logo/logo.png';
 import { Text } from '@chakra-ui/react';
@@ -28,6 +32,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
     }, []);
 
     const formattedDate = formatDate(date!);
+    const trimmedTitle = trimString(description, MAX_TITLE);
     const trimmedText = trimString(description, MAX_DESCRIPTION);
     const trimmedRelatedText = trimString(description, MAX_DESCRIPTION_RELATED);
     const authorName = primary_author?.name;
@@ -76,13 +81,13 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                 {formattedDate} | {authorName}
                             </p>
                             <Text
-                                noOfLines={[1, 2,3]}
+                                noOfLines={[1, 2, 3]}
                                 // href={link}
                                 className={`font-Heading text-body  ${
                                     size === 'sm' ? '' : 'md:text-title'
                                 } font-semibold`}
                             >
-                                {title}
+                                {trimmedTitle}
                             </Text>
                             <p
                                 className={`font-Body text-caption text-left  ${

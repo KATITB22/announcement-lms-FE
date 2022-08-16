@@ -41,6 +41,20 @@ body {
 .home-bg {
     background: url('/src/assets/images/home/bg-min.png') no-repeat;
     background-size: cover;
+    background-repeat: repeat;
+    top: -30vw;
+    height: calc(100% + 30vw);
+}
+
+.partner-bg {
+    background: url('/src/assets/images/search/bg-min.png') no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.rumpun-bg {
+    background: url('/src/assets/images/home/bg-min.png') no-repeat;
+    background-size: cover;
     background-position: center;
 }
 

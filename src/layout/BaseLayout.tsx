@@ -15,13 +15,15 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
-import { AiFillHome, AiFillTag } from 'react-icons/ai';
+import { AiFillHome } from 'react-icons/ai';
 import {
     FaInfo,
     FaTwitter,
     FaInstagram,
     FaYoutube,
     FaPeopleCarry,
+    FaHandshake,
+    FaBook,
 } from 'react-icons/fa';
 import Navbar from '@components/Navbar';
 import Logo from '@/assets/images/logo/logo.png';
@@ -40,7 +42,7 @@ const links = [
     {
         name: 'Catalogue',
         to: '/catalogue',
-        icon: <AiFillTag />,
+        icon: <FaBook />,
     },
     {
         name: 'Defile',
@@ -50,7 +52,7 @@ const links = [
     {
         name: 'Partner',
         to: '/partner',
-        icon: <AiFillTag />,
+        icon: <FaHandshake />,
     },
 
     {
@@ -63,15 +65,15 @@ const links = [
 const socials = [
     {
         to: 'https://twitter.com/oskmitb',
-        icon: <FaTwitter />,
+        icon: <FaTwitter size={20} />,
     },
     {
         to: 'https://www.instagram.com/oskm.itb/',
-        icon: <FaInstagram />,
+        icon: <FaInstagram size={20} />,
     },
     {
         to: 'https://www.youtube.com/channel/UCmkkBEqwMZ1SEZN937pdpgA',
-        icon: <FaYoutube />,
+        icon: <FaYoutube size={20} />,
     },
 ];
 
@@ -89,16 +91,22 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
 
     return (
         <Animate>
-            <Box className="bg-Yellow px-4 text-DarkerOrange z-20">
+            <Box className="relative bg-Yellow text-DarkerOrange z-20">
                 <Flex
                     h={16}
                     alignItems="center"
                     justifyContent="space-between"
                     maxW="6xl"
+                    px={4}
                     className="mx-auto"
+                    borderBottom={isOpen ? '1px solid' : 'none'}
                 >
                     <Link className="h-full min-w-max flex items-center" to="/">
-                        <img className="h-[90%]" src={defaultLogo} alt="" />
+                        <img
+                            className="h-[75%] md:h-[90%]"
+                            src={defaultLogo}
+                            alt=""
+                        />
                     </Link>
                     <InputGroup
                         minWidth="150px"
@@ -171,10 +179,14 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 </Flex>
                 {isOpen ? (
                     <Box
-                        bg="base.headerBg"
+                        bg="#FFEBB0"
                         pb={4}
+                        pt={2}
                         display={{ md: 'none' }}
-                        zIndex="100"
+                        position="absolute"
+                        top={16}
+                        px={4}
+                        w="100%"
                     >
                         <Stack as="nav" spacing={4}>
                             {links.map((link) => (
@@ -182,7 +194,11 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                                     key={`navlink${links.indexOf(link)}`}
                                     to={link.to}
                                 >
-                                    <Flex alignItems="center" gap="2">
+                                    <Flex
+                                        alignItems="center"
+                                        gap="2"
+                                        onClick={onClose}
+                                    >
                                         {link.icon}
                                         <span>{link.name}</span>
                                     </Flex>
@@ -192,43 +208,53 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     </Box>
                 ) : null}
             </Box>
-            <Box>{children}</Box>
-            <Box h={48} className="bg-Orange text-DarkestOrange">
+            <Box onClick={onClose}>{children}</Box>
+            <Box className="bg-Orange text-DarkestOrange">
                 <Container
-                    maxW="6xl"
+                    maxW={{
+                        md: '704px',
+                        lg: '960px',
+                        xl: '1216px',
+                        '2xl': '1472px',
+                    }}
                     className="h-full flex flex-col md:flex-row justify-center md:justify-between items-center"
                     py={4}
                 >
                     <div className="h-[80%] md:h-full flex flex-col justify-center">
                         <Link className="h-[40%] flex justify-center" to="/">
                             <img
-                                className="h-full"
+                                className="w-[120px]"
                                 src={LogoTextRight}
                                 alt=""
                             />
                         </Link>
                         <Flex className="h-[20%]">
                             <h1 className="font-Caption">
-                                &copy; DEVA 2022 - Content and Publication
+                                &copy;{' '}
+                                <em>DEVA 2022 - Content and Publication</em>
                             </h1>
                         </Flex>
                     </div>
                     <Flex
                         flexDirection="column"
                         alignItems={{ base: 'center', md: 'flex-start' }}
+                        mt={{ base: 2, md: 0 }}
                     >
-                        <Text className="font-Caption" fontSize="md">
-                            Find us on
+                        <Text className="font-Caption" fontSize="lg">
+                            <em>Find us on</em>
                         </Text>
-                        <Stack direction="row" spacing={4}>
+                        <Stack
+                            direction="row"
+                            spacing={4}
+                            mt={{ base: 1, md: 0 }}
+                        >
                             {socials.map((social) => (
                                 <chakra.button
                                     rounded="full"
-                                    w={8}
-                                    h={8}
                                     cursor="pointer"
                                     as="a"
                                     href={social.to}
+                                    target="_blank"
                                     display="inline-flex"
                                     alignItems="center"
                                     justifyContent="center"

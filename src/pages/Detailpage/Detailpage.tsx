@@ -5,19 +5,33 @@ import { Flex, Box, VStack } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
-import { MONTHS } from '@/types/constant';
+import { excludeTag, MONTHS } from '@/types/constant';
 import VistockBackground from '@/components/VistockBackground';
 import DefaultImage from '@/assets/images/logo/logo.png';
 import { DetailPost, DetailpageProps } from '@/types/interface';
 import useFetch from '@/hooks/useFetch';
 import { ErrorTypes } from '@/types/enum';
 import { formatUrl } from '@/util/util';
+import { PostOrPage } from '@tryghost/content-api';
 import RelatedPosts from './RelatedPosts';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 import { renderCaption } from './Render';
 
-const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
+const isUnit = (post: PostOrPage) => {
+    let isDefile = false;
+    post.tags?.forEach((tag) => {
+        if (excludeTag.includes(tag.name!)) {
+            isDefile = true;
+        }
+    });
+    return isDefile;
+};
+
+const Detailpage: React.FC<DetailpageProps> = ({
+    isForUnit = false,
+    fromPost = true,
+}) => {
     const { postId } = useParams();
     const { data, isLoading, error, message } = useFetch(
         fetchSinglePost(postId!),
@@ -54,12 +68,22 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
     }
 
     if (data.detailPost) {
+        const condition = isUnit(data.detailPost);
+        if (condition && fromPost) {
+            return <ErrorPage type={ErrorTypes.PostNotFound} />;
+        }
+
+        if (!condition && !fromPost) {
+            return <ErrorPage type={ErrorTypes.PostNotFound} />;
+        }
+
         post = data.detailPost;
         const date = new Date(post.published_at!);
         published_at = `${date.getDate()} ${
             MONTHS[date.getMonth()]
         } ${date.getFullYear()}`;
     }
+
     const getFeatureImage = () =>
         post!.feature_image ? (
             <figure className="w-full flex flex-col items-center">
@@ -87,12 +111,12 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
             </Box>
         );
 
-    document.title = `${post!.title} - OSKM ITB 2022`;
+    document.title = `${post!.title} - DEVA: Blog OSKM ITB 2022`;
 
     return (
         <Flex
             background="linear-gradient(180deg, #FF9165 -21.55%, #F9DCB0 100%)"
-            className="min-h-screen justify-center relative"
+            className="min-h-screen justify-center relative z-10"
         >
             <VistockBackground />
             <Flex width="15%">
@@ -131,10 +155,9 @@ const Detailpage: React.FC<DetailpageProps> = ({ isForUnit }) => {
                         base: '12px',
                         md: '24px',
                     }}
-                    className="bg-[#D9D9D9]  z-30 p-5 bg-opacity-[0.65]"
+                    className="bg-[#D9D9D9] z-30 p-5 bg-opacity-70 rounded-[37px]"
                 >
                     {!isForUnit && getFeatureImage()}
-
                     {renderHTMLContent(post!)}
                 </VStack>
                 {!isForUnit && <RelatedPosts posts={data.relatedPosts} />}

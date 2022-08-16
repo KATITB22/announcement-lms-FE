@@ -9,8 +9,13 @@ import { ErrorTypes } from '@/types/enum';
 import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import VistockHome from '@/components/VistockHome';
-import VistockAnnoucement from '@/assets/images/home/annoucement-min.png';
-import { medparLG, medparMD } from '@/pages/Partnerpage/PartnersList';
+import VistockAnnoucement from '@/assets/images/home/announcement-v1.png';
+import {
+    medparLG,
+    medparMD,
+    medparSM,
+    medparXL,
+} from '@/pages/Partnerpage/PartnersList';
 
 import {
     sponsorLG,
@@ -48,7 +53,7 @@ const Homepage: React.FC<{}> = () => {
         />
     ));
 
-    document.title = 'Home - OSKM ITB 2022';
+    document.title = 'Home - DEVA: Blog OSKM ITB 2022';
 
     if (posts.length === 0) {
         return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
@@ -57,18 +62,12 @@ const Homepage: React.FC<{}> = () => {
     return (
         <PageTransition>
             <div>
-                {/* <div className="py-10 bg-Yellow">
-                    <div className="container mx-auto px-6">
-                        <h1 className="text-4xl font-Heading font-bold mb-2 text-center">
-                            {PAGE_TITLE}
-                        </h1>
-                    </div>
-                </div> */}
-                <div className="bg-[#FF8952] z-[-3]">
+                <div className="bg-[#FF8952]">
                     <img
                         src={VistockAnnoucement}
                         alt="annoucement"
                         className="w-screen"
+                        draggable="false"
                     />
                 </div>
                 {/* <Annoucement /> */}
@@ -76,6 +75,13 @@ const Homepage: React.FC<{}> = () => {
                     <VistockHome />
                     <div className="py-10">
                         <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">
+                            <div className="my-4">
+                                <Pagination
+                                    pagination={posts.meta.pagination}
+                                    page={page}
+                                    setPage={setPage}
+                                />
+                            </div>
                             <div className="flex justify-center">
                                 <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
                                     {blogPostElements}
@@ -89,28 +95,38 @@ const Homepage: React.FC<{}> = () => {
                                 />
                             </div>
                             <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex flex-col justify-center">
-                                <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
-                                    {SPONSOR_TITLE}
-                                </h2>
+                                <div className="flex relative h-[36px] justify-center my-auto">
+                                    <div className=" font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute px-[10px] py-1 bottom-10 rounded drop-shadow-lg">
+                                        {SPONSOR_TITLE}
+                                    </div>
+                                </div>
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorLG}
+                                    listOfSponsorAndPartner={sponsorSM}
                                 />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={sponsorMD}
                                 />
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorSM}
+                                    listOfSponsorAndPartner={sponsorLG}
                                 />
                             </div>
                             <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center flex-col">
-                                <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
-                                    {MEDPAR_TITLE}
-                                </h2>
+                                <div className="flex relative h-[36px] justify-center my-auto">
+                                    <div className=" font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute px-[10px] py-1 bottom-10 rounded drop-shadow-lg">
+                                        {MEDPAR_TITLE}
+                                    </div>
+                                </div>
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparSM}
+                                />
+                                <SponsorAndPartnerContainer
+                                    listOfSponsorAndPartner={medparMD}
+                                />
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={medparLG}
                                 />
                                 <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparMD}
+                                    listOfSponsorAndPartner={medparXL}
                                 />
                             </div>
                         </div>
