@@ -104,7 +104,7 @@ const Searchpage: React.FC<{}> = () => {
                     />
                 </div>
                 <div className="flex justify-start">
-                    <div className="grid place-items-stretch lg:grid-cols-3  sm:grid-cols-1 gap-4 md:w-[25rem] lg:w-[50rem] xl:w-[60rem] h-[70em]">
+                    <div className="grid place-items-stretch lg:grid-cols-3  sm:grid-cols-1 gap-4 md:w-[25rem] lg:w-[50rem] xl:w-[60rem]">
                         {input
                             .slice((page - 1) * MAX_POST, page * MAX_POST)
                             .map((item) => (
