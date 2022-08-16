@@ -211,7 +211,12 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
             <Box onClick={onClose}>{children}</Box>
             <Box className="bg-Orange text-DarkestOrange">
                 <Container
-                    maxW="6xl"
+                    maxW={{
+                        md: '704px',
+                        lg: '960px',
+                        xl: '1216px',
+                        '2xl': '1472px',
+                    }}
                     className="h-full flex flex-col md:flex-row justify-center md:justify-between items-center"
                     py={4}
                 >
