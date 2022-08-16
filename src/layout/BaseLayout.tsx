@@ -103,7 +103,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 >
                     <Link className="h-full min-w-max flex items-center" to="/">
                         <img
-                            className="h-[75%] md:h-[90%]"
+                            className="h-[75%] w-[75%] md:h-[90%] md:w-full object-contain"
                             src={defaultLogo}
                             alt=""
                         />
@@ -175,6 +175,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                         aria-label="Open Menu"
                         display={{ md: 'none' }}
                         onClick={isOpen ? onClose : onOpen}
+                        ml="2"
                     />
                 </Flex>
                 {isOpen ? (
@@ -209,9 +210,14 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 ) : null}
             </Box>
             <Box onClick={onClose}>{children}</Box>
-            <Box className="bg-Orange text-DarkestOrange">
+            <Box className="bg-Orange relative text-DarkestOrange z-10">
                 <Container
-                    maxW="6xl"
+                    maxW={{
+                        md: '704px',
+                        lg: '960px',
+                        xl: '1216px',
+                        '2xl': '1472px',
+                    }}
                     className="h-full flex flex-col md:flex-row justify-center md:justify-between items-center"
                     py={4}
                 >
