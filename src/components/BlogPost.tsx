@@ -1,12 +1,8 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { formatDate, formatUrl, trimString } from '@/util/util';
-import {
-    MAX_DESCRIPTION,
-    MAX_DESCRIPTION_RELATED,
-    MAX_TITLE,
-} from '@/types/constant';
+import { formatDate, formatUrl } from '@/util/util';
+import { MAX_DESCRIPTION, MAX_TITLE } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
 import DefaultImage from '@/assets/images/logo/logo.png';
 import { Text } from '@chakra-ui/react';
@@ -32,9 +28,6 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
     }, []);
 
     const formattedDate = formatDate(date!);
-    const trimmedTitle = trimString(description, MAX_TITLE);
-    const trimmedText = trimString(description, MAX_DESCRIPTION);
-    const trimmedRelatedText = trimString(description, MAX_DESCRIPTION_RELATED);
     const authorName = primary_author?.name;
     return (
         <div
@@ -48,7 +41,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     flex-col
                     flex
                     w-full
-                    h-[30em]
+                    h-[34em]
                     max-w-xs
                     ${size === 'sm' ? '' : 'md:max-w-md'}
                     `}
@@ -81,23 +74,23 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                 {formattedDate} | {authorName}
                             </p>
                             <Text
-                                noOfLines={[1, 2, 3]}
+                                noOfLines={MAX_TITLE}
                                 // href={link}
                                 className={`font-Heading text-body  ${
                                     size === 'sm' ? '' : 'md:text-title'
                                 } font-semibold`}
                             >
-                                {trimmedTitle}
+                                {title}
                             </Text>
-                            <p
+
+                            <Text
+                                noOfLines={MAX_DESCRIPTION}
                                 className={`font-Body text-caption text-left  ${
                                     size === 'sm' ? '' : 'md:text-body'
                                 }  font-normal md:mb-1`}
                             >
-                                {size === 'sm'
-                                    ? trimmedRelatedText
-                                    : trimmedText}
-                            </p>
+                                {description}
+                            </Text>
                         </div>
                     </Link>
                     {/* tags  */}
