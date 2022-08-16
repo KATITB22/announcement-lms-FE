@@ -49,7 +49,7 @@ body {
 .partner-bg {
     background: url('/src/assets/images/search/bg-min.png') no-repeat;
     background-size: cover;
-    height: 85%;
+    height: 100%;
 }
 
 .rumpun-bg {
