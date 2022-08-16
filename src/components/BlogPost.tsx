@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatDate, formatUrl } from '@/util/util';
 import { MAX_DESCRIPTION, MAX_TITLE } from '@/types/constant';
 import { BlogPost as BlogPostCard } from '@/types/interface';
-import DefaultImage from '@/assets/images/logo/logo.png';
+import DefaultImage from '@/assets/images/default-post-min.png';
 import { Text } from '@chakra-ui/react';
 
 const BlogPost: React.FC<BlogPostCard> = (props) => {
@@ -52,7 +52,7 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                 onError={() => {
                     setFormattedUrl(DefaultImage);
                 }}
-                className="min-h-[160px] max-h-40 w-full object-cover rounded-t-lg"
+                className="bg-LightBrown min-h-[160px] max-h-40 w-full object-contain rounded-t-lg"
             />
             <div
                 className={`bg-white w-full h-full min-h-[12.5rem] ${

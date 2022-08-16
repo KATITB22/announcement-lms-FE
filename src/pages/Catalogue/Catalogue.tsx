@@ -21,6 +21,8 @@ const Catalogue: React.FC<{}> = () => {
         setMerchs(shownPosts);
     }, [currentPage]);
 
+    document.title = 'Catalogue - DEVA: Blog OSKM ITB 2022';
+
     return (
         <PageTransition>
             <div>

@@ -102,7 +102,7 @@ const FilterAndCategory: React.FC<FilterCategoryProps> = ({
     }, [checked]);
 
     return (
-        <div className="bg-Yellow p-4 rounded-md">
+        <div className="bg-Yellow p-4 rounded-md z-10">
             <div
                 className={`bg-MediumBrown p-6 inline-block rounded-md ${className}`}
             >

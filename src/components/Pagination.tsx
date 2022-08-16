@@ -42,6 +42,7 @@ const Pagination: React.FC<PaginationProps> = ({
     pagination,
     page: currentPage,
     setPage,
+    className,
 }) => {
     const { pages: pageCount } = pagination;
     // console.log(pagination);
@@ -63,11 +64,12 @@ const Pagination: React.FC<PaginationProps> = ({
 
     const displayPages = listOfPages.map((pageNumber) => {
         const isActive = pageNumber === currentPage;
+        const bg = className || 'bg-Orange';
         return (
             <button
                 key={`button${pageNumber}`}
-                className={`z-20 w-[13%] ${
-                    isActive ? 'bg-Orange rounded-md' : ''
+                className={`z-20 ${
+                    isActive ? `${bg} rounded-md` : ''
                 } flex justify-center items-center`}
                 onClick={() => {
                     setPage(pageNumber);

@@ -7,7 +7,7 @@ import { fetchSinglePost } from '@/service/ghostAPI';
 import { renderHTMLContent } from '@/util/renderHTMLContent';
 import { excludeTag, MONTHS } from '@/types/constant';
 import VistockBackground from '@/components/VistockBackground';
-import DefaultImage from '@/assets/images/logo/logo.png';
+import DefaultImage from '@/assets/images/default-post-min.png';
 import { DetailPost, DetailpageProps } from '@/types/interface';
 import useFetch from '@/hooks/useFetch';
 import { ErrorTypes } from '@/types/enum';

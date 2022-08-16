@@ -75,8 +75,8 @@ const Homepage: React.FC<{}> = () => {
                     <VistockHome />
                     <div className="py-10">
                         <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">
-                            <div className="flex justify-center drop-shadow-2xl rounded-lg pt-9 relative">
-                                <div className="bg-LightBrown absolute top-0 right-[10%] lg:right-[6%] rounded-md flex flex-row justify-between items-center self-center w-44 h-10">
+                            <div className="flex justify-center relative pt-9">
+                                <div className="bg-LightBrown absolute top-0 lg:right-[14%] rounded-md flex flex-row justify-between items-center self-center w-44 h-10">
                                     <Pagination
                                         pagination={posts.meta.pagination}
                                         page={page}
@@ -86,13 +86,6 @@ const Homepage: React.FC<{}> = () => {
                                 <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
                                     {blogPostElements}
                                 </div>
-                                {/* <div className="bg-LightBrown absolute right-8 rounded-md flex flex-row justify-between items-center self-center w-44 h-10">
-                                    <Pagination
-                                        pagination={posts.meta.pagination}
-                                        page={page}
-                                        setPage={setPage}
-                                    />
-                                </div> */}
                             </div>
                             <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex flex-col justify-center">
                                 <div className="flex relative h-[36px] justify-center my-auto">

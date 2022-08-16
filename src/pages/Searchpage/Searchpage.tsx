@@ -79,12 +79,12 @@ const Searchpage: React.FC<{}> = () => {
                     <img
                         src={vistock}
                         alt="tidak ada hasil pencarian"
-                        className="w-[20rem] md:w-[30rem] aspect-square absolute -z-[5]"
+                        className="w-[20rem] lg:w-[30rem] aspect-square absolute -z-[5]"
                     />
-                    <p className="m-0 mb-1 font-Heading text-title md:text-h3 text-DarkerOrange drop-shadow-errorStyle">
+                    <p className="mb-1 font-Heading text-title lg:text-h3 text-DarkerOrange drop-shadow-errorStyle">
                         Hasil tidak ditemukan
                     </p>
-                    <div className="bg-Yellow rounded-full p-2 px-4 hover:shadow-sm">
+                    <div className="bg-Yellow rounded-full p-2 px-4 hover:shadow-sm text-caption_smaller md:text-caption">
                         Gunakan kata kunci yang lain atau yang lebih umum
                     </div>
                 </div>
@@ -94,7 +94,7 @@ const Searchpage: React.FC<{}> = () => {
         return (
             <div className="col-span-1 xl:col-span-3 lg:col-span-2 mx-auto self-start">
                 <div className="my-4 w-full flex justify-center items-cente">
-                    <div className=" flex justify-between w-[30%] bg-amber-100 rounded-md">
+                    <div className="bg-LightBrown flex justify-between w-fit rounded-md py-2 px-4">
                         <Pagination
                             pagination={{
                                 pages: Math.ceil(result.length / MAX_POST),
@@ -110,7 +110,7 @@ const Searchpage: React.FC<{}> = () => {
                     </div>
                 </div>
                 <div className="flex justify-start">
-                    <div className="grid place-items-stretch lg:grid-cols-3  sm:grid-cols-1 gap-4 md:w-[25rem] lg:w-[50rem] xl:w-[60rem]">
+                    <div className="grid place-items-stretch lg:grid-cols-2 xl:grid-cols-3 sm:grid-cols-1 gap-4 xl:w-[55rem]">
                         {input
                             .slice((page - 1) * MAX_POST, page * MAX_POST)
                             .map((item) => (
@@ -136,7 +136,7 @@ const Searchpage: React.FC<{}> = () => {
     const renderResult = (input: PostOrPage[]) => (
         <div className="container max-w-screen-xl py-6 px-[3.75rem] mx-auto gap-6 min-h-content inline-flex flex-row items-center justify-center z-10">
             <div className="h-full mt-[9rem]">
-                <div className="hidden md:block self-center">
+                <div className="hidden md:block">
                     <FilterAndCategory
                         item={result}
                         setItem={setResult}
