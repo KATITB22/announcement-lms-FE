@@ -6,7 +6,7 @@ import VistockPartner from '@/components/VistockPartner';
 import { sponsorLG, sponsorMD, sponsorSM } from './SponsorsList';
 import { medparXL, medparLG, medparMD, medparSM } from './PartnersList';
 
-const SponsorSectionTitle = ({ title }: { title: string }) => (
+export const SponsorSectionTitle = ({ title }: { title: string }) => (
     <div className="flex relative h-[36px] justify-center">
         <div className="font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute h-[36px] top-[16px] py-[2px] px-[10px] rounded drop-shadow-lg">
             {title}
@@ -15,8 +15,7 @@ const SponsorSectionTitle = ({ title }: { title: string }) => (
 );
 
 const PartnerPage: React.FC<{}> = () => {
-    document.title = 'Sponsor - DEVA: Blog OSKM ITB 2022';
-    // const imageArray: Array<image> = [];
+    document.title = 'Partner - DEVA: Blog OSKM ITB 2022';
     return (
         <PageTransition>
             <div className="bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] relative py-20 z-10">

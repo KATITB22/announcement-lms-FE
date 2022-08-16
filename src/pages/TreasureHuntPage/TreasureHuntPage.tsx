@@ -14,10 +14,10 @@ const TreasureHuntPage = () => {
     const date1 = new Date('2022-08-15');
     const date2 = new Date();
 
-    const handleClick = () => setShow(!show);
     if (date1.getDate() > date2.getDate()) {
         return <ToBeAnnounced />;
     }
+    const handleClick = () => setShow(!show);
 
     const submitPassword = (e: any) => {
         if (e.key === 'Enter') {
@@ -45,6 +45,8 @@ const TreasureHuntPage = () => {
             setAvailable(false);
         }
     }, []);
+
+    document.title = 'Defile - DEVA: Blog OSKM ITB 2022';
 
     return (
         <div>

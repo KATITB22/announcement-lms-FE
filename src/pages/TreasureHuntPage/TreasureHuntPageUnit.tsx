@@ -62,6 +62,8 @@ const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = () => {
         return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
     }
 
+    document.title = `${id?.toUpperCase()} - DEVA: Blog OSKM ITB 2022`;
+
     return (
         <div>
             {greetings(id!.toUpperCase())}
