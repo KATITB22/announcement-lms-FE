@@ -41,28 +41,28 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     flex-col
                     flex
                     w-full
-                    h-[34em]
+                    min-h-[27em]
                     max-w-xs
-                    ${size === 'sm' ? '' : 'md:max-w-md'}
+                    ${size === 'sm' ? '' : 'md:max-w-md md:h-[34em]'}
                     `}
         >
-            <img
-                alt={title}
-                src={formattedUrl}
-                onError={() => {
-                    setFormattedUrl(DefaultImage);
-                }}
-                className="bg-LightBrown min-h-[160px] max-h-40 w-full object-contain rounded-t-lg"
-            />
-            <div
-                className={`bg-white w-full h-full min-h-[12.5rem] ${
-                    size === 'sm' ? 'p-2' : 'p-4'
-                } rounded-br-lg rounded-bl-lg`}
-            >
-                <div className="flex flex-col justify-between h-full">
-                    {/* title  */}
+            <Link to={`/post/${slug}`}>
+                <img
+                    alt={title}
+                    src={formattedUrl}
+                    onError={() => {
+                        setFormattedUrl(DefaultImage);
+                    }}
+                    className="bg-LightBrown min-h-[160px] max-h-40 w-full object-contain rounded-t-lg"
+                />
+                <div
+                    className={`bg-white w-full h-full min-h-[12.5rem] ${
+                        size === 'sm' ? 'p-2' : 'p-4'
+                    } rounded-br-lg rounded-bl-lg`}
+                >
+                    <div className="flex flex-col justify-between h-full">
+                        {/* title  */}
 
-                    <Link to={`/post/${slug}`}>
                         <div>
                             <p
                                 className={`font-Body text-caption ${
@@ -92,33 +92,31 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                                 {description}
                             </Text>
                         </div>
-                    </Link>
-                    {/* tags  */}
-                    <div>
-                        {tags && tags.length > 0 ? (
-                            <div className="flex items-center mt-6 flex-wrap gap-2 gap-y-5">
-                                {tags.map((tag) => (
-                                    // TODO: change # to tags link
-                                    <a
-                                        href={`/search?tag=${tag.name}`}
-                                        className={`rounded bg-Orange text-white hover:text-black  ${
-                                            size === 'sm'
-                                                ? 'p-1 text-sm -mt-3'
-                                                : 'p-2'
-                                        }`}
-                                        key={tag.slug}
-                                    >
-                                        {tag.name}
-                                    </a>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="flex items-center mt-2 bg-White">
-                                <div className="pl-2 bg-White" />
-                            </div>
-                        )}
+                        {/* tags  */}
                     </div>
                 </div>
+            </Link>
+            <div>
+                {tags && tags.length > 0 ? (
+                    <div className="flex items-center mt-6 flex-wrap gap-2 gap-y-5">
+                        {tags.map((tag) => (
+                            // TODO: change # to tags link
+                            <a
+                                href={`/search?tag=${tag.name}`}
+                                className={`rounded bg-Orange text-white hover:text-black  ${
+                                    size === 'sm' ? 'p-1 text-sm -mt-3' : 'p-2'
+                                }`}
+                                key={tag.slug}
+                            >
+                                {tag.name}
+                            </a>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex items-center mt-2 bg-White">
+                        <div className="pl-2 bg-White" />
+                    </div>
+                )}
             </div>
         </div>
     );
