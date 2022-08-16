@@ -41,85 +41,78 @@ const BlogPost: React.FC<BlogPostCard> = (props) => {
                     flex-col
                     flex
                     w-full
-                    h-[34em]
+                    min-h-[27em]
                     max-w-xs
-                    ${size === 'sm' ? '' : 'md:max-w-md'}
+                    ${size === 'sm' ? 'p-2' : 'p-4 md:max-w-md md:h-[34em]'}
+                    bg-white w-full h-full min-h-[12.5rem]
+                    rounded-br-lg rounded-bl-lg
                     `}
         >
-            <img
-                alt={title}
-                src={formattedUrl}
-                onError={() => {
-                    setFormattedUrl(DefaultImage);
-                }}
-                className="bg-LightBrown min-h-[160px] max-h-40 w-full object-contain rounded-t-lg"
-            />
-            <div
+            {/* <div
                 className={`bg-white w-full h-full min-h-[12.5rem] ${
                     size === 'sm' ? 'p-2' : 'p-4'
                 } rounded-br-lg rounded-bl-lg`}
-            >
-                <div className="flex flex-col justify-between h-full">
-                    {/* title  */}
+            > */}
+            <Link to={`/post/${slug}`}>
+                <img
+                    alt={title}
+                    src={formattedUrl}
+                    onError={() => {
+                        setFormattedUrl(DefaultImage);
+                    }}
+                    className="bg-LightBrown min-h-[160px] max-h-40 w-full object-contain rounded-t-lg"
+                />
+                <div>
+                    <p
+                        className={`font-Body text-caption ${
+                            size === 'sm' ? 'text-sm' : 'md:text-caption'
+                        } font-normal mb-1 md:mb-0`}
+                    >
+                        {formattedDate} | {authorName}
+                    </p>
+                    <Text
+                        noOfLines={MAX_TITLE}
+                        // href={link}
+                        className={`font-Heading text-body  ${
+                            size === 'sm' ? '' : 'md:text-title'
+                        } font-semibold`}
+                    >
+                        {title}
+                    </Text>
 
-                    <Link to={`/post/${slug}`}>
-                        <div>
-                            <p
-                                className={`font-Body text-caption ${
-                                    size === 'sm'
-                                        ? 'text-sm'
-                                        : 'md:text-caption'
-                                } font-normal mb-1 md:mb-0`}
-                            >
-                                {formattedDate} | {authorName}
-                            </p>
-                            <Text
-                                noOfLines={MAX_TITLE}
-                                // href={link}
-                                className={`font-Heading text-body  ${
-                                    size === 'sm' ? '' : 'md:text-title'
-                                } font-semibold`}
-                            >
-                                {title}
-                            </Text>
-
-                            <Text
-                                noOfLines={MAX_DESCRIPTION}
-                                className={`font-Body text-caption text-left  ${
-                                    size === 'sm' ? '' : 'md:text-body'
-                                }  font-normal md:mb-1`}
-                            >
-                                {description}
-                            </Text>
-                        </div>
-                    </Link>
-                    {/* tags  */}
-                    <div>
-                        {tags && tags.length > 0 ? (
-                            <div className="flex items-center mt-6 flex-wrap gap-2 gap-y-5">
-                                {tags.map((tag) => (
-                                    // TODO: change # to tags link
-                                    <a
-                                        href={`/search?tag=${tag.name}`}
-                                        className={`rounded bg-Orange text-white hover:text-black  ${
-                                            size === 'sm'
-                                                ? 'p-1 text-sm -mt-3'
-                                                : 'p-2'
-                                        }`}
-                                        key={tag.slug}
-                                    >
-                                        {tag.name}
-                                    </a>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="flex items-center mt-2 bg-White">
-                                <div className="pl-2 bg-White" />
-                            </div>
-                        )}
-                    </div>
+                    <Text
+                        noOfLines={MAX_DESCRIPTION}
+                        className={`font-Body text-caption text-left  ${
+                            size === 'sm' ? '' : 'md:text-body'
+                        }  font-normal md:mb-1`}
+                    >
+                        {description}
+                    </Text>
                 </div>
+            </Link>
+            <div>
+                {tags && tags.length > 0 ? (
+                    <div className="flex items-center mt-6 flex-wrap gap-2 gap-y-5">
+                        {tags.map((tag) => (
+                            // TODO: change # to tags link
+                            <a
+                                href={`/search?tag=${tag.name}`}
+                                className={`rounded bg-Orange text-white hover:text-black  ${
+                                    size === 'sm' ? 'p-1 text-sm -mt-3' : 'p-2'
+                                }`}
+                                key={tag.slug}
+                            >
+                                {tag.name}
+                            </a>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex items-center mt-2 bg-White">
+                        <div className="pl-2 bg-White" />
+                    </div>
+                )}
             </div>
+            {/* </div> */}
         </div>
     );
 };
