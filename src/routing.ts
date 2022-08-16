@@ -11,9 +11,9 @@ const DetailPage = React.lazy(() => import('./pages/Detailpage/Detailpage'));
 const TreasureHuntPage = React.lazy(
     () => import('./pages/TreasureHuntPage/TreasureHuntPage')
 );
-const TreasureHuntPageUnit = React.lazy(
-    () => import('./pages/TreasureHuntPage/TreasureHuntPageUnit')
-);
+// const TreasureHuntPageUnit = React.lazy(
+//     () => import('./pages/TreasureHuntPage/TreasureHuntPageUnit')
+// );
 const CataloguePage = React.lazy(() => import('./pages/Catalogue/Catalogue'));
 
 const PageNotFoundRouting: PageRouting = {
@@ -54,17 +54,17 @@ export const Routing: PageRouting[] = [
         path: '/defile',
         component: TreasureHuntPage,
     },
-    {
-        title: 'Detail Unit',
-        path: '/defile/:unitId/:postId',
-        component: DetailPage,
-        props: { isForUnit: true, fromPost: false },
-    },
-    {
-        title: 'Treasure Hunt Unit',
-        path: '/defile/:unitId',
-        component: TreasureHuntPageUnit,
-    },
+    // {
+    //     title: 'Detail Unit',
+    //     path: '/defile/:unitId/:postId',
+    //     component: DetailPage,
+    //     props: { isForUnit: true, fromPost: false },
+    // },
+    // {
+    //     title: 'Treasure Hunt Unit',
+    //     path: '/defile/:unitId',
+    //     component: TreasureHuntPageUnit,
+    // },
     {
         title: 'Catalogue',
         path: '/catalogue',
