@@ -1,4 +1,5 @@
 import { MerchPostProps } from '@/types/interface';
+import { trimString } from '@/util/util';
 import Carousel from './Carousel';
 
 const MerchPost: React.FC<MerchPostProps> = ({ item }: MerchPostProps) => (
@@ -18,16 +19,16 @@ const MerchPost: React.FC<MerchPostProps> = ({ item }: MerchPostProps) => (
             <div className="h-[75%] flex">
                 <Carousel items={item.images} />
             </div>
-            <div className="h-[25%] text-center ">
-                <p className="font-Heading font-semibold text-caption md:text-body">
-                    {item.title}
+            <div className="h-[25%] text-center bg-Yellow  ">
+                <p className="font-Heading font-semibold text-caption md:text-body md:pt-1">
+                    {trimString(item.title, 30)}
                 </p>
                 <p className="font-Body text-caption_smaller md:text-caption font-normal">
                     {item.price}
                 </p>
 
                 <a
-                    className="font-Body text-caption font-normal rounded bg-Orange px-1.5 text-white hover:text-black"
+                    className="font-Body text-caption font-normal rounded bg-Orange px-1.5 text-white hover:text-black px-4 md:py-1"
                     href={item.url}
                     target="_blank"
                     rel="noreferrer"

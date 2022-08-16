@@ -6,7 +6,7 @@ import AboutDetail from './AboutDetail';
 
 const About: React.FC<{}> = () => {
     const [isOn, toggle] = useToggle();
-    document.title = 'About - Deva: Blog OSKM ITB 2022';
+    document.title = 'About - DEVA: Blog OSKM ITB 2022';
     return (
         <PageTransition>
             <div className="relative min-h-content">
@@ -33,7 +33,7 @@ const About: React.FC<{}> = () => {
                                 <button
                                     type="button"
                                     onClick={toggle}
-                                    className="bg-MediumOrange text-white px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
+                                    className="bg-MediumOrange px-4 py-3 mt-8 rounded-[15px] drop-shadow-lg hover:drop-shadow-xl"
                                 >
                                     See More
                                 </button>

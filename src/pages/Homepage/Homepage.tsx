@@ -53,7 +53,7 @@ const Homepage: React.FC<{}> = () => {
         />
     ));
 
-    document.title = 'Home - Deva: Blog OSKM ITB 2022';
+    document.title = 'Home - DEVA: Blog OSKM ITB 2022';
 
     if (posts.length === 0) {
         return <ErrorPage message={message} type={ErrorTypes.EmptyPost} />;
@@ -62,13 +62,6 @@ const Homepage: React.FC<{}> = () => {
     return (
         <PageTransition>
             <div>
-                {/* <div className="py-10 bg-Yellow">
-                    <div className="container mx-auto px-6">
-                        <h1 className="text-4xl font-Heading font-bold mb-2 text-center">
-                            {PAGE_TITLE}
-                        </h1>
-                    </div>
-                </div> */}
                 <div className="bg-[#FF8952]">
                     <img
                         src={VistockAnnoucement}
@@ -102,9 +95,11 @@ const Homepage: React.FC<{}> = () => {
                                 </div> */}
                             </div>
                             <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex flex-col justify-center">
-                                <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
-                                    {SPONSOR_TITLE}
-                                </h2>
+                                <div className="flex relative h-[36px] justify-center my-auto">
+                                    <div className=" font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute px-[10px] py-1 bottom-10 rounded drop-shadow-lg">
+                                        {SPONSOR_TITLE}
+                                    </div>
+                                </div>
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={sponsorSM}
                                 />
@@ -116,9 +111,11 @@ const Homepage: React.FC<{}> = () => {
                                 />
                             </div>
                             <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center flex-col">
-                                <h2 className="text-center font-Heading text-xl sm:text-2xl font-bold absolute top-[-20px] bg-LightBrown rounded-lg pt-1 px-3 drop-shadow-lg">
-                                    {MEDPAR_TITLE}
-                                </h2>
+                                <div className="flex relative h-[36px] justify-center my-auto">
+                                    <div className=" font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute px-[10px] py-1 bottom-10 rounded drop-shadow-lg">
+                                        {MEDPAR_TITLE}
+                                    </div>
+                                </div>
                                 <SponsorAndPartnerContainer
                                     listOfSponsorAndPartner={medparSM}
                                 />

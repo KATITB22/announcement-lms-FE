@@ -9,7 +9,7 @@ const ServerError: React.FC<{}> = () => (
             <img
                 src={Vistock}
                 alt="Server Error"
-                className="w-[30rem] absolute left-[50%] bottom-[25%] translate-x-[-50%] -z-10"
+                className="w-[20rem] sm:w-[30rem] absolute left-[50%] top-1/2 translate-y-[-55%] translate-x-[-50%] -z-10"
             />
             <p className="m-0 mt-24 pt-24 sm:mt-4 md:mt-4 mb-2 font-Heading text-h4 sm:text-h3 text-DarkerOrange drop-shadow-errorStyle">
                 Coba refresh halaman ini

@@ -1,5 +1,5 @@
 import env from '@/env';
-import DefaultImage from '@/assets/images/logo/logo.png';
+import DefaultImage from '@/assets/images/default-post-min.png';
 
 const BASE_URL = `${env.VITE_GHOST_API_URL}/ghost/api/content`;
 
@@ -52,3 +52,8 @@ export const generateArray = (start: number, end: number) =>
     [...new Array(end - start)]
         .map((_, index) => start + index)
         .filter((index) => index > 0);
+
+export const formatSingleWordCapitalCase = (word: string) => {
+    if (word === 'bso' || word === 'pmk') return word.toUpperCase();
+    return word[0].toUpperCase() + word.toLowerCase().substring(1);
+};

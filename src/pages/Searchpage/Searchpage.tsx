@@ -70,7 +70,7 @@ const Searchpage: React.FC<{}> = () => {
         return <ErrorPage type={ErrorTypes.ServerError} />;
     }
 
-    document.title = `${query} - Deva: Blog OSKM ITB 2022`;
+    document.title = `${query || 'Search'} - DEVA: Blog OSKM ITB 2022`;
 
     const renderSearch = (input: PostOrPage[]) => {
         if (input.length === 0) {
@@ -110,7 +110,7 @@ const Searchpage: React.FC<{}> = () => {
                     </div>
                 </div>
                 <div className="flex justify-start">
-                    <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
+                    <div className="grid place-items-stretch lg:grid-cols-3  sm:grid-cols-1 gap-4 md:w-[25rem] lg:w-[50rem] xl:w-[60rem]">
                         {input
                             .slice((page - 1) * MAX_POST, page * MAX_POST)
                             .map((item) => (
@@ -135,15 +135,18 @@ const Searchpage: React.FC<{}> = () => {
 
     const renderResult = (input: PostOrPage[]) => (
         <div className="container max-w-screen-xl py-6 px-[3.75rem] mx-auto gap-6 min-h-content inline-flex flex-row items-center justify-center z-10">
-            <div className="hidden md:block self-center">
-                <FilterAndCategory
-                    item={result}
-                    setItem={setResult}
-                    originalItem={oriResult}
-                    initParams={searchParams}
-                    setParams={setSearchParams}
-                />
+            <div className="h-full mt-[9rem]">
+                <div className="hidden md:block self-center">
+                    <FilterAndCategory
+                        item={result}
+                        setItem={setResult}
+                        originalItem={oriResult}
+                        initParams={searchParams}
+                        setParams={setSearchParams}
+                    />
+                </div>
             </div>
+
             {renderSearch(input)}
         </div>
     );
