@@ -95,6 +95,14 @@ import Bundle4 from '@/assets/images/merch/78.png';
 import Bundle5 from '@/assets/images/merch/79.png';
 import Bundle6 from '@/assets/images/merch/80.png';
 
+import Kuaci1 from '@/assets/images/merch/81.png';
+import Kuaci2 from '@/assets/images/merch/82.png';
+
+import Whitelab1 from '@/assets/images/merch/83.png';
+import Whitelab2 from '@/assets/images/merch/84.png';
+
+import Nametag from '@/assets/images/merch/85.png';
+
 export const data: MerchPostType[] = [
     {
         title: 'Baju Angkatan 2022',
@@ -203,6 +211,12 @@ export const data: MerchPostType[] = [
         price: 'Rp. 47.000',
         url: 'https://tokopedia.link/OjZFHuJ6vsb',
         images: [Tote1, Tote2, Tote3],
+    },
+    {
+        title: 'Nametag',
+        price: 'Rp. 2.500',
+        url: 'https://tokopedia.link/y1e5cdRLxsb',
+        images: [Nametag],
     },
     {
         title: 'Bundle "Back to Campus"',
@@ -329,5 +343,29 @@ export const data: MerchPostType[] = [
         price: 'Rp. 205.000',
         url: 'https://tokopedia.link/VmmNsWF7vsb',
         images: [Pakdu3],
+    },
+    {
+        title: 'Kuaci Rebo 13gr',
+        price: 'Rp. 1.500',
+        url: 'https://tokopedia.link/1KGGGolMxsb',
+        images: [Kuaci1],
+    },
+    {
+        title: 'Kuaci Rebo 70gr',
+        price: 'Rp. 9.000',
+        url: 'https://tokopedia.link/YbER3PhMxsb',
+        images: [Kuaci2],
+    },
+    {
+        title: 'Sunscreen Whitelab',
+        price: 'Rp. 70.000',
+        url: 'https://tokopedia.link/HsQNGCmRxsb',
+        images: [Whitelab1],
+    },
+    {
+        title: 'Serum Whitelab',
+        price: 'Rp. 75.000',
+        url: 'https://tokopedia.link/WZ12WRnRxsb',
+        images: [Whitelab2],
     },
 ];
