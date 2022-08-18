@@ -21,7 +21,7 @@ import {
     FaTwitter,
     FaInstagram,
     FaYoutube,
-    // FaPeopleCarry,
+    FaPeopleCarry,
     FaHandshake,
     FaBook,
 } from 'react-icons/fa';
@@ -44,11 +44,11 @@ const links = [
         to: '/catalogue',
         icon: <FaBook />,
     },
-    // {
-    //     name: 'Defile',
-    //     to: '/defile',
-    //     icon: <FaPeopleCarry />,
-    // },
+    {
+        name: 'Defile',
+        to: '/defile',
+        icon: <FaPeopleCarry />,
+    },
     {
         name: 'Partner',
         to: '/partner',

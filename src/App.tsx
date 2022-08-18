@@ -6,7 +6,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import BaseLayout from './layout/BaseLayout';
 import { Routing } from './routing';
 import Loading from './pages/Loading';
-import BackgroundMusic from './assets/audio/audio.mp3';
+import BackgroundMusic from './assets/audio/audio.wav';
 
 interface AppProps {
     video?: string;

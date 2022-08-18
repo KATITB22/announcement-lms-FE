@@ -6,6 +6,8 @@ const BASE_URL = `${env.VITE_GHOST_API_URL}/ghost/api/content`;
 export const formatDate = (date: string | undefined) =>
     new Date(Date.parse(date!)).toLocaleString();
 
+export const getSecret = () => env.VITE_SECRET;
+
 export const formatUrl = (url: string | null) => {
     if (!url) return DefaultImage;
     return url;
@@ -54,6 +56,7 @@ export const generateArray = (start: number, end: number) =>
         .filter((index) => index > 0);
 
 export const formatSingleWordCapitalCase = (word: string) => {
-    if (word === 'bso' || word === 'pmk') return word.toUpperCase();
+    if (word === 'bso') return word.toUpperCase();
+    if (word === 'pmk') return 'Pendidikan/Media/Kajian';
     return word[0].toUpperCase() + word.toLowerCase().substring(1);
 };

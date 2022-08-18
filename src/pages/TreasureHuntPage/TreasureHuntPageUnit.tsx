@@ -18,10 +18,13 @@ function greetings(rumpunName: string) {
                 Rumpun {RumpunName}
             </h1>
             <p className="text-2xl font-Heading font-bold mb-2 text-center max-w-[95vw] mx-auto">
-                Selamat datang di Rumpun {RumpunName}! Berikut adalah beberapa
-                unit yang tergabung pada rumpun ini. Jika kalian penasaran apa
-                saja kegiatan unit tersebut, langsung saja klik unitnya, baca
-                deskripsinya, lihat fotonya, dan tonton videonya!
+                Selamat datang di Rumpun {RumpunName}! Berikut merupakan
+                beberapa unit yang tergabung dalam Rumpun {RumpunName}. Kalau
+                kalian penasaran mengenai kegiatan-kegiatan Unit tersebut,
+                kalian dapat klik unit yang ingin kalian pilih lalu baca
+                deskripsi, lihat foto, dan tonton videonya! <br /> <br />
+                Psstt! Buat kalian yang masih kepo, pantengin terus ya OHU pada
+                27 Agustus 2022! See you!!
             </p>
         </div>
     );
@@ -76,7 +79,7 @@ const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = () => {
                         {formatSingleWordCapitalCase(id!)}
                     </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full bg-opacity-70 bg-LightOrange rounded-lg p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 min-h-screen items-start max-w-screen-xl w-full bg-opacity-70 bg-LightOrange rounded-lg p-4 pt-12">
                     {showCard(posts, id!)}
                 </div>
             </div>
