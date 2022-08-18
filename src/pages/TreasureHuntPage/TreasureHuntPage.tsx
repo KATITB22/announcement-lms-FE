@@ -17,8 +17,8 @@ const TreasureHuntPage = () => {
 
     const handleClick = () => setShow(!show);
 
-    const submitPassword = (e: any) => {
-        if (e.key === 'Enter') {
+    const submitPassword = (e: any, click?: boolean) => {
+        if (e.key === 'Enter' || click) {
             if (password === getSecret()) {
                 setAvailable(true);
                 localStorage.setItem('password', password);
@@ -186,7 +186,28 @@ const TreasureHuntPage = () => {
                                 _hover={{ border: '1px solid #D27C2F' }}
                                 onChange={(e: any) => inputPassword(e)}
                             />
-                            <InputRightElement width="4.5rem">
+                            <InputRightElement width="6rem">
+                                <Button
+                                    h="1.75rem"
+                                    size="sm"
+                                    p={2}
+                                    px={4}
+                                    bg="#D27C2F"
+                                    color="white"
+                                    fontFamily="Alegreya Sans Regular"
+                                    fontWeight="400"
+                                    _hover={{
+                                        bg: '#D27C2F',
+                                    }}
+                                    _active={{
+                                        bg: '#D27C2F',
+                                    }}
+                                    onClick={(e) => {
+                                        submitPassword(e, true);
+                                    }}
+                                >
+                                    Submit
+                                </Button>
                                 <Button
                                     h="1.75rem"
                                     size="sm"
@@ -201,6 +222,7 @@ const TreasureHuntPage = () => {
                                         bg: '#D27C2F',
                                     }}
                                     onClick={handleClick}
+                                    mx="2px"
                                 >
                                     {show ? 'Hide' : 'Show'}
                                 </Button>
