@@ -46,6 +46,9 @@ import Hearo from '@/assets/images/medpars/L/Hearo/Hearo-Logotype-Black.png';
 import LFM from '@/assets/images/medpars/L/LFM.jpg';
 import MaveMagazine from '@/assets/images/medpars/L/Mave-Magazine.png';
 import SwaraRadio from '@/assets/images/medpars/L/SwaraRadio.jpeg';
+import Indozone from '@/assets/images/medpars/L/indozone-L-min.png';
+import VOI from '@/assets/images/medpars/L/Logo-VOI-Black-min.png';
+import OG from '@/assets/images/medpars/L/OG_Indonesia-min.png';
 
 import GNFI from '@/assets/images/medpars/XL/GNFI/GNFI-Horizontal.png';
 import InilahKoran from '@/assets/images/medpars/XL/INILAH-KORAN.png';
@@ -214,6 +217,10 @@ const listOfMedpar: imgPartner[] = [
     { title: 'Swara Radio', imageUrl: SwaraRadio, type: typePartner.LG },
     { title: 'LFM', imageUrl: LFM, type: typePartner.LG },
     { title: 'Mave Magazine', imageUrl: MaveMagazine, type: typePartner.LG },
+    { title: 'Indozone', imageUrl: Indozone, type: typePartner.LG },
+    { title: 'VOI', imageUrl: VOI, type: typePartner.LG },
+    { title: 'OG Indonesia', imageUrl: OG, type: typePartner.LG },
+
     { title: 'GNFI', imageUrl: GNFI, type: typePartner.XL },
     { title: 'Inilah Koran', imageUrl: InilahKoran, type: typePartner.XL },
     { title: 'JPNN', imageUrl: JPNN, type: typePartner.XL },
