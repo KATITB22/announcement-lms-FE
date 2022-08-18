@@ -2,11 +2,11 @@ import useFetch from '@/hooks/useFetch';
 import { fetchAllUnit } from '@/service/ghostAPI';
 import { Posts, TreasureHuntPageProps } from '@/types/interface';
 import Card from '@/components/Card';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { ErrorTypes } from '@/types/enum';
 import { possibleLink } from '@/types/constant';
 import VistockRumpun from '@/components/VistockRumpum';
-import { formatSingleWordCapitalCase } from '@/util/util';
+import { formatSingleWordCapitalCase, getSecret } from '@/util/util';
 import Loading from '../Loading';
 import ErrorPage from '../ErrorPage';
 
@@ -45,9 +45,14 @@ function showCard(input: Posts, slug: string) {
 
 const TreasureHuntPageUnit: React.FC<TreasureHuntPageProps> = () => {
     const { unitId: id } = useParams();
+    const res = localStorage.getItem('password');
 
     if (!possibleLink.includes(id!)) {
         return <ErrorPage type={ErrorTypes.PageNotFound} />;
+    }
+
+    if (res !== getSecret()) {
+        return <Navigate to="/defile" />;
     }
 
     const { data, isLoading, error, message } = useFetch(

@@ -4,6 +4,9 @@ import Rumpun from '@/components/Rumpun';
 import { DEFILE_UNIT, mockData, SELAMAT_DATANG } from '@/types/constant';
 import vistock from '@/assets/images/background-detail-page/vistock22.png';
 import VistockBackground from '@/components/VistockBackground';
+import Clue1 from '@/assets/images/clue/1.jpg';
+import Clue2 from '@/assets/images/clue/2.jpg';
+import Clue3 from '@/assets/images/clue/3.jpg';
 import { getSecret } from '@/util/util';
 
 const TreasureHuntPage = () => {
@@ -52,21 +55,43 @@ const TreasureHuntPage = () => {
             </div>
             {!available ? (
                 <div className="min-h-content bg-gradient-to-b from-[#FF8952] to-[#F9DCB0] flex flex-col items-center justify-center py-5 relative z-10  overflow-hidden">
-                    <div className="w-full px-3 md:w-2/3 xl:w-1/2 text-center z-10">
-                        <p className="text-xl font-Body">
-                            Defile unit adalah ....
+                    <div className="w-[92.5vw] px-3 md:w-2/3 xl:w-1/2 text-center z-10 bg-LightOrange bg-opacity-70 p-4 rounded-lg">
+                        <p className="text-xl font-Body text-left">
+                            Defile Unit bertugas untuk mengenalkan Unit
+                            Kemahasiswaan ITB kepada mahasiswa baru. Pengenalan
+                            UKM ITB yang diberikan adalah melalui pemecahan
+                            teka-teki yang tutorialnya dapat dilihat di feeds
+                            instagram OSKM ITB. Untuk memecahkan teka-tekinya,
+                            kalian harus membaca dan melakukannya dengan
+                            hati-hati dan teliti.
                         </p>
+                        <div className="flex justify-center">
+                            <div className="w-10 py-7 flex justify-evenly items-center">
+                                <div className="w-1 h-1 bg-black rounded-lg" />
+                                <div className="w-1 h-1 bg-black rounded-lg" />
+                                <div className="w-1 h-1 bg-black rounded-lg" />
+                            </div>
+                        </div>
+                        <p className="text-xl font-Body text-left">
+                            Halo, Pengembara! Selamat telah menaklukan rasa
+                            takut sehingga berhasil sampai di sini. Namun,
+                            perjuanganmu belum usai, terdapat masalah besar yang
+                            terjadi! Bantu aku untuk menemukan kepingan harta
+                            karun agar kamu dapat melihat hal luar biasa nanti
+                            yang akan membantumu berkembang. Mulai sekarang, aku
+                            panggil kamu dengan sebutan Reserse. Jalani misi ini
+                            secara sunyi, jangan sampai orang lain mengintaimu!
+                        </p>
+                        <br />
                         <p className="text-xl font-Body">
-                            Tapi sebelum itu kalian harus menjawab clue ini buat
-                            menemukan{' '}
-                            <span className="font-bold font-Body">
-                                password
-                            </span>{' '}
-                            yang membawa kalian ke unit - unit
+                            Di bawah ini terdapat sebuah tombol. Tekan dan cari
+                            tahu apa yang terjadi. Pastikan kamu tidak melewati
+                            satu hal pun, bisa jadi itu adalah hal yang menjadi
+                            petunjukmu.
                         </p>
                         <iframe
-                            src="https://www.youtube.com/embed/i9LWnyI0VrE"
-                            title="YouTube video player"
+                            src="https://www.youtube.com/embed/dCaacpi_a4g"
+                            title="TEASER DEFILE UNIT OSKM ITB 2022"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             className="my-4 mx-auto w-full h-[14em] md:h-[17em] lg:h-[24em]"
                         />
@@ -75,35 +100,70 @@ const TreasureHuntPage = () => {
                                 <p className="font-Body font-semibold text-xl">
                                     Clue 1 :
                                 </p>
-                                <p className="font-Body text-lg">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Laborum nulla optio
-                                    similique?
+                                <p className="font-Body text-lg text-left">
+                                    Kunci utama bagian ini adalah tetap tenang
+                                    dan fokus. Berapakah jumlah kategori unit
+                                    yang ada di “tombol” di atas? Kalikan dengan
+                                    tanggal H-1 opening, dan jawaban berbentuk
+                                    bit .ly/jawabankalian
                                 </p>
                             </div>
                             <div>
                                 <p className="font-Body font-semibold text-xl">
                                     Clue 2 :
                                 </p>
-                                <p className="font-Body text-lg">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Laborum nulla optio
-                                    similique?
+                                <p className="font-Body text-lg text-left">
+                                    Aku adalah salah satu mata acara yang
+                                    ditunggu-tunggu tiap tahun di OSKM ITB. Aku
+                                    bersemangat dan berwarna-warni. Jawablah
+                                    dengan bit .ly/JawabanKalianITB
                                 </p>
+                                <div className="flex flex-row justify-center items-center w-full overflow-hidden gap-4">
+                                    <img
+                                        src={Clue1}
+                                        alt="clue1"
+                                        className="object-contain w-[100px]"
+                                    />
+                                    <img
+                                        src={Clue2}
+                                        alt="clue2"
+                                        className="object-contain w-[100px]"
+                                    />
+                                    <img
+                                        src={Clue3}
+                                        alt="clue3"
+                                        className="object-contain w-[100px]"
+                                    />
+                                </div>
                             </div>
                             <div>
                                 <p className="font-Body font-semibold text-xl">
                                     Clue 3 :
                                 </p>
-                                <p className="font-Body text-lg">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Laborum nulla optio
-                                    similique?
+                                <p className="font-Body text-lg text-left">
+                                    Untuk melanjutkan pencarian ini, suara-suara
+                                    yang ada bisa jadi adalah petunjuk. Aku
+                                    adalah lantunan nada indah bercahaya yang
+                                    menyambut kalian di OSKM. Jawablah dengan
+                                    bit .ly/jawabanuntukkalian
+                                </p>
+                            </div>
+                            <div>
+                                <p className="font-Body font-semibold text-xl">
+                                    Clue 4 :
+                                </p>
+                                <p className="font-Body text-lg text-left">
+                                    Jaga fokusmu dan tetap semangat dalam
+                                    menyelesaikan misi. Aku adalah 3 tujuan yang
+                                    harus dicapai oleh perguruan tinggi
+                                    mahasiswa. Jawablah dengan tinyurl .com
+                                    /JawabanKalianPerguruanTinggi
                                 </p>
                             </div>
                         </div>
-                        <p className="font-Body mt-5 mb-2">
-                            Kalo udah ketemu, masukin passwordnya di bawah ini
+                        <p className="font-Heading py-4">
+                            Gabungkan kepingan puzzle kalian, temukan
+                            passwordnya, dan masukkan di sini
                         </p>
                         <InputGroup
                             minWidth="200px"
@@ -146,6 +206,7 @@ const TreasureHuntPage = () => {
                                 </Button>
                             </InputRightElement>
                         </InputGroup>
+
                         {incorrect && (
                             <p className="text-[red] font-Body text-xl">
                                 Incorrect Password
