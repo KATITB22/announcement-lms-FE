@@ -103,7 +103,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                 >
                     <Link
                         className="h-full min-w-max mr-3 flex items-center"
-                        to="https://katitb22.com/"
+                        to="/"
                     >
                         <img
                             className="h-[75%] md:h-[90%]"
@@ -225,10 +225,7 @@ const BaseLayout: React.FC<BaseProps> = (props) => {
                     py={4}
                 >
                     <div className="h-[80%] md:h-full flex flex-col justify-center">
-                        <Link
-                            className="h-[40%] flex justify-center"
-                            to="https://katitb22.com/"
-                        >
+                        <Link className="h-[40%] flex justify-center" to="/">
                             <img
                                 className="w-[120px]"
                                 src={LogoTextRight}
