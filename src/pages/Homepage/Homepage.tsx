@@ -6,7 +6,6 @@ import Pagination from '@/components/Pagination';
 import { SPONSOR_TITLE, MEDPAR_TITLE } from '@/types/constant';
 import BlogPost from '@/components/BlogPost';
 import { ErrorTypes } from '@/types/enum';
-import PageTransition from '@/components/PageTransition';
 import SponsorAndPartnerContainer from '@/components/SponsorAndPartnerContainer';
 import VistockHome from '@/components/VistockHome';
 import VistockAnnoucement from '@/assets/images/home/announcement-v1.png';
@@ -60,73 +59,71 @@ const Homepage: React.FC<{}> = () => {
     }
 
     return (
-        <PageTransition>
-            <div>
-                <div className="bg-[#FF8952]">
-                    <img
-                        src={VistockAnnoucement}
-                        alt="annoucement"
-                        className="w-screen"
-                        draggable="false"
-                    />
-                </div>
-                {/* <Annoucement /> */}
-                <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown min-h-screen relative z-10">
-                    <VistockHome />
-                    <div className="py-10">
-                        <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">
-                            <div className="flex justify-center relative pt-9">
-                                <div className="bg-LightBrown absolute top-0 lg:right-[14%] rounded-md flex flex-row justify-between items-center self-center w-44 h-10">
-                                    <Pagination
-                                        pagination={posts.meta.pagination}
-                                        page={page}
-                                        setPage={setPage}
-                                    />
-                                </div>
-                                <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
-                                    {blogPostElements}
-                                </div>
-                            </div>
-                            <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex flex-col justify-center">
-                                <div className="flex relative h-[36px] justify-center my-auto">
-                                    <div className=" font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute px-[10px] py-1 bottom-10 rounded drop-shadow-lg">
-                                        {SPONSOR_TITLE}
-                                    </div>
-                                </div>
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorSM}
-                                />
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorMD}
-                                />
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={sponsorLG}
+        <div>
+            <div className="bg-[#FF8952]">
+                <img
+                    src={VistockAnnoucement}
+                    alt="annoucement"
+                    className="w-screen"
+                    draggable="false"
+                />
+            </div>
+            {/* <Annoucement /> */}
+            <div className="bg-gradient-to-b from-DarkOrange to-MediumBrown min-h-screen relative z-10">
+                <VistockHome />
+                <div className="py-10">
+                    <div className="container max-w-[92.5vw] xl:max-w-screen-xl mx-auto">
+                        <div className="flex justify-center relative pt-9">
+                            <div className="bg-LightBrown absolute top-0 lg:right-[14%] rounded-md flex flex-row justify-between items-center self-center w-44 h-10">
+                                <Pagination
+                                    pagination={posts.meta.pagination}
+                                    page={page}
+                                    setPage={setPage}
                                 />
                             </div>
-                            <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center flex-col">
-                                <div className="flex relative h-[36px] justify-center my-auto">
-                                    <div className=" font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute px-[10px] py-1 bottom-10 rounded drop-shadow-lg">
-                                        {MEDPAR_TITLE}
-                                    </div>
-                                </div>
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparSM}
-                                />
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparMD}
-                                />
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparLG}
-                                />
-                                <SponsorAndPartnerContainer
-                                    listOfSponsorAndPartner={medparXL}
-                                />
+                            <div className="grid place-items-stretch lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 bg-LightBrown py-6 px-6 rounded-lg">
+                                {blogPostElements}
                             </div>
+                        </div>
+                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex flex-col justify-center">
+                            <div className="flex relative h-[36px] justify-center my-auto">
+                                <div className=" font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute px-[10px] py-1 bottom-10 rounded drop-shadow-lg">
+                                    {SPONSOR_TITLE}
+                                </div>
+                            </div>
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={sponsorSM}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={sponsorMD}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={sponsorLG}
+                            />
+                        </div>
+                        <div className="relative bg-LightBrown py-6 px-2 mt-16 rounded-lg flex justify-center flex-col">
+                            <div className="flex relative h-[36px] justify-center my-auto">
+                                <div className=" font-Heading text-xl sm:text-2xl text-center bg-LightBrown absolute px-[10px] py-1 bottom-10 rounded drop-shadow-lg">
+                                    {MEDPAR_TITLE}
+                                </div>
+                            </div>
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={medparSM}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={medparMD}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={medparLG}
+                            />
+                            <SponsorAndPartnerContainer
+                                listOfSponsorAndPartner={medparXL}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-        </PageTransition>
+        </div>
     );
 };
 

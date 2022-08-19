@@ -73,8 +73,8 @@ const TreasureHuntPage = () => {
                             </div>
                         </div>
                         <p className="text-xl font-Body text-left">
-                            Halo, Pengembara! Selamat telah menaklukan rasa
-                            takut sehingga berhasil sampai di sini. Namun,
+                            Halo, Evolviers! Selamat telah menaklukan rasa takut
+                            sehingga berhasil sampai di sini. Namun,
                             perjuanganmu belum usai, terdapat masalah besar yang
                             terjadi! Bantu aku untuk menemukan kepingan harta
                             karun agar kamu dapat melihat hal luar biasa nanti
