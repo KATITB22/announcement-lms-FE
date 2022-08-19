@@ -59,7 +59,7 @@ const Homepage: React.FC<{}> = () => {
     }
 
     return (
-        <div>
+        <div className="min-h-content">
             <div className="bg-[#FF8952]">
                 <img
                     src={VistockAnnoucement}
